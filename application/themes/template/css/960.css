@@ -1,0 +1,84 @@
+/* Autor: Edgar Missael Cabral Báez - 2015*/ 
+	.contenedor_portal{
+		width:960px;
+		margin:0 auto;
+		display:block;
+	}
+	.columna {
+		width:940px;
+		position:relative;
+		margin-right:10px;
+		margin-left:10px;
+		margin-bottom:20px;
+		float:left;
+	}
+	 
+	.columna-uno,
+	.columna-uno-uno,
+	.columna-uno-tres,
+	.columna-dos-tres{
+		float:left;
+		margin-right:10px;
+		margin-left:10px;
+		margin-bottom:10px;
+	}
+	.columna-uno	        { width:940px; } 
+	.columna-uno-uno        { width:460px; }
+	.columna-uno-tres       { width:300px; }
+	.columna-dos-tres       { width:620px; }
+	
+	h1 { font-size: 24px !important; }
+	h2 { font-size: 22px !important; }
+	h3 { font-size: 20px !important; }
+	h4 { font-size: 18px !important; }
+	h5 { font-size: 16px !important; }
+	h6 { font-size: 14px !important; }
+
+@media only screen and (min-width: 960px) and (max-width: 1060px) {
+	
+	.controlador 			{ width:100%; }
+	.contenedor_portal      { width:960px; }
+	
+} 
+
+/*------------------------------------------------------------------*/ 
+/*	1) Nota: Diseñado para pantallas de 768 px
+/*------------------------------------------------------------------*/
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+    .controlador 			{ width:100%; }
+	.contenedor_portal      { width:768px; margin:0 auto; }
+	.columna                { width:748px; }
+	.columna-uno            { width:748px; }
+	.columna-uno-uno        { width:364px; }
+    .columna-uno-tres       { width:236px; }
+    .columna-dos-tres       { width:492px; }
+	.paneles img			{ max-width:236px;}
+}
+
+
+/*------------------------------------------------------------------*/ 
+/*	2) Nota: Diseñado para pantallas de 480 px
+/*------------------------------------------------------------------*/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    
+	.controlador 			{ width:100%; }
+	.contenedor_portal      { width:420px; margin:0 auto; }
+	.columna       			{ width:400px; }
+	.columna-uno,
+	.columna-uno-uno,
+    .columna-uno-tres,
+    .columna-dos-tres	 	{ width:420px; }
+}
+
+/*------------------------------------------------------------------*/ 
+/*	3) Notaa: Diseñado para pantallas de 320 px
+/*------------------------------------------------------------------*/
+@media only screen and (min-width: 200px) and (max-width: 479px){
+    .controlador 			{ width:100%; }
+	.contenedor_portal      { width:300px; margin:0 auto; }
+	.columna       			{ width:300px; margin-left:0; margin-right:0;}
+    .columna-uno,
+	.columna-uno-uno,
+	.columna-uno-tres,
+    .columna-dos-tres	 	{ width:300px; margin-left:0; margin-right:0;}
+}

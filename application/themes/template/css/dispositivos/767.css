@@ -1,0 +1,194 @@
+﻿/* Autor: Edgar Missael Cabral Báez - 2015*/ 
+/*------------------------------------------------------------------*/ 
+/*	2) Notaaaa: Diseñoado para tamaño 480 hasta 767px
+/*------------------------------------------------------------------*/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+/*------------------------------------------------------------------*/ 
+/*	1) Cabecera
+/*------------------------------------------------------------------*/
+.logo {margin-left:0; width:100%; text-align:center; max-width:none !important; max-height:none !important;}
+.logo a img{
+	width:460px !important;
+	height:auto;
+	max-height:none !important;
+	float:none !important
+}
+.logogobierno > img{display:none}
+.logogobierno{
+	margin-top:0px !important;
+	width:100% !important;	
+}
+.Buscador .ccm-search-block-text{
+	margin-right:0px !important;	
+}
+.Buscador{
+	margin:0px;
+	width: 100%;
+	margin-bottom:10px;
+	background-image:none;
+	height:40px;
+}
+.Buscador .ccm-search-block-text{
+	width:85% !important;	
+	padding:15px 0 15px 6px !important;
+}
+.button, input[type="submit"], button {
+	padding: 12px 20px 12px 20px;
+}
+.icono-buscador {
+	display: none;
+}
+
+
+.footer_table{
+	display:block;
+}
+
+
+.ccm-search-block-text {
+	padding: 10px !important;
+	margin-bottom: -10px !important;
+}
+
+p img{width:100% !important; height:auto}
+
+
+.Principal-central{
+	width:960px;
+	height:800px;
+	margin-bottom:40px;
+	border-radius:20px;
+	margin-left:10px;
+}
+.buscador_input{
+	font-size:22px;
+	height:auto;
+	float:left;
+	width:55%;
+}
+.al_centro{
+	margin-left:15px;
+	display:block;
+	text-align:center;
+	font-size:14px;
+	color:#222;
+	margin-bottom:7px;
+	text-shadow:2px 2px 1px #FFFFFF;
+}
+.Sombra {
+	background-image:url(../../img/bg.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:bottom;
+	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	   -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+			box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.al_centro_infos_numeros{
+	margin-left:10%;
+	margin-right:10%;
+	text-align:center;
+	font-size:14px;
+	padding:10px;
+	background-color: rgba(200,200,200,0.7);
+	margin-bottom:7px;
+	width:300px;
+	float:left;
+	border: 1px solid #eee;
+}
+.base_infos{
+	padding:7px;
+	color:#222;
+	-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.24);
+	-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.24);
+	box-shadow: 0px 0px 2px 5px 0rgba(0,0,0,0.24);	
+	border: 1px solid #eee;
+	border-radius:5px;
+	margin:10px;
+	background:#fff;
+	text-align:center;
+	display:block;
+	width:87%;
+	transition: opacity 1s, box-shadow 1s, transform 1s, background 1s;
+	-webkit-transition: opacity 1s, -webkit-box-shadow 1s, -webkit-transform 1s, background 1s, color 1s;
+	transform:scale(1,1);
+	-webkit-transform:scale(1,1);
+	float:left;
+	height:70px;
+}
+.al_centro_mas_infos{
+	margin-left:10%;
+	margin-right:10%;
+	text-align:center;
+	font-size:14px;
+	margin-bottom:7px;
+	width:300px;
+	float:left;
+}
+.boton_mas_infos{
+	border-radius:10px;
+	-webkit-box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.24);
+	-moz-box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.24);
+	box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.24);	
+	padding:10px;
+	width:95%;
+	font-size:16px;
+	margin-bottom:5px;
+	color:#fff;
+	height:30px;
+	background: rgba(140,5,5,0.6);
+	border: 2px solid #CCC;
+	transition: opacity 1s, box-shadow 1s, transform 1s, background 1s;
+	-webkit-transition: opacity 1s, -webkit-box-shadow 1s, -webkit-transform 1s, background 1s, color 1s;
+	transform:scale(1,1);
+	-webkit-transform:scale(1,1);
+	float:left;
+}
+
+.enlace_footer{
+	font-size:16px;
+	color:#465f6e;
+	font-weight:bold;
+	margin-right:25px;
+	border-bottom: 2px dashed #ddd;
+	margin-bottom: 3px;
+	margin-top: 7px;
+	width:100%;
+}
+
+.youtube-player{
+	width:100% !important;	
+}
+.ccm-image-slider-text{
+	position:relative !important;
+	background:none;
+	padding-bottom:40px;	
+}
+.ccm-image-slider{
+	margin-bottom:15px;	
+}
+
+
+/*------------------------------------------------------------------*/ 
+/*	2) central
+/*------------------------------------------------------------------*/
+.Principal-central {
+	width:400px;
+}
+/*------------------------------------------------------------------*/ 
+/*	3) Contenido
+/*------------------------------------------------------------------*/
+.Principal-contenido{
+	width:100%;
+}
+.solo_base{
+	width:100%;
+	margin-right:0;
+}
+.solo_base img{
+	max-width:100%;
+}
+.ancho{
+	width:100%;
+}
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btLeyTransparencia">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+	</table>
+	
+	<table name="btLeyTransparenciaEntries">
+		<field name="id" type="I">
+			<key />
+			<unsigned />
+			<autoincrement />
+		</field>
+		<field name="bID" type="I"><unsigned /></field>
+		<field name="nombre" type="C" size="100"></field>		
+		<field name="orden" type="I"><notnull /></field>
+		<field name="fID" type="I"><UNSIGNED /><default value="0" /></field>
+	</table>
+</schema>
