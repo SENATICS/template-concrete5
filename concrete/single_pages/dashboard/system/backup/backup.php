@@ -134,10 +134,10 @@ if ($tp->canBackup()) {
                     <div class="control-group">
                         <div class="checkbox">
                             <?php if ($crypt->isAvailable()) { ?>
-                                <label class="checkbox"><input type="checkbox" name="useEncryption" id="useEncryption" value="1" />
+                                <label><input type="checkbox" name="useEncryption" id="useEncryption" value="1" />
                                 <span><?php echo t('Use Encryption') ?></span></label>
                             <?php } else { ?>
-                                <label class="checkbox"><input type="checkbox" value="0" disabled />
+                                <label><input type="checkbox" value="0" disabled />
                                 <span><?php echo t('Use Encryption') ?></span></label>
                             <?php } ?>
                         </div>

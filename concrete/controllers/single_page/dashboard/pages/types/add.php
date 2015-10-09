@@ -1,5 +1,6 @@
 <?php
 namespace Concrete\Controller\SinglePage\Dashboard\Pages\Types;
+use Concrete\Core\Error\Error;
 use \Concrete\Core\Page\Controller\DashboardPageController;
 use Loader;
 use PageType;
@@ -21,6 +22,12 @@ class Add extends DashboardPageController {
 		}
 		if (!$vs->handle($handle)) {
 			$this->error->add(t('You must specify a valid handle for your page type.'));
+		} else {
+    		$_pt = PageType::getByHandle($handle);
+    		if (is_object($_pt)) {
+        		$this->error->add(t('You must specify a unique handle for your page type.'));
+    		}
+    		unset($_pt);
 		}
 		$defaultTemplate = PageTemplate::getByID($this->post('ptDefaultPageTemplateID'));
 		if (!is_object($defaultTemplate)) {
@@ -41,6 +48,11 @@ class Add extends DashboardPageController {
 		$target = PageTypePublishTargetType::getByID($this->post('ptPublishTargetTypeID'));
 		if (!is_object($target)) {
 			$this->error->add(t('Invalid page type publish target type.'));
+		} else {
+			$pe = $target->validatePageTypeRequest($this->request);
+			if ($pe instanceof Error) {
+				$this->error->add($pe);
+			}
 		}
 
 		if (!$this->error->has()) {

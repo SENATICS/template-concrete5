@@ -109,8 +109,11 @@ div.ccm-dashboard-content-full {
 
 div.ccm-search-fields-submit {
   padding-bottom: 10px;
-  padding-right: 20px;
-.clearfix();
+  .clearfix();
+
+  button.pull-right {
+    margin-right: 20px;
+  }
 }
 
 form.ccm-search-fields-none {
@@ -124,7 +127,10 @@ div.ccm-search-fields-row {
   min-height: 34px;
 
   margin-bottom: 10px;
-  padding: 0px 0px 10px 97px;
+  padding: 0px 0px 10px 0px;
+  @media (min-width: @screen-sm-min) {
+    padding-left: 97px;
+  }
   border-bottom: 1px solid #efefef;
 
   position: relative;
@@ -137,9 +143,12 @@ div.ccm-search-fields-row {
       line-height: 34px;
       vertical-align: top;
       margin-right: 40px;
+      margin-bottom: 0px;
       font-size: @font-size-base !important;
       font-weight: normal;
     }
+
+    margin-bottom: 0px;
 
   }
 
@@ -186,7 +195,9 @@ table.ccm-search-results-table {
     display: block;
     padding-top: 0px;
     padding-bottom: 0px;
-    margin-left: 75px;
+    @media (min-width: @screen-sm-min) {
+      margin-left: 75px;
+    }
   }
 
   thead {
@@ -312,12 +323,10 @@ table.ccm-search-results-table {
   }
 }
 
-table.ccm-search-results-table {
-  div.ccm-search-results-none {
-    font-size: @font-size-large;
-    margin-top: 60px;
-    text-align: center;
-  }
+div.ccm-search-results-none {
+  font-size: @font-size-large;
+  margin-top: 60px;
+  text-align: center;
 }
 
 div.ccm-search-results-pagination {
@@ -368,8 +377,13 @@ div.ccm-search-results-pagination {
   .ccm-ui {
     form.ccm-search-fields {
       ul.ccm-search-form-advanced {
-        top: 0;
-        width: 130px;
+        position: relative;
+        li {
+          margin-bottom: 20px;
+          &.ccm-file-manager-upload {
+            font-size: 16px;
+          }
+        }
       }
 
       div.ccm-search-fields-row {

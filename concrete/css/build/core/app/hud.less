@@ -1,10 +1,11 @@
 /* In-page HUD */
 
 .ccm-notification {
+  max-width: 90%;
   font-family: @font-family-sans-serif;
   font-size: @font-size-base;
-  letter-spacing: 0.03em;
   z-index: @index-level-hud;
+  -webkit-font-smoothing: antialiased;
   .border-radius(3px);
   i.ccm-notification-icon {
     font-size: 16px;
@@ -25,13 +26,13 @@
 
   div.ccm-notification-inner-wrapper {
     max-height: 320px;
-    overflow: scroll;
+    overflow: auto;
   }
 
   div.ccm-notification-inner {
     h3 {
       font-size: @font-size-base * 1.2;
-      font-weight: 100;
+      font-weight: 300;
       margin: 0px 0px 10px 0px;
       padding: 0px;
     }
@@ -54,6 +55,7 @@
 
 div.ccm-notification-inner {
   width: 360px;
+  max-width: 100%;
   padding: 30px 30px 30px 80px;
 }
 
@@ -87,8 +89,11 @@ div#ccm-notification-hud {
 div#ccm-notification-page-alert, div#ccm-notification-page-alert-workflow {
   position: fixed;
   top: 110px;
-  right: 60px;
-  z-index: @index-level-hud;
+  right: 10px;
+  z-index: @index-level-page-alert;
+  @media (min-width: @screen-sm-min) {
+    right: 60px;
+  }
 }
 
 div#ccm-notification-page-alert-workflow {
@@ -131,10 +136,6 @@ div.ccm-notification-info {
   }
 }
 
-div.ccm-notification-help {
-  font-weight: 100;
-}
-
 div.ccm-notification-success {
   color: #1c3e00;
   background-color: rgba(15, 190, 102, 0.9);
@@ -146,69 +147,88 @@ div.ccm-notification-success {
   }
 }
 
-/*
-.ccm-notification {
-    font-family: @sansFontFamily;
-    .border-left-radius(3px);
-    padding: 30px 30px 30px 80px;
-    font-size: @font-size-base;
-    min-height: 25px;
-    i.fa {
-        font-size: 16px;
-        position: absolute;
-        top: 30px;
-        left: 35px;
-    }
-}
-
-
-
 div.ccm-notification-danger {
-    background-color: #C93737;
-    color: rgba(255,255,255,0.7);
+  color: #fff;
+  background-color: rgba(190, 62, 62, 0.90);
 }
 
 
+/**
+ * Help launcher
+ */
+div.ccm-notification-help-launcher {
+  position: fixed;
+  top: 82px;
+  right: 0px;
+  z-index: @index-level-page-help;
 
+  div.ccm-panel-detail-content & {
+    z-index: @index-level-panel-help;
+  }
 
+  -webkit-font-smoothing: antialiased;
+  .transition-transform(cubic-bezier(0.190, 1.000, 0.220, 1.000) 0.5s);
 
-div#ccm-page-status-bar {
-    z-index: @index-level-status-bar;
-    position: relative;
+  html.ccm-panel-open.ccm-panel-right & {
+    .translate(-320px, 0);
+  }
+
+  a {
+    .border-left-radius(4px);
+    background-color: #335B8A;
+    color: #fff;
     display: block;
-    position: fixed;
-    left: 0px;
-    top: 49px;
-    height: 32px;
-    width: 100%;
-    .clearfix();
+    height: 40px;
+    width: 40px;
+    .transition(all 0.1s ease-in-out);
 
-    div.alert {
-        padding: 12px;
-        margin-bottom: 0px;
-        position: relative;
-        .border-radius(0px);
+    -webkit-animation-duration:0.2s;
+    -moz-animation-duration:0.2s;
+    -ms-animation-duration:0.2s;
+    -o-animation-duration:0.2s;
+    animation-duration:0.2s;
 
-        .close {
-            right: -3px !important;
-            top: -2px !important;
-        }
-    }
+  }
 
-    div.ccm-page-status-bar-buttons {
-        position: absolute;
-        top: 12px;
-        right: 35px;
+  a:hover, a:active, a:focus {
+    color: #fff;
+    background-color: #163251;
+  }
 
-        .btn {
-            margin-left: 10px;
-        }
-    }
+  i {
+    margin-left: 9px;
+    vertical-align: middle;
+    font-size: 26px;
+    font-weight: normal;
+    line-height: 40px;
+  }
+}
 
-    form {
-        margin-bottom: 0px !important;
-    }
+div.ccm-notification-help {
+  display: none;
+
+  div.ccm-panel-detail-content & {
+    margin-top: -28px; // not sure why – some of the style in these panels gets a little weird.
+  }
+
+  -webkit-animation-duration:0.2s;
+  -moz-animation-duration:0.2s;
+  -ms-animation-duration:0.2s;
+  -o-animation-duration:0.2s;
+  animation-duration:0.2s;
+  -webkit-font-smoothing: antialiased;
+
+  .transition-transform(cubic-bezier(0.190, 1.000, 0.220, 1.000) 0.5s);
+
+  html.ccm-panel-open.ccm-panel-right & {
+    .translate(-320px, 0);
+  }
+
+  position: fixed;
+  right: 0px;
+  top: 83px;
+  .border-right-radius(0px);
+  z-index: @index-level-page-help;
 
 }
 
-*/

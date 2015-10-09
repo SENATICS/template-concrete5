@@ -5,9 +5,13 @@ div#ccm-toolbar {
   position: fixed;
   top: 0px;
   left: 0px;
-  height: 49px;
+  height: 48px;
   width: 100%;
   z-index: @index-level-main-bar; /* over the top of the highlighter, which is 1000 */
+
+  &.ccm-toolbar-tour-guide {
+    z-index: @index-level-toolbar-tour-guide;
+  }
 
   .ccm-toolbar-item-list {
     height: 48px;
@@ -26,7 +30,7 @@ div#ccm-toolbar {
       width: auto !important;
       padding: 14px 16px;
     }
-    li > a i {
+    li > a i, li > a img {
       position: static;
     }
   }
@@ -52,7 +56,7 @@ div#ccm-toolbar {
       > a {
 
         display: block;
-        height: 48px;
+        height: 47px;
         width: 60px;
         box-sizing: border-box;
         text-align: center;
@@ -63,10 +67,12 @@ div#ccm-toolbar {
         margin-left: -1px; /* we have to do this tomfoolery because of user-added menus */
         text-decoration: none;
 
-        i {
+        i, img {
           position: absolute;
           top: 17px;
-          left: 24px;
+          left: 23px;
+          width: 14px;
+          height: 14px;
         }
 
         .spinner {
@@ -78,6 +84,7 @@ div#ccm-toolbar {
           position: absolute;
           top: 12px;
           left: 18px;
+          z-index: @index-level-main-bar-loading;
           .transition(opacity cubic-bezier(0.355, 0, 1.000, 0.035) 0.5s);
         }
 
@@ -132,18 +139,13 @@ div#ccm-toolbar {
       }
     }
 
-    > li:last-child {
-      a {
-        border-right: 0px;
-      }
-    }
 
     li.ccm-logo {
       span {
         padding: 12px 18px 0px 18px;
         height: 36px;
         display: block;
-        height: 48px;
+        height: 47px;
         border-right: 1px solid #ccc;
       }
     }
@@ -151,7 +153,7 @@ div#ccm-toolbar {
     li.ccm-toolbar-search {
       background-color: #fff;
       padding: 0px;
-      height: 48px;
+      height: 47px;
       white-space: nowrap;
       border-left: 1px solid #ccc;
       color: #888;
@@ -166,6 +168,7 @@ div#ccm-toolbar {
       input {
         border-right: 1px solid #ccc;
         margin-right: 0px;
+        background-color: transparent;
       }
 
     }
@@ -175,6 +178,14 @@ div#ccm-toolbar {
         background-color: #b5eeb5;
         #gradient .vertical(#c2ffc2, #b5eeb5);
         color: #333;
+      }
+    }
+
+    li.ccm-toolbar-page-edit-mode-pinned{
+      > a, a:hover {
+        background-color: #D6E6EE;
+        #gradient .vertical(#D6E6EE, #B8DCEE);
+        color: #136CC0;
       }
     }
 
@@ -200,7 +211,6 @@ div#ccm-toolbar {
       padding: 18px 24px 0px 24px;
       height: 30px;
       border-right: 0px !important;
-      border-left: 1px solid #ccc;
     }
 
   }
@@ -280,6 +290,10 @@ div#ccm-toolbar-disabled {
   &:hover,
   &.ccm-mobile-close {
     color: #7d7d7d;
+  }
+  &.ccm-toolbar-mobile-menu-button-active {
+    background-color: #b5eeb5;
+    #gradient .vertical(#c2ffc2, #b5eeb5);
   }
 }
 

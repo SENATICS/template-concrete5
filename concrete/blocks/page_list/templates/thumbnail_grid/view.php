@@ -8,7 +8,7 @@ $c = Page::getCurrentPage();
 
     <?php if ($pageListTitle): ?>
         <div class="ccm-block-page-list-header">
-            <h5><?php echo $pageListTitle?></h5>
+            <h5><?php echo h($pageListTitle)?></h5>
         </div>
     <?php endif; ?>
 
@@ -73,7 +73,7 @@ $c = Page::getCurrentPage();
 	<?php endforeach; ?>
 
     <?php if (count($pages) == 0): ?>
-        <div class="ccm-block-page-list-no-pages"><?php echo $noResultsMessage?></div>
+        <div class="ccm-block-page-list-no-pages"><?php echo h($noResultsMessage)?></div>
     <?php endif;?>
 
 </div>

@@ -10,7 +10,7 @@ $h = Loader::helper('concrete/ui');
 ?>
 <form class="form-stacked" method="post" id="registration-type-form"
       action="<?php echo $view->action('update_registration_type') ?>">
-
+        <?php echo $token->output('update_registration_type')?>
     <div class="row">
 
         <div class="col-sm-6">
@@ -67,7 +67,7 @@ $h = Loader::helper('concrete/ui');
                         <span><?php echo t('Email address'); ?> </span>
                         <input
                             class="span3" name="register_notification_email" type="text"
-                            value="<?php echo $register_notification_email; ?>"/>
+                            value="<?php echo h($register_notification_email); ?>"/>
                     </label>
                 </div>
                 <div class="checkbox">

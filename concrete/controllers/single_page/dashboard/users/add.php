@@ -64,7 +64,7 @@ class Add extends DashboardPageController {
 
 		if (strlen($username) >= Config::get('concrete.user.username.minimum') && !$valc->username($username)) {
 			if(Config::get('concrete.user.username.allow_spaces')) {
-				$this->error->add(t('A username may only contain letters, numbers, spaces, dots (not at the beginning/end), underscores (not at the beginning/end).'));
+				$this->error->add(t('A username may only contain letters, numbers, spaces (not at the beginning/end), dots (not at the beginning/end), underscores (not at the beginning/end).'));
 			} else {
 				$this->error->add(t('A username may only contain letters numbers, dots (not at the beginning/end), underscores (not at the beginning/end).'));
 			}
@@ -123,11 +123,16 @@ class Add extends DashboardPageController {
 					}
 				}
 
+                $saveAttributes = array();
 				foreach($aks as $uak) {
 					if (in_array($uak->getAttributeKeyID(), $assignment->getAttributesAllowedArray())) {
-						$uak->saveAttributeForm($uo);
+                        $saveAttributes[] = $uak;
 					}
 				}
+
+                if (count($saveAttributes) > 0) {
+                    $uo->saveUserAttributesForm($saveAttributes);
+                }
 
 				$gIDs = array();
 				if (is_array($_POST['gID'])) {

@@ -2,6 +2,8 @@
 
 <div class="ccm-ui">
 
+    <p><?php echo t('You can add saved layouts to other areas in your site. Note: these are different than any layout presets that might be included with your theme.')?></p>
+
 <form method="post" action="<?php echo $controller->action('submit')?>" data-dialog-form="save-area-layout-presets" >
 	<input type="hidden" value="<?php echo Loader::helper('security')->sanitizeInt($_REQUEST['arLayoutID'])?>" name="arLayoutID" />
 

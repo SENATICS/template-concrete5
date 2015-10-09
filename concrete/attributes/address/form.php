@@ -2,7 +2,7 @@
 <?php $f = Loader::helper('form'); ?>
 <?php $co = Loader::helper('lists/countries'); ?>
 
-<fieldset class="ccm-attribute-address-<?php echo $key->getAttributeKeyID()?>">
+<fieldset class="ccm-attribute ccm-attribute-address ccm-attribute-address-<?php echo $key->getAttributeKeyID()?>">
 <div class="ccm-attribute-address-line form-group">
     <?php echo $f->label($this->field('address1'), t('Address 1'))?>
     <?php echo $f->text($this->field('address1'), $address1)?>

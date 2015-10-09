@@ -28,73 +28,75 @@ class Composer extends BackendInterfacePageController {
 	}
 
 	public function autosave() {
-		$r = $this->save();
-		$ptr = $r[0];
-		if (!$ptr->error->has()) {
-			$ptr->setMessage(t('Page saved on %s', Core::make('helper/date')->formatDateTime($ptr->time, true, true)));
+		if ($this->validateAction()) {
+			$r = $this->save();
+			$ptr = $r[0];
+			if (!$ptr->error->has()) {
+				$ptr->setMessage(t('Page saved on %s', Core::make('helper/date')->formatDateTime($ptr->time, true, true)));
+			}
+			$ptr->outputJSON();
+		} else {
+			throw new \Exception(t('Access Denied.'));
 		}
-		$ptr->outputJSON();
 	}
 
     public function saveAndExit() {
-        $r = $this->save();
-        $ptr = $r[0];
-        $u = new User();
-        $c = \Page::getByID($u->getPreviousFrontendPageID());
-        $ptr->setRedirectURL($c->getCollectionLink(true));
-        $ptr->outputJSON();
+		if ($this->validateAction()) {
+        	$r = $this->save();
+        	$ptr = $r[0];
+        	$u = new User();
+        	$c = \Page::getByID($u->getPreviousFrontendPageID());
+        	$ptr->setRedirectURL($c->getCollectionLink(true));
+        	$ptr->outputJSON();
+		} else {
+			throw new \Exception(t('Access Denied.'));
+		}
     }
 
     public function publish() {
-		$r = $this->save();
-		$ptr = $r[0];
-		$pagetype = $r[1];
-		$outputControls = $r[2];
+		if ($this->validateAction()) {
+			$r = $this->save();
+			$ptr = $r[0];
+			$pagetype = $r[1];
+			$outputControls = $r[2];
 
-		$c = $this->page;
-        $e = $ptr->error;
-		if (!$c->getPageDraftTargetParentPageID()) {
-			$e->add(t('You must choose a page to publish this page beneath.'));
-		} else {
-            $target = \Page::getByID($c->getPageDraftTargetParentPageID());
-            $ppc = new \Permissions($target);
-            if (!$ppc->canAddSubCollection($target)) {
-                $e->add(t('You do not have permission to publish a page in this location.'));
-            }
-        }
+			$c = $this->page;
+			$e = $ptr->error;
+			$validator = $pagetype->getPageTypeValidatorObject();
+			$target = \Page::getByID($this->page->getPageDraftTargetParentPageID());
+			$e->add($validator->validatePublishLocationRequest($target));
+			$e->add($validator->validatePublishDraftRequest($c));
 
-		foreach($outputControls as $oc) {
-			if ($oc->isPageTypeComposerFormControlRequiredOnThisRequest()) {
-				$r = $oc->validate();
-				if ($r instanceof \Concrete\Core\Error\Error) {
-					$e->add($r);
-				}
+			$ptr->setError($e);
+
+			if (!$e->has()) {
+				$pagetype->publish($c);
+				$ptr->setRedirectURL(Loader::helper('navigation')->getLinkToCollection($c));
 			}
+			$ptr->outputJSON();
+		} else {
+			throw new \Exception(t('Access Denied.'));
 		}
-
-		$ptr->setError($e);
-
-		if (!$e->has()) {
-			$pagetype->publish($c);
-			$ptr->setRedirectURL(Loader::helper('navigation')->getLinkToCollection($c));
-		}
-		$ptr->outputJSON();
 	}
 
 	public function discard() {
-		$ptr = new PageEditResponse();
-		if ($this->permissions->canDeletePage() && $this->page->isPageDraft()) {
-			$this->page->delete();
-			$u = new User();
-			$cID = $u->getPreviousFrontendPageID();
-			$ptr->setRedirectURL(DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $cID);
-		} else {
-			$e = Loader::helper('validation/error');
-			$e->add(t('You do not have permission to discard this page.'));
-			$ptr->setError($e);
-		}
+		if ($this->validateAction()) {
+			$ptr = new PageEditResponse();
+			if ($this->permissions->canDeletePage() && $this->page->isPageDraft()) {
+				$this->page->delete();
+				$u = new User();
+				$cID = $u->getPreviousFrontendPageID();
+				$ptr->setRedirectURL(DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $cID);
+			} else {
+				$e = Loader::helper('validation/error');
+				$e->add(t('You do not have permission to discard this page.'));
+				$ptr->setError($e);
+			}
 
-		$ptr->outputJSON();
+			$ptr->outputJSON();
+		} else {
+			throw new \Exception(t('Access Denied.'));
+		}
 	}
 
 	protected function save() {
@@ -109,7 +111,8 @@ class Composer extends BackendInterfacePageController {
 		if (!is_object($pt)) {
 			$pt = $pagetype->getPageTypeDefaultPageTemplateObject();
 		}
-		$e = $pagetype->validateCreateDraftRequest($pt);
+		$validator = $pagetype->getPageTypeValidatorObject();
+		$e = $validator->validateCreateDraftRequest($pt);
         $outputControls = array();
 		if (!$e->has()) {
 			$c = $c->getVersionToModify();

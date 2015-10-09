@@ -11,6 +11,12 @@
             <?php echo t('Increase Toolbar Font Size') ?>
         </label>
     </div>
+    <div class="checkbox">
+        <label>
+            <input name="display_help" value="1" type="checkbox" <?php echo $display_help ? 'checked' : '' ?> />
+            <?php echo t('Enable Help') ?>
+        </label>
+    </div>
     <div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
             <button class="pull-right btn btn-primary">

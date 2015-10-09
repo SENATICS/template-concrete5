@@ -21,8 +21,8 @@ if ($user->isLoggedIn()) {
         <hr>
     </div>
     <div class="form-group">
-        <a href="<?php echo \URL::to('/system/authentication/community/attempt_attach'); ?>" class="btn btn-primary btn-community btn-block">
-            <img src="<?php echo BASE_URL . DIR_REL ?>/concrete/images/logo.png" class="concrete5-icon"></i>
+        <a href="<?php echo \URL::to('/ccm/system/authentication/oauth2/community/attempt_attach'); ?>" class="btn btn-primary btn-community btn-block">
+            <img src="<?php echo Core::getApplicationURL() ?>/concrete/images/logo.png" class="concrete5-icon"></i>
             <?php echo t('Attach a concrete5.org account') ?>
         </a>
     </div>
@@ -33,11 +33,11 @@ if ($user->isLoggedIn()) {
         <span>
             <?php echo t('Sign in with a community account') ?>
         </span>
-        <hr>
+        <hr class="ccm-authentication-type-community">
     </div>
     <div class="form-group">
-        <a href="<?php echo \URL::to('/system/authentication/community/attempt_auth'); ?>" class="btn btn-primary btn-community btn-block">
-            <img src="<?php echo BASE_URL . DIR_REL ?>/concrete/images/logo.png" class="concrete5-icon"></i>
+        <a href="<?php echo \URL::to('/ccm/system/authentication/oauth2/community/attempt_auth'); ?>" class="btn btn-primary btn-community btn-block">
+            <img src="<?php echo Core::getApplicationURL() ?>/concrete/images/logo.png" class="concrete5-icon"></i>
             <?php echo t('Log in with concrete5.org') ?>
         </a>
     </div>
@@ -60,6 +60,10 @@ if ($user->isLoggedIn()) {
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1fbae8', endColorstr='#129bd3',GradientType=0 );
     }
 
+    .ccm-concrete-authentication-type-svg > svg {
+      width: 16px;
+    }
+
     img.concrete5-icon {
         width: 20px;
         margin-right:5px;
@@ -78,13 +82,15 @@ if ($user->isLoggedIn()) {
             $(function() {
 
                 if (svg.closest('li').hasClass('active')) {
-                    svg.attr('fill', 'white');
+                    var color = $('ul.auth-types li.active').css('color');
+                    svg.attr('fill', color);
                 } else {
                     svg.attr('fill', 'rgb(155,155,155)');
                 }
                 Concrete.event.bind('AuthenticationTypeSelected', function(e, handle) {
                     if (handle === 'community') {
-                        svg.attr('fill', 'white');
+                        var color = $('ul.auth-types li.active').css('color');
+                        svg.attr('fill', color);
                     } else {
                         svg.attr('fill', 'rgb(155,155,155)');
                     }

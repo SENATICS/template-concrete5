@@ -9,26 +9,30 @@ if (!$fp->canAccessFileManager()) {
 	die(t("Unable to access the file manager."));
 }
 
+$token_validator = \Core::make('helper/validation/token');
+
 if ($_POST['task'] == 'delete_files') {
-	$json['error'] = false;
+    $fr = new FileEditResponse();
+    if ($token_validator->validate('files/delete')) {
+        $files = array();
+        if (is_array($_POST['fID'])) {
+            foreach ($_POST['fID'] as $fID) {
+                $f = File::getByID($fID);
+                $fp = new Permissions($f);
+                if ($fp->canDeleteFile()) {
+                    $files[] = $f;
+                    $f->delete();
+                } else {
+                    throw new Exception(t('Unable to delete one or more files.'));
+                }
+            }
+        }
 
-	$fr = new FileEditResponse();
-	$files = array();
-	if (is_array($_POST['fID'])) {
-		foreach($_POST['fID'] as $fID) {
-			$f = File::getByID($fID);
-			$fp = new Permissions($f);
-			if ($fp->canDeleteFile()) {
-				$files[] = $f;
-				$f->delete();
-			} else {
-				throw new Exception(t('Unable to delete one or more files.'));
-			}
-		}
-	}
-
-	$fr->setMessage(t2('%s file deleted successfully.', '%s files deleted successfully.', count($files)));
-	$fr->outputJSON();
+        $fr->setMessage(t2('%s file deleted successfully.', '%s files deleted successfully.', count($files)));
+    } else {
+        $fr->setError(new \Exception('Invalid Token'));
+    }
+    $fr->outputJSON();
 }
 
 $form = Loader::helper('form');
@@ -61,6 +65,7 @@ foreach($files as $f) {
 	<div class="alert alert-warning"><?php echo t('Are you sure you want to delete the following files?')?></div>
 
 	<form data-dialog-form="delete-file" method="post" action="<?php echo REL_DIR_FILES_TOOLS_REQUIRED?>/files/delete">
+        <?php echo $token_validator->output('files/delete') ?>
 	<?php echo $form->hidden('task', 'delete_files')?>
 	<table border="0" cellspacing="0" cellpadding="0" width="100%" class="table table-striped">
 
@@ -74,7 +79,7 @@ foreach($files as $f) {
 
 			<tr>
 				<td><?php echo $fv->getType()?></td>
-				<td class="ccm-file-list-filename" width="100%"><div style="word-wrap: break-word; width: 150px"><?php echo $fv->getTitle()?></div></td>
+				<td class="ccm-file-list-filename" width="100%"><div style="word-wrap: break-word; width: 150px"><?php echo h($fv->getTitle())?></div></td>
 				<td><?php echo $dh->formatDateTime($f->getDateAdded()->getTimestamp())?></td>
 				<td><?php echo $fv->getSize()?></td>
 				<td><?php echo $fv->getAuthorName()?></td>
@@ -98,7 +103,7 @@ foreach($files as $f) {
 	$(function() {
 		ConcreteEvent.subscribe('AjaxFormSubmitSuccess', function(e, data) {
 			if (data.form == 'delete-file') {
-				ConcreteEvent.publish('FileManagerUpdateRequestComplete', {files: data.response.files});
+				ConcreteEvent.publish('FileManagerDeleteFilesComplete', {files: data.response.files});
 			}
 		});
 	});

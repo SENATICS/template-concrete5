@@ -16,6 +16,8 @@ class FileList extends DatabaseItemList implements PermissionableListItemInterfa
 
     /** @var  \Closure | integer | null */
     protected $permissionsChecker;
+    
+    protected $paginationPageParameter = 'ccm_paging_fl';
 
     /**
      * Columns in this array can be sorted via the request.
@@ -56,7 +58,7 @@ class FileList extends DatabaseItemList implements PermissionableListItemInterfa
     public function getTotalResults()
     {
         $u = new \User();
-        if ($this->permissionsChecker == -1) {
+        if ($this->permissionsChecker === -1) {
             $query = $this->deliverQueryObject();
             return $query->select('count(distinct f.fID)')->setMaxResults(1)->execute()->fetchColumn();
         } else {
@@ -67,7 +69,7 @@ class FileList extends DatabaseItemList implements PermissionableListItemInterfa
     protected function createPaginationObject()
     {
         $u = new \User();
-        if ($this->permissionsChecker == -1) {
+        if ($this->permissionsChecker === -1) {
             $adapter = new DoctrineDbalAdapter($this->deliverQueryObject(), function ($query) {
                 $query->select('count(distinct f.fID)')->setMaxResults(1);
             });

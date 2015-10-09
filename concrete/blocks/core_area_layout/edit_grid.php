@@ -15,7 +15,7 @@
 <?php foreach($columns as $col) { ?>
 	<?php $i = $col->getAreaLayoutColumnIndex(); ?>
 	<?php if ($col->getAreaLayoutColumnOffset() > 0) { ?>
-		<div class="<?php echo $col->getAreaLayoutColumnOffsetEditClass()?> ccm-theme-grid-offset-column"></div>
+		<div class="<?php echo $col->getAreaLayoutColumnOffsetEditClass()?> ccm-theme-grid-offset-column">&nbsp;</div>
 	<?php } ?>
 
 	<div class="<?php echo $col->getAreaLayoutColumnClass()?> ccm-theme-grid-column ccm-theme-grid-column-edit-mode" id="ccm-edit-layout-column-<?php echo $i?>" data-offset="<?php echo $col->getAreaLayoutColumnOffset()?>" data-span="<?php echo $col->getAreaLayoutColumnSpan()?>">

@@ -5,7 +5,7 @@
     <legend><?php echo t('Frequently Used')?></legend>
     <ul class="item-select-list" data-sort="frequently-used">
     <?php foreach($frequent as $pt) { ?>
-        <li data-page-type-id="<?php echo $pt->getPageTypeID()?>"><span><?php echo $pt->getPageTypeName()?> <i class="fa fa-arrow-v ccm-item-select-list-sort"></i></span></li>
+        <li data-page-type-id="<?php echo $pt->getPageTypeID()?>"><span><?php echo $pt->getPageTypeDisplayName()?> <i class="fa fa-arrow-v ccm-item-select-list-sort"></i></span></li>
     <?php } ?>
     </ul>
 </fieldset>
@@ -14,7 +14,7 @@
     <legend><?php echo t('Others')?></legend>
     <ul class="item-select-list" data-sort="other">
         <?php foreach($infrequent as $pt) { ?>
-            <li data-page-type-id="<?php echo $pt->getPageTypeID()?>"><span><?php echo $pt->getPageTypeName()?> <i class="fa fa-arrow-v ccm-item-select-list-sort"></i></span></li>
+            <li data-page-type-id="<?php echo $pt->getPageTypeID()?>"><span><?php echo $pt->getPageTypeDisplayName()?> <i class="fa fa-arrow-v ccm-item-select-list-sort"></i></span></li>
         <?php } ?>
     </ul>
 </fieldset>

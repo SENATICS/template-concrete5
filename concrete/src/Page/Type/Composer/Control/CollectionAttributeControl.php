@@ -1,8 +1,6 @@
 <?php
 namespace Concrete\Core\Page\Type\Composer\Control;
 
-use Loader;
-use \Concrete\Core\Foundation\Object;
 use Controller;
 use CollectionAttributeKey;
 use Page;
@@ -18,6 +16,11 @@ class CollectionAttributeControl extends Control
     {
         $this->akID = $akID;
         $this->setPageTypeComposerControlIdentifier($akID);
+    }
+
+    public function getPageTypeComposerControlName()
+    {
+        return $this->getAttributeKeyObject()->getAttributeKeyDisplayName('text');
     }
 
     public function pageTypeComposerFormControlSupportsValidation()
@@ -39,6 +42,9 @@ class CollectionAttributeControl extends Control
         }
     }
 
+    /**
+     * @return CollectionAttributeKey
+     */
     public function getAttributeKeyObject()
     {
         if (!$this->ak) {
@@ -126,17 +132,48 @@ class CollectionAttributeControl extends Control
         }
     }
 
+    protected function isFormSubmission()
+    {
+        $ak = $this->getAttributeKeyObject();
+        $controller = $ak->getController();
+        if (is_object($controller)) {
+            return $controller->requestFieldExists();
+        }
+    }
+
     public function validate()
     {
         $ak = $this->getAttributeKeyObject();
         if (is_object($ak)) {
-            $value = $this->page->getAttribute($ak);
-            if (!$value) {
-                $e = Loader::helper('validation/error');
-                $e->add(t('The field "%s" is required', $ak->getAttributeKeyDisplayName()));
 
-                return $e;
+            $e = \Core::make('error');
+            if ($this->isFormSubmission()) {
+                $response = $ak->validateAttributeForm();
+                if ($response === false) {
+
+                    $control = $this->getPageTypeComposerFormLayoutSetControlObject();
+                    $e->add(t('The field %s is required', $control->getPageTypeComposerControlLabel()));
+
+                } else if ($response instanceof \Concrete\Core\Error\Error) {
+                    $e->add($response);
+                }
+            } else {
+                $value = $this->getPageTypeComposerControlDraftValue();
+                if (!is_object($value)) {
+                    $control = $this->getPageTypeComposerFormLayoutSetControlObject();
+                    $e->add(t('The field %s is required', $control->getPageTypeComposerControlLabel()));
+                } else {
+                    $response = $value->validateAttributeValue();
+                    if ($response === false) {
+                        $control = $this->getPageTypeComposerFormLayoutSetControlObject();
+                        $e->add(t('The field %s is required', $control->getPageTypeComposerControlLabel()));
+                    } else if ($response instanceof \Concrete\Core\Error\Error) {
+                        $e->add($response);
+                    }
+                }
             }
+
+            return $e;
         }
     }
 
@@ -145,6 +182,11 @@ class CollectionAttributeControl extends Control
         $ak = $this->getAttributeKeyObject();
         $akc = $ak->getController();
         $akc->setupAndRun('composer');
+    }
+
+    public function objectExists()
+    {
+        return $this->getAttributeKeyObject() !== null;
     }
 
 }

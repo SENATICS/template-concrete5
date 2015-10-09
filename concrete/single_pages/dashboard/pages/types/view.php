@@ -1,6 +1,6 @@
 <?php defined('C5_EXECUTE') or die("Access Denied."); ?>
 
-<?php if ($this->controller->getTask() == 'edit' && is_object($pagetype)) { ?>
+<?php if (($this->controller->getTask() == 'submit' || $this->controller->getTask() == 'edit') && is_object($pagetype)) { ?>
 
 <form class="form-horizontal" method="post" action="<?php echo $view->action('submit', $pagetype->getPageTypeID())?>">
 <div class="ccm-pane-body">
@@ -35,20 +35,46 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach($pagetypes as $cm) {  ?>
+		<?php foreach($pagetypes as $cm) {
+            $cmp = new Permissions($cm);?>
 		<tr>
-			<td class="page-type-name"><?php echo $cm->getPageTypeName()?></td>
+			<td class="page-type-name"><?php echo $cm->getPageTypeDisplayName()?></td>
 			<td class="page-type-tasks">
-				<a href="<?php echo $view->action('edit', $cm->getPageTypeID())?>" class="btn btn-default btn-xs"><?php echo t('Basic Details')?></a>
-				<a href="<?php echo $view->url('/dashboard/pages/types/form', $cm->getPageTypeID())?>" class="btn btn-default btn-xs"><?php echo t('Edit Form')?></a>
-				<a href="<?php echo $view->url('/dashboard/pages/types/output', $cm->getPageTypeID())?>" class="btn btn-default btn-xs"><?php echo t('Output')?></a>
-				<?php if ($pk->can()) { ?>
+                <?php if ($cmp->canEditPageType()) { ?>
+    				<a href="<?php echo $view->action('edit', $cm->getPageTypeID())?>" class="btn btn-default btn-xs"><?php echo t('Basic Details')?></a>
+	    			<a href="<?php echo $view->url('/dashboard/pages/types/form', $cm->getPageTypeID())?>" class="btn btn-default btn-xs"><?php echo t('Edit Form')?></a>
+		    		<a href="<?php echo $view->url('/dashboard/pages/types/output', $cm->getPageTypeID())?>" class="btn btn-default btn-xs"><?php echo t('Output')?></a>
+                    <a href="<?php echo $view->url('/dashboard/pages/types/attributes', $cm->getPageTypeID())?>" class="btn btn-default btn-xs"><?php echo t('Attributes')?></a>
+                <?php } ?>
+                <?php if ($cmp->canEditPageTypePermissions()) { ?>
 					<a href="<?php echo $view->url('/dashboard/pages/types/permissions', $cm->getPageTypeID())?>" class="btn btn-default btn-xs"><?php echo t('Permissions')?></a>
 				<?php } ?>
-				<a href="#" data-delete="<?php echo $cm->getPageTypeID()?>" class="btn btn-default btn-xs btn-danger"><?php echo t('Delete')?></a>
+                <a href="#" data-duplicate="<?php echo $cm->getPageTypeID()?>" class="btn btn-default btn-xs"><?php echo t('Copy')?></a>
+                <div style="display: none">
+                    <div data-duplicate-dialog="<?php echo $cm->getPageTypeID()?>" class="ccm-ui">
+                        <form class="form-stacked" data-duplicate-form="<?php echo $cm->getPageTypeID()?>" action="<?php echo $view->action('duplicate', $cm->getPageTypeID())?>" method="post">
+                            <div class="form-group">
+                                <label class="control-label"><?php echo t('Name')?></label>
+                                <input type="text" name="ptName" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label"><?php echo t('Handle')?></label>
+                                <input type="text" name="ptHandle" class="form-control">
+                            </div>
+                            <?php echo Loader::helper('validation/token')->output('duplicate_page_type')?>
+                        </form>
+                        <div class="dialog-buttons">
+                            <button onclick="jQuery.fn.dialog.closeTop()" class="btn btn-default pull-left"><?php echo t('Cancel')?></button>
+                            <button onclick="$('form[data-duplicate-form=<?php echo $cm->getPageTypeID()?>]').submit()" class="btn btn-primary pull-right"><?php echo t('Copy')?></button>
+                        </div>
+                    </div>
+                </div>
 
+                <?php if ($cmp->canDeletePageType()) { ?>
+    				<a href="#" data-delete="<?php echo $cm->getPageTypeID()?>" class="btn btn-default btn-xs btn-danger"><?php echo t('Delete')?></a>
+                <?php } ?>
 				<div style="display: none">
-					<div data-delete-dialog="<?php echo $cm->getPageTypeID()?>">
+					<div data-delete-dialog="<?php echo $cm->getPageTypeID()?>" class="ccm-ui">
 						<form data-delete-form="<?php echo $cm->getPageTypeID()?>" action="<?php echo $view->action('delete', $cm->getPageTypeID())?>" method="post">
 						<?php echo t("Delete this page type? This cannot be undone.")?>
 						<?php echo Loader::helper('validation/token')->output('delete_page_type')?>
@@ -86,7 +112,7 @@
 				width: 320,
 				dialogClass: 'ccm-ui',
 				title: '<?php echo t("Delete Page Type")?>',
-				height: 200, 
+				height: 320,
 				buttons: [
 					{
 						'text': '<?php echo t("Cancel")?>',
@@ -105,7 +131,17 @@
 				]
 			});
 		});
-	});
+        $('a[data-duplicate]').on('click', function() {
+            var ptID = $(this).attr('data-duplicate');
+            jQuery.fn.dialog.open({
+                element: 'div[data-duplicate-dialog=' + ptID + ']',
+                modal: true,
+                width: 320,
+                title: '<?php echo t("Copy Page Type")?>',
+                height: 280
+            });
+        });
+    });
 	</script>
 
 <?php } ?>

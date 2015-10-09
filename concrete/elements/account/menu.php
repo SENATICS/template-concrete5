@@ -23,12 +23,13 @@ do {
 
 <div style="display: none">
 <div class="btn-group" id="ccm-account-menu">
-  <button class="btn" data-toggle="dropdown"><?php echo t('My Account')?></button>
-  <button class="btn dropdown-toggle" data-toggle="dropdown">
+  <a class="btn btn-default" href="<?php echo Core::make('helper/navigation')->getLinkToCollection($account)?>"><i class="fa fa-user"></i> <?php echo t('My Account')?></a>
+  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 	<span class="caret"></span>
   </button>
-  <ul class="dropdown-menu pull-right">
+  <ul class="dropdown-menu pull-right" role="menu">
   <?php
+  	$categories = array();
 	$children = $account->getCollectionChildrenArray(true);
 	foreach($children as $cID) {
 		$nc = Page::getByID($cID, 'ACTIVE');
@@ -39,26 +40,12 @@ do {
 	}
 
 	foreach($categories as $cc) { ?>
-		<li class="nav-header"><?php echo $cc->getCollectionName()?></li>
-<?php
-		$subchildren = $cc->getCollectionChildrenArray(true);
-		foreach($subchildren as $cID) {
-			$nc = Page::getByID($cID, 'ACTIVE');
-			$ncp = new Permissions($nc);
-			if ($ncp->canRead() && (!$nc->getAttribute('exclude_nav'))) { ?>
-
-				<li><a href="<?php echo Loader::helper('navigation')->getLinkToCollection($nc)?>"><?php echo $nc->getCollectionName()?></a></li>
-
-			<?php
-
-			}
-		}
+		<li><a href="<?php echo Core::make('helper/navigation')->getLinkToCollection($cc)?>"><?php echo h(t($cc->getCollectionName()))?></a></li><?php
 	}
 	?>
-
 	<li class="divider"></li>
-	<li><a href="<?php echo DIR_REL?>/"><i class="icon-home"></i> <?php echo t("Home")?></a></li>
-	<li><a href="<?php echo $view->url('/login', 'logout', Loader::helper('validation/token')->generate('logout'))?>"><i class="icon-remove"></i> <?php echo t("Sign Out")?></a></li>
+	<li><a href="<?php echo URL::to('/')?>"><i class="fa fa-home"></i> <?php echo t("Home")?></a></li>
+	<li><a href="<?php echo URL::to('/login', 'logout', Loader::helper('validation/token')->generate('logout'))?>"><i class="fa fa-sign-out"></i> <?php echo t("Sign Out")?></a></li>
  </ul>
 </div>
 </div>

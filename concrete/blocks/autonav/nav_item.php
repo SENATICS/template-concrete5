@@ -83,12 +83,12 @@ use Loader;
 		}
 
 		/**
-		 * Gets a URL that will take the user to this particular page. Checks against URL_REWRITING, the page's path, etc..
+		 * Gets a URL that will take the user to this particular page. Checks against concrete.seo.url_rewriting, the page's path, etc..
 		 * @return string $url
 		 */
 		function getURL() {
 			if ($this->cPointerExternalLink != '') {
-				$link = Loader::helper('text')->encodePath($this->cPointerExternalLink);
+				$link = $this->cPointerExternalLink;
 			} else if ($this->cPath) {
 			    $link = $this->cPath;
 			} else if ($this->cID == HOME_CID) {

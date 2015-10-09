@@ -34,26 +34,41 @@ class Type
      */
     protected $pkgID = 0;
 
+    /**
+     * @return string
+     */
     public function getHandle()
     {
         return $this->fslTypeHandle;
     }
 
+    /**
+     * @return int
+     */
     public function getID()
     {
         return $this->fslTypeID;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->fslTypeName;
     }
 
+    /**
+     * @return int
+     */
     public function getPackageID()
     {
         return $this->pkgID;
     }
 
+    /**
+     * @return null|string
+     */
     public function getPackageHandle()
     {
         return PackageList::getHandle($this->pkgID);
@@ -64,19 +79,14 @@ class Type
      */
     public function getConfigurationObject()
     {
-        if ($this->getPackageID()) {
-            return Core::make('\\Concrete\\Package\\' . camelcase($this->getPackageHandle()) . '\\Core\\File\\StorageLocation\\Configuration\\'
-                . camelcase($this->getHandle()) . 'Configuration');
-        } else {
-            return Core::make('\\Concrete\\Core\\File\\StorageLocation\\Configuration\\'
-                . camelcase($this->getHandle()) . 'Configuration');
-        }
+        $class = core_class('\\Core\\File\\StorageLocation\\Configuration\\' . camelcase($this->getHandle()) . 'Configuration', $this->getPackageHandle());
+        return Core::make($class);
     }
 
     /**
-     * @param $fslTypeHandle
-     * @param $fslTypeName
-     * @param int $pkgID
+     * @param string $fslTypeHandle
+     * @param string $fslTypeName
+     * @param int|\Package $pkg
      * @return \Concrete\Core\File\StorageLocation\Type\Type
      */
     public static function add($fslTypeHandle, $fslTypeName, $pkg = false)
@@ -94,6 +104,10 @@ class Type
         return $o;
     }
 
+    /**
+     * @param int $id
+     * @return null|\Concrete\Core\File\StorageLocation\Type\Type
+     */
     public static function getByID($id)
     {
         $db = Database::get();
@@ -120,7 +134,7 @@ class Type
 
     /**
      * Returns an array of \Concrete\Core\File\StorageLocation\Type\Type objects.
-     * @return array
+     * @return \Concrete\Core\File\StorageLocation\Type\Type[]
      */
     public static function getList()
     {
@@ -131,6 +145,9 @@ class Type
         );
     }
 
+    /**
+     * @return bool
+     */
     public function hasOptionsForm() {
         $env = Environment::get();
         $rec = $env->getRecord(DIRNAME_ELEMENTS .
@@ -140,6 +157,9 @@ class Type
         return $rec->exists();
     }
 
+    /**
+     * @param bool|StorageLocation $location
+     */
     public function includeOptionsForm($location = false) {
         $configuration = $this->getConfigurationObject();
         if ($location instanceof StorageLocation) {
@@ -151,6 +171,41 @@ class Type
             'location' => $location,
             'configuration' => $configuration
         ), $this->getPackageHandle());
+    }
+
+    /**
+     * Return an array of AuthenticationTypes that are associated with a specific package.
+     * @param \Package $pkg
+     * @return \Concrete\Core\File\StorageLocation\Type\Type[]
+     */
+    public static function getListByPackage(\Package $pkg)
+    {
+        $db = Database::get();
+        $em = $db->getEntityManager();
+        return $em->getRepository('\Concrete\Core\File\StorageLocation\Type\Type')->findBy(
+            array('pkgID' => $pkg->getPackageID()), array('fslTypeID' => 'asc')
+        );
+    }
+
+    /**
+     * Removes the storage type if no configurations exist.
+     * @throws \Exception
+     * @return bool
+     */
+    public function delete()
+    {
+        $list = StorageLocation::getList();
+        foreach($list as $item) {
+            if($item->getTypeObject()->getHandle() == $this->getHandle()) {
+                throw new \Exception(t('Please remove all storage locations using this storage type.'));
+            }
+        }
+
+        $db = \Database::get();
+        $em = $db->getEntityManager();
+        $em->remove($this);
+        $em->flush();
+        return true;
     }
 
 

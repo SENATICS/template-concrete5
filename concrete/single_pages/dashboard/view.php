@@ -20,16 +20,19 @@ if($rowCount == 3 || $i == 0) {
             $subcats = $cat->getCollectionChildrenArray(true);
             foreach($subcats as $catID) {
                 $subcat = Page::getByID($catID, 'ACTIVE');
+                if ($subcat->getAttribute('exclude_nav')) {
+                    continue;
+                }
                 $catp = new Permissions($subcat);
                 if ($catp->canRead()) {
                     $show[] = $subcat;
                 }
             }
-
-            if (count($show) > 0) { ?>
-
+            ?>
 
             <ul class="list-unstyled">
+            
+            <?php if (count($show) > 0) { ?>
 
             <?php foreach($show as $subcat) { ?>
 

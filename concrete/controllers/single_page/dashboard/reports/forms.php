@@ -118,7 +118,7 @@ class Forms extends DashboardPageController
         $c = Page::getCurrentPage();
         $db = Loader::db();
         $tempMiniSurvey = new MiniSurvey();
-        $pageBase = DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID();
+        $pageBase = \URL::to($c);
 
         if ($_REQUEST['action'] == 'deleteForm') {
             if (!Loader::helper('validation/token')->validate('deleteForm')) {
@@ -172,7 +172,7 @@ class Forms extends DashboardPageController
             $answerSetCount = MiniSurvey::getAnswerCount($questionSet);
 
             //pagination 
-            $pageBaseSurvey = $pageBase . '&qsid=' . $questionSet;
+            $pageBaseSurvey = $pageBase . '?qsid=' . $questionSet;
             $paginator = Loader::helper('pagination');
             $sortBy = $_REQUEST['sortBy'];
             $paginator->init(

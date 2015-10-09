@@ -36,7 +36,6 @@ if (is_object($conversation)) {
             orderBy: '<?php echo $orderBy?>',
             enableOrdering: <?php echo $enableOrdering?>,
             displayPostingForm: '<?php echo $displayPostingForm?>',
-            insertNewMessages: '<?php echo $insertNewMessages?>',
             activeUsers: <?php echo Loader::helper('json')->encode($users)?>,
             enableCommentRating: <?php echo $enableCommentRating?>,
             commentRatingUserID: <?php echo $uID?>,

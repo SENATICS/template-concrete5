@@ -7,8 +7,8 @@ class Controller extends BlockController
 {
     protected $btTable = 'btMapa';
 	protected $btExportTables = array('btMapa', 'btMapaEntries');
-    protected $btInterfaceWidth = "600";
-    protected $btInterfaceHeight = "500";
+    protected $btInterfaceWidth = "1050";
+    protected $btInterfaceHeight = "600";
     protected $btCacheBlockRecord = true;
     protected $btCacheBlockOutput = true;
     protected $btCacheBlockOutputOnPost = true;
@@ -34,7 +34,10 @@ class Controller extends BlockController
     {
         parent::__construct($obj);
         if (!$this->titulo) {
-            $this->titulo = t("Item");
+            $this->titulo = t("");
+        }
+        if (!$this->zoom) {
+            $this->zoom = t("14");
         }
     }
 
@@ -47,8 +50,8 @@ class Controller extends BlockController
     public function view()
     {
         $this->set('bID', $this->bID);
-        $this->set('titulo', $this->titulo);
-        $this->set('zoom', $this->zoom);
+        $this->set('titulo', html_entity_decode($this->titulo));
+        $this->set('zoom', html_entity_decode($this->zoom));
         $db = Loader::db();
 		$query = $db->GetAll("SELECT * FROM btMapaEntries WHERE bID=? ORDER BY orden", array($this->bID));
 		$this->set('items', $query);
@@ -56,8 +59,8 @@ class Controller extends BlockController
 
     public function save($data)
     {
-        $args['titulo'] = isset($data['titulo']) ? trim($data['titulo']) : '';
-		$args['zoom'] = isset($data['zoom']) ? intval($data['zoom']) : 5;
+        $args['titulo'] = isset($data['titulo']) ? htmlentities(trim($data['titulo'])) : '';
+		$args['zoom'] = isset($data['zoom']) ? htmlentities(intval($data['zoom'])) : 5;
 		$db = Loader::db();
 		$db->execute('DELETE FROM btMapaEntries WHERE bID = ?', array($this->bID));
 		
@@ -69,8 +72,8 @@ class Controller extends BlockController
 		while( $i < $count) {
 				$db->execute('INSERT INTO btMapaEntries (bID, nombre, cuerpo, x, y, orden, icono) VALUES (?, ?, ?, ?, ?, ?, ?)',
 				array(
-				$this->bID, $data['nombre'][$i], 
-				$data['cuerpo'][$i], $data['x'][$i], $data['y'][$i],
+				$this->bID, htmlentities($data['nombre'][$i]), 
+				htmlentities($data['cuerpo'][$i]), htmlentities($data['x'][$i]), htmlentities($data['y'][$i]),
 				intval($data['orden'][$i]), intval($data['icono'][$i])
 				));
                 $i++;

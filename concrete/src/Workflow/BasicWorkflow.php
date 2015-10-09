@@ -12,9 +12,13 @@ use PermissionAccess;
 use PermissionKey;
 use User;
 use UserInfo;
+use Config;
 
 class BasicWorkflow extends \Concrete\Core\Workflow\Workflow
 {
+    public function getPermissionAssignmentClassName() {
+        return '\\Concrete\\Core\\Permission\\Assignment\\BasicWorkflowAssignment';
+    }
 
     public function updateDetails($post)
     {
@@ -85,6 +89,7 @@ class BasicWorkflow extends \Concrete\Core\Workflow\Workflow
             foreach ($parameters as $key => $value) {
                 $mh->addParameter($key, $value);
             }
+            $mh->addParameter('siteName', Config::get('concrete.site'));
             $mh->load('basic_workflow_notification');
             $mh->sendMail();
             unset($mh);

@@ -1,31 +1,32 @@
 <?php
+
 namespace Concrete\Core\Page\Theme;
 
-use \Concrete\Core\Http\ResponseAssetGroup;
+use Concrete\Core\Http\ResponseAssetGroup;
 use Config;
 use Loader;
 use Page;
 use Environment;
 use Core;
-use \Concrete\Core\Page\Theme\File as PageThemeFile;
-use \Concrete\Core\Package\PackageList;
-use \Concrete\Core\Foundation\Object;
+use Concrete\Core\Page\Theme\File as PageThemeFile;
+use Concrete\Core\Package\PackageList;
+use Concrete\Core\Foundation\Object;
 use PageTemplate;
 use Concrete\Core\Page\Theme\GridFramework\GridFramework;
-use \Concrete\Core\Page\Single as SinglePage;
-use \Concrete\Core\StyleCustomizer\Preset;
-use \Concrete\Core\StyleCustomizer\CustomCssRecord;
+use Concrete\Core\Page\Single as SinglePage;
+use Concrete\Core\StyleCustomizer\Preset;
+use Concrete\Core\StyleCustomizer\CustomCssRecord;
+use Localization;
 
 /**
- *
  * A page's theme is a pointer to a directory containing templates, CSS files and optionally PHP includes, images and JavaScript files.
- * Themes inherit down the tree when a page is added, but can also be set at the site-wide level (thereby overriding any previous choices.)
+ * Themes inherit down the tree when a page is added, but can also be set at the site-wide level (thereby overriding any previous choices.).
+ *
  * @package Pages and Collections
  * @subpackages Themes
  */
 class Theme extends Object
 {
-
     protected $pThemeName;
     protected $pThemeID;
     protected $pThemeDescription;
@@ -34,11 +35,12 @@ class Theme extends Object
     protected $pThemeHandle;
     protected $pThemeURL;
     protected $pThemeIsPreview = false;
+    protected $pkgID;
 
     const E_THEME_INSTALLED = 1;
-    const THEME_EXTENSION = ".php";
-    const THEME_CUSTOMIZABLE_STYLESHEET_EXTENSION = ".less";
-    const FILENAME_TYPOGRAPHY_CSS = "typography.css";
+    const THEME_EXTENSION = '.php';
+    const THEME_CUSTOMIZABLE_STYLESHEET_EXTENSION = '.less';
+    const FILENAME_TYPOGRAPHY_CSS = 'typography.css';
 
     protected $stylesheetCachePath;
     protected $stylesheetCacheRelativePath = REL_DIR_FILES_CACHE;
@@ -60,17 +62,17 @@ class Theme extends Object
 
     public static function getListByPackage($pkg)
     {
-        return static::getList('pkgID = ' . $pkg->getPackageID());
+        return static::getList('pkgID = '.$pkg->getPackageID());
     }
 
     public static function getList($where = null)
     {
         if ($where != null) {
-            $where = ' where ' . $where;
+            $where = ' where '.$where;
         }
 
         $db = Loader::db();
-        $r = $db->query("select pThemeID from PageThemes" . $where);
+        $r = $db->query('select pThemeID from PageThemes'.$where);
         $themes = array();
         while ($row = $r->fetchRow()) {
             $pl = static::getByID($row['pThemeID']);
@@ -84,7 +86,7 @@ class Theme extends Object
     {
         $db = Loader::db();
 
-        return $db->GetCol("select pThemeHandle from PageThemes");
+        return $db->GetCol('select pThemeHandle from PageThemes');
     }
 
     public function providesAsset($assetType, $assetHandle)
@@ -93,10 +95,11 @@ class Theme extends Object
         $r->markAssetAsIncluded($assetType, $assetHandle);
     }
 
-    public function requireAsset($assetType, $assetHandle)
+    public function requireAsset()
     {
         $r = ResponseAssetGroup::get();
-        $r->requireAsset($assetType, $assetHandle);
+        $args = func_get_args();
+        call_user_func_array(array($r, 'requireAsset'), $args);
     }
 
     public static function getAvailableThemes($filterInstalled = true)
@@ -110,7 +113,7 @@ class Theme extends Object
         $themes = $dh->getDirectoryContents(DIR_FILES_THEMES);
         if ($filterInstalled) {
             // strip out themes we've already installed
-            $handles = $db->GetCol("select pThemeHandle from PageThemes");
+            $handles = $db->GetCol('select pThemeHandle from PageThemes');
             $themesTemp = array();
             foreach ($themes as $t) {
                 if (!in_array($t, $handles)) {
@@ -133,12 +136,11 @@ class Theme extends Object
         }
 
         return $themes;
-
     }
 
     public static function getByFileHandle($handle, $dir = DIR_FILES_THEMES, $pkgHandle = '')
     {
-        $dirt = $dir . '/' . $handle;
+        $dirt = $dir.'/'.$handle;
         if (is_dir($dirt)) {
             $res = static::getThemeNameAndDescription($dirt, $handle, $pkgHandle);
 
@@ -152,7 +154,7 @@ class Theme extends Object
             }
             switch ($dir) {
                 case DIR_FILES_THEMES:
-                    $th->pThemeURL = DIR_REL . '/' . DIRNAME_APPLICATION . '/' . DIRNAME_THEMES . '/' . $handle;
+                    $th->pThemeURL = DIR_REL.'/'.DIRNAME_APPLICATION.'/'.DIRNAME_THEMES.'/'.$handle;
                     break;
             }
 
@@ -161,15 +163,15 @@ class Theme extends Object
     }
 
     /**
-     * Checks the theme for a styles.xml file (which is how customizations happen.)
-     * @return boolean
+     * Checks the theme for a styles.xml file (which is how customizations happen.).
      *
+     * @return bool
      */
     public function isThemeCustomizable()
     {
         $env = Environment::get();
         $r = $env->getRecord(
-            DIRNAME_THEMES . '/' . $this->getThemeHandle() . '/' . DIRNAME_CSS . '/' . FILENAME_STYLE_CUSTOMIZER_STYLES,
+            DIRNAME_THEMES.'/'.$this->getThemeHandle().'/'.DIRNAME_CSS.'/'.FILENAME_STYLE_CUSTOMIZER_STYLES,
             $this->getPackageHandle()
         );
 
@@ -178,6 +180,7 @@ class Theme extends Object
 
     /**
      * Gets the style list object for this theme.
+     *
      * @return \Concrete\Core\StyleCustomizer\StyleList
      */
     public function getThemeCustomizableStyleList()
@@ -185,8 +188,8 @@ class Theme extends Object
         if (!isset($this->styleList)) {
             $env = Environment::get();
             $r = $env->getRecord(
-                DIRNAME_THEMES . '/' . $this->getThemeHandle(
-                ) . '/' . DIRNAME_CSS . '/' . FILENAME_STYLE_CUSTOMIZER_STYLES,
+                DIRNAME_THEMES.'/'.$this->getThemeHandle(
+                ).'/'.DIRNAME_CSS.'/'.FILENAME_STYLE_CUSTOMIZER_STYLES,
                 $this->getPackageHandle()
             );
             $this->styleList = \Concrete\Core\StyleCustomizer\StyleList::loadFromXMLFile($r->file);
@@ -196,20 +199,20 @@ class Theme extends Object
     }
 
     /**
-     * Gets a preset for this theme by handle
+     * Gets a preset for this theme by handle.
      */
     public function getThemeCustomizablePreset($handle)
     {
         $env = Environment::get();
         if ($this->isThemeCustomizable()) {
             $file = $env->getRecord(
-                DIRNAME_THEMES . '/' . $this->getThemeHandle(
-                ) . '/' . DIRNAME_CSS . '/' . DIRNAME_STYLE_CUSTOMIZER_PRESETS . '/' . $handle . static::THEME_CUSTOMIZABLE_STYLESHEET_EXTENSION,
+                DIRNAME_THEMES.'/'.$this->getThemeHandle(
+                ).'/'.DIRNAME_CSS.'/'.DIRNAME_STYLE_CUSTOMIZER_PRESETS.'/'.$handle.static::THEME_CUSTOMIZABLE_STYLESHEET_EXTENSION,
                 $this->getPackageHandle()
             );
             if ($file->exists()) {
                 $urlroot = $env->getURL(
-                    DIRNAME_THEMES . '/' . $this->getThemeHandle() . '/' . DIRNAME_CSS,
+                    DIRNAME_THEMES.'/'.$this->getThemeHandle().'/'.DIRNAME_CSS,
                     $this->getPackageHandle()
                 );
                 $preset = Preset::getFromFile($file->file, $urlroot);
@@ -228,19 +231,19 @@ class Theme extends Object
         $env = Environment::get();
         if ($this->isThemeCustomizable()) {
             $directory = $env->getPath(
-                DIRNAME_THEMES . '/' . $this->getThemeHandle(
-                ) . '/' . DIRNAME_CSS . '/' . DIRNAME_STYLE_CUSTOMIZER_PRESETS,
+                DIRNAME_THEMES.'/'.$this->getThemeHandle(
+                ).'/'.DIRNAME_CSS.'/'.DIRNAME_STYLE_CUSTOMIZER_PRESETS,
                 $this->getPackageHandle()
             );
             $urlroot = $env->getURL(
-                DIRNAME_THEMES . '/' . $this->getThemeHandle() . '/' . DIRNAME_CSS,
+                DIRNAME_THEMES.'/'.$this->getThemeHandle().'/'.DIRNAME_CSS,
                 $this->getPackageHandle()
             );
             $dh = Loader::helper('file');
             $files = $dh->getDirectoryContents($directory);
             foreach ($files as $f) {
                 if (strrchr($f, '.') == static::THEME_CUSTOMIZABLE_STYLESHEET_EXTENSION) {
-                    $preset = Preset::getFromFile($directory . '/' . $f, $urlroot);
+                    $preset = Preset::getFromFile($directory.'/'.$f, $urlroot);
                     if (is_object($preset)) {
                         $presets[] = $preset;
                     }
@@ -263,8 +266,8 @@ class Theme extends Object
 
     public function enablePreviewRequest()
     {
-        $this->setStylesheetCacheRelativePath(REL_DIR_FILES_CACHE . '/preview');
-        $this->setStylesheetCachePath(Config::get('concrete.cache.directory') . '/preview');
+        $this->setStylesheetCacheRelativePath(REL_DIR_FILES_CACHE.'/preview');
+        $this->setStylesheetCachePath(Config::get('concrete.cache.directory').'/preview');
         $this->pThemeIsPreview = true;
     }
 
@@ -276,7 +279,6 @@ class Theme extends Object
         foreach ($sheets as $sheet) {
             $sheet->clearOutputFile();
         }
-
     }
 
     public function isThemePreviewRequest()
@@ -290,7 +292,7 @@ class Theme extends Object
         $env = Environment::get();
         if ($this->isThemeCustomizable()) {
             $directory = $env->getPath(
-                DIRNAME_THEMES . '/' . $this->getThemeHandle() . '/' . DIRNAME_CSS,
+                DIRNAME_THEMES.'/'.$this->getThemeHandle().'/'.DIRNAME_CSS,
                 $this->getPackageHandle()
             );
             $dh = Loader::helper('file');
@@ -308,10 +310,10 @@ class Theme extends Object
     public function getStylesheetObject($stylesheet)
     {
         $env = Environment::get();
-        $output = $this->getStylesheetCachePath() . '/' . DIRNAME_CSS . '/' . $this->getThemeHandle();
-        $relative = $this->getStylesheetCacheRelativePath() . '/' . DIRNAME_CSS . '/' . $this->getThemeHandle();
+        $output = $this->getStylesheetCachePath().'/'.DIRNAME_CSS.'/'.$this->getThemeHandle();
+        $relative = $this->getStylesheetCacheRelativePath().'/'.DIRNAME_CSS.'/'.$this->getThemeHandle();
         $r = $env->getRecord(
-            DIRNAME_THEMES . '/' . $this->getThemeHandle() . '/' . DIRNAME_CSS . '/' . $stylesheet,
+            DIRNAME_THEMES.'/'.$this->getThemeHandle().'/'.DIRNAME_CSS.'/'.$stylesheet,
             $this->getPackageHandle()
         );
 
@@ -323,8 +325,10 @@ class Theme extends Object
     /**
      * Looks into the current CSS directory and returns a fully compiled stylesheet
      * when passed a LESS stylesheet. Also serves up custom value list values for the stylesheet if they exist.
-     * @param  string $stylesheet The LESS stylesheet to compile
-     * @return string             The path to the stylesheet.
+     *
+     * @param string $stylesheet The LESS stylesheet to compile
+     *
+     * @return string The path to the stylesheet.
      */
     public function getStylesheet($stylesheet)
     {
@@ -341,7 +345,7 @@ class Theme extends Object
         }
         $path = $stylesheet->getOutputRelativePath();
         if ($this->isThemePreviewRequest()) {
-            $path .= '?ts=' . time();
+            $path .= '?ts='.time();
         }
 
         return $path;
@@ -389,7 +393,7 @@ class Theme extends Object
                 'pThemeID' => $this->getThemeID(),
                 'sccRecordID' => $sccRecordID,
                 'preset' => $preset,
-                'scvlID' => $valueList->getValueListID()
+                'scvlID' => $valueList->getValueListID(),
             )
         );
 
@@ -410,6 +414,7 @@ class Theme extends Object
 
     /**
      * @param string $pThemeHandle
+     *
      * @return PageTheme
      */
     public static function getByHandle($pThemeHandle)
@@ -423,6 +428,7 @@ class Theme extends Object
 
     /**
      * @param int $ptID
+     *
      * @return PageTheme
      */
     public static function getByID($pThemeID)
@@ -434,7 +440,13 @@ class Theme extends Object
         return $pt;
     }
 
-    protected function populateThemeQuery($where, $args)
+    /**
+     * @param string $where
+     * @param array  $args
+     *
+     * @return \Concrete\Core\Page\Theme\Theme|null
+     */
+    protected static function populateThemeQuery($where, $args)
     {
         $db = Loader::db();
         $row = $db->GetRow(
@@ -442,20 +454,21 @@ class Theme extends Object
             $args
         );
         $env = Environment::get();
-        if ($row['pThemeID']) {
+        $pl = null;
+        if (!empty($row)) {
             $standardClass = '\\Concrete\Core\\Page\\Theme\\Theme';
             if ($row['pThemeHasCustomClass']) {
                 $pkgHandle = PackageList::getHandle($row['pkgID']);
-                $r = $env->getRecord(DIRNAME_THEMES . '/' . $row['pThemeHandle'] . '/' . FILENAME_THEMES_CLASS, $pkgHandle);
+                $r = $env->getRecord(DIRNAME_THEMES.'/'.$row['pThemeHandle'].'/'.FILENAME_THEMES_CLASS, $pkgHandle);
                 $prefix = $r->override ? true : $pkgHandle;
                 $customClass = core_class(
-                    'Theme\\' .
-                    Loader::helper('text')->camelcase($row['pThemeHandle']) .
+                    'Theme\\'.
+                    Loader::helper('text')->camelcase($row['pThemeHandle']).
                     '\\PageTheme',
                 $prefix);
                 try {
                     $pl = Core::make($customClass);
-                } catch(\ReflectionException $e) {
+                } catch (\ReflectionException $e) {
                     $pl = Core::make($standardClass);
                 }
             } else {
@@ -463,28 +476,28 @@ class Theme extends Object
             }
             $pl->setPropertiesFromArray($row);
             $pkgHandle = $pl->getPackageHandle();
-            $pl->pThemeDirectory = $env->getPath(DIRNAME_THEMES . '/' . $row['pThemeHandle'], $pkgHandle);
-            $pl->pThemeURL = $env->getURL(DIRNAME_THEMES . '/' . $row['pThemeHandle'], $pkgHandle);
-
-            return $pl;
+            $pl->pThemeDirectory = $env->getPath(DIRNAME_THEMES.'/'.$row['pThemeHandle'], $pkgHandle);
+            $pl->pThemeURL = $env->getURL(DIRNAME_THEMES.'/'.$row['pThemeHandle'], $pkgHandle);
         }
+
+        return $pl;
     }
 
     public static function add($pThemeHandle, $pkg = null)
     {
         if (is_object($pkg)) {
-            if (is_dir(DIR_PACKAGES . '/' . $pkg->getPackageHandle())) {
-                $dir = DIR_PACKAGES . '/' . $pkg->getPackageHandle() . '/' . DIRNAME_THEMES . '/' . $pThemeHandle;
+            if (is_dir(DIR_PACKAGES.'/'.$pkg->getPackageHandle())) {
+                $dir = DIR_PACKAGES.'/'.$pkg->getPackageHandle().'/'.DIRNAME_THEMES.'/'.$pThemeHandle;
             } else {
-                $dir = DIR_PACKAGES_CORE . '/' . $pkg->getPackageHandle() . '/' . DIRNAME_THEMES . '/' . $pThemeHandle;
+                $dir = DIR_PACKAGES_CORE.'/'.$pkg->getPackageHandle().'/'.DIRNAME_THEMES.'/'.$pThemeHandle;
             }
             $pkgID = $pkg->getPackageID();
         } else {
-            if (is_dir(DIR_FILES_THEMES . '/' . $pThemeHandle)) {
-                $dir = DIR_FILES_THEMES . '/' . $pThemeHandle;
+            if (is_dir(DIR_FILES_THEMES.'/'.$pThemeHandle)) {
+                $dir = DIR_FILES_THEMES.'/'.$pThemeHandle;
                 $pkgID = 0;
             } else {
-                $dir = DIR_FILES_THEMES_CORE . '/' . $pThemeHandle;
+                $dir = DIR_FILES_THEMES_CORE.'/'.$pThemeHandle;
                 $pkgID = 0;
             }
         }
@@ -497,10 +510,9 @@ class Theme extends Object
     // lists them out, by type, allowing people to install them as page type, etc...
     public function getFilesInTheme()
     {
-
         $dh = Loader::helper('file');
         $templateList = PageTemplate::getList();
-        $cts = array();
+        $pts = array();
         foreach ($templateList as $pt) {
             $pts[] = $pt->getPageTemplateHandle();
         }
@@ -546,21 +558,21 @@ class Theme extends Object
         $res->pThemeName = '';
         $res->pThemeDescription = '';
         $res->pError = '';
-        if (file_exists($dir . '/' . FILENAME_THEMES_DESCRIPTION)) {
-            $con = file($dir . '/' . FILENAME_THEMES_DESCRIPTION);
+        if (file_exists($dir.'/'.FILENAME_THEMES_DESCRIPTION)) {
+            $con = file($dir.'/'.FILENAME_THEMES_DESCRIPTION);
             $res->pThemeName = trim($con[0]);
             $res->pThemeDescription = trim($con[1]);
         }
-        $pageThemeFile = $dir . '/' . FILENAME_THEMES_CLASS;
+        $pageThemeFile = $dir.'/'.FILENAME_THEMES_CLASS;
         if (is_file($pageThemeFile)) {
             try {
-                $cn .= '\\Theme\\' . camelcase($pThemeHandle) . '\\PageTheme';
+                $cn = '\\Theme\\'.camelcase($pThemeHandle).'\\PageTheme';
                 $classNames = array();
                 if (strlen($pkgHandle)) {
-                    $classNames[] = '\\Concrete\\Package\\' . camelcase($pkgHandle) . $cn;
+                    $classNames[] = '\\Concrete\\Package\\'.camelcase($pkgHandle).$cn;
                 } else {
-                    $classNames[] = '\\Application' . $cn;
-                    $classNames[] = '\\Concrete' . $cn;
+                    $classNames[] = '\\Application'.$cn;
+                    $classNames[] = '\\Concrete'.$cn;
                 }
                 $className = null;
                 foreach ($classNames as $cn) {
@@ -624,7 +636,6 @@ class Theme extends Object
             $type->addAttribute('package', $pt->getPackageHandle());
             $type->addAttribute('activated', $activated);
         }
-
     }
 
     protected static function install($dir, $pThemeHandle, $pkgID)
@@ -636,16 +647,30 @@ class Theme extends Object
                 $pkg = \Concrete\Core\Package\Package::getByID($pkgID);
             }
             $db = Loader::db();
-            $cnt = $db->getOne("select count(pThemeID) from PageThemes where pThemeHandle = ?", array($pThemeHandle));
+            $cnt = $db->getOne('select count(pThemeID) from PageThemes where pThemeHandle = ?', array($pThemeHandle));
             if ($cnt > 0) {
                 throw new \Exception(static::E_THEME_INSTALLED);
             }
-            $res = static::getThemeNameAndDescription($dir, $pThemeHandle, is_object($pkg) ? $pkg->getPackageHandle() : '');
+            $curLang = Localization::activeLocale();
+            if ($curLang !== 'en_US') {
+                Localization::changeLocale('en_US');
+            }
+            try {
+                $res = static::getThemeNameAndDescription($dir, $pThemeHandle, is_object($pkg) ? $pkg->getPackageHandle() : '');
+            } catch (\Exception $x) {
+                if ($curLang !== 'en_US') {
+                    Localization::changeLocale($curLang);
+                }
+                throw $x;
+            }
+            if ($curLang !== 'en_US') {
+                Localization::changeLocale($curLang);
+            }
             if (strlen($res->pError) === 0) {
                 $pThemeName = $res->pThemeName;
                 $pThemeDescription = $res->pThemeDescription;
                 $db->query(
-                    "insert into PageThemes (pThemeHandle, pThemeName, pThemeDescription, pkgID) values (?, ?, ?, ?)",
+                    'insert into PageThemes (pThemeHandle, pThemeName, pThemeDescription, pkgID) values (?, ?, ?, ?)',
                     array($pThemeHandle, $pThemeName, $pThemeDescription, $pkgID)
                 );
 
@@ -667,14 +692,14 @@ class Theme extends Object
         $env = Environment::get();
         $db = Loader::db();
         $r = $env->getRecord(
-            DIRNAME_THEMES . '/' . $this->pThemeHandle . '/' . FILENAME_THEMES_CLASS,
+            DIRNAME_THEMES.'/'.$this->pThemeHandle.'/'.FILENAME_THEMES_CLASS,
             $this->getPackageHandle()
         );
         if ($r->exists()) {
-            $db->Execute("update PageThemes set pThemeHasCustomClass = 1 where pThemeID = ?", array($this->pThemeID));
+            $db->Execute('update PageThemes set pThemeHasCustomClass = 1 where pThemeID = ?', array($this->pThemeID));
             $this->pThemeHasCustomClass = true;
         } else {
-            $db->Execute("update PageThemes set pThemeHasCustomClass = 0 where pThemeID = ?", array($this->pThemeID));
+            $db->Execute('update PageThemes set pThemeHasCustomClass = 0 where pThemeID = ?', array($this->pThemeID));
             $this->pThemeHasCustomClass = false;
         }
     }
@@ -691,8 +716,9 @@ class Theme extends Object
 
     /** Returns the display name for this theme (localized and escaped accordingly to $format)
      * @param string $format = 'html'
-     *   Escape the result in html format (if $format is 'html').
-     *   If $format is 'text' or any other value, the display name won't be escaped.
+     *                       Escape the result in html format (if $format is 'html').
+     *                       If $format is 'text' or any other value, the display name won't be escaped.
+     *
      * @return string
      */
     public function getThemeDisplayName($format = 'html')
@@ -769,7 +795,7 @@ class Theme extends Object
 
     public function getThemeEditorCSS()
     {
-        return $this->pThemeURL . '/' . static::FILENAME_TYPOGRAPHY_CSS;
+        return $this->pThemeURL.'/'.static::FILENAME_TYPOGRAPHY_CSS;
     }
 
     public function setThemeURL($pThemeURL)
@@ -809,13 +835,13 @@ class Theme extends Object
 
     public function isUninstallable()
     {
-        return ($this->pThemeDirectory != DIR_FILES_THEMES_CORE . '/' . $this->getThemeHandle());
+        return ($this->pThemeDirectory != DIR_FILES_THEMES_CORE.'/'.$this->getThemeHandle());
     }
 
     public function getThemeThumbnail()
     {
-        if (file_exists($this->pThemeDirectory . '/' . FILENAME_THEMES_THUMBNAIL)) {
-            $src = $this->pThemeURL . '/' . FILENAME_THEMES_THUMBNAIL;
+        if (file_exists($this->pThemeDirectory.'/'.FILENAME_THEMES_THUMBNAIL)) {
+            $src = $this->pThemeURL.'/'.FILENAME_THEMES_THUMBNAIL;
         } else {
             $src = ASSETS_URL_THEMES_NO_THUMBNAIL;
         }
@@ -837,6 +863,9 @@ class Theme extends Object
         );
     }
 
+    /**
+     * @return static
+     */
     public static function getSiteTheme()
     {
         $c = Page::getByID(HOME_CID);
@@ -848,15 +877,14 @@ class Theme extends Object
     {
         $db = Loader::db();
 
-        $db->query("delete from PageThemes where pThemeID = ?", array($this->pThemeID));
+        $db->query('delete from PageThemes where pThemeID = ?', array($this->pThemeID));
         $env = Environment::get();
         $env->clearOverrideCache();
     }
 
     /**
-     * Special items meant to be extended by custom theme classes
+     * Special items meant to be extended by custom theme classes.
      */
-
     protected $pThemeGridFrameworkHandle = false;
 
     public function registerAssets()
@@ -874,9 +902,9 @@ class Theme extends Object
     public function getThemeGridFrameworkObject()
     {
         if ($this->pThemeGridFrameworkHandle) {
-            $pTheme = GridFramework::getByHandle($this->pThemeGridFrameworkHandle);
+            $framework = Core::make('manager/grid_framework')->driver($this->pThemeGridFrameworkHandle);
 
-            return $pTheme;
+            return $framework;
         }
     }
 
@@ -919,5 +947,4 @@ class Theme extends Object
     {
         return 150;
     }
-
 }

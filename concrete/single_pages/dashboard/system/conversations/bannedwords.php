@@ -36,7 +36,7 @@ $form = Loader::helper('form');
 					?>
 					<tr>
 						<th class='id'><?php echo $word->getID()?></th>
-						<td class='word'><span><?php echo $word->getWord()?></span><input style='display:none' name='banned_word[]' value='<?php echo $word->getWord()?>'></td>
+						<td class='word'><span><?php echo h($word->getWord())?></span><input style='display:none' name='banned_word[]' value='<?php echo h($word->getWord())?>'></td>
 						<td style='text-align:right'>
                             <div class="btn-group">
                                 <a href='#' class='edit_word btn btn-default'><?php echo t('Edit')?></a>

@@ -1,6 +1,7 @@
 <?php
 namespace Concrete\Controller\SinglePage\Dashboard\Pages;
 use Concrete\Core\Area\Area;
+use Concrete\Core\Attribute\Key\CollectionKey;
 use Concrete\Core\Page\Controller\DashboardPageController;
 use Concrete\Core\Page\Feed;
 use Concrete\Core\Page\Type\Type;
@@ -66,9 +67,13 @@ class Feeds extends DashboardPageController
         $pf->setDescription($this->post('pfDescription'));
         $pf->setHandle($this->post('pfHandle'));
         $pf->setPageTypeID($this->post('ptID'));
+        $pf->setCustomTopicAttributeKeyHandle($this->post('customTopicAttributeKeyHandle'));
+        $customTopicTreeNodeID = $this->post('customTopicAttributeKeyHandle') ? $this->post('customTopicTreeNodeID') : 0;
+        $pf->setCustomTopicTreeNodeID($customTopicTreeNodeID);
         $pf->setParentID(intval($this->post('cParentID')));
         $pf->setIncludeAllDescendents($this->post('pfIncludeAllDescendents'));
         $pf->setDisplayAliases($this->post('pfDisplayAliases'));
+        $pf->setIconFileID($this->post('iconFID'));
         $pf->setDisplayFeaturedOnly($this->post('pfDisplayFeaturedOnly'));
         if ($this->post('pfContentToDisplay') == 'A') {
             $pf->displayAreaContent($this->post('pfAreaHandleToDisplay'));
@@ -131,9 +136,18 @@ class Feeds extends DashboardPageController
         $pageTypes = array('' => t('** No Filtering'));
         $types = Type::getList();
         foreach($types as $type) {
-            $pageTypes[$type->getPageTypeID()] = $type->getPageTypeName();
+            $pageTypes[$type->getPageTypeID()] = $type->getPageTypeDisplayName();
         }
         $this->set('pageTypes', $pageTypes);
+
+        $attributeKeys = array();
+        $keys = CollectionKey::getList();
+        foreach ($keys as $ak) {
+            if ($ak->getAttributeTypeHandle() == 'topics') {
+                $attributeKeys[] = $ak;
+            }
+        }
+        $this->set('topicAttributes', $attributeKeys);
 
         $areas = Area::getHandleList();
         $select = array();
@@ -141,6 +155,7 @@ class Feeds extends DashboardPageController
             $select[$handle] = $handle;
         }
         $this->set('areas', $select);
+        $this->requireAsset('core/topics');
 
     }
 

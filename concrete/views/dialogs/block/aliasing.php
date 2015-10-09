@@ -28,7 +28,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                 foreach($cList as $p) { ?>
                     <tr class="active">
                         <td><?php echo $p->getCollectionID()?></td>
-                        <td><a href="<?php echo DIR_REL?>/<?php echo DISPATCHER_FILENAME?>?cID=<?php echo $p->getCollectionID()?>" target="_blank"><?php echo $p->getCollectionName()?></a></td>
+                        <td><a href="<?php echo URL::to($p)?>" target="_blank"><?php echo $p->getCollectionName()?></a></td>
                         <td ><?php echo $dh->formatDate($p->getCollectionDateAdded())?></td>
                         <td ><?php if ($b->isAlias($p)) { ?> <input type="hidden" name="checkedCIDs[]" value="<?php echo $p->getCollectionID()?>" /><?php } ?><?php echo $dh->formatDate($p->getCollectionDateLastModified())?></td>
                         <td ><input class="mc-cb" type="checkbox" name="cIDs[]" value="<?php echo $p->getCollectionID()?>" <?php if ($b->isAlias($p)) { ?> checked <?php } ?> /></td>
@@ -41,7 +41,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
         <?php } ?>
 
         <div class="dialog-buttons">
-            <a href="#" class="ccm-dialog-close pull-left btn"><?php echo t('Cancel')?></a>
+            <button class="btn btn-default pull-left" data-dialog-action="cancel"><?php echo t('Cancel')?></button>
             <a href="javascript:void(0)" onclick="$('#ccmBlockMasterCollectionForm').submit()" class="btn btn-primary pull-right"><?php echo t('Save')?></a>
         </div>
 

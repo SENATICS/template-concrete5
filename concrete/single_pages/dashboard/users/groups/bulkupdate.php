@@ -8,7 +8,7 @@ $form = Loader::helper('form');?>
 <?php if ($gParent instanceof Group) { ?>
 <p><?php echo t('Move the following group(s) beneath <strong>%s</strong>.', $gParent->getGroupDisplayName())?></p>
 <?php } else { ?> 
-<p><?php echo t('Move the following group(s) <strong>to the top level of groups</strong>.', $gParent->getGroupDisplayName())?></p>
+<p><?php echo t('Move the following group(s) <strong>to the top level of groups</strong>.')?></p>
 <?php } ?>
 
 <ul>
@@ -18,13 +18,13 @@ $form = Loader::helper('form');?>
 </ul>
 
 <form method="post" action="<?php echo $view->action('confirm')?>" role="form">
-    <input type="hidden" name="gParentNodeID" value="<?php echo $_REQUEST['gParentNodeID']?>" />
+    <input type="hidden" name="gParentNodeID" value="<?php echo h($_REQUEST['gParentNodeID'])?>" />
     
 	<?php foreach($_REQUEST['gID'] as $gID) { ?>
-		<input type="hidden" name="gID[]" value="<?php echo $gID?>" />
+		<input type="hidden" name="gID[]" value="<?php echo h($gID)?>" />
 	<?php } ?>
 	<br/>
-	<input type="hidden" name="gName" value="<?php echo $_REQUEST['gName']?>" />
+	<input type="hidden" name="gName" value="<?php echo h($_REQUEST['gName'])?>" />
 	
 	<div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
@@ -88,7 +88,7 @@ $form = Loader::helper('form');?>
         </div>
     </div>
 
-	<input type="hidden" name="gName" value="<?php echo $_REQUEST['gName']?>" />
+	<input type="hidden" name="gName" value="<?php echo h($_REQUEST['gName'])?>" />
 </form>
 
 <script type="text/javascript">
@@ -109,7 +109,8 @@ $(function() {
        $('[data-groups-tree=<?php echo $tree->getTreeID()?>]').concreteGroupsTree({
           'treeID': '<?php echo $tree->getTreeID()?>',
           'chooseNodeInForm': 'single',
-          <?php if ($this->controller->isPost()) { ?> 
+		  'enableDragAndDrop': false,
+          <?php if ($this->controller->isPost()) { ?>
              'selectNodesByKey': [<?php echo intval($_POST['gParentNodeID'])?>],
           <?php } ?>
           'removeNodesByID': ['<?php echo $guestGroupNode->getTreeNodeID()?>','<?php echo $registeredGroupNode->getTreeNodeID()?>'],

@@ -7,6 +7,13 @@ function ConcretePanel(options) {
     this.options = options;
     this.isOpen = false;
     this.detail = false;
+    this.isPinned = false;
+
+    this.pinned = function() { return this.isPinned; }
+
+    this.willBePinned = function() { return this.isOpen && !this.isPinned; }
+
+    this.isPinable = function() { return this.options.pinable; }
 
     this.getPositionClass = function () {
         var ccm_class;
@@ -75,7 +82,18 @@ function ConcretePanel(options) {
 
     this.toggle = function () {
         if (this.isOpen) {
-            this.hide();
+            if (this.options.pinable )
+            {
+                if (!this.isPinned )
+                {
+                    this.isPinned = true;
+                }
+                else
+                {
+                    this.isPinned = false;
+                    this.hide();
+                }
+            } else this.hide();
         } else {
             this.show();
         }
@@ -100,21 +118,27 @@ function ConcretePanel(options) {
             return false;
         });
         $panel.find('[data-panel-navigation=back]').on('click.navigate', function () {
-            obj.closePanelDetailImmediately();
-            $(this)
-                .queue(function () {
-                    var $prev = $panel.find('.ccm-panel-content-visible').prev();
-                    $panel.find('.ccm-panel-content-visible').removeClass('ccm-panel-content-visible').addClass('ccm-panel-slide-right');
-                    $prev.removeClass('ccm-panel-slide-left').addClass('ccm-panel-content-visible');
-                    $(this).dequeue();
-                })
-                .delay(500)
-                .queue(function () {
-                    $panel.find('.ccm-panel-slide-right').remove();
-                    $(this).dequeue();
-                });
+            obj.goBack();
             return false;
         });
+    };
+
+    this.goBack = function() {
+        var $panel = $('#' + this.getDOMID());
+        this.closePanelDetailImmediately();
+
+        $panel
+            .queue(function () {
+                var $prev = $panel.find('.ccm-panel-content-visible').prev();
+                $panel.find('.ccm-panel-content-visible').removeClass('ccm-panel-content-visible').addClass('ccm-panel-slide-right');
+                $prev.removeClass('ccm-panel-slide-left').addClass('ccm-panel-content-visible');
+                $panel.dequeue();
+            })
+            .delay(500)
+            .queue(function () {
+                $panel.find('.ccm-panel-slide-right').remove();
+                $panel.dequeue();
+            });
     };
 
     this.showPanelConfirmationMessage = function (id, msg, buttons) {
@@ -221,22 +245,23 @@ function ConcretePanel(options) {
             data: ''
         }, overrides);
         var identifier = options.identifier;
-        if (obj.detail) {
-            //options.transition = 'none';
-        }
         // if a panel is already open, we close it immediately
         if (obj.detail) {
             obj.closePanelDetailImmediately();
         }
         obj.detail = options;
+
         var detailID = 'ccm-panel-detail-' + identifier;
+
         var $detail = $('<div />', {
             id: detailID,
             class: 'ccm-panel-detail'
         }).appendTo(document.body);
+
         var $content = $('<div />', {
             class: 'ccm-panel-detail-content'
         }).appendTo($detail);
+
         $('div.ccm-page')
             .queue(function () {
                 $detail.addClass('ccm-panel-detail-transition-' + options.transition);
@@ -250,17 +275,32 @@ function ConcretePanel(options) {
                 $(this).dequeue();
             });
         html.addClass('ccm-panel-detail-open');
-        $content.load(options.url + '?cID=' + CCM_CID + options.data, function () {
+
+        var complete_function = function () {
+            Concrete.event.publish('PanelOpenDetail', {
+                panel: options,
+                panelObj: obj,
+                container: $content
+            });
+        };
+
+        if (options.url) {
+            $content.load(options.url + '?cID=' + CCM_CID + options.data, function () {
+                jQuery.fn.dialog.hideLoader();
+                $content.find('.launch-tooltip').tooltip({'container': '#ccm-tooltip-holder'});
+                $content.find('a[data-help-notification-toggle]').concreteHelpLauncher();
+                obj.loadPanelDetailActions($content);
+
+                _.defer(complete_function);
+            });
+        } else {
             jQuery.fn.dialog.hideLoader();
             $content.find('.launch-tooltip').tooltip({'container': '#ccm-tooltip-holder'});
+            $content.find('a[data-help-notification-toggle]').concreteHelpLauncher();
             obj.loadPanelDetailActions($content);
 
-            _.defer(function() {
-                Concrete.event.publish('PanelOpenDetail', {
-                    container: $content
-                });
-            });
-        });
+            _.defer(complete_function);
+        }
     };
 
     this.loadPanelDetailActions = function ($content) {
@@ -319,41 +359,23 @@ function ConcretePanel(options) {
         $panel.find('.dialog-launch').dialog();
         $panel.find('[data-panel-menu=collapsible-list-group]').each(function () {
             var $clg = $(this);
+            var $inner = $clg.find('.list-group-item-collapse-wrapper');
+            var menuID = $clg.attr('data-panel-menu-id');
+            var $title = $clg.find('.list-group-item-collapse span');
+            var height;
+
             $clg.find('.list-group-item-collapse').unbind('.clg').on('click.clg', function () {
-                var $inner = $clg.find('.list-group-item-collapse-wrapper');
-                var menuID = $clg.attr('data-panel-menu-id');
-                var $title = $clg.find('.list-group-item-collapse span');
-                $inner.css({ position: "absolute", visibility: "hidden", display: "block" });
-                var height = $inner.outerHeight();
-                $inner.css({position: 'static', 'visibility': 'visible', display: 'none'});
+
                 if ($clg.hasClass('ccm-panel-list-group-item-expanded')) {
                     $title.text(ccmi18n.expand);
                     Concrete.event.publish('PanelCollapsibleListGroupCollapse', menuID);
-                    $inner.
-                        queue(function () {
-                            $(this).css('height', 0);
-                            $(this).dequeue();
-                        }).
-                        delay(305).
-                        queue(function () {
-                            $(this).hide();
-                            $(this).css('height', 'auto');
-                            $(this).dequeue();
-                        });
+                    $inner.height(0);
                 } else {
+                    height = $inner.show().height('').outerHeight();
+                    $inner.height(0);
                     Concrete.event.publish('PanelCollapsibleListGroupExpand', menuID);
                     $title.text(ccmi18n.collapse);
-                    $inner.
-                        queue(function () {
-                            $(this).css('height', 0);
-                            $(this).show();
-                            $(this).dequeue();
-                        }).
-                        delay(5).
-                        queue(function () {
-                            $(this).css('height', 'auto');
-                            $(this).dequeue();
-                        });
+                    $inner.height(height);
                 }
                 $clg.toggleClass('ccm-panel-list-group-item-expanded');
             });
@@ -363,7 +385,7 @@ function ConcretePanel(options) {
             $('.ccm-panel-menu-item-active').removeClass('ccm-panel-menu-item-active');
             $(this).addClass('ccm-panel-menu-item-active');
             var identifier = $(this).attr('data-launch-panel-detail');
-            var panelDetailOptions = {'identifier': identifier};
+            var panelDetailOptions = {'identifier': identifier, target: $(this)};
             if ($(this).attr('data-panel-transition')) {
                 panelDetailOptions.transition = $(this).attr('data-panel-transition');
             }
@@ -420,6 +442,10 @@ function ConcretePanel(options) {
         } else {
             show.call(this);
         }
+
+        // hide mobile menu
+        $('.ccm-toolbar-mobile-menu-button').removeClass('ccm-mobile-close');
+        $('.ccm-mobile-menu-overlay').slideUp();
     }
 
 }
@@ -453,10 +479,18 @@ var ConcretePanelManager = (function ConcretePanelManagerGenerator() {
         /**
          * Hides all panels, exit preview mode, hides detail content if active, etc..
          */
-        exitPanelMode: function () {
+        exitPanelMode: function (callback) {
+            callback = callback || $.noop;
+            var active = 0;
             for (var i = 0; i < panels.length; i++) {
                 if (panels[i].isOpen) {
-                    panels[i].hide();
+                    active++;
+                    panels[i].hide(function() {
+                        active--;
+                        if (active == 0) {
+                            callback.call(null);
+                        }
+                    });
                 }
             }
         },

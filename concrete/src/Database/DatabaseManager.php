@@ -58,7 +58,7 @@ class DatabaseManager
      * Legacy entry point
      *
      * @deprecated
-     * @return \Doctrine\DBAL\Connection
+     * @return \Concrete\Core\Database\Connection\Connection
      */
     public function getActiveConnection()
     {
@@ -69,7 +69,7 @@ class DatabaseManager
      * Legacy entry point
      *
      * @deprecated
-     * @return \Doctrine\DBAL\Connection
+     * @return \Concrete\Core\Database\Connection\Connection
      */
     public function get()
     {
@@ -80,7 +80,7 @@ class DatabaseManager
      * Get a database connection instance.
      *
      * @param  string $name
-     * @return \Doctrine\DBAL\Connection
+     * @return \Concrete\Core\Database\Connection\Connection
      */
     public function connection($name = null)
     {
@@ -108,7 +108,9 @@ class DatabaseManager
     public function purge($name = null)
     {
         $this->disconnect($name);
-        unset($this->connections[$name]);
+        if (isset($this->connections[$name = $name ?: $this->getDefaultConnection()])) {
+            unset($this->connections[$name]);
+        }
     }
 
     /**
@@ -120,7 +122,7 @@ class DatabaseManager
     public function disconnect($name = null)
     {
         if (isset($this->connections[$name = $name ?: $this->getDefaultConnection()])) {
-            $this->connections[$name]->getDriver()->disconnect();
+            $this->connections[$name]->close();
         }
     }
 
@@ -128,7 +130,7 @@ class DatabaseManager
      * Reconnect to the given database.
      *
      * @param  string $name
-     * @return \Doctrine\DBAL\Connection
+     * @return \Concrete\Core\Database\Connection\Connection
      */
     public function reconnect($name = null)
     {
@@ -253,7 +255,7 @@ class DatabaseManager
     /**
      * Return all of the created connections.
      *
-     * @return \Doctrine\DBAL\Connection[]
+     * @return \Concrete\Core\Database\Connection\Connection[]
      */
     public function getConnections()
     {

@@ -35,7 +35,7 @@ abstract class AbstractView {
 
 	protected static function revertRequestInstance() {
 		array_pop(View::$requestInstances);
-		self::$requestInstance = View::$requestInstances[count(View::$requestInstances)];
+		self::$requestInstance = last(View::$requestInstances);
 	}
 
 	public $controller;
@@ -89,9 +89,9 @@ abstract class AbstractView {
 	 * @param $key
 	 * @return void
 	*/
-	public function post($key) {
+	public function post($key, $defaultValue = null) {
 		$r = Request::getInstance();
-		return $r->post($key);
+		return $r->post($key, $defaultValue);
 	}
 
 	abstract protected function onBeforeGetContents();
@@ -151,7 +151,7 @@ abstract class AbstractView {
 	*/
 	public function url($action, $task = null) {
 		$args = func_get_args();
-		return call_user_func_array(array('URL', 'to'), $args);
+		return (string) call_user_func_array(array('URL', 'to'), $args);
 	}
 
 	// Legacy Items. Deprecated

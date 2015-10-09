@@ -1,19 +1,22 @@
 <?php
-
 namespace Concrete\Core\Application\Service\UserInterface;
 
 use Concrete\Core\Application\UserInterface\Menu\Item\Item;
+use Concrete\Core\Application\UserInterface\Menu\Item\ItemInterface;
 
 class Menu
 {
 
+    /**
+     * @var ItemInterface[]
+     */
     protected $pageHeaderMenuItems = array();
 
     /**
-     * Adds a menu item to the header menu area
-     * <code>
-     *    $bh->addMenuItem($menuItemID, $menuItemName, $positionInMenu, $linkAttributes, $pkgHandle = false);
-     * </code>
+     * @param string $menuItemControllerHandle
+     * @param bool   $pkgHandle
+     * @param array  $options
+     * @return Item
      */
     public function addPageHeaderMenuItem(
         $menuItemControllerHandle,
@@ -39,11 +42,25 @@ class Menu
             $obj->setLink($options['href']);
         }
         $obj->setLinkAttributes($options['linkAttributes']);
-        $this->pageHeaderMenuItems[] = $obj;
+        $this->addMenuItem($obj);
+
+        return $obj;
     }
 
     /**
+     * @param ItemInterface $item
+     */
+    public function addMenuItem(ItemInterface $item)
+    {
+        $this->pageHeaderMenuItems[] = $item;
+    }
+
+
+    /**
      * Returns current menu items
+     *
+     * @param bool $position
+     * @return ItemInterface[]
      */
     public function getPageHeaderMenuItems($position = false)
     {

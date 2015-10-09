@@ -111,7 +111,7 @@ class Version
         $this->sm = $this->connection->getSchemaManager();
         $this->platform = $this->connection->getDatabasePlatform();
         $this->migration = new $class($this);
-        $this->version = $this->migration->getName() ?: $version;
+        $this->version = $version;
     }
 
     /**
@@ -200,6 +200,11 @@ class Version
         foreach ($queries as $query) {
             $string .= $query . ";\n";
         }
+        if ($direction == "down") {
+            $string .= "DELETE FROM " . $this->configuration->getMigrationsTableName() . " WHERE version = '" . $this->version . "';\n";
+        } else {
+            $string .= "INSERT INTO " . $this->configuration->getMigrationsTableName() . " (version) VALUES ('" . $this->version . "');\n";
+        }
         if (is_dir($path)) {
             $path = realpath($path);
             $path = $path . '/doctrine_migration_' . date('YmdHis') . '.sql';
@@ -228,14 +233,18 @@ class Version
      *
      * @throws \Exception when migration fails
      */
-    public function execute($direction, $dryRun = false)
+    public function execute($direction, $dryRun = false, $timeAllQueries=false)
     {
         $this->sql = array();
 
-        $this->connection->beginTransaction();
+        $transaction = $this->migration->isTransactional();
+        if($transaction){
+            //only start transaction if in transactional mode
+            $this->connection->beginTransaction();
+        }
 
         try {
-            $start = microtime(true);
+            $migrationStart = microtime(true);
 
             $this->state = self::STATE_PRE;
             $fromSchema = $this->sm->createSchema();
@@ -253,15 +262,21 @@ class Version
             $this->migration->$direction($toSchema);
             $this->addSql($fromSchema->getMigrateToSql($toSchema, $this->platform));
 
-            if ($dryRun === false) {
+            if (! $dryRun) {
                 if ($this->sql) {
                     foreach ($this->sql as $key => $query) {
+                        $queryStart = microtime(true);
                         if ( ! isset($this->params[$key])) {
                             $this->outputWriter->write('     <comment>-></comment> ' . $query);
                             $this->connection->executeQuery($query);
                         } else {
                             $this->outputWriter->write(sprintf('    <comment>-</comment> %s (with parameters)', $query));
                             $this->connection->executeQuery($query, $this->params[$key], $this->types[$key]);
+                        }
+                        $queryEnd = microtime(true);
+                        $queryTime = round($queryEnd - $queryStart, 4);
+                        if ($timeAllQueries !== false) {
+                            $this->outputWriter->write(sprintf("  <info>%ss</info>", $queryTime));
                         }
                     }
                 } else {
@@ -283,21 +298,27 @@ class Version
             $this->state = self::STATE_POST;
             $this->migration->{'post' . ucfirst($direction)}($toSchema);
 
-            $end = microtime(true);
-            $this->time = round($end - $start, 2);
+            $migrationEnd = microtime(true);
+            $this->time = round($migrationEnd - $migrationStart, 2);
             if ($direction === 'up') {
                 $this->outputWriter->write(sprintf("\n  <info>++</info> migrated (%ss)", $this->time));
             } else {
                 $this->outputWriter->write(sprintf("\n  <info>--</info> reverted (%ss)", $this->time));
             }
 
-            $this->connection->commit();
+            if($transaction){
+                //commit only if running in transactional mode
+                $this->connection->commit();
+            }
 
             $this->state = self::STATE_NONE;
 
             return $this->sql;
         } catch (SkipMigrationException $e) {
-            $this->connection->rollback();
+            if($transaction){
+                //only rollback transaction if in transactional mode
+                $this->connection->rollback();
+            }
 
             if ($dryRun == false) {
                 // now mark it as migrated
@@ -320,7 +341,10 @@ class Version
                 $this->version, $this->getExecutionState(), $e->getMessage()
             ));
 
-            $this->connection->rollback();
+            if($transaction){
+                //only rollback transaction if in transactional mode
+                $this->connection->rollback();
+            }
 
             $this->state = self::STATE_NONE;
             throw $e;

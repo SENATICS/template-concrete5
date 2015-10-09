@@ -19,8 +19,6 @@
 
 namespace Doctrine\DBAL\Migrations;
 
-use Doctrine\DBAL\Migrations\Configuration\Configuration;
-use Doctrine\DBAL\Migrations\Version;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
@@ -34,18 +32,11 @@ use Doctrine\DBAL\Schema\Schema;
 abstract class AbstractMigration
 {
     /**
-     * The Migrations Configuration instance for this migration
+     * Reference to the Version instance representing this migration
      *
-     * @var Configuration
+     * @var Version
      */
-    private $configuration;
-
-    /**
-     * The OutputWriter object instance used for outputting information
-     *
-     * @var OutputWriter
-     */
-    private $outputWriter;
+    protected $version;
 
     /**
      * The Doctrine\DBAL\Connection instance we are migrating
@@ -69,28 +60,106 @@ abstract class AbstractMigration
     protected $platform;
 
     /**
-     * Reference to the Version instance representing this migration
+     * The OutputWriter object instance used for outputting information
      *
-     * @var Version
+     * @var OutputWriter
      */
-    protected $version;
+    private $outputWriter;
 
     public function __construct(Version $version)
     {
-        $this->configuration = $version->getConfiguration();
-        $this->outputWriter = $this->configuration->getOutputWriter();
-        $this->connection = $this->configuration->getConnection();
+        $config = $version->getConfiguration();
+
+        $this->version = $version;
+        $this->connection = $config->getConnection();
         $this->sm = $this->connection->getSchemaManager();
         $this->platform = $this->connection->getDatabasePlatform();
-        $this->version = $version;
+        $this->outputWriter = $config->getOutputWriter();
     }
 
     /**
-     * Get custom migration name
+     * Indicates the transactional mode of this migration.
+     * If this function returns true (default) the migration will be executed in one transaction,
+     * otherwise non-transactional state will be used to execute each of the migration SQLs.
+     *
+     * Extending class should override this function to alter the return value
+     *
+     * @return bool TRUE by default.
+     */
+    public function isTransactional()
+    {
+        return true;
+    }
+
+    /**
+     * Get migration description
      *
      * @return string
      */
-    public function getName()
+    public function getDescription()
+    {
+    }
+
+    /**
+     * Print a warning message if the condition evaluates to TRUE.
+     *
+     * @param boolean $condition
+     * @param string  $message
+     */
+    public function warnIf($condition, $message = '')
+    {
+        if ($condition) {
+            $this->outputWriter->write(sprintf(
+                '    <warning>Warning during %s: %s</warning>',
+                $this->version->getExecutionState(),
+                $message ?: 'Unknown Reason'
+            ));
+        }
+    }
+
+    /**
+     * Abort the migration if the condition evaluates to TRUE.
+     *
+     * @param boolean $condition
+     * @param string  $message
+     *
+     * @throws AbortMigrationException
+     */
+    public function abortIf($condition, $message = '')
+    {
+        if ($condition) {
+            throw new AbortMigrationException($message ?: 'Unknown Reason');
+        }
+    }
+
+    /**
+     * Skip this migration (but not the next ones) if condition evaluates to TRUE.
+     *
+     * @param boolean $condition
+     * @param string  $message
+     *
+     * @throws SkipMigrationException
+     */
+    public function skipIf($condition, $message = '')
+    {
+        if ($condition) {
+            throw new SkipMigrationException($message ?: 'Unknown Reason');
+        }
+    }
+
+    public function preUp(Schema $schema)
+    {
+    }
+
+    public function postUp(Schema $schema)
+    {
+    }
+
+    public function preDown(Schema $schema)
+    {
+    }
+
+    public function postDown(Schema $schema)
     {
     }
 
@@ -109,74 +178,10 @@ abstract class AbstractMigration
 
     protected function throwIrreversibleMigrationException($message = null)
     {
-        if ($message === null) {
+        if (null === $message) {
             $message = 'This migration is irreversible and cannot be reverted.';
         }
+
         throw new IrreversibleMigrationException($message);
-    }
-
-    /**
-     * Print a warning message if the condition evaluates to TRUE.
-     *
-     * @param boolean $condition
-     * @param string  $message
-     */
-    public function warnIf($condition, $message = '')
-    {
-        $message = (strlen($message)) ? $message : 'Unknown Reason';
-
-        if ($condition === true) {
-            $this->outputWriter->write('    <warning>Warning during ' . $this->version->getExecutionState() . ': ' . $message . '</warning>');
-        }
-    }
-
-    /**
-     * Abort the migration if the condition evaluates to TRUE.
-     *
-     * @param boolean $condition
-     * @param string  $message
-     *
-     * @throws AbortMigrationException
-     */
-    public function abortIf($condition, $message = '')
-    {
-        $message = (strlen($message)) ? $message : 'Unknown Reason';
-
-        if ($condition === true) {
-            throw new AbortMigrationException($message);
-        }
-    }
-
-    /**
-     * Skip this migration (but not the next ones) if condition evaluates to TRUE.
-     *
-     * @param boolean $condition
-     * @param string  $message
-     *
-     * @throws SkipMigrationException
-     */
-    public function skipIf($condition, $message = '')
-    {
-        $message = (strlen($message)) ? $message : 'Unknown Reason';
-
-        if ($condition === true) {
-            throw new SkipMigrationException($message);
-        }
-    }
-
-    public function preUp(Schema $schema)
-    {
-    }
-
-    public function postUp(Schema $schema)
-    {
-    }
-
-    public function preDown(Schema $schema)
-    {
-    }
-
-    public function postDown(Schema $schema)
-    {
     }
 }

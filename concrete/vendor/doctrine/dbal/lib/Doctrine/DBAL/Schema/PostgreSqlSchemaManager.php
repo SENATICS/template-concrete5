@@ -19,6 +19,8 @@
 
 namespace Doctrine\DBAL\Schema;
 
+use Doctrine\DBAL\Types\Type;
+
 /**
  * PostgreSQL Schema Manager.
  *
@@ -43,7 +45,7 @@ class PostgreSqlSchemaManager extends AbstractSchemaManager
     {
         $rows = $this->_conn->fetchAll("SELECT nspname as schema_name FROM pg_namespace WHERE nspname !~ '^pg_.*' and nspname != 'information_schema'");
 
-        return array_map(function($v) { return $v['schema_name']; }, $rows);
+        return array_map(function ($v) { return $v['schema_name']; }, $rows);
     }
 
     /**
@@ -122,51 +124,9 @@ class PostgreSqlSchemaManager extends AbstractSchemaManager
         }
 
         return new ForeignKeyConstraint(
-                $localColumns, $foreignTable, $foreignColumns, $tableForeignKey['conname'],
-                array('onUpdate' => $onUpdate, 'onDelete' => $onDelete)
+            $localColumns, $foreignTable, $foreignColumns, $tableForeignKey['conname'],
+            array('onUpdate' => $onUpdate, 'onDelete' => $onDelete)
         );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function dropDatabase($database)
-    {
-        $params = $this->_conn->getParams();
-        $params["dbname"] = "postgres";
-        $tmpPlatform = $this->_platform;
-        $tmpConn = $this->_conn;
-
-        $this->_conn = \Doctrine\DBAL\DriverManager::getConnection($params);
-        $this->_platform = $this->_conn->getDatabasePlatform();
-
-        parent::dropDatabase($database);
-
-        $this->_conn->close();
-
-        $this->_platform = $tmpPlatform;
-        $this->_conn = $tmpConn;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function createDatabase($database)
-    {
-        $params = $this->_conn->getParams();
-        $params["dbname"] = "postgres";
-        $tmpPlatform = $this->_platform;
-        $tmpConn = $this->_conn;
-
-        $this->_conn = \Doctrine\DBAL\DriverManager::getConnection($params);
-        $this->_platform = $this->_conn->getDatabasePlatform();
-
-        parent::createDatabase($database);
-
-        $this->_conn->close();
-
-        $this->_platform = $tmpPlatform;
-        $this->_conn = $tmpConn;
     }
 
     /**
@@ -182,7 +142,7 @@ class PostgreSqlSchemaManager extends AbstractSchemaManager
      */
     protected function _getPortableViewDefinition($view)
     {
-        return new View($view['viewname'], $view['definition']);
+        return new View($view['schemaname'].'.'.$view['viewname'], $view['definition']);
     }
 
     /**
@@ -237,7 +197,8 @@ class PostgreSqlSchemaManager extends AbstractSchemaManager
                             'key_name' => $row['relname'],
                             'column_name' => trim($colRow['attname']),
                             'non_unique' => !$row['indisunique'],
-                            'primary' => $row['indisprimary']
+                            'primary' => $row['indisprimary'],
+                            'where' => $row['where'],
                         );
                     }
                 }
@@ -253,6 +214,40 @@ class PostgreSqlSchemaManager extends AbstractSchemaManager
     protected function _getPortableDatabaseDefinition($database)
     {
         return $database['datname'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function _getPortableSequencesList($sequences)
+    {
+        $sequenceDefinitions = array();
+
+        foreach ($sequences as $sequence) {
+            if ($sequence['schemaname'] != 'public') {
+                $sequenceName = $sequence['schemaname'] . "." . $sequence['relname'];
+            } else {
+                $sequenceName = $sequence['relname'];
+            }
+
+            $sequenceDefinitions[$sequenceName] = $sequence;
+        }
+
+        $list = array();
+
+        foreach ($this->filterAssetNames(array_keys($sequenceDefinitions)) as $sequenceName) {
+            $list[] = $this->_getPortableSequenceDefinition($sequenceDefinitions[$sequenceName]);
+        }
+
+        return $list;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getPortableNamespaceDefinition(array $namespace)
+    {
+        return $namespace['nspname'];
     }
 
     /**
@@ -278,7 +273,7 @@ class PostgreSqlSchemaManager extends AbstractSchemaManager
     {
         $tableColumn = array_change_key_case($tableColumn, CASE_LOWER);
 
-        if (strtolower($tableColumn['type']) === 'varchar') {
+        if (strtolower($tableColumn['type']) === 'varchar' || strtolower($tableColumn['type']) === 'bpchar') {
             // get length from varchar definition
             $length = preg_replace('~.*\(([0-9]*)\).*~', '$1', $tableColumn['complete_type']);
             $tableColumn['length'] = $length;
@@ -399,9 +394,17 @@ class PostgreSqlSchemaManager extends AbstractSchemaManager
             'fixed'         => $fixed,
             'unsigned'      => false,
             'autoincrement' => $autoincrement,
-            'comment'       => $tableColumn['comment'],
+            'comment'       => isset($tableColumn['comment']) && $tableColumn['comment'] !== ''
+                ? $tableColumn['comment']
+                : null,
         );
 
-        return new Column($tableColumn['field'], \Doctrine\DBAL\Types\Type::getType($type), $options);
+        $column = new Column($tableColumn['field'], Type::getType($type), $options);
+
+        if (isset($tableColumn['collation']) && !empty($tableColumn['collation'])) {
+            $column->setPlatformOption('collation', $tableColumn['collation']);
+        }
+
+        return $column;
     }
 }

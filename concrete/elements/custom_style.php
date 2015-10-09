@@ -1,6 +1,10 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
 
+if (isset($displayBlockContainerSettings)) {
+    $displayBlockContainerSettings = (bool) $displayBlockContainerSettings;
+}
+
 $backgroundColor = '';
 $image = false;
 $baseFontSize = '';
@@ -27,6 +31,8 @@ $boxShadowBlur = '';
 $boxShadowSpread = '';
 $boxShadowColor = '';
 $customClass = '';
+$sliderMin = \Config::get('concrete.limits.style_customizer.size_min', -50);
+$sliderMax = \Config::get('concrete.limits.style_customizer.size_max', 200);
 $set = $style->getStyleSet();
 if (is_object($set)) {
     $backgroundColor = $set->getBackgroundColor();
@@ -58,13 +64,13 @@ if (is_object($set)) {
 }
 
 $repeatOptions = array(
-    'no-repeat' => t('None'),
-    'repeat-x' => t('Horizontal'),
-    'repeat-y' => t('Vertical'),
-    'repeat' => t('Tile')
+    'no-repeat' => t('No Repeat'),
+    'repeat-x' => t('Horizontally'),
+    'repeat-y' => t('Vertically'),
+    'repeat' => t('Horizontally & Vertically')
 );
 $borderOptions = array(
-    'none' => t('None'),
+    '' => t('None'),
     'solid' => t('Solid'),
     'dotted' => t('Dotted'),
     'dashed' => t('Dashed'),
@@ -77,14 +83,14 @@ $borderOptions = array(
 
 $alignmentOptions = array(
     '' => t('None'),
-    'right' => t('Right'),
     'left' => t('Left'),
+    'center' => t('Center'),
+    'right' => t('Right'),
 );
 
 
-$customClassesSelect = array(
-    '' => t('None')
-);
+$customClassesSelect = array();
+
 if (is_array($customClasses)) {
     foreach($customClasses as $class) {
         $customClassesSelect[$class] = $class;
@@ -97,6 +103,11 @@ if ($style instanceof \Concrete\Core\Block\CustomStyle) {
     $method = 'concreteAreaInlineStyleCustomizer';
 }
 
+$deviceHideClasses = array();
+/* @var $gf \Concrete\Core\Page\Theme\GridFramework\GridFramework */
+if (is_object($gf)) {
+    $deviceHideClasses = $gf->getPageThemeGridFrameworkDeviceHideClasses();
+}
 $al = new Concrete\Core\Application\Service\FileManager();
 $form = Core::make('helper/form');
 ?>
@@ -118,10 +129,10 @@ $form = Core::make('helper/form');
             <hr />
             <div>
                 <span class="ccm-inline-style-slider-heading"><?php echo t('Base Font Size')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="baseFontSize" id="baseFontSize" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $baseFontSize ? $baseFontSize : '' ?>" <?php echo $baseFontSize ? '' : 'disabled' ?> />
-                </div>
-                <span class="ccm-inline-style-slider-display-value"><?php echo $baseFontSize ? $baseFontSize.'' : '0' ?></span>
+                <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                <span class="ccm-inline-style-slider-display-value">
+                    <input type="text" name="baseFontSize" id="baseFontSize" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $baseFontSize ? $baseFontSize : '0px' ?>" <?php echo $baseFontSize ? '' : 'disabled' ?> autocomplete="off" />
+                </span>
             </div>
             <div class="ccm-inline-select-container">
                 <?php echo t('Alignment')?>
@@ -145,7 +156,7 @@ $form = Core::make('helper/form');
                 <?php echo $al->image('backgroundImageFileID', 'backgroundImageFileID', t('Choose Image'), $image);?>
             </div>
             <div class="ccm-inline-select-container">
-                <?php echo t('Tile')?>
+                <?php echo t('Repeats')?>
                 <?php echo $form->select('backgroundRepeat', $repeatOptions, $backgroundRepeat);?>
             </div>
         </div>
@@ -165,134 +176,175 @@ $form = Core::make('helper/form');
             </div>
             <div>
                 <span class="ccm-inline-style-slider-heading"><?php echo t('Width')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="borderWidth" id="borderWidth" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $borderWidth ? $borderWidth : '' ?>" <?php echo $borderWidth ? '' : 'disabled' ?> />
-                </div>
-               <span class="ccm-inline-style-slider-display-value"><?php echo $borderWidth ? $borderWidth.'' : '0' ?></span>
+                <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+               <span class="ccm-inline-style-slider-display-value">
+                <input type="text" name="borderWidth" id="borderWidth" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $borderWidth ? $borderWidth : '0px' ?>" <?php echo $borderWidth ? '' : 'disabled' ?> autocomplete="off" />
+            </span>
             </div>
             <div>
                 <span class="ccm-inline-style-slider-heading"><?php echo t('Radius')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="borderRadius" id="borderRadius" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $borderRadius ? $borderRadius : '' ?>" <?php echo $borderRadius ? '' : 'disabled' ?> />
-                </div>
-                <span class="ccm-inline-style-slider-display-value"><?php echo $borderRadius ? $borderRadius.'' : '0' ?></span>
+                <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                <span class="ccm-inline-style-slider-display-value">
+                    <input type="text" name="borderRadius" id="borderRadius" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $borderRadius ? $borderRadius : '0px' ?>" <?php echo $borderRadius ? '' : 'disabled' ?> autocomplete="off" />
+                </span>
             </div>
         </div>
     </li>
     <li class="ccm-inline-toolbar-icon-cell"><a href="#" data-toggle="dropdown" title="<?php echo t('Margin and Padding')?>"><i class="fa fa-arrows-h"></i></a>
-        <div class="ccm-inline-design-dropdown-menu dropdown-menu">
+        <div class="ccm-inline-design-dropdown-menu <?php if ($style instanceof \Concrete\Core\Block\CustomStyle) { ?>ccm-inline-design-dropdown-menu-doubled<?php } ?> dropdown-menu">
+
+        <div class="row">
+            <div class="<?php if ($style instanceof \Concrete\Core\Block\CustomStyle) { ?>col-sm-6<?php } else { ?>col-sm-12<?php } ?>">
             <h3><?php echo t('Padding')?></h3>
             <div>
                 <span class="ccm-inline-style-slider-heading"><?php echo t('Top')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="paddingTop" id="paddingTop" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $paddingTop ? $paddingTop : '' ?>" <?php echo $paddingTop ? '' : 'disabled' ?> />
-                </div>
-                <span class="ccm-inline-style-slider-display-value"><?php echo $paddingTop ? $paddingTop.'' : '0' ?></span>
+                <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                <span class="ccm-inline-style-slider-display-value">
+                    <input type="text" name="paddingTop" id="paddingTop" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $paddingTop ? $paddingTop : '0px' ?>" <?php echo $paddingTop ? '' : 'disabled' ?> autocomplete="off" />
+                </span>
             </div>
             <div>
                 <span class="ccm-inline-style-slider-heading"><?php echo t('Right')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="paddingRight" id="paddingRight" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $paddingRight ? $paddingRight : '' ?>" <?php echo $paddingRight ? '' : 'disabled' ?> />
-                </div>
-                <span class="ccm-inline-style-slider-display-value"><?php echo $paddingRight ? $paddingRight.'' : '0' ?></span>
+                <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                <span class="ccm-inline-style-slider-display-value">
+                    <input type="text" name="paddingRight" id="paddingRight" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $paddingRight ? $paddingRight : '0px' ?>" <?php echo $paddingRight ? '' : 'disabled' ?> autocomplete="off" />
+                </span>
             </div>
             <div>
                 <span class="ccm-inline-style-slider-heading"><?php echo t('Bottom')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="paddingBottom" id="paddingBottom" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $paddingBottom ? $paddingBottom : '' ?>" <?php echo $paddingBottom ? '' : 'disabled' ?> />
-                </div>
-                <span class="ccm-inline-style-slider-display-value"><?php echo $paddingBottom ? $paddingBottom.'' : '0' ?></span>
+                <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                <span class="ccm-inline-style-slider-display-value">
+                    <input type="text" name="paddingBottom" id="paddingBottom" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $paddingBottom ? $paddingBottom : '0px' ?>" <?php echo $paddingBottom ? '' : 'disabled' ?> autocomplete="off" />
+                </span>
             </div>
             <div>
                 <span class="ccm-inline-style-slider-heading"><?php echo t('Left')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="paddingLeft" id="paddingLeft" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $paddingLeft ? $paddingLeft : '' ?>" <?php echo $paddingLeft ? '' : 'disabled' ?> />
-                </div>
-               <span class="ccm-inline-style-slider-display-value"><?php echo $paddingLeft ? $paddingLeft.'' : '0' ?></span>
+                <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+               <span class="ccm-inline-style-slider-display-value">
+                <input type="text" name="paddingLeft" id="paddingLeft" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $paddingLeft ? $paddingLeft : '0px' ?>" <?php echo $paddingLeft ? '' : 'disabled' ?> autocomplete="off" />
+            </span>
+            </div>
             </div>
 
             <?php if ($style instanceof \Concrete\Core\Block\CustomStyle) { ?>
-                <hr />
+            <div class="col-sm-6">
                 <h3><?php echo t('Margin')?></h3>
                 <div>
                     <span class="ccm-inline-style-slider-heading"><?php echo t('Top')?></span>
-                    <div class="ccm-inline-style-sliders" data-style-slider-min="-50" data-style-slider-max="200" data-style-slider-default-setting="0">
-                        <input type="hidden" name="marginTop" id="marginTop" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $marginTop ? $marginTop : '' ?>" <?php echo $marginTop ? '' : 'disabled' ?> />
-                    </div>
-                    <span class="ccm-inline-style-slider-display-value"><?php echo $marginTop ? $marginTop.'' : '0' ?></span>
+                    <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                    <span class="ccm-inline-style-slider-display-value">
+                        <input type="text" name="marginTop" id="marginTop" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $marginTop ? $marginTop : '0px' ?>" <?php echo $marginTop ? '' : 'disabled' ?> autocomplete="off" />
+                    </span>
                 </div>
                 <div>
                     <span class="ccm-inline-style-slider-heading"><?php echo t('Right')?></span>
-                    <div class="ccm-inline-style-sliders" data-style-slider-min="-50" data-style-slider-max="200" data-style-slider-default-setting="0">
-                        <input type="hidden" name="marginRight" id="marginRight" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $marginRight ? $marginRight : '' ?>" <?php echo $marginRight ? '' : 'disabled' ?> />
-                    </div>
-                    <span class="ccm-inline-style-slider-display-value"><?php echo $marginRight ? $marginRight.'' : '0' ?></span>
+                    <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                    <span class="ccm-inline-style-slider-display-value">
+                        <input type="text" name="marginRight" id="marginRight" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $marginRight ? $marginRight : '0px' ?>" <?php echo $marginRight ? '' : 'disabled' ?> autocomplete="off" />
+                    </span>
                 </div>
                 <div>
                     <span class="ccm-inline-style-slider-heading"><?php echo t('Bottom')?></span>
-                    <div class="ccm-inline-style-sliders" data-style-slider-min="-50" data-style-slider-max="200" data-style-slider-default-setting="0">
-                        <input type="hidden" name="marginBottom" id="marginBottom" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $marginBottom ? $marginBottom : '' ?>" <?php echo $marginBottom ? '' : 'disabled' ?> />
-                    </div>
-                    <span class="ccm-inline-style-slider-display-value"><?php echo $marginBottom ? $marginBottom.'' : '0' ?></span>
+                    <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                    <span class="ccm-inline-style-slider-display-value">
+                        <input type="text" name="marginBottom" id="marginBottom" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $marginBottom ? $marginBottom : '0px' ?>" <?php echo $marginBottom ? '' : 'disabled' ?> autocomplete="off" />
+                    </span>
                 </div>
                 <div>
                     <span class="ccm-inline-style-slider-heading"><?php echo t('Left')?></span>
-                    <div class="ccm-inline-style-sliders" data-style-slider-min="-50" data-style-slider-max="200" data-style-slider-default-setting="0">
-                        <input type="hidden" name="marginLeft" id="marginLeft" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $marginLeft ? $marginLeft : '' ?>" <?php echo $marginLeft ? '' : 'disabled' ?> />
-                    </div>
-                    <span class="ccm-inline-style-slider-display-value"><?php echo $marginLeft ? $marginLeft.'' : '0' ?></span>
+                    <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                    <span class="ccm-inline-style-slider-display-value">
+                        <input type="text" name="marginLeft" id="marginLeft" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $marginLeft ? $marginLeft : '0px' ?>" <?php echo $marginLeft ? '' : 'disabled' ?> autocomplete="off" />
+                    </span>
                 </div>
-
+            </div>
             <?php } ?>
-        </div>
+            </div>
+            </div>
 
     </li>
     <li class="ccm-inline-toolbar-icon-cell"><a href="#" data-toggle="dropdown" title="<?php echo t('Shadow and Rotation (CSS3)')?>"><i class="fa fa-magic"></i></a>
-        <div class="ccm-inline-design-dropdown-menu dropdown-menu">
+        <div class="ccm-inline-design-dropdown-menu  ccm-inline-design-dropdown-menu-doubled dropdown-menu">
+
             <h3><?php echo t('Shadow')?></h3>
-            <div>
-                <?php echo t('Color')?>
-                <?php echo Loader::helper('form/color')->output('boxShadowColor', $boxShadowColor);?>
-            </div>
-            <hr />
-            <div>
-                <span class="ccm-inline-style-slider-heading"><?php echo t('Horizontal Position')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="boxShadowHorizontal" id="boxShadowHorizontal" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $boxShadowHorizontal ? $boxShadowHorizontal : '' ?>" <?php echo $boxShadowHorizontal ? '' : 'disabled' ?> />
+
+            <div class="row">
+                <div class="col-sm-6">
+                        <span class="ccm-inline-style-slider-heading"><?php echo t('Horizontal Position')?></span>
+                        <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                        <span class="ccm-inline-style-slider-display-value">
+                            <input type="text" name="boxShadowHorizontal" id="boxShadowHorizontal" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $boxShadowHorizontal ? $boxShadowHorizontal : '0px' ?>" <?php echo $boxShadowHorizontal ? '' : 'disabled' ?> autocomplete="off" />
+                        </span>
+                    </div>
+
+                <div class="col-sm-6">
+                    <span class="ccm-inline-style-slider-heading"><?php echo t('Vertical Position')?></span>
+                    <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                    <span class="ccm-inline-style-slider-display-value">
+                        <input type="text" name="boxShadowVertical" id="boxShadowVertical" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $boxShadowVertical ? $boxShadowVertical : '0px' ?>" <?php echo $boxShadowVertical ? '' : 'disabled' ?> autocomplete="off" />
+                    </span>
                 </div>
-                <span class="ccm-inline-style-slider-display-value"><?php echo $boxShadowHorizontal ? $boxShadowHorizontal.'' : '0' ?></span>
             </div>
-            <div>
-                <span class="ccm-inline-style-slider-heading"><?php echo t('Vertical Position')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="boxShadowVertical" id="boxShadowVertical" data-value-format="px" class="ccm-inline-style-slider-value" value="<?php echo $boxShadowVertical ? $boxShadowVertical : '' ?>" <?php echo $boxShadowVertical ? '' : 'disabled' ?> />
+             <div class="row">
+                 <div class="col-sm-6">
+                    <span class="ccm-inline-style-slider-heading"><?php echo t('Blur')?></span>
+                    <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                    <span class="ccm-inline-style-slider-display-value">
+                        <input type="text" name="boxShadowBlur" id="boxShadowBlur" class="ccm-inline-style-slider-value" data-value-format="px" value="<?php echo $boxShadowBlur ? $boxShadowBlur : '0px' ?>" <?php echo $boxShadowBlur ? '' : 'disabled' ?> autocomplete="off" />
+                    </span>
                 </div>
-                <span class="ccm-inline-style-slider-display-value"><?php echo $boxShadowVertical ? $boxShadowVertical.'' : '0' ?></span>
-            </div>
-            <div>
-                <span class="ccm-inline-style-slider-heading"><?php echo t('Blur')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="boxShadowBlur" id="boxShadowBlur" class="ccm-inline-style-slider-value" data-value-format="px" value="<?php echo $boxShadowBlur ? $boxShadowBlur : '' ?>" <?php echo $boxShadowBlur ? '' : 'disabled' ?> />
+                 <div class="col-sm-6">
+                    <span class="ccm-inline-style-slider-heading"><?php echo t('Spread')?></span>
+                    <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                    <span class="ccm-inline-style-slider-display-value">
+                        <input type="text" name="boxShadowSpread" id="boxShadowSpread" class="ccm-inline-style-slider-value" data-value-format="px" value="<?php echo $boxShadowSpread ? $boxShadowSpread : '0px' ?>" <?php echo $boxShadowSpread ? '' : 'disabled' ?> autocomplete="off" />
+                    </span>
                 </div>
-                <span class="ccm-inline-style-slider-display-value"><?php echo $boxShadowBlur ? $boxShadowBlur.'' : '0' ?></span>
-            </div>
-            <div>
-                <span class="ccm-inline-style-slider-heading"><?php echo t('Spread')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="-50" data-style-slider-max="200" data-style-slider-default-setting="0">
-                    <input type="hidden" name="boxShadowSpread" id="boxShadowSpread" class="ccm-inline-style-slider-value" data-value-format="px" value="<?php echo $boxShadowSpread ? $boxShadowSpread : '' ?>" <?php echo $boxShadowSpread ? '' : 'disabled' ?> />
+             </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <?php echo t('Color')?>
+                    <?php echo Loader::helper('form/color')->output('boxShadowColor', $boxShadowColor);?>
                 </div>
-                <span class="ccm-inline-style-slider-display-value"><?php echo $boxShadowSpread ? $boxShadowSpread.'' : '0' ?></span>
             </div>
             <hr/>
-            <h3><?php echo t('Rotate')?></h3>
-            <div>
-                <span class="ccm-inline-style-slider-heading"><?php echo t('Rotation (in degrees)')?></span>
-                <div class="ccm-inline-style-sliders" data-style-slider-min="0" data-style-slider-max="360" data-style-slider-default-setting="0">
-                    <input type="hidden" name="rotate" id="rotate" class="ccm-inline-style-slider-value" data-value-format="" value="<?php echo $rotate ? $rotate : '' ?>" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3><?php echo t('Rotate')?></h3>
+                    <div>
+                        <span class="ccm-inline-style-slider-heading"><?php echo t('Rotation (in degrees)')?></span>
+                        <div class="ccm-inline-style-sliders" data-style-slider-min="<?php echo $sliderMin ?>" data-style-slider-max="<?php echo $sliderMax ?>" data-style-slider-default-setting="0"></div>
+                       <span class="ccm-inline-style-slider-display-value">
+                        <input type="text" name="rotate" id="rotate" class="ccm-inline-style-slider-value ccm-slider-value-unit-appended" data-value-format="" value="<?php echo $rotate ? $rotate : '0' ?>" autocomplete="off" /> &deg;
+                    </span>
+                    </div>
                 </div>
-               <span class="ccm-inline-style-slider-display-value"><?php echo $rotate ? $rotate.'' : '0' ?>&deg;</span>
-            </div>
+                <div class="col-sm-6">
+                    <?php if (count($deviceHideClasses)) { ?>
+                    <h3><?php echo t('Device Visibility')?> <i class="fa fa-question-circle launch-tooltip" title="<?php echo t('Hide the current content on a particular type of device. Un-check a device below to hide the content.')?>"></i></h3>
+                    <div class="btn-group">
+                        <?php foreach($deviceHideClasses as $class) {
+                            $hidden = false;
+                            if (is_object($set)) {
+                                $hidden = $set->isHiddenOnDevice($class);
+                            }
+                            ?>
+                        <button type="button" data-hide-on-device="<?php echo $class?>" class="btn btn-default <?php if (!$hidden) { ?>active<?php } ?>"><i class="<?php echo $gf->getDeviceHideClassIconClass($class)?>"></i></button>
+                        <?php } ?>
+                    </div>
+                        <?php foreach($deviceHideClasses as $class) {
 
+                            $hidden = false;
+                            if (is_object($set)) {
+                                $hidden = $set->isHiddenOnDevice($class);
+                            }
+
+                            ?>
+                            <input data-hide-on-device-input="<?php echo $class?>" type="hidden" name="hideOnDevice[<?php echo $class?>]" value="<?php if ($hidden) { ?>1<?php } else { ?>0<?php } ?>" />
+                        <?php } ?>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
 
     </li>
@@ -302,7 +354,7 @@ $form = Core::make('helper/form');
 
             <div>
                 <?php echo t('Custom Class')?>
-                <?php echo $form->select('customClass', $customClassesSelect, $customClass);?>
+                <?php echo $form->text('customClass', $customClass);?>
             </div>
             <hr/>
 
@@ -321,6 +373,21 @@ $form = Core::make('helper/form');
                 <hr/>
 
             <?php } ?>
+
+
+            <?php if ($displayBlockContainerSettings) { ?>
+                <div class="ccm-inline-select-container">
+                    <?php echo t('Block Container Class')?>
+                    <select id="enableBlockContainer" name="enableBlockContainer" class="form-control">
+                        <option value="-1" <?php if ($enableBlockContainer == -1) { ?>selected<?php } ?>><?php echo t('Default Setting')?></option>
+                        <option value="0"<?php if ($enableBlockContainer == 0) { ?>selected<?php } ?>><?php echo t('Disable Grid Container')?></option>
+                        <option value="1" <?php if ($enableBlockContainer == 1) { ?>selected<?php } ?>><?php echo t('Enable Grid Container')?></option>
+                    </select>
+                </div>
+                <hr/>
+
+            <?php } ?>
+
             <div>
                 <button data-reset-action="<?php echo $resetAction?>" data-action="reset-design" type="button" class="btn-block btn btn-danger"><?php echo t("Clear Styles")?></button>
             </div>
@@ -337,4 +404,17 @@ $form = Core::make('helper/form');
 
 <script type="text/javascript">
     $('#ccm-inline-design-form').<?php echo $method?>();
+    $("#customClass").select2({tags:<?php echo json_encode(array_values($customClassesSelect)); ?>, separator: " "});
+
+    $('button[data-hide-on-device]').on('click', function(e) {
+        e.stopPropagation();
+        var input = $(this).attr('data-hide-on-device');
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+            $($('input[data-hide-on-device-input=' + input + ']').val(1));
+        } else {
+            $(this).addClass('active');
+            $($('input[data-hide-on-device-input=' + input + ']').val(0));
+        }
+    });
 </script>

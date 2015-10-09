@@ -19,8 +19,8 @@
 	</div>
 	<div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
-            <a href="<?php echo $view->url('/dashboard/system/permissions/files')?>" class="btn btn-default pull-left"><?php echo t('Cancel')?></a>
-            <button type="submit" value="<?php echo t('Save')?>" class="btn btn-primary pull-right"><?php echo t('Save')?> <i class="icon-ok-sign icon-white"></i></button>
+            <a href="<?php echo $view->url('/dashboard/system/files/permissions')?>" class="btn btn-default pull-left"><?php echo t('Cancel')?></a>
+            <button class="pull-right btn btn-primary" type="submit" ><?php echo t('Save')?></button>
         </div>
     </div>
 	</form>

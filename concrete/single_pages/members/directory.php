@@ -10,7 +10,7 @@
 
 <form method="get" action="<?php echo $view->action('search_members')?>" class="navbar-form">
 	<input name="keywords" type="text" value="<?php echo $keywords?>" size="20" class="" placeholder="<?php echo t('Search')?>" />
-	<input name="submit" type="button" value="<?php echo t('Search')?>" class="btn" />
+	<input name="submit" type="submit" value="<?php echo t('Search')?>" class="btn btn-default" />
 </form>
 
 </div>

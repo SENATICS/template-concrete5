@@ -40,7 +40,7 @@ abstract class QueueableJob extends AbstractJob {
 	public function run() {}
 
     public function __construct() {
-        $this->jQueueBatchSize = Config::get('concrete.limits.job_queue.batch');
+        $this->jQueueBatchSize = Config::get('concrete.limits.job_queue_batch');
     }
 
 	public function getQueueObject() {
@@ -75,7 +75,7 @@ abstract class QueueableJob extends AbstractJob {
 		$q = $this->markStarted();
 		$this->start($q);
 		try {
-			$messages = $q->receive(999999999999);
+			$messages = $q->receive(PHP_INT_MAX);
 			foreach($messages as $key => $p) {
 				$this->processQueueItem($p);
 				$q->deleteMessage($p);

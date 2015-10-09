@@ -2,12 +2,12 @@
 	defined('C5_EXECUTE') or die("Access Denied.");
 	use \Concrete\Core\Area\Layout\Preset as AreaLayoutPreset;
 	$minColumns = 1;
+
 	if ($controller->getTask() == 'add') {
 		$spacing = 0;
 		$iscustom = false;
 	}
-
-	$presets = AreaLayoutPreset::getList();
+	$presets = Core::make('manager/area_layout_preset_provider')->getPresets();
 ?>
 
 <ul id="ccm-layouts-toolbar" class="ccm-inline-toolbar ccm-ui">
@@ -23,7 +23,7 @@
 			<?php if (count($presets) > 0) { ?>
 			<optgroup label="<?php echo t('Presets')?>">
 			  	<?php foreach($presets as $pr) { ?>
-				    <option value="<?php echo $pr->getAreaLayoutPresetID()?>"><?php echo $pr->getAreaLayoutPresetName()?></option>
+				    <option value="<?php echo $pr->getIdentifier()?>" <?php if (is_object($selectedPreset) && $selectedPreset->getIdentifier() == $pr->getIdentifier()) { ?>selected<?php } ?>><?php echo $pr->getName()?></option>
 				<?php } ?>
 			</optgroup>
 			<?php } ?>
@@ -92,6 +92,7 @@ if ($controller->getTask() == 'edit') {
 
 $(function() {
 
+
 	<?php
 	if ($controller->getTask() == 'edit') { ?>
 	$('#ccm-layouts-toolbar').on('click', 'a[data-menu-action=delete-layout]', function(e) {
@@ -127,6 +128,8 @@ $(function() {
         'containerend': '<?php echo addslashes($themeGridFramework->getPageThemeGridFrameworkContainerEndHTML())?>',
 		'rowstart':  '<?php echo addslashes($themeGridFramework->getPageThemeGridFrameworkRowStartHTML())?>',
 		'rowend': '<?php echo addslashes($themeGridFramework->getPageThemeGridFrameworkRowEndHTML())?>',
+        'additionalGridColumnClasses': '<?php echo $themeGridFramework->getPageThemeGridFrameworkColumnAdditionalClasses()?>',
+        'additionalGridColumnOffsetClasses': '<?php echo $themeGridFramework->getPageThemeGridFrameworkColumnOffsetAdditionalClasses()?>',
 		<?php if ($controller->getTask() == 'add') { ?>
 		'maxcolumns': '<?php echo $controller->getAreaObject()->getAreaGridMaximumColumns()?>',
 		<?php } else { ?>
@@ -142,6 +145,9 @@ $(function() {
 		]
 		<?php } ?>
 	});
+
+	$('#ccm-layouts-toolbar').parent().concreteBlockInlineStyleCustomizer();
+
 });
 
 

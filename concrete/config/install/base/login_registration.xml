@@ -40,9 +40,8 @@
         <page name="Members" path="/members" filename="/members/view.php" pagetype="" description="" package="">
         </page>
         <page name="View Profile" path="/members/profile" filename="/members/profile.php" pagetype="" description="" package="" />
-        <!--
+
         <page name="Directory" path="/members/directory" filename="/members/directory.php" pagetype="" description="" package=""/>
-        //-->
 
         <page name="Page Not Found" path="/page_not_found" filename="/page_not_found.php" pagetype="" description="" package="" root="true" >
             <area name="Main"/>
@@ -53,9 +52,9 @@
     </singlepages>
 
     <conversationeditors>
-        <editor handle="plain_text" name="Plain Text" package="" activated="0"/>
+        <editor handle="plain_text" name="Plain Text" package="" activated="1"/>
         <editor handle="markdown" name="Markdown" package="" activated="0"/>
-        <editor handle="redactor" name="Redactor" package="" activated="1"/>
+        <editor handle="redactor" name="Redactor" package="" activated="0"/>
     </conversationeditors>
 
     <conversationratingtypes>

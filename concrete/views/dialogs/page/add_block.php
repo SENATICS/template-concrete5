@@ -25,26 +25,21 @@ if (is_array($headerItems[$identifier])) {
 </script>
 
 <?php
-$hih = Loader::helper("concrete/ui/help");
-$blockTypes = $hih->getBlockTypes();
-if (isset($blockTypes[$btHandle])) {
-	$help = $blockTypes[$btHandle];
-} else {
-	if ($blockTypeController->getBlockTypeHelp()) {
-		$help = $blockTypeController->getBlockTypeHelp();
-	}
-}
-if (isset($help) && !$blockType->supportsInlineAdd()) { ?>
-	<div class="dialog-help" id="ccm-menu-help-content"><?php 
-		if (is_array($help)) { 
-			print $help[0] . '<br><br><a href="' . $help[1] . '" target="_blank">' . t('Learn More') . '</a>';
-		} else {
-			print $help;
-		}
-	?></div>
-<?php } ?>
 
-<?php
+$hih = Core::make("help/block_type");
+$message = $hih->getMessage($blockType->getBlockTypeHandle());
+
+if (!$message && $blockTypeController->getBlockTypeHelp()) {
+	$message = new \Concrete\Core\Application\Service\UserInterface\Help\Message();
+	$message->setIdentifier($blockType->getBlockTypeHandle());
+	$message->setMessageContent($blockTypeController->getBlockTypeHelp());
+}
+
+
+if (isset($message) && is_object($message) && !$blockType->supportsInlineAdd()) { ?>
+	<div class="dialog-help" id="ccm-menu-help-content"><?php print $message->getContent() ?></div>
+<?php }
+
 if ($blockType->supportsInlineAdd()) {
     $pt = $c->getCollectionThemeObject();
     if (
@@ -56,7 +51,7 @@ if ($blockType->supportsInlineAdd()) {
         $gf = $pt->getThemeGridFrameworkObject();
         print $gf->getPageThemeGridFrameworkContainerStartHTML();
         print $gf->getPageThemeGridFrameworkRowStartHTML();
-        printf('<div class="%s">', $gf->getPageThemeGridFrameworkColumnClassForSpan(
+        printf('<div class="%s">', $gf->getPageThemeGridFrameworkColumnClassesForSpan(
                 $gf->getPageThemeGridFrameworkNumColumns()
             ));
     }
@@ -76,6 +71,10 @@ if ($blockType->supportsInlineAdd()) {
 
 <?php foreach($blockTypeController->getJavaScriptStrings() as $key => $val) { ?>
 	<input type="hidden" name="ccm-string-<?php echo $key?>" value="<?php echo h($val)?>" />
+<?php } ?>
+
+<?php foreach($area->getAreaCustomTemplates() as $btHandle => $template) {?>
+	<input type="hidden" name="arCustomTemplates[<?php echo $btHandle?>]" value="<?php echo $template?>" />
 <?php } ?>
 
 <?php if (!$blockType->supportsInlineAdd()) { ?>

@@ -11,7 +11,7 @@ if ($fp->canAddFile() || $fp->canSearchFiles()) { ?>
 </div>
 
     <?php if ($fp->canAddFile()) { ?>
-	<div id="ccm-file-manager-upload" class="ccm-file-manager-upload">
+	<div id="ccm-file-manager-upload-prompt" class="ccm-file-manager-upload">
         <?php echo t("<strong>Upload Files</strong> / Click to Choose or Drag &amp; Drop. / ")?>
         <a href="<?php echo REL_DIR_FILES_TOOLS_REQUIRED?>/files/import"
            class="dialog-launch"
@@ -23,9 +23,5 @@ if ($fp->canAddFile() || $fp->canSearchFiles()) { ?>
 <?php } ?>
 
 <?php } else { ?>
-<div class="ccm-pane-body">
 	<p><?php echo t("You do not have access to the file manager.");?></p>
-</div>
-<div class="ccm-pane-footer"></div>
-
 <?php } ?>

@@ -11,10 +11,15 @@ $seoSet = AttributeSet::getByHandle('seo');
 ?>
 <section>
     <header><?php echo t('Page Settings') ?></header>
+    <?php if ($cp->canEditPageContents()
+        || $cp->canEditPageTheme()
+        || $cp->canEditPageProperties()
+        || $cp->canEditPageTemplate()) { ?>
+
     <menu class="ccm-panel-page-basics">
         <?php
         $pagetype = PageType::getByID($c->getPageTypeID());
-        if (is_object($pagetype)) {
+        if (is_object($pagetype) && $cp->canEditPageContents()) {
             ?>
             <li>
                 <a href="#" data-launch-panel-detail="page-composer"
@@ -63,6 +68,8 @@ $seoSet = AttributeSet::getByHandle('seo');
         }
         ?>
     </menu>
+    <?php } ?>
+
     <menu>
         <?php
         if ($cp->canEditPageProperties()) {
@@ -112,6 +119,14 @@ $seoSet = AttributeSet::getByHandle('seo');
             <li>
                 <a href="#" data-launch-sub-panel-url="<?php echo URL::to('/ccm/system/panels/page/versions') ?>">
                     <?php echo t('Versions') ?>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-launch-panel-detail="mobile-preview"
+                   data-launch-sub-panel-url="<?php echo URL::to('/ccm/system/panels/page/devices') ?>"
+                   data-panel-detail-url="<?php echo URL::to('/ccm/system/panels/details/page/devices') ?>"
+                   data-panel-transition="fade">
+                    <?php echo t('Mobile Preview') ?>
                 </a>
             </li>
         <?php

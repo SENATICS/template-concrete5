@@ -1,27 +1,32 @@
 <?php
+
 namespace Concrete\Core\Page\Stack;
 
 use Area;
+use Concrete\Core\Multilingual\Page\Section\Section;
 use GlobalArea;
-use CacheLocal;
 use Config;
-use Loader;
+use Database;
+use Core;
 use Page;
 use PageType;
 
 /**
- * Class Stack
+ * Class Stack.
  *
  * @package Concrete\Core\Page\Stack
  */
 class Stack extends Page
 {
-
     const ST_TYPE_USER_ADDED = 0;
     const ST_TYPE_GLOBAL_AREA = 20;
 
+    const MULTILINGUAL_CONTENT_SOURCE_CURRENT = 100; // in multilingual sites, loads based on current page's locale
+    const MULTILINGUAL_CONTENT_SOURCE_DEFAULT = 200; // in multilingual sites, loads based on default locale (ignores current)
+
     /**
      * @param string $type
+     *
      * @return int
      */
     public static function mapImportTextToType($type)
@@ -38,6 +43,7 @@ class Stack extends Page
 
     /**
      * @param $stackName
+     *
      * @return Stack
      */
     public static function getOrCreateGlobalArea($stackName)
@@ -46,46 +52,75 @@ class Stack extends Page
         if (!$stack) {
             $stack = static::addStack($stackName, static::ST_TYPE_GLOBAL_AREA);
         }
+
         return $stack;
     }
 
     /**
      * @param string $stackName
      * @param string $cvID
+     * @param integer $multilingualContentSource
      * @return Page
      */
-    public static function getByName($stackName, $cvID = 'RECENT')
+    public static function getByName($stackName, $cvID = 'RECENT', $multilingualContentSource = self::MULTILINGUAL_CONTENT_SOURCE_CURRENT)
     {
-        $cID = CacheLocal::getEntry('stack_by_name', $stackName);
-        if (!$cID) {
-            $db = Loader::db();
-            $cID = $db->GetOne('select cID from Stacks where stName = ?', array($stackName));
-            CacheLocal::set('stack_by_name', $stackName, $cID);
+        $c = Page::getCurrentPage();
+        if (is_object($c) && (!$c->isError())) {
+            $identifier = sprintf('/stack/name/%s/%s/%s/%s', $stackName, $c->getCollectionID(), $cvID, $multilingualContentSource);
+            $cache = Core::make('cache/request');
+            $item = $cache->getItem($identifier);
+            if (!$item->isMiss()) {
+                $cID = $item->get();
+            } else {
+                $item->lock();
+                $db = Database::connection();
+                $ms = false;
+                $detector = Core::make('multilingual/detector');
+                if ($detector->isEnabled()) {
+                    if ($multilingualContentSource == self::MULTILINGUAL_CONTENT_SOURCE_DEFAULT) {
+                        $ms = Section::getDefaultSection();
+                    } else {
+                        $ms = Section::getBySectionOfSite($c);
+                        if (!is_object($ms)) {
+                            $ms = $detector->getPreferredSection();
+                        }
+                    }
+                }
+
+                if (is_object($ms)) {
+                    $cID = $db->GetOne('select cID from Stacks where stName = ? and stMultilingualSection = ?', array($stackName, $ms->getCollectionID()));
+                } else {
+                    $cID = $db->GetOne('select cID from Stacks where stName = ?', array($stackName));
+                }
+                $item->set($cID);
+            }
+        } else {
+            $cID = Database::connection()->GetOne('select cID from Stacks where stName = ?', array($stackName));
         }
 
-        if ($cID) {
-            return static::getByID($cID, $cvID);
-        }
+        return $cID ? static::getByID($cID, $cvID) : false;
     }
 
     /**
      * @param int    $cID
      * @param string $cvID
+     *
      * @return bool|Page
      */
     public static function getByID($cID, $cvID = 'RECENT')
     {
-        $db = Loader::db();
-        $c = parent::getByID($cID, $cvID, 'Stack');
+        $c = parent::getByID($cID, $cvID);
 
         if (static::isValidStack($c)) {
             return $c;
         }
+
         return false;
     }
 
     /**
      * @param Stack $stack
+     *
      * @return bool
      */
     protected static function isValidStack($stack)
@@ -96,11 +131,11 @@ class Stack extends Page
     /**
      * @param string $stackName
      * @param int    $type
+     *
      * @return Page
      */
     public static function addStack($stackName, $type = 0)
     {
-        $ct = new PageType();
         $data = array();
 
         $parent = Page::getByPath(STACKS_PAGE_PATH);
@@ -113,21 +148,38 @@ class Stack extends Page
         $page = $parent->add($pagetype, $data);
 
         // we have to do this because we need the area to exist before we try and add something to it.
-        $a = Area::getOrCreate($page, STACKS_AREA_NAME);
+        Area::getOrCreate($page, STACKS_AREA_NAME);
 
         // finally we add the row to the stacks table
-        $db = Loader::db();
+        $db = Database::connection();
         $stackCID = $page->getCollectionID();
         $v = array($stackName, $stackCID, $type);
         $db->Execute('insert into Stacks (stName, cID, stType) values (?, ?, ?)', $v);
 
-        //Return the new stack
-        return static::getByID($stackCID);
+        $stack = static::getByID($stackCID);
+
+        // If the multilingual add-on is enabled, we need to take this stack and copy it into all non-default stack categories.
+        if (Core::make('multilingual/detector')->isEnabled()) {
+            $list = Section::getList();
+            foreach ($list as $section) {
+                if (!$section->isDefaultMultilingualSection()) {
+                    $category = StackCategory::getCategoryFromMultilingualSection($section);
+                    if (!is_object($category)) {
+                        $category = StackCategory::createFromMultilingualSection($section);
+                    }
+                    $stack->duplicate($category->getPage());
+                }
+            }
+            StackList::rescanMultilingualStacks();
+        }
+
+        return $stack;
     }
 
     /**
      * @param |\Concrete\Core\Page\Collection $nc
      * @param bool $preserveUserID
+     *
      * @return Stack
      */
     public function duplicate($nc = null, $preserveUserID = false)
@@ -141,9 +193,9 @@ class Stack extends Page
         $page = parent::duplicate($nc, $preserveUserID);
 
         // we have to do this because we need the area to exist before we try and add something to it.
-        $a = Area::getOrCreate($page, STACKS_AREA_NAME);
+        Area::getOrCreate($page, STACKS_AREA_NAME);
 
-        $db = Loader::db();
+        $db = Database::connection();
         $v = array($page->getCollectionName(), $page->getCollectionID(), $this->getStackType());
         $db->Execute('insert into Stacks (stName, cID, stType) values (?, ?, ?)', $v);
 
@@ -156,18 +208,20 @@ class Stack extends Page
      */
     public function getStackType()
     {
-        $db = Loader::db();
+        $db = Database::connection();
+
         return $db->GetOne('select stType from Stacks where cID = ?', array($this->getCollectionID()));
     }
 
     /**
      * @param $data
+     *
      * @return bool
      */
     public function update($data)
     {
         if (isset($data['stackName'])) {
-            $txt = Loader::helper('text');
+            $txt = Core::make('helper/text');
             $data['cName'] = $data['stackName'];
             $data['cHandle'] = str_replace('-', Config::get('concrete.seo.page_path_separator'), $txt->urlify($data['stackName']));
         }
@@ -177,10 +231,11 @@ class Stack extends Page
             // Make sure the stack path is always up-to-date after a name change
             $this->rescanCollectionPath();
 
-            $db = Loader::db();
+            $db = Database::connection();
             $stackName = $data['stackName'];
             $db->Execute('update Stacks set stName = ? WHERE cID = ?', array($stackName, $this->getCollectionID()));
         }
+
         return $worked;
     }
 
@@ -194,7 +249,8 @@ class Stack extends Page
         }
 
         parent::delete();
-        $db = Loader::db();
+        $db = Database::connection();
+
         return $db->Execute('delete from Stacks where cID = ?', array($this->getCollectionID()));
     }
 
@@ -203,7 +259,8 @@ class Stack extends Page
      */
     public function getStackName()
     {
-        $db = Loader::db();
+        $db = Database::connection();
+
         return $db->GetOne('select stName from Stacks where cID = ?', array($this->getCollectionID()));
     }
 
@@ -213,23 +270,24 @@ class Stack extends Page
     public function display()
     {
         $ax = Area::get($this, STACKS_AREA_NAME);
+        $ax->disableControls();
         $ax->display($this);
+
         return true;
     }
 
     /**
      * @param Page $pageNode
      */
-    public function export($pageNode)
+    public function export($pageNode, $includePublicDate = false)
     {
-
         $p = $pageNode->addChild('stack');
-        $p->addAttribute('name', Loader::helper('text')->entities($this->getCollectionName()));
+        $p->addAttribute('name', Core::make('helper/text')->entities($this->getCollectionName()));
         if ($this->getStackTypeExportText()) {
             $p->addAttribute('type', $this->getStackTypeExportText());
         }
 
-        $db = Loader::db();
+        $db = Database::connection();
         // you shouldn't ever have a sub area in a stack but just in case.
         $r = $db->Execute('select arHandle from Areas where cID = ? and arParentID = 0', array($this->getCollectionID()));
         while ($row = $r->FetchRow()) {
@@ -253,4 +311,18 @@ class Stack extends Page
         }
     }
 
+    public function getMultilingualSection()
+    {
+        $db = Database::connection();
+        $cID = $db->GetOne('select stMultilingualSection from Stacks where cID = ?', array($this->getCollectionID()));
+        if ($cID) {
+            return Section::getByID($cID);
+        }
+    }
+
+    public function updateMultilingualSection(Section $section)
+    {
+        $db = Database::connection();
+        $db->Execute('update Stacks set stMultilingualSection = ? where cID = ?', array($section->getCollectionID(), $this->getCollectionID()));
+    }
 }

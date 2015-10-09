@@ -85,18 +85,17 @@ EOT
     {
         $this->configuration = $this->getMigrationConfiguration($input, $output);
 
-        if ($input->getOption('add') === false && $input->getOption('delete') === false) {
+        if ( ! $input->getOption('add') && ! $input->getOption('delete')) {
             throw new \InvalidArgumentException('You must specify whether you want to --add or --delete the specified version.');
         }
 
-        $this->markMigrated = $input->getOption('add') ? true : false;
+        $this->markMigrated = (boolean) $input->getOption('add');
 
-        $noInteraction = $input->getOption('no-interaction') ? true : false;
-        if ($noInteraction === true) {
+        if ($input->getOption('no-interaction')) {
             $this->markAllAvailableVersions($input);
         } else {
             $confirmation = $this->getHelper('dialog')->askConfirmation($output, '<question>WARNING! You are about to add, delete or synchronize migration versions from the version table that could result in data lost. Are you sure you wish to continue? (y/n)</question>', false);
-            if ($confirmation === true) {
+            if ($confirmation) {
                 $this->markAllAvailableVersions($input);
             } else {
                 $output->writeln('<error>Migration cancelled!</error>');
@@ -128,14 +127,14 @@ EOT
         $version = $this->configuration->getVersion($version);
         if ($this->markMigrated && $this->configuration->hasVersionMigrated($version)) {
             $marked = true;
-            if ( ! $all) {
+            if (! $all) {
                 throw new \InvalidArgumentException(sprintf('The version "%s" already exists in the version table.', $version));
             }
         }
 
         if ( ! $this->markMigrated && ! $this->configuration->hasVersionMigrated($version)) {
             $marked = false;
-            if ( ! $all) {
+            if (! $all) {
                 throw new \InvalidArgumentException(sprintf('The version "%s" does not exists in the version table.', $version));
             }
         }

@@ -1,35 +1,40 @@
 <?php
+
 namespace Concrete\Core\Page\Type;
 
+use Concrete\Core\Attribute\Key\CollectionKey;
+use Concrete\Core\Multilingual\Page\Section\Section;
+use Concrete\Core\Page\Template;
 use Concrete\Core\Page\Type\Composer\Control\CorePageProperty\NameCorePageProperty;
+use Concrete\Core\Page\Type\Composer\FormLayoutSet;
+use Concrete\Core\Permission\Key\Key;
 use Loader;
-use \Concrete\Core\Foundation\Object;
+use Concrete\Core\Foundation\Object;
 use PageTemplate;
 use PermissionKey;
 use PermissionAccess;
-use \Concrete\Core\Permission\Access\Entity\PageOwnerEntity as PageOwnerPermissionAccessEntity;
-use \Concrete\Core\Page\Type\Composer\FormLayoutSet as PageTypeComposerFormLayoutSet;
-use \Concrete\Core\Page\Type\Composer\Control\Type\Type as PageTypeComposerControlType;
-use \Concrete\Core\Page\Type\Composer\Control\Control as PageTypeComposerControl;
-use \Concrete\Core\Backup\ContentImporter;
-use \Concrete\Core\Package\PackageList;
+use Concrete\Core\Permission\Access\Entity\PageOwnerEntity as PageOwnerPermissionAccessEntity;
+use Concrete\Core\Page\Type\Composer\FormLayoutSet as PageTypeComposerFormLayoutSet;
+use Concrete\Core\Page\Type\Composer\Control\Type\Type as PageTypeComposerControlType;
+use Concrete\Core\Page\Type\Composer\Control\Control as PageTypeComposerControl;
+use Concrete\Core\Backup\ContentImporter;
+use Concrete\Core\Package\PackageList;
 use CollectionVersion;
 use Collection;
 use Page;
 use Config;
 use User;
 use Package;
-use \Concrete\Core\Workflow\Request\ApprovePageRequest as ApprovePagePageWorkflowRequest;
+use Concrete\Core\Workflow\Request\ApprovePageRequest as ApprovePagePageWorkflowRequest;
 use CacheLocal;
-use \Concrete\Core\Page\Type\PublishTarget\Configuration\Configuration as PageTypePublishTargetConfiguration;
-use \Concrete\Core\Page\Type\Composer\FormLayoutSetControl as PageTypeComposerFormLayoutSetControl;
-use \Concrete\Core\Page\Collection\Version\VersionList;
-use
-    \Concrete\Core\Page\Type\Composer\Control\CorePageProperty\CorePageProperty as CorePagePropertyPageTypeComposerControl;
+use Concrete\Core\Page\Type\PublishTarget\Configuration\Configuration as PageTypePublishTargetConfiguration;
+use Concrete\Core\Page\Type\PublishTarget\Type\Type as PageTypePublishTargetType;
+use Concrete\Core\Page\Type\Composer\FormLayoutSetControl as PageTypeComposerFormLayoutSetControl;
+use Concrete\Core\Page\Collection\Version\VersionList;
+use Concrete\Core\Page\Type\Composer\Control\CorePageProperty\CorePageProperty as CorePagePropertyPageTypeComposerControl;
 
 class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
 {
-
     protected $ptDraftVersionsToSave = 10;
     protected $ptDefaultPageTemplateID = 0;
 
@@ -41,6 +46,18 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
     public function getPageTypeName()
     {
         return $this->ptName;
+    }
+
+    public function getPageTypeDisplayName($format = 'html')
+    {
+        $value = t($this->getPageTypeName());
+        switch ($format) {
+            case 'html':
+                return h($value);
+            case 'text':
+            default:
+                return $value;
+        }
     }
 
     public function getPageTypeHandle()
@@ -140,7 +157,21 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
     {
         $this->stripEmptyPageTypeComposerControls($c);
         $parent = Page::getByID($c->getPageDraftTargetParentPageID());
-        $c->move($parent);
+        if ($c->isPageDraft()) { // this is still a draft, which means it has never been properly published.
+            // so we need to move it, check its permissions, etc...
+            Section::registerPage($c);
+            $c->move($parent);
+            if (!$parent->overrideTemplatePermissions()) {
+                // that means the permissions of pages added beneath here inherit from page type permissions
+                // this is a very poorly named method. Template actually used to mean Type.
+                // so this means we need to set the permissions of this current page to inherit from page types.
+                $c->inheritPermissionsFromDefaults();
+            }
+            $c->activate();
+        } else {
+            $c->rescanCollectionPath();
+        }
+
         $u = new User();
         $v = CollectionVersion::get($c, 'RECENT');
         $pkr = new ApprovePagePageWorkflowRequest();
@@ -148,7 +179,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         $pkr->setRequestedVersionID($v->getVersionID());
         $pkr->setRequesterUserID($u->getUserID());
         $pkr->trigger();
-        $c->activate();
+
         $u->unloadCollectionEdit($c);
         CacheLocal::flush();
 
@@ -198,7 +229,6 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
             }
         }
 
-
         $c = Page::getByID($c->getCollectionID(), 'RECENT');
         $controls = array();
         foreach ($outputControls as $oc) {
@@ -214,7 +244,6 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         return $controls;
     }
 
-
     public function getPageTypeSelectedPageTemplateObjects()
     {
         $templates = array();
@@ -229,6 +258,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
                 $templates[] = $pt;
             }
         }
+
         return $templates;
     }
 
@@ -246,22 +276,28 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         }
     }
 
-    public function getPageTypePageTemplateDefaultPageObject(PageTemplate $template)
+    public function getPageTypePageTemplateDefaultPageObject(Template $template = null)
     {
+        if (!$template) {
+            $template = $this->getPageTypeDefaultPageTemplateObject();
+        }
+
         $db = Loader::db();
         $cID = $db->GetOne(
             'select cID from PageTypePageTemplateDefaultPages where ptID = ? and pTemplateID = ?',
             array(
                 $this->ptID,
-                $template->getPageTemplateID()
+                $template->getPageTemplateID(),
             )
         );
         if (!$cID) {
             // we create one.
             $dh = Loader::helper('date');
             $cDate = $dh->getOverridableNow();
-            $data['pTemplateID'] = $template->getPageTemplateID();
-            $cobj = Collection::addCollection($data);
+            $data = array(
+                'pTemplateID' => $template->getPageTemplateID(),
+            );
+            $cobj = Collection::createCollection($data);
             $cID = $cobj->getCollectionID();
 
             $v2 = array($cID, 1, $this->getPageTypeID());
@@ -274,12 +310,17 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
                 array(
                     $this->ptID,
                     $template->getPageTemplateID(),
-                    $cID
+                    $cID,
                 )
             );
         }
 
-        return Page::getByID($cID, 'RECENT');
+        $template = Page::getByID($cID, 'RECENT');
+        if ($template->getCollectionInheritance() != 'OVERRIDE') {
+            $template->setPermissionsToManualOverride();
+        }
+
+        return $template;
     }
 
     public function getPageTypePageTemplateObjects()
@@ -315,7 +356,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
 
     public static function importTargets($node)
     {
-        $ptHandle = (string)$node['handle'];
+        $ptHandle = (string) $node['handle'];
         $db = Loader::db();
         $ptID = $db->GetOne('select ptID from PageTypes where ptHandle = ?', array($ptHandle));
         $cm = static::getByID($ptID);
@@ -330,28 +371,29 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
     public static function import($node)
     {
         $types = array();
-        if ((string)$node->pagetemplates['type'] == 'custom' || (string)$node->pagetemplates['type'] == 'except') {
-            if ((string)$node->pagetemplates['type'] == 'custom') {
+        if ((string) $node->pagetemplates['type'] == 'custom' || (string) $node->pagetemplates['type'] == 'except') {
+            if ((string) $node->pagetemplates['type'] == 'custom') {
                 $ptAllowedPageTemplates = 'C';
             } else {
                 $ptAllowedPageTemplates = 'X';
             }
 
             foreach ($node->pagetemplates->pagetemplate as $pagetemplate) {
-                $types[] = PageTemplate::getByHandle((string)$pagetemplate['handle']);
+                $types[] = PageTemplate::getByHandle((string) $pagetemplate['handle']);
             }
         } else {
             $ptAllowedPageTemplates = 'A';
         }
-        $ptName = (string)$node['name'];
-        $ptHandle = (string)$node['handle'];
+
+        $ptName = (string) $node['name'];
+        $ptHandle = (string) $node['handle'];
         $db = Loader::db();
-        $defaultPageTemplate = PageTemplate::getByHandle((string)$node->pagetemplates['default']);
+        $defaultPageTemplate = PageTemplate::getByHandle((string) $node->pagetemplates['default']);
 
         $ptID = $db->GetOne('select ptID from PageTypes where ptHandle = ?', array($ptHandle));
         $data = array(
             'handle' => $ptHandle,
-            'name' => $ptName
+            'name' => $ptName,
         );
         if ($defaultPageTemplate) {
             $data['defaultTemplate'] = $defaultPageTemplate;
@@ -374,26 +416,31 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         }
 
         $data['templates'] = $types;
+        $pkg = false;
+        if ($node['package']) {
+            $pkg = Package::getByHandle((string) $node['package']);
+        }
+
         if ($ptID) {
             $cm = static::getByID($ptID);
             $cm->update($data);
         } else {
-            $cm = static::add($data);
+            $cm = static::add($data, $pkg);
         }
         $node = $node->composer;
         if (isset($node->formlayout->set)) {
             foreach ($node->formlayout->set as $setnode) {
-                $set = $cm->addPageTypeComposerFormLayoutSet((string)$setnode['name'],(string)$setnode['description']);
+                $set = $cm->addPageTypeComposerFormLayoutSet((string) $setnode['name'], (string) $setnode['description']);
                 if (isset($setnode->control)) {
                     foreach ($setnode->control as $controlnode) {
-                        $controltype = PageTypeComposerControlType::getByHandle((string)$controlnode['type']);
+                        $controltype = PageTypeComposerControlType::getByHandle((string) $controlnode['type']);
                         $control = $controltype->configureFromImport($controlnode);
                         $setcontrol = $control->addToPageTypeComposerFormLayoutSet($set, true);
-                        $required = (string)$controlnode['required'];
-                        $customTemplate = (string)$controlnode['custom-template'];
-                        $label = (string)$controlnode['custom-label'];
-                        $description = (string)$controlnode['description'];
-                        $outputControlID = (string)$controlnode['output-control-id'];
+                        $required = (string) $controlnode['required'];
+                        $customTemplate = (string) $controlnode['custom-template'];
+                        $label = (string) $controlnode['custom-label'];
+                        $description = (string) $controlnode['description'];
+                        $outputControlID = (string) $controlnode['output-control-id'];
                         if ($required == '1') {
                             $setcontrol->updateFormLayoutSetControlRequired(true);
                         } else {
@@ -420,17 +467,34 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
     public static function importContent($node)
     {
         $db = Loader::db();
-        $ptHandle = (string)$node['handle'];
+        $ptHandle = (string) $node['handle'];
         $ptID = $db->GetOne('select ptID from PageTypes where ptHandle = ?', array($ptHandle));
         if ($ptID) {
             $pt = static::getByID($ptID);
+            $defaultTemplate = $pt->getPageTypeDefaultPageTemplateObject();
             if (isset($node->composer->output->pagetemplate)) {
                 $ci = new ContentImporter();
                 foreach ($node->composer->output->pagetemplate as $pagetemplate) {
-                    $ptt = PageTemplate::getByHandle((string)$pagetemplate['handle']);
+                    $handle = (string) $pagetemplate['handle'];
+                    $ptt = PageTemplate::getByHandle($handle);
                     if (is_object($ptt)) {
+
                         // let's get the defaults page for this
                         $xc = $pt->getPageTypePageTemplateDefaultPageObject($ptt);
+
+                        // if the $handle matches the default page template for this page type, then we ALSO check in here
+                        // and see if there are any attributes
+                        if (is_object($defaultTemplate) && $defaultTemplate->getPageTemplateHandle() == $handle) {
+                            if (isset($pagetemplate->page->attributes)) {
+                                foreach ($pagetemplate->page->attributes->children() as $attr) {
+                                    $ak = CollectionKey::getByHandle((string) $attr['handle']);
+                                    if (is_object($ak)) {
+                                        $xc->setAttribute((string) $attr['handle'], $ak->getController()->importValue($attr));
+                                    }
+                                }
+                            }
+                        }
+
                         // now that we have the defaults page, let's import this content into it.
                         if (isset($pagetemplate->page)) {
                             $ci->importPageAreas($xc, $pagetemplate->page);
@@ -440,7 +504,6 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
             }
         }
     }
-
 
     public static function exportList($xml)
     {
@@ -518,8 +581,125 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         }
     }
 
+    public function getPageTypeUsageCount()
+    {
+        $db = Loader::db();
+        $count = $db->GetOne('select count(cID) from Pages where cIsTemplate = 0 and ptID = ? and cIsActive = 1', array($this->ptID));
+
+        return $count;
+    }
+
+    public function duplicate($ptHandle, $ptName)
+    {
+        $data = array(
+            'handle' => $ptHandle,
+            'name' => $ptName,
+            'defaultTemplate' => $this->getPageTypeDefaultPageTemplateObject(),
+            'allowedTemplates' => $this->getPageTypeAllowedPageTemplates(),
+            'templates' => $this->getPageTypeSelectedPageTemplateObjects(),
+            'ptLaunchInComposer' => $this->doesPageTypeLaunchInComposer(),
+            'ptIsFrequentlyAdded' => $this->isPageTypeFrequentlyAdded(),
+        );
+
+        $new = static::add($data);
+
+        // now copy the edit form
+        $sets = FormLayoutSet::getList($this);
+        foreach ($sets as $set) {
+            $set->duplicate($new);
+        }
+
+        // now copy the master pages for defaults and attributes
+        $db = \Database::get();
+        $r = $db->Execute('select cID from Pages where cIsTemplate = 1 and ptID = ?', array($this->getPageTypeID()));
+        $home = Page::getByID(HOME_CID);
+        while ($row = $r->FetchRow()) {
+            $c = Page::getByID($row['cID']);
+            if (is_object($c)) {
+                $nc = $c->duplicate($home);
+                $nc->setPageType($new);
+                $db->update('Pages', array(
+                    'cParentID' => 0,
+                    'cIsTemplate' => 1,
+                ), array('cID' => $nc->getCollectionID()));
+                $db->insert('PageTypePageTemplateDefaultPages', array(
+                    'pTemplateID' => $nc->getPageTemplateID(),
+                    'ptID' => $new->getPageTypeID(),
+                    'cID' => $nc->getCollectionID(),
+                ));
+
+                // clear out output control blocks because they will be pointing to the wrong thing
+
+                $composerBlocksIDs = $db->GetAll('select cvb.bID, cvb.arHandle from btCorePageTypeComposerControlOutput o inner join CollectionVersionBlocks cvb on cvb.bID = o.bID inner join Pages p on cvb.cID = p.cID where p.cID = ?',
+                    array($nc->getCollectionID()));
+                foreach ($composerBlocksIDs as $row) {
+                    $b = \Block::getByID($row['bID'], $nc, $row['arHandle']);
+                    $b->deleteBlock();
+                }
+            }
+        }
+
+        // copy permissions from the defaults to the page type
+        $list = Key::getList('page_type');
+        foreach ($list as $pk) {
+            $pk->setPermissionObject($this);
+            $rpa = $pk->getPermissionAccessObject();
+            if (is_object($rpa)) {
+                $pk->setPermissionObject($new);
+                $pt = $pk->getPermissionAssignmentObject();
+                if (is_object($pt)) {
+                    $pt->clearPermissionAssignment();
+                    $pt->assignPermissionAccess($rpa);
+                }
+            }
+        }
+        // copy permissions from the default page to the page type
+        $list = Key::getList('page');
+        foreach ($list as $pk) {
+            $pk->setPermissionObject($this->getPageTypePageTemplateDefaultPageObject());
+            $rpa = $pk->getPermissionAccessObject();
+            if (is_object($rpa)) {
+                $pk->setPermissionObject($new->getPageTypePageTemplateDefaultPageObject());
+                $pt = $pk->getPermissionAssignmentObject();
+                if (is_object($pt)) {
+                    $pt->clearPermissionAssignment();
+                    $pt->assignPermissionAccess($rpa);
+                }
+            }
+        }
+
+        // duplicate the target object.
+        $target = $this->getPageTypePublishTargetObject();
+        $new->setConfiguredPageTypePublishTargetObject($target);
+    }
+
+    /**
+     * Add a page type.
+     *
+     * @param array $data {
+     *     @var string          $handle              A string which can be used to identify the page type
+     *     @var string          $name                A user friendly display name
+     *     @var \PageTemplate   $defaultTemplate     The default template object
+     *     @var string          $allowedTemplates    (A|C|X) A for all, C for selected only, X for non-selected only
+     *     @var \PageTemplate[] $templates           Array or Iterator of selected templates, see `$allowedTemplates`
+     *     @var bool            $internal            Is this an internal only page type? Default: `false`
+     *     @var bool            $ptLaunchInComposer  Does this launch in composer? Default: `false`
+     *     @var bool            $ptIsFrequentlyAdded Should this always be displayed in the pages panel? Default: `false`
+     * }
+     * @param bool|Package $pkg This should be false if the type is not tied to a package, or a package object
+     *
+     * @return static|mixed|null
+     */
     public static function add($data, $pkg = false)
     {
+        $data = $data + array(
+            'defaultTemplate' => null,
+            'allowedTemplates' => null,
+            'templates' => null,
+            'internal' => null,
+            'ptLaunchInComposer' => null,
+            'ptIsFrequentlyAdded' => null,
+        );
         $ptHandle = $data['handle'];
         $ptName = $data['name'];
         $ptDefaultPageTemplateID = 0;
@@ -572,7 +752,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
                 $ptLaunchInComposer,
                 $ptDisplayOrder,
                 $ptIsFrequentlyAdded,
-                $pkgID
+                $pkgID,
             )
         );
         $ptID = $db->Insert_ID();
@@ -582,13 +762,20 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
                     'insert into PageTypePageTemplates (ptID, pTemplateID) values (?, ?)',
                     array(
                         $ptID,
-                        $pt->getPageTemplateID()
+                        $pt->getPageTemplateID(),
                     )
                 );
             }
         }
 
         $ptt = static::getByID($ptID);
+
+        // set all type publish target as default
+        $target = PageTypePublishTargetType::getByHandle('all');
+        if (is_object($target)) {
+            $configuredTarget = $target->configurePageTypePublishTarget($ptt, array());
+            $ptt->setConfiguredPageTypePublishTargetObject($configuredTarget);
+        }
 
         // copy permissions from the defaults to the page type
         $cpk = PermissionKey::getByHandle('access_page_type_permissions');
@@ -618,7 +805,6 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
 
     public function update($data)
     {
-
         $ptHandle = $this->getPageTypeHandle();
         $ptName = $this->getPageTypeName();
         $ptDefaultPageTemplateID = $this->getPageTypeDefaultPageTemplateID();
@@ -669,7 +855,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
                 $ptLaunchInComposer,
                 $ptIsFrequentlyAdded,
                 $ptDisplayOrder,
-                $this->ptID
+                $this->ptID,
             )
         );
         $db->Execute('delete from PageTypePageTemplates where ptID = ?', array($this->ptID));
@@ -679,12 +865,36 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
                     'insert into PageTypePageTemplates (ptID, pTemplateID) values (?, ?)',
                     array(
                         $this->ptID,
-                        $pt->getPageTemplateID()
+                        $pt->getPageTemplateID(),
                     )
                 );
             }
         }
         $this->rescanPageTypeComposerOutputControlObjects();
+        $this->rescanPageTypePageTemplateDefaultPages();
+    }
+
+    protected function rescanPageTypePageTemplateDefaultPages()
+    {
+        $db = Loader::db();
+        $templates = $this->getPageTypePageTemplateObjects();
+        $templateIDs = array();
+        foreach ($templates as $template) {
+            $templateIDs[] = $template->getPageTemplateID();
+        }
+        $existingDefaultTemplateIDs = $db->GetCol('select pTemplateID from PageTypePageTemplateDefaultPages where ptID = ?', array($this->getPageTypeID()));
+        foreach ($existingDefaultTemplateIDs as $existingPageTemplateID) {
+            if (!in_array($existingPageTemplateID, $templateIDs)) {
+                $existingPageTemplate = Template::getByID($existingPageTemplateID);
+                if (is_object($existingPageTemplate)) {
+                    $c = $this->getPageTypePageTemplateDefaultPageObject($existingPageTemplate);
+                    if (is_object($c)) {
+                        $c->delete();
+                    }
+                }
+                $db->Execute('delete from PageTypePageTemplateDefaultPages where pTemplateID = ? and ptID = ?', array($existingPageTemplateID, $this->getPageTypeID()));
+            }
+        }
     }
 
     public static function getList($includeInternal = false)
@@ -695,6 +905,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         } else {
             $ptIDs = $db->GetCol('select ptID from PageTypes order by ptDisplayOrder asc');
         }
+
         return static::returnList($ptIDs);
     }
 
@@ -710,6 +921,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
                 $list[] = $cm;
             }
         }
+
         return $list;
     }
 
@@ -717,6 +929,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
     {
         $db = Loader::db();
         $ptIDs = $db->GetCol('select ptID from PageTypes where ptIsInternal = 0 and ptIsFrequentlyAdded = 1 order by ptDisplayOrder asc');
+
         return static::returnList($ptIDs);
     }
 
@@ -724,6 +937,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
     {
         $db = Loader::db();
         $ptIDs = $db->GetCol('select ptID from PageTypes where ptIsInternal = 0 and ptIsFrequentlyAdded = 0 order by ptDisplayOrder asc');
+
         return static::returnList($ptIDs);
     }
 
@@ -736,6 +950,27 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         );
         $list = array();
         foreach ($ptIDs as $ptID) {
+            $cm = static::getByID($ptID);
+            if (is_object($cm)) {
+                $list[] = $cm;
+            }
+        }
+
+        return $list;
+    }
+
+    public static function getListByDefaultPageTemplate($templateOrTemplateID)
+    {
+        $pTemplateID = is_object($templateOrTemplateID) ?
+            $templateOrTemplateID->getPageTemplateID() : $templateOrTemplateID;
+
+        $db = \Database::connection();
+        $stmt = $db->prepare("SELECT ptID FROM PageTypes WHERE ptDefaultPageTemplateID = ?");
+        $stmt->bindValue(1, $pTemplateID);
+        $stmt->execute();
+
+        $list = array();
+        while ($ptID = $stmt->fetchColumn(0)) {
             $cm = static::getByID($ptID);
             if (is_object($cm)) {
                 $list[] = $cm;
@@ -754,11 +989,12 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
 
         $db = Loader::db();
         $r = $db->GetRow('select * from PageTypes where ptID = ?', array($ptID));
-        if (is_array($r) && $r['ptID']) {
+        if (is_array($r) && isset($r['ptID']) && $r['ptID']) {
             $cm = new static();
             $cm->setPropertiesFromArray($r);
             $cm->ptPublishTargetObject = unserialize($r['ptPublishTargetObject']);
             $item->set($cm);
+
             return $cm;
         }
     }
@@ -781,12 +1017,13 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         $db = Loader::db();
         $db->Execute('delete from PageTypes where ptID = ?', array($this->ptID));
         $db->Execute('delete from PageTypePageTemplates where ptID = ?', array($this->ptID));
+        $db->Execute('delete from PageTypePageTemplateDefaultPages where ptID = ?', array($this->ptID));
         $db->Execute('delete from PageTypeComposerOutputControls where ptID = ?', array($this->ptID));
 
-		foreach($this->getPageTypePageTemplateObjects() as $pt) {
-			$c = $this->getPageTypePageTemplateDefaultPageObject($pt);
+        foreach ($this->getPageTypePageTemplateObjects() as $pt) {
+            $c = $this->getPageTypePageTemplateDefaultPageObject($pt);
             $c->delete();
-		}
+        }
     }
 
     public function setConfiguredPageTypePublishTargetObject(PageTypePublishTargetConfiguration $configuredTarget)
@@ -798,7 +1035,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
                 array(
                     $configuredTarget->getPageTypePublishTargetTypeID(),
                     @serialize($configuredTarget),
-                    $this->getPageTypeID()
+                    $this->getPageTypeID(),
                 )
             );
         }
@@ -814,7 +1051,7 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         }
     }
 
-    public function addPageTypeComposerFormLayoutSet($ptComposerFormLayoutSetName,$ptComposerFormLayoutSetDescription)
+    public function addPageTypeComposerFormLayoutSet($ptComposerFormLayoutSetName, $ptComposerFormLayoutSetDescription)
     {
         $db = Loader::db();
         $displayOrder = $db->GetOne(
@@ -830,43 +1067,41 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
                 $ptComposerFormLayoutSetName,
                 $ptComposerFormLayoutSetDescription,
                 $this->ptID,
-                $displayOrder
+                $displayOrder,
             )
         );
+
         return PageTypeComposerFormLayoutSet::getByID($db->Insert_ID());
     }
 
     /**
      * Returns true if pages of the current type are allowed beneath the passed parent page.
+     *
      * @param \Concrete\Core\Page\Page $page
      */
     public function canPublishPageTypeBeneathPage(\Concrete\Core\Page\Page $page)
     {
         $target = $this->getPageTypePublishTargetObject();
-        return $target->canPublishPageTypeBeneathTarget($this, $page);
+        if (is_object($target)) {
+            return $target->canPublishPageTypeBeneathTarget($this, $page);
+        }
     }
 
-    public function validateCreateDraftRequest($pt)
+    /**
+     * @return \Concrete\Core\Page\Type\Validator\ValidatorInterface|null
+     */
+    public function getPageTypeValidatorObject()
     {
-        $e = Loader::helper('validation/error');
-        $availablePageTemplates = $this->getPageTypePageTemplateObjects();
-        $availablePageTemplateIDs = array();
-        foreach ($availablePageTemplates as $ppt) {
-            $availablePageTemplateIDs[] = $ppt->getPageTemplateID();
+        if ($this->ptHandle) {
+            $validator = \Core::make('manager/page_type/validator')->driver($this->ptHandle);
+            $validator->setPageTypeObject($this);
+
+            return $validator;
         }
-        if (!is_object($pt)) {
-            $e->add(t('You must choose a page template.'));
-        } else {
-            if (!in_array($pt->getPageTemplateID(), $availablePageTemplateIDs)) {
-                $e->add(t('This page template is not a valid template for this page type.'));
-            }
-        }
-        return $e;
     }
 
     public function createDraft(PageTemplate $pt, $u = false)
     {
-
         if (!is_object($u)) {
             $u = new User();
         }
@@ -898,9 +1133,8 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         return $p;
     }
 
-    public function renderComposerOutputForm($page = null)
+    public function renderComposerOutputForm($page = null, $targetPage = null)
     {
-
         $env = \Environment::get();
         $rec = $env->getRecord(
             DIRNAME_ELEMENTS . '/' . DIRNAME_PAGE_TYPES . '/composer/form/output/form/' . $this->getPageTypeHandle() . '.php',
@@ -908,11 +1142,12 @@ class Type extends Object implements \Concrete\Core\Permission\ObjectInterface
         );
         if ($rec->exists()) {
             $pagetype = $this;
-            include($rec->file);
+            include $rec->file;
         } else {
             Loader::element('page_types/composer/form/output/form', array(
                 'pagetype' => $this,
-                'page' => $page
+                'page' => $page,
+                'targetPage' => $targetPage,
             ));
         }
     }

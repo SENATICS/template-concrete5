@@ -39,6 +39,21 @@ echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Conv
             <?php echo Loader::helper('form')->select('activeEditor', $editors, $active);?>
         </div>
     </fieldset>
+	<fieldset>
+		<legend><?php echo t('Notification')?></legend>
+		<div class="form-group">
+			<label class="control-label"><?php echo t('Users To Receive Conversation Notifications')?></label>
+			<?php echo Core::make("helper/form/user_selector")->selectMultipleUsers('defaultUsers', $notificationUsers)?>
+		</div>
+		<div class="form-group">
+			<label class="control-label"><?php echo t('Subscribe Option')?></label>
+			<div class="checkbox">
+				<label><?php echo $form->checkbox('subscriptionEnabled', 1, $subscriptionEnabled)?>
+					<?php echo t('Yes, allow registered users to choose to subscribe to conversations.')?>
+				</label>
+			</div>
+		</div>
+	</fieldset>
     <div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
 		    <button class='btn btn-primary pull-right'><?php echo t('Save'); ?></button>

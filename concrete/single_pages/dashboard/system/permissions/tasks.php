@@ -16,10 +16,11 @@
 	<?php } else { ?>
 		<p><?php echo t('You cannot access task permissions.')?></p>
 	<?php } ?>
-	
+
 	<div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
-            <button class="pull-right btn btn-success" type="submit" ><?php echo t('Save')?> <i class="icon-ok-sign icon-white"></i></button>
+            <a href="<?php echo $view->url('/dashboard/system/permissions/tasks')?>" class="btn btn-default pull-left"><?php echo t('Cancel')?></a>
+            <button class="pull-right btn btn-primary" type="submit" ><?php echo t('Save')?></button>
         </div>
     </div>
 	</form>

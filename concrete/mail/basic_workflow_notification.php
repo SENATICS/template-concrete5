@@ -2,7 +2,7 @@
 
 defined('C5_EXECUTE') or die("Access Denied.");
 
-$subject = SITE . " " . t("Workflow Notification");
+$subject = $siteName . " " . t("Workflow Notification");
 $body = t("Dear %s,
 
 %s
@@ -10,4 +10,4 @@ $body = t("Dear %s,
 You can review, approve or deny all pending actions from here:
 
 %s
-", $uName, $message, BASE_URL . View::url('/dashboard/workflow/me'));
+", $uName, $message, View::url('/dashboard/workflow/me'));

@@ -1,6 +1,6 @@
-<?php defined('C5_EXECUTE') or die("Access Denied."); ?> 
+<?php defined('C5_EXECUTE') or die("Access Denied."); ?>
 
-<div class="ccm-google-map-block-container">
+<div class="ccm-google-map-block-container row">
     <div class="col-xs-12">
         <div class="form-group">
             <?php echo $form->label('title', t('Map Title (optional)'));?>
@@ -20,16 +20,13 @@
     <div class="col-xs-4">
         <div class="form-group">
             <?php echo $form->label('zoom', t('Zoom'));?>
-            <?php 
+            <?php
                 $zoomArray = array();
                 for($i=0;$i<=21;$i++) {
                     $zoomArray[$i] = $i;
                 }
             ?>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search-plus"></i></span>
-                <?php echo $form->select('zoom', $zoomArray, $mapObj->zoom);?>
-            </div>
+            <?php echo $form->select('zoom', $zoomArray, $mapObj->zoom);?>
         </div>
     </div>
 
@@ -38,14 +35,14 @@
             <?php echo $form->label('width', t('Map Width'));?>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
-                <?php if(is_null($width) || $width == 0) {$width = '100%';};?> 
-                <?php echo $form->text('width', $width);?> 
+                <?php if(is_null($width) || $width == 0) {$width = '100%';};?>
+                <?php echo $form->text('width', $width);?>
             </div>
         </div>
     </div>
 
     <div class="col-xs-4">
-        <div class="form-group"> 
+        <div class="form-group">
             <?php echo $form->label('height', t('Map Height'));?>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-arrows-v"></i></span>
@@ -55,6 +52,14 @@
         </div>
     </div>
 
+    <div class="col-xs-12">
+        <div class="form-group">
+          <label>
+            <?php echo $form->checkbox('scrollwheel', 1, (is_null($scrollwheel) || $scrollwheel)); ?>
+            <?php echo t("Enable Scroll Wheel")?>
+          </label>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">

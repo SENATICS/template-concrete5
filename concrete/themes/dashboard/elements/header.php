@@ -1,5 +1,5 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
-if ($_GET['_ccm_dashboard_external']) {
+if (\Request::getInstance()->get('_ccm_dashboard_external')) {
         return;
 }
 $html = Loader::helper('html');
@@ -10,7 +10,7 @@ $html = Loader::helper('html');
 <?php
 $v = View::getInstance();
 $v->requireAsset('dashboard');
-$v->addFooterItem('<script type="text/javascript" src="' . REL_DIR_FILES_TOOLS_REQUIRED . '/i18n_js"></script>');
+$v->requireAsset('javascript-localized', 'core/localization');
 $v->addFooterItem('<script type="text/javascript">$(function() { ConcreteToolbar.start(); });</script>');
 if (Config::get('concrete.misc.enable_progressive_page_reindex') && Config::get('concrete.misc.do_page_reindex_check')) {
     $v->addFooterItem('<script type="text/javascript">$(function() { ccm_doPageReindexing(); });</script>');
@@ -20,9 +20,7 @@ if (Localization::activeLanguage() != 'en') {
 }
 
 $valt = Loader::helper('validation/token');
-//require(DIR_FILES_ELEMENTS_CORE . '/header_required.php');
 $v->addHeaderItem('<meta name="viewport" content="width=device-width, initial-scale=1">');
-$v->addHeaderItem($disp);
 Loader::element('header_required', array('disableTrackingCode' => true));
 $v->addFooterItem('<script type="text/javascript">$(function() { ConcreteDashboard.start(); });</script>');
 
@@ -87,7 +85,7 @@ $large_font = !!Config::get('concrete.accessibility.toolbar_large_font');
             <a href="#" data-panel-url="<?php echo URL::to('/system/panels/sitemap')?>" data-launch-panel="sitemap">
                 <i class="fa fa-files-o"></i>
                 <span class="ccm-toolbar-accessibility-title ccm-toolbar-accessibility-title-add-page">
-                    <?php echo tc('toolbar', 'Add Page') ?>
+                    <?php echo tc('toolbar', 'Pages') ?>
                 </span>
             </a>
         </li>

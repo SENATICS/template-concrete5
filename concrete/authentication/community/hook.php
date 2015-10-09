@@ -6,8 +6,8 @@
     <hr>
 </div>
 <div class="form-group">
-    <a href="<?php echo \URL::to('/system/authentication/community/attempt_attach'); ?>" class="btn btn-primary btn-community">
-        <img src="<?php echo BASE_URL . DIR_REL ?>/concrete/images/logo.png" class="concrete5-icon"></i>
+    <a href="<?php echo \URL::to('/ccm/system/authentication/oauth2/community/attempt_attach'); ?>" class="btn btn-primary btn-community">
+        <img src="<?php echo \Core::getApplicationURL() ?>/concrete/images/logo.png" class="concrete5-icon"></i>
         <?php echo t('Attach a concrete5.org account') ?>
     </a>
 </div>

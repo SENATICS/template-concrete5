@@ -15,6 +15,10 @@ $error = Loader::helper('validation/error');
 if (isset($_POST['fID'])) {
 	// we are replacing a file
 	$fr = File::getByID($_REQUEST['fID']);
+	$frp = new Permissions($fr);
+	if (!$frp->canEditFileContents()) {
+		$error->add(t('You do not have permission to modify this file.'));
+	}
 } else {
 	$fr = false;
 }
@@ -23,7 +27,7 @@ $searchInstance = $_POST['searchInstance'];
 $r = new FileEditResponse();
 
 $files = array();
-if ($valt->validate('import_incoming')) {
+if ($valt->validate('import_incoming') && !$error->has()) {
 	if( !empty($_POST) ) {
 		$fi = new FileImporter();
 		foreach($_POST as $k=>$name) {
@@ -31,7 +35,7 @@ if ($valt->validate('import_incoming')) {
 				if (!$fp->canAddFileType($cf->getExtension($name))) {
 					$resp = FileImporter::E_FILE_INVALID_EXTENSION;
 				} else {
-                    $resp = $fi->importIncomingFile($name);
+                    $resp = $fi->importIncomingFile($name, $fr);
 				}
 				if (!($resp instanceof \Concrete\Core\File\Version)) {
 					$error->add($name . ': ' . FileImporter::getErrorMessage($resp));
@@ -64,8 +68,6 @@ if ($valt->validate('import_incoming')) {
 }
 
 $r->setError($error);
-if (is_object($respf)) {
-	$r->setFile($respf);
-}
+$r->setFiles($files);
 $r->setMessage(t2('%s file imported successfully.', '%s files imported successfully', count($files)));
 $r->outputJSON();

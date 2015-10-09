@@ -60,7 +60,9 @@ foreach($originalPages as $oc) {
 	}
 }
 
-
+if (is_object($dc) && !$dc->isError() && $dc->isAlias()) {
+	$canMoveCopyTo = false;
+}
 
 $valt = Loader::helper('validation/token');
 
@@ -154,7 +156,6 @@ if ($successMessage) {
 	$json['error'] = false;
 	$json['message'] = $successMessage;
 	$json['cID'] = $newCID;
-	$json['instance_id'] = $_REQUEST['instance_id'];
 	$js = Loader::helper('json');
 	print $js->encode($json);
 	exit;
@@ -187,13 +188,12 @@ if ($successMessage) {
 		<input type="hidden" name="origCID" id="origCID" value="<?php echo h($_REQUEST['origCID'])?>" />
 		<input type="hidden" name="destParentID" id="destParentID" value="<?php echo $dc->getCollectionParentID()?>" />
 		<input type="hidden" name="destCID" id="destCID" value="<?php echo $dc->getCollectionID()?>" />
-		<input type="hidden" name="instance_id" id="instance_id" value="<?php echo $_REQUEST['instance_id']?>" />
-		<input type="hidden" name="dragMode" id="dragMode" value="<?php echo $_REQUEST['dragMode']?>" />
+		<input type="hidden" name="dragMode" id="dragMode" value="<?php echo h($_REQUEST['dragMode'])?>" />
 		<?php if (isset($destSibling)) { ?>
 			<input type="hidden" name="destSibling" id="destSibling" value="<?php echo $destSibling->getCollectionID()?>" />
 		<?php } ?>
-		<input type="hidden" name="select_mode" id="select_mode" value="<?php echo $_REQUEST['select_mode']?>" />
-		<input type="hidden" name="display_mode" id="display_mode" value="<?php echo $_REQUEST['display_mode']?>" />
+		<input type="hidden" name="select_mode" id="select_mode" value="<?php echo h($_REQUEST['select_mode'])?>" />
+		<input type="hidden" name="display_mode" id="display_mode" value="<?php echo h($_REQUEST['display_mode'])?>" />
 
 		<input type="radio" checked style="vertical-align: middle" id="ctaskMove" name="ctask" value="MOVE" />
 		<strong><?php echo t('Move')?></strong> <?php if (count($originalPages) == 1) { ?>"<?php echo $oc->getCollectionName()?>"<?php } ?> <?php echo t('beneath')?> "<?php echo $dc->getCollectionName()?>"

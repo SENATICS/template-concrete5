@@ -63,8 +63,9 @@ switch ($tab) {
                 ?>
                 <div class="ccm-panel-add-block-stack-item"
                      data-panel-add-block-drag-item="stack-item"
-                     data-cID="<?php echo intval($stack->getCollectionID()) ?>"
-                     data-block-type-handle="<?php echo t('stack') ?>"
+                     data-cID="<?php echo intval($c->getCollectionID()) ?>"
+                     data-sID="<?php echo intval($stack->getCollectionID()) ?>"
+                     data-block-type-handle="stack"
                      data-has-add-template="no"
                      data-supports-inline-add="no"
                      data-btID="0"
@@ -203,7 +204,7 @@ switch ($tab) {
                      data-block-id="<?php echo intval($block->getBlockID()) ?>">
                     <div class="block-content">
                         <div class="block-name">
-                            <span class="handle"><?php echo h($type->getBlockTypeName()) ?></span>
+                            <span class="handle"><?php echo h(t($type->getBlockTypeName())) ?></span>
                         </div>
                         <div class="blocks">
                             <div class="block"
@@ -291,6 +292,9 @@ switch ($tab) {
                                 $blocktypes = array();
                             }
                             if (count($blocktypes)) {
+
+                                usort ( $blocktypes, function($bt_a, $bt_b) use($set){return ($set->displayOrder($bt_a) > $set->displayOrder($bt_b))?1:-1;});
+
                                 foreach ($blocktypes as $bt) {
 
                                     $btIcon = $ci->getBlockTypeIconURL($bt);

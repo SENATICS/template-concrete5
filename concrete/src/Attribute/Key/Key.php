@@ -5,6 +5,7 @@ use \Concrete\Core\Foundation\Object;
 use \Concrete\Core\Attribute\Type as AttributeType;
 use \Concrete\Core\Attribute\Key\Category as AttributeKeyCategory;
 use \Concrete\Core\Database\Schema\Schema;
+use Gettext\Translations;
 use Loader;
 use Package;
 use CacheLocal;
@@ -19,6 +20,8 @@ use Whoops\Exception\ErrorException;
 
 class Key extends Object
 {
+
+    protected $akID;
 
     public function getIndexedSearchTable()
     {
@@ -134,6 +137,13 @@ class Key extends Object
         return $this->akIsEditable;
     }
 
+    public function getComputedAttributeKeyCategoryHandle()
+    {
+        $class = explode('\\', get_class($this));
+        $start = Loader::helper('text')->uncamelcase($class[count($class) - 1]);
+        return substr($start, 0, strpos($start, '_key'));
+    }
+
     /**
      * Loads the required attribute fields for this instantiated attribute
      */
@@ -143,8 +153,7 @@ class Key extends Object
             $row = array();
         } else {
             $db = Loader::db();
-            $akunhandle = Loader::helper('text')->uncamelcase(get_class($this));
-            $akCategoryHandle = substr($akunhandle, 0, strpos($akunhandle, '_attribute_key'));
+            $akCategoryHandle = $this->getComputedAttributeKeyCategoryHandle();
             if ($akCategoryHandle != '') {
                 $row = $db->GetRow(
                     'select akID, akHandle, akName, AttributeKeys.akCategoryID, akIsInternal, akIsEditable, akIsSearchable, akIsSearchableIndexed, akIsAutoCreated, akIsColumnHeader, AttributeKeys.atID, atHandle, AttributeKeys.pkgID from AttributeKeys inner join AttributeKeyCategories on AttributeKeys.akCategoryID = AttributeKeyCategories.akCategoryID inner join AttributeTypes on AttributeKeys.atID = AttributeTypes.atID where ' . $loadBy . ' = ? and akCategoryHandle = ?',
@@ -324,7 +333,11 @@ class Key extends Object
             $akIsInternal = 1;
         }
         $db = Loader::db();
-        $akID = $db->GetOne('select akID from AttributeKeys where akHandle = ?', array($ak['handle']));
+
+        $akc = AttributeKeyCategory::getByHandle($akCategoryHandle);
+        $akID = $db->GetOne('select akID from AttributeKeys where akHandle = ? and akCategoryID = ?',
+            array($ak['handle'], $akc->getAttributeKeyCategoryID()));
+
         if (!$akID) {
             $akn = self::add(
                 $akCategoryHandle,
@@ -501,8 +514,10 @@ class Key extends Object
 
         if ($r) {
             $txt = Loader::helper('text');
-            $className = $txt->camelcase($akCategoryHandle) . 'AttributeKey';
-            $ak = new $className();
+            $pkgID = $category->getPackageID();
+            $prefix = ($pkgID > 0) ? $category->getPackageHandle() : false;
+            $className = core_class('Core\\Attribute\\Key\\' . $txt->camelcase($akCategoryHandle) . 'Key', $prefix);
+            $ak = Core::make($className);
             $ak->load($this->getAttributeKeyID());
             $at = $ak->getAttributeType();
             $cnt = $at->getController();
@@ -814,7 +829,11 @@ class Key extends Object
 
     }
 
-    public function validateAttributeForm($h = false)
+    /**
+     * Validates the request object to see if the current request fulfills the "requirement" portion of an attribute.
+     * @return bool|\Concrete\Core\Error\Error
+     */
+    public function validateAttributeForm()
     {
         $at = $this->getAttributeType();
         $at->controller->setAttributeKey($this);
@@ -912,6 +931,18 @@ class Key extends Object
     public function getKeyID()
     {
         return $this->getAttributeKeyID();
+    }
+
+    public static function exportTranslations()
+    {
+        $translations = new Translations();
+        $db = \Database::get();
+        $r = $db->Execute('select akID from AttributeKeys order by akID asc');
+        while ($row = $r->FetchRow()) {
+            $key = static::getInstanceByID($row['akID']);
+            $translations->insert('AttributeKeyName', $key->getAttributeKeyName());
+        }
+        return $translations;
     }
 
 }

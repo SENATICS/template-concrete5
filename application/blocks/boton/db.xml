@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btBoton">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+		<field name="texto" type="C" size="255"></field>
+        <field name="icon" type="C" size="255">
+		</field>
+        <field name="alineacion_icono" type="I" size="1">
+			<default value="1" />
+		</field>
+		<field name="externalLink"  type="C" size="255"/>
+		<field name="internalLinkCID"  type="I">
+			<unsigned />
+			<default value="0" />
+		</field>
+		<field name="target" type="I" size="2">
+			<default value="0" />
+			<unsigned />
+		</field>
+		<field name="tamanho_fuente" type="I" size="2">
+			<default value="12" />
+			<unsigned />
+		</field>
+		<field name="color_fuente" type="C" size="12">
+			<default value="#FFF" />
+		</field>
+		<field name="alineacion_fuente" type="I" size="1">
+			<default value="1" />
+			<unsigned />
+		</field>
+		<field name="color_fondo" type="C" size="12">
+			<default value="#428bca" />
+		</field>
+		<field name="padding" type="I" size="2">
+			<default value="10" />
+			<unsigned />
+		</field>
+		<field name="ancho" type="C" size="5">
+			<default value="auto" />
+		</field>
+		<field name="ancho_formato" type="C" size="2">
+			<default value="px" />
+		</field>
+		<field name="alineacion_boton" type="I" size="1">
+			<default value="1" />
+		</field>
+		<field name="fID" type="I">
+			<unsigned />
+		</field>
+		<index name="fID">
+            <col>fID</col>
+        </index>
+        <field name="color_fuente_hover" type="C" size="12">
+			<default value="#FFF" />
+		</field>
+        <field name="color_fondo_hover" type="C" size="12">
+			<default value="#5A9FdF" />
+		</field>
+	</table>
+</schema>

@@ -1,6 +1,6 @@
 <?php
 namespace Concrete\Controller\SinglePage;
-use \Concrete\Core\Page\Controller\PageController;
+use \PageController;
 use Config;
 use Loader;
 use User;
@@ -15,7 +15,7 @@ class Register extends PageController {
 
 	public function on_start() {
 		if(!in_array(Config::get('concrete.user.registration.type'), array('validate_email', 'enabled', 'manual_approve'))) {
-            $this->render('/page_not_found');
+            $this->replace('/page_not_found');
  		}
 		$u = new User();
 		$this->set('u', $u);
@@ -28,8 +28,6 @@ class Register extends PageController {
 	}
 
 	public function do_register() {
-		$registerData['success']=0;
-
 		$userHelper = Loader::helper('concrete/user');
 		$e = Loader::helper('validation/error');
 		$ip = Loader::helper('validation/ip');
@@ -44,7 +42,6 @@ class Register extends PageController {
 		// clean the username
 		$username = trim($username);
 		$username = preg_replace("/ +/", " ", $username);
-		
 		
 		if ($ip->isBanned()) {
 			$e->add($ip->getErrorMessage());
@@ -74,11 +71,11 @@ class Register extends PageController {
 			}
 
 
-			if (strlen($username) >= Config::get('concrete.user.username.minimum') && !$valc->username($username)) {
+			if (strlen($username) >= Config::get('concrete.user.username.minimum') && strlen($username) <= Config::get('concrete.user.username.maximum') && !$valc->username($username)) {
 				if(Config::get('concrete.user.username.allow_spaces')) {
-					$e->add(t('A username may only contain letters, numbers and spaces.'));
+					$e->add(t('A username may only contain letters, numbers, spaces (not at the beginning/end), dots (not at the beginning/end), underscores (not at the beginning/end).'));
 				} else {
-					$e->add(t('A username may only contain letters or numbers.'));
+					$e->add(t('A username may only contain letters, numbers, dots (not at the beginning/end), underscores (not at the beginning/end).'));
 				}
 
 			}
@@ -134,9 +131,7 @@ class Register extends PageController {
 			$process = UserInfo::register($data);
 			if (is_object($process)) {
 
-				foreach($aks as $uak) {
-					$uak->saveAttributeForm($process);
-				}
+                $process->saveUserAttributesForm($aks);
 
 				if (Config::get('concrete.user.registration.notification')) { //do we notify someone if a new user is added?
 					$mh = Loader::helper('mail');
@@ -159,6 +154,7 @@ class Register extends PageController {
 						$attribValues[] = $ak->getAttributeKeyDisplayName('text') . ': ' . $process->getAttribute($ak->getAttributeKeyHandle(), 'display');
 					}
 					$mh->addParameter('attribs', $attribValues);
+					$mh->addParameter('siteName', Config::get('concrete.site'));
 
 					if (Config::get('concrete.user.registration.notification_email')) {
 						$mh->from(Config::get('concrete.user.registration.notification_email'),  t('Website Registration Notification'));
@@ -191,31 +187,44 @@ class Register extends PageController {
 				}
 
 				// now we check whether we need to validate this user's email address
-				if (Config::get('concrete.user.registration.email_registration')) {
+				if (Config::get('concrete.user.registration.validate_email')) {
                     $uHash = $process->setupValidation();
 
                     $mh = Loader::helper('mail');
-                    if (defined('EMAIL_ADDRESS_VALIDATE')) {
-                        $mh->from(EMAIL_ADDRESS_VALIDATE,  t('Validate Email Address'));
+                    $fromEmail = (string) Config::get('concrete.email.validate_registration.address');
+                    if (strpos($fromEmail, '@')) {
+                        $fromName = (string) Config::get('concrete.email.validate_registration.name');
+                        if ($fromName === '') {
+                            $fromName = t('Validate Email Address');
+                        }
+                        $mh->from($fromEmail,  $fromName);
                     }
                     $mh->addParameter('uEmail', $_POST['uEmail']);
                     $mh->addParameter('uHash', $uHash);
+                    $mh->addParameter('site', Config::get('concrete.site'));
                     $mh->to($_POST['uEmail']);
                     $mh->load('validate_user_email');
                     $mh->sendMail();
 
                     //$this->redirect('/register', 'register_success_validate', $rcID);
                     $redirectMethod='register_success_validate';
-                    $registerData['msg']= join('<br><br>',$this->getRegisterSuccessValidateMsgs());
-
                     $u->logout();
 
 				} else if(Config::get('concrete.user.registration.approval')) {
 					$ui = UserInfo::getByID($u->getUserID());
 					$ui->deactivate();
+					// Email to the user when he/she registered but needs approval
+					$mh = Loader::helper('mail');
+					$mh->addParameter('uEmail', $_POST['uEmail']);
+					$mh->addParameter('uHash', $uHash);
+					$mh->addParameter('site', Config::get('concrete.site'));
+					$mh->to($_POST['uEmail']);
+					$mh->load('user_register_approval_required_to_user');
+					$mh->sendMail();
+					
 					//$this->redirect('/register', 'register_pending', $rcID);
 					$redirectMethod='register_pending';
-					$registerData['msg']=$this->getRegisterPendingMsg();
+					$this->set('message', $this->getRegisterPendingMsg());
 					$u->logout();
 				}
 
@@ -223,12 +232,9 @@ class Register extends PageController {
 					//$this->redirect('/register', 'register_success', $rcID);
 					if(!$redirectMethod){
 						$redirectMethod='register_success';
-						$registerData['msg']=$this->getRegisterSuccessMsg();
 					}
-					$registerData['uID']=intval($u->uID);
 				}
 
-				$registerData['success']=1;
 
 				if($_REQUEST['format']!='JSON')
 					$this->redirect('/register', $redirectMethod, $rcID);
@@ -239,31 +245,24 @@ class Register extends PageController {
 				$ip->createIPBan();
 			}		
 			$this->set('error', $e);
-			$registerData['errors'] = $e->getList();
-		}
-
-		if( $_REQUEST['format']=='JSON' ){
-			$jsonHelper=Loader::helper('json');
-			echo $jsonHelper->encode($registerData);
-			die;
 		}
 	}
 
 	public function register_success_validate($rcID = 0) {
 		$this->set('rcID', $rcID);
-		$this->set('success', 'validate');
+		$this->set('registerSuccess', 'validate');
 		$this->set('successMsg', $this->getRegisterSuccessValidateMsgs() );
 	}
 
 	public function register_success($rcID = 0) {
 		$this->set('rcID', $rcID);
-		$this->set('success', 'registered');
+		$this->set('registerSuccess', 'registered');
 		$this->set('successMsg', $this->getRegisterSuccessMsg() );
 	}
 
-	public function register_pending() {
+	public function register_pending($rcID = 0) {
 		$this->set('rcID', $rcID);
-		$this->set('success', 'pending');
+		$this->set('registerSuccess', 'pending');
 		$this->set('successMsg', $this->getRegisterPendingMsg() );
 	}
 

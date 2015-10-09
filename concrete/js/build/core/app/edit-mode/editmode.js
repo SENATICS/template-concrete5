@@ -20,6 +20,7 @@
             Concrete.createGetterSetters.call(my, {
                 dragging: false,
                 active: true,
+                nextBlockArea: null,
                 areas: [],
                 selectedCache: [],
                 selectedThreshold: 5,
@@ -30,6 +31,9 @@
                 my.panelOpened(data.panel, data.element);
             });
             my.bindEvent('PanelClose', function editModePanelCloseEventHandler(event, data) {
+                if (data.panel.getIdentifier() == 'add-block') {
+                    my.setNextBlockArea(null);
+                }
                 html.removeClass('ccm-panel-add-block');
             });
 
@@ -39,12 +43,21 @@
                 });
             });
 
+            my.bindEvent('EditModeBlockSaveInline', function(event, data) {
+                $('#ccm-block-form').submit();
+                ConcreteEvent.fire('EditModeExitInlineSaved');
+                ConcreteEvent.fire('EditModeExitInline', {
+                    action: 'save_inline'
+                });
+            });
+
             my.bindEvent('EditModeBlockEditInline', function (event, data) {
                 var block = data.block,
                     area = block.getArea(),
                     action = (data.action) ? data.action : CCM_DISPATCHER_FILENAME + '/ccm/system/dialogs/block/edit',
                     arEnableGridContainer = area.getEnableGridContainer() ? 1 : 0,
-                    postData = [
+                    templates = area.getCustomTemplates();
+                    var postData = [
                         {name: 'cID', value: block.getCID()},
                         {name: 'arHandle', value: area.getHandle()},
                         {name: 'arGridMaximumColumns', value: data.arGridMaximumColumns},
@@ -55,6 +68,15 @@
                     bID = block.getId(),
                     $container = block.getElem(),
                     prop;
+
+                if (templates) {
+                    for (var k in templates) {
+                        postData[postData.length] = {
+                            name: 'arCustomTemplates[' + k + ']',
+                            value: templates[k]
+                        };
+                    }
+                }
 
                 if (block.getAttr('menu')) {
                     block.getAttr('menu').destroy();
@@ -84,7 +106,12 @@
                     if (!event_data || !event_data.action || event_data.action !== 'save_inline') {
                         $.get(action, data,
                             function (r) {
-                                var newBlock = block.replace(r);
+                                var realBlock = my.getBlockByID(block.getId());
+                                if (!realBlock) {
+                                    return;
+                                }
+
+                                var newBlock = realBlock.replace(r);
                                 _.defer(function () {
                                     ConcreteEvent.fire('EditModeExitInlineComplete', {
                                         block: newBlock
@@ -99,7 +126,10 @@
                     }
                 });
 
-//            ConcreteMenuManager.disable();
+                // We can't just wholesale disable the menu manager even though that makes
+                // it so that you can't click on blocks while they're disabled, because we
+                // need the file manager menu when editing block design.
+//              ConcreteMenuManager.disable();
                 ConcreteToolbar.disable();
                 $('div.ccm-area').addClass('ccm-area-inline-edit-disabled');
                 block.getElem().addClass('ccm-block-edit-inline-active');
@@ -147,6 +177,16 @@
                     dragAreaBlock = data.dragAreaBlock;
                 }
 
+                var templates = area.getCustomTemplates();
+                if (templates) {
+                    for (var k in templates) {
+                        postData[postData.length] = {
+                            name: 'arCustomTemplate[' + k + ']',
+                            value: templates[k]
+                        };
+                    }
+                }
+
                 if (dragAreaBlock) {
                     dragAreaBlockID = dragAreaBlock.getId();
                 }
@@ -167,6 +207,9 @@
                 my.bindEvent('EditModeExitInlineSaved', function (e) {
                     Concrete.event.unbind(e);
                     saved = true;
+
+                    var panel = ConcretePanelManager.getByIdentifier('add-block');
+                    if ( panel && panel.pinned() ) panel.show();
                 });
                 my.bindEvent('EditModeExitInline', function (e) {
                     Concrete.event.unsubscribe(e);
@@ -176,6 +219,9 @@
                     $('#a' + area.getId() + '-bt' + btID).remove();
                     my.destroyInlineEditModeToolbars();
                     ConcreteEvent.fire('EditModeExitInlineComplete');
+
+                    var panel = ConcretePanelManager.getByIdentifier('add-block');
+                    if ( panel && panel.pinned() ) panel.show();
                 });
                 $.ajax({
                     type: 'GET',
@@ -401,33 +447,35 @@
         },
 
         panelOpened: function editModePanelOpened(panel, element) {
-            var my = this;
+            var my = this, next_area = my.getNextBlockArea();
 
             if (panel.getIdentifier() !== 'add-block') {
                 return null;
             }
-
             html.addClass('ccm-panel-add-block');
 
             $(element).find('input[data-input=search-blocks]').liveUpdate('ccm-panel-add-blocktypes-list', 'blocktypes');
             $(element).find('input[data-input=search-blocks]').focus();
 
+
+
             $(element).find('a.ccm-panel-add-block-draggable-block-type').each(function () {
                 var block, me = $(this), dragger = $('<a/>').addClass('ccm-panel-add-block-draggable-block-type-dragger').appendTo(me);
-                block = new Concrete.BlockType($(this), my, dragger);
+                block = new Concrete.BlockType($(this), my, dragger, next_area);
 
                 block.setPeper(dragger);
             });
 
+
             $(element).find('div.ccm-panel-add-block-stack-item').each(function () {
                 var stack, block, me = $(this), dragger = me.find('div.stack-name');
-                stack = new Concrete.Stack($(this), my, dragger);
+                stack = new Concrete.Stack($(this), my, dragger, next_area);
 
                 stack.setPeper(dragger);
 
                 $(this).find('div.block').each(function () {
                     var block, me = $(this), dragger = me.find('div.block-name');
-                    block = new Concrete.StackBlock($(this), stack, my, dragger);
+                    block = new Concrete.StackBlock($(this), stack, my, dragger, next_area);
 
                     block.setPeper(dragger);
                 });
@@ -435,19 +483,19 @@
 
             $(element).find('div.ccm-panel-add-clipboard-block-item').each(function () {
                 var block, me = $(this);
-                new Concrete.DuplicateBlock(me, my);
+                new Concrete.DuplicateBlock(me, my, next_area);
             });
 
             $(element).find('.ccm-panel-content').mousewheel(function (e) {
 
-                if (!e.deltaY) {
+                if (!e.deltaY || !e.deltaFactor) {
                     return;
                 }
 
-                var change = -1 * e.deltaY;
+                var change = -1 * e.deltaY * e.deltaFactor;
 
                 var me = $(this),
-                    deltaY = e.originalEvent.deltaY || 0,
+                    deltaY = change || 0,
                     distance_from_top = me.scrollTop(),
                     distance_from_bottom = (me.get(0).scrollHeight - (me.scrollTop() + me.height()) - me.css('paddingTop').replace('px', ''));
 
@@ -469,9 +517,31 @@
             return panel;
         },
 
-        getAreaByID: function areaGetByID(arID) {
+        getAreaByID: function editModeGetAreaByID(arID) {
             var areas = this.getAreas();
             return _.findWhere(areas, {id: parseInt(arID)});
+        },
+
+        getBlockByID: function editModeGetBockByID(blockID) {
+            var areas = this.getAreas(), match = null;
+
+            _(areas).every(function(area) {
+                if (match) {
+                    return false;
+                }
+                _(area.getBlocks()).every(function(block) {
+                    if (block.getId() == blockID) {
+                        match = block;
+                        return false;
+                    }
+
+                    return true;
+                });
+
+                return true;
+            });
+
+            return match;
         },
 
         /**
@@ -553,6 +623,7 @@
         },
 
         loadInlineEditModeToolbars: function ($container, toolbarHTML) {
+
             $('#ccm-inline-toolbar-container').remove();
             var $holder = $('<div />', {id: 'ccm-inline-toolbar-container'}).appendTo(document.body);
 
@@ -569,11 +640,13 @@
                 l = pos.left;
 
             var tw = l + parseInt($toolbar.width());
-            if (tw > $window.width()) {
-                var overage = tw - (l + $container.width());
-                $toolbar.css('left', l - overage);
-            } else {
-                $toolbar.css('left', l);
+            if ($window.width() > $toolbar.width()) {
+                if (tw > $window.width()) {
+                    var overage = tw - (l + $container.width());
+                    $toolbar.css('left', l - overage);
+                } else {
+                    $toolbar.css('left', l);
+                }
             }
             $toolbar.css('opacity', 1);
             $toolbar.find('.dialog-launch').dialog();
@@ -593,6 +666,7 @@
                     $('#ccm-toolbar-disabled,#ccm-toolbar').css('opacity', 1);
                 }
             });
+
         }
     };
 

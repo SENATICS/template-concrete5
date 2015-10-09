@@ -39,9 +39,29 @@ use Symfony\Component\Console\Input\InputOption;
 abstract class AbstractCommand extends Command
 {
     /**
+     * The configuration property only contains the configuration injected by the setter.
+     *
      * @var Configuration
      */
     private $configuration;
+
+    /**
+     * The migrationConfiguration property contains the configuration
+     * created taking into account the command line options.
+     *
+     * @var Configuration
+     */
+    private $migrationConfiguration;
+
+    /**
+     * @var OutputWriter
+     */
+    private $outputWriter;
+
+    /**
+     * @var \Doctrine\DBAL\Connection
+     */
+    private $connection;
 
     protected function configure()
     {
@@ -66,6 +86,12 @@ abstract class AbstractCommand extends Command
     }
 
     /**
+     * When any (config) command line option is passed to the migration the migrationConfiguration
+     * property is set with the new generated configuration.
+     * If no (config) option is passed the migrationConfiguration property is set to the value
+     * of the configuration one (if any).
+     * Else a new configuration is created and assigned to the migrationConfiguration property.
+     *
      * @param InputInterface  $input
      * @param OutputInterface $output
      *
@@ -73,53 +99,80 @@ abstract class AbstractCommand extends Command
      */
     protected function getMigrationConfiguration(InputInterface $input, OutputInterface $output)
     {
-        if ( ! $this->configuration) {
-            $outputWriter = new OutputWriter(function($message) use ($output) {
-                return $output->writeln($message);
-            });
-
-            if ($this->getApplication()->getHelperSet()->has('connection')) {
-                $conn = $this->getHelper('connection')->getConnection();
-            } elseif ($input->getOption('db-configuration')) {
-                if ( ! file_exists($input->getOption('db-configuration'))) {
-                    throw new \InvalidArgumentException("The specified connection file is not a valid file.");
-                }
-
-                $params = include($input->getOption('db-configuration'));
-                if ( ! is_array($params)) {
-                    throw new \InvalidArgumentException('The connection file has to return an array with database configuration parameters.');
-                }
-                $conn = \Doctrine\DBAL\DriverManager::getConnection($params);
-            } elseif (file_exists('migrations-db.php')) {
-                $params = include 'migrations-db.php';
-                if ( ! is_array($params)) {
-                    throw new \InvalidArgumentException('The connection file has to return an array with database configuration parameters.');
-                }
-                $conn = \Doctrine\DBAL\DriverManager::getConnection($params);
-            } else {
-                throw new \InvalidArgumentException('You have to specify a --db-configuration file or pass a Database Connection as a dependency to the Migrations.');
-            }
-
+        if (!$this->migrationConfiguration) {
             if ($input->getOption('configuration')) {
                 $info = pathinfo($input->getOption('configuration'));
                 $class = $info['extension'] === 'xml' ? 'Doctrine\DBAL\Migrations\Configuration\XmlConfiguration' : 'Doctrine\DBAL\Migrations\Configuration\YamlConfiguration';
-                $configuration = new $class($conn, $outputWriter);
+                $configuration = new $class($this->getConnection($input), $this->getOutputWriter($output));
                 $configuration->load($input->getOption('configuration'));
             } elseif (file_exists('migrations.xml')) {
-                $configuration = new XmlConfiguration($conn, $outputWriter);
+                $configuration = new XmlConfiguration($this->getConnection($input), $this->getOutputWriter($output));
                 $configuration->load('migrations.xml');
             } elseif (file_exists('migrations.yml')) {
-                $configuration = new YamlConfiguration($conn, $outputWriter);
+                $configuration = new YamlConfiguration($this->getConnection($input), $this->getOutputWriter($output));
                 $configuration->load('migrations.yml');
             } elseif (file_exists('migrations.yaml')) {
-                $configuration = new YamlConfiguration($conn, $outputWriter);
+                $configuration = new YamlConfiguration($this->getConnection($input), $this->getOutputWriter($output));
                 $configuration->load('migrations.yaml');
+            } elseif ($this->configuration) {
+                $configuration = $this->configuration;
             } else {
-                $configuration = new Configuration($conn, $outputWriter);
+                $configuration = new Configuration($this->getConnection($input), $this->getOutputWriter($output));
             }
-            $this->configuration = $configuration;
+            $this->migrationConfiguration = $configuration;
         }
 
-        return $this->configuration;
+        return $this->migrationConfiguration;
+    }
+
+    /**
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     *
+     * @return \Doctrine\DBAL\Migrations\OutputWriter
+     */
+    private function getOutputWriter(OutputInterface $output)
+    {
+        if (!$this->outputWriter) {
+            $this->outputWriter = new OutputWriter(function ($message) use ($output) {
+                return $output->writeln($message);
+            });
+        }
+
+        return $this->outputWriter;
+    }
+
+    /**
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     *
+     * @return \Doctrine\DBAL\Connection
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    private function getConnection(InputInterface $input)
+    {
+        if (!$this->connection) {
+            if ($input->getOption('db-configuration')) {
+                if (!file_exists($input->getOption('db-configuration'))) {
+                    throw new \InvalidArgumentException("The specified connection file is not a valid file.");
+                }
+
+                $params = include $input->getOption('db-configuration');
+                if (!is_array($params)) {
+                    throw new \InvalidArgumentException('The connection file has to return an array with database configuration parameters.');
+                }
+                $this->connection = \Doctrine\DBAL\DriverManager::getConnection($params);
+            } elseif (file_exists('migrations-db.php')) {
+                $params = include 'migrations-db.php';
+                if (!is_array($params)) {
+                    throw new \InvalidArgumentException('The connection file has to return an array with database configuration parameters.');
+                }
+                $this->connection = \Doctrine\DBAL\DriverManager::getConnection($params);
+            } elseif ($this->getHelperSet()->has('connection')) {
+                $this->connection = $this->getHelper('connection')->getConnection();
+            } else {
+                throw new \InvalidArgumentException('You have to specify a --db-configuration file or pass a Database Connection as a dependency to the Migrations.');
+            }
+        }
+
+        return $this->connection;
     }
 }

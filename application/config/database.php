@@ -5,11 +5,13 @@ return array(
     'connections' => array(
         'concrete' => array(
             'driver' => 'c5_pdo_mysql',
-            'server' => 'host_db', 
-            'database' => 'db_name',
-            'username' => 'user_db',
-            'password' => 'pass_db',
-            'charset' => 'utf8'
-        )
-    )
+            'server' => 'localhost',
+            'database' => 'NOMBRE_DB',
+            'username' => 'USUARIO_DB',
+            'password' => 'PASS_DB',
+            'charset' => 'utf8',
+	    'driverOptions' => array(
+                   1002=>'SET NAMES utf8')
+        ),
+    ),
 );

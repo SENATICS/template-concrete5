@@ -1,7 +1,7 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
 
-$subject = SITE.' '.t("Registration - Approval Required");
+$subject = $siteName.' '.t("Registration - Approval Required");
 
 /**
  * HTML BODY START
@@ -15,7 +15,7 @@ ob_start()
 <?php echo t('Email') ?>: <b><?php echo $uEmail ?></b><br />
 <br />
 <?php echo t('You may approve or remove this user account here:') ?><br />
-<a href="<?php echo BASE_URL.View::url('/dashboard/users/search?uID='.$uID) ?>"><?php echo BASE_URL.View::url('/dashboard/users/search?uID='.$uID) ?></a>
+<a href="<?php echo View::url('/dashboard/users/search', 'view', $uID) ?>"><?php echo View::url('/dashboard/users/search', 'view', $uID) ?></a>
 <?php if($attribs): ?>
 	<ul>
 	<?php foreach($attribs as $item): ?>
@@ -53,7 +53,7 @@ ob_start();
 
 <?php echo t('You may approve or remove this user account here') ?>:
 
-<?php echo BASE_URL . View::url('/dashboard/users/search?uID=' . $uID) ?>
+<?php echo View::url('/dashboard/users/search', 'view', $uID) ?>
 <?php
 
 $body = ob_get_clean();

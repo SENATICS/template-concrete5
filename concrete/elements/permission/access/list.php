@@ -21,7 +21,7 @@
 <tr>
     <td>
     <a href="javascript:void(0)" class="icon-link pull-right" style="margin-left: 10px" onclick="ccm_deleteAccessEntityAssignment(<?php echo $pae->getAccessEntityID()?>)"><i class="fa fa-trash-o"></i></a>
-	<a href="<?php echo REL_DIR_FILES_TOOLS_REQUIRED?>/permissions/access_entity?peID=<?php echo $pae->getAccessEntityID()?>&pdID=<?php echo $pdID?>&accessType=<?php echo $accessType?>" dialog-width="500" dialog-height="500" dialog-title="<?php echo t('Add Access Entity')?>" class="icon-link pull-right dialog-launch"><i class="fa fa-clock-o <?php if (is_object($pa->getPermissionDurationObject())) { ?>text-info<?php } ?>"></i></a>
+	<a href="<?php echo REL_DIR_FILES_TOOLS_REQUIRED?>/permissions/access_entity?peID=<?php echo $pae->getAccessEntityID()?>&pdID=<?php echo $pdID?>&accessType=<?php echo $accessType?>" dialog-width="500" dialog-height="500" dialog-title="<?php echo t('Add Access Entity')?>" class="<?php if (!is_object($pa->getPermissionDurationObject())) { ?>icon-link<?php } ?> pull-right dialog-launch"><i class="fa fa-clock-o <?php if (is_object($pa->getPermissionDurationObject())) { ?>text-info<?php } ?>"></i></a>
     <?php echo $pae->getAccessEntityLabel()?>
     </td>
 </tr>

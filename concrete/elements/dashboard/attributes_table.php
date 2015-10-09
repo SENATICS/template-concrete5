@@ -50,7 +50,7 @@ if (count($attribs) > 0) { ?>
 			<?php
 			foreach($setattribs as $ak) { ?>
                 <li class="ccm-attribute" id="akID_<?php echo $ak->getAttributeKeyID()?>">
-                    <a href="<?php echo URL::to($editURL, 'edit', $ak->getAttributeKeyID())?>">
+                    <a href="<?php echo URL::to($editURL, 'edit', $ak->getAttributeKeyID())?>" title="<?php echo t('Handle')?>: <?php echo $ak->getAttributeKeyHandle(); ?>">
                         <img class="ccm-attribute-icon" src="<?php echo $ak->getAttributeKeyIconSRC()?>" width="16" height="16" />
                         <?php echo $ak->getAttributeKeyDisplayName()?>
                     </a>
@@ -74,7 +74,7 @@ if (count($attribs) > 0) { ?>
 				<?php
 				foreach($unsetattribs as $ak) { ?>
                     <li class="ccm-attribute">
-                        <a href="<?php echo URL::to($editURL, 'edit', $ak->getAttributeKeyID())?>">
+                        <a href="<?php echo URL::to($editURL, 'edit', $ak->getAttributeKeyID())?>" title="<?php echo t('Handle')?>: <?php echo $ak->getAttributeKeyHandle(); ?>">
                             <img class="ccm-attribute-icon" src="<?php echo $ak->getAttributeKeyIconSRC()?>" width="16" height="16" />
                             <?php echo $ak->getAttributeKeyDisplayName()?>
                         </a>
@@ -92,7 +92,7 @@ if (count($attribs) > 0) { ?>
 		<?php
         foreach($attribs as $ak) { ?>
             <li class="ccm-attribute" id="akID_<?php echo $ak->getAttributeKeyID()?>">
-			    <a href="<?php echo URL::to($editURL, 'edit', $ak->getAttributeKeyID())?>"><img class="ccm-attribute-icon" src="<?php echo $ak->getAttributeKeyIconSRC()?>" width="16" height="16" /> <?php echo $ak->getAttributeKeyDisplayName()?></a>
+			    <a href="<?php echo URL::to($editURL, 'edit', $ak->getAttributeKeyID())?>" title="<?php echo t('Handle')?>: <?php echo $ak->getAttributeKeyHandle(); ?>"><img class="ccm-attribute-icon" src="<?php echo $ak->getAttributeKeyIconSRC()?>" width="16" height="16" /> <?php echo $ak->getAttributeKeyDisplayName()?></a>
                 <?php if($sortable) { ?><i class="ccm-item-select-list-sort"></i><?php } ?>
 		    </li>
 		

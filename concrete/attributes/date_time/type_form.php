@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset class="ccm-attribute ccm-attribute-date-time">
 <legend><?php echo t('Date/Time Options')?></legend>
 
 <div class="clearfix">

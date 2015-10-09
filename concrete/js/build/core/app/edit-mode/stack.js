@@ -1,11 +1,20 @@
 (function (window, $, _, Concrete) {
     'use strict';
 
+    /**
+     * Stack object used in the stack panel. This is a BlockType subclass.
+     * @type {Function}
+     */
     var Stack = Concrete.Stack = function Stack(elem, edit_mode, dragger) {
         this.init.apply(this, _(arguments).toArray());
     };
 
-    Stack.prototype = _.extend(Object.create(Concrete.Block.prototype), {
+    Stack.prototype = _.extend(Object.create(Concrete.BlockType.prototype), {
+
+        removeElement: function() {
+            this.getElem().remove();
+        },
+
         addToDragArea: function StackAddToDragArea(drag_area) {
             var my = this, elem = my.getElem(),
                 area = drag_area.getArea(),
@@ -17,12 +26,12 @@
                 dragAreaBlockID = dragAreaBlock.getId();
             }
 
-            ConcretePanelManager.exitPanelMode();
+            jQuery.fn.dialog.closeAll();
 
             var settings = {
-                cID: CCM_CID,
+                cID: elem.data('cid'),
                 arHandle: area_handle,
-                stID: elem.data('cid'),
+                stID: elem.data('sid'),
                 atask: 'add_stack',
                 ccm_token: CCM_SECURITY_TOKEN
             };
@@ -43,6 +52,7 @@
                 'title': ccmi18n.addBlockStack
             });
         }
+
     });
 
 

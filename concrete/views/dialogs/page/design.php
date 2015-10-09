@@ -9,6 +9,10 @@ if (is_object($selectedTheme)) {
 if (is_object($selectedTemplate)) {
 	$selectedTemplateID = $selectedTemplate->getPageTemplateID();
 }
+if (is_object($selectedType)) {
+    $selectedTypeID = $selectedType->getPageTypeID();
+}
+
 ?>
 
 <div class="ccm-ui">
@@ -28,7 +32,22 @@ if (is_object($selectedTemplate)) {
         <?php } ?>
     <?php } ?>
 
-	<div class="form-group">
+    <?php if ($cp->canEditPageType()) { ?>
+        <?php echo $form->label('ptID', t('Page Type'))?>
+
+        <?php if ($c->isGeneratedCollection()) { ?>
+            <div class="alert alert-info"><?php echo t('This is a single page. It does not have a page type.')?></div>
+        <?php } else { ?>
+            <div class="form-group">
+                <?php echo $form->select('ptID', $typesSelect, $selectedTypeID)?>
+            </div>
+            <div class="alert alert-warning">
+                <?php echo t('Changing page types of existing pages could result in unexpected behavior.')?>
+            </div>
+        <?php } ?>
+    <?php } ?>
+
+    <div class="form-group">
 		<?php echo $form->label('pThemeID', t('Theme'))?>
 		<?php echo $form->select('pThemeID', $themesSelect, $selectedThemeID)?>
 	</div>

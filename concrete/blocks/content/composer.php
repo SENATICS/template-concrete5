@@ -1,7 +1,5 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
-$class = 'ccm-block-content-editor-composer';
-$form = Loader::helper('form');
 ?>
 
 <div class="control-group">
@@ -11,20 +9,7 @@ $form = Loader::helper('form');
 	<?php endif; ?>
 	<div class="controls">
 		<?php
-		print $form->textarea($control->field('content'), $controller->getContentEditMode(), array(
-			'class' => $class
-		));
+		print Core::make('editor')->outputPageComposerEditor($view->field('content'), $controller->getContentEditMode());
 		?>
 	</div>
 </div>
-
-<script type="text/javascript">
-var CCM_EDITOR_SECURITY_TOKEN = "<?php echo Loader::helper('validation/token')->generate('editor')?>";
-
-$(function() {
-	$('.<?php echo $class?>').redactor({
-		'plugins': ['concrete5'],
-        'minHeight': 380
-	});
-});
-</script>

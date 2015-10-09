@@ -1,6 +1,7 @@
 <?php
 namespace Concrete\Controller\Search;
 
+use Concrete\Core\Http\ResponseAssetGroup;
 use Concrete\Core\Search\StickyRequest;
 use Concrete\Core\User\Group\GroupSetList;
 use Controller;
@@ -36,7 +37,7 @@ class Users extends Controller
     {
         $dh = Loader::helper('concrete/user');
         if (!$dh->canAccessUserSearchInterface()) {
-            throw new \Exception(t('Access Denied.'));
+            return false;
         }
 
         if ($_REQUEST['submitSearch']) {
@@ -48,7 +49,7 @@ class Users extends Controller
 
         if (!$this->userList->getActiveSortColumn()) {
             $col = $columns->getDefaultSortColumn();
-            $this->userList->sortBy($col->getColumnKey(), $col->getColumnDefaultSortDirection());
+            $this->userList->sanitizedSortBy($col->getColumnKey(), $col->getColumnDefaultSortDirection());
         }
 
         $this->userList->includeInactiveUsers();
@@ -84,6 +85,7 @@ class Users extends Controller
             if ($ggp->canSearchUsersInGroup()) {
                 $null = 'ugRequired.gID is null';
             }
+            $this->userList->getQueryObject()->select('distinct (u.uID)');
             $expr = $this->userList->getQueryObject()->expr()->orX($groups, $null);
             $this->userList->getQueryObject()->andwhere($expr);
         }
@@ -171,6 +173,11 @@ class Users extends Controller
         return $this->result;
     }
 
+    public function getListObject()
+    {
+        return $this->userList;
+    }
+
     public function field($field)
     {
         $r = $this->getField($field);
@@ -209,6 +216,16 @@ class Users extends Controller
                 break;
         }
         $r->html = $html;
+        $ag = ResponseAssetGroup::get();
+        $r->assets = array();
+        foreach ($ag->getAssetsToOutput() as $position => $assets) {
+            foreach ($assets as $asset) {
+                if (is_object($asset)) {
+                    // have to do a check here because we might be included a dumb javascript call like i18n_js
+                    $r->assets[$asset->getAssetType()][] = $asset->getAssetURL();
+                }
+            }
+        }
 
         return $r;
     }

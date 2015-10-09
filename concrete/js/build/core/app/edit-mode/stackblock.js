@@ -1,15 +1,23 @@
 (function (window, $, _, Concrete) {
     'use strict';
 
+    /**
+     * StackBlock object used only in panels. This allows us to drag blocks out from a stack panel.
+     * @type {Function}
+     */
     var StackBlock = Concrete.StackBlock = function StackBlock(elem, stack, edit_mode, dragger) {
         this.init.apply(this, _.toArray(arguments));
     };
 
     StackBlock.prototype = _.extend(Object.create(Concrete.BlockType.prototype), {
 
-        init: function stackBlockInit(elem, stack, edit_mode, dragger) {
-            Concrete.Block.prototype.init.call(this, elem, edit_mode, dragger);
+        init: function stackBlockInit(elem, stack, edit_mode, dragger, default_area) {
+            Concrete.BlockType.prototype.init.call(this, elem, edit_mode, dragger, default_area);
             this.setAttr('stack', stack);
+        },
+
+        removeElement: function() {
+            $.pep.unbind(this.getPeper());
         },
 
         addToDragArea: function StackBlockAddToDragArea(drag_area) {
@@ -45,6 +53,7 @@
                 my.handleAddResponse(response, area, dragAreaBlock);
             });
         }
+
     });
 
 }(window, jQuery, _, Concrete));

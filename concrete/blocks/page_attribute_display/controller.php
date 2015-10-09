@@ -17,6 +17,9 @@ class Controller extends BlockController
     protected $btInterfaceWidth = "500";
     protected $btInterfaceHeight = "365";
     public $dateFormat = "m/d/y h:i:a";
+    protected $btCacheBlockOutput = true;
+    protected $btCacheBlockOutputOnPost = true;
+    protected $btCacheBlockOutputForRegisteredUsers = false;
 
     /**
      * @var integer thumbnail height
@@ -47,10 +50,10 @@ class Controller extends BlockController
         $content = "";
         switch ($this->attributeHandle) {
             case "rpv_pageName":
-                $content = $c->getCollectionName();
+                $content = h($c->getCollectionName());
                 break;
             case "rpv_pageDescription":
-                $content = $c->getCollectionDescription();
+                $content = h($c->getCollectionDescription());
                 break;
             case "rpv_pageDateCreated":
                 $content = $c->getCollectionDateAdded();
@@ -71,11 +74,17 @@ class Controller extends BlockController
                         $this->thumbnailHeight
                     ); //<-- set these 2 numbers to max width and height of thumbnails
                     $content = "<img src=\"{$thumb->src}\" width=\"{$thumb->width}\" height=\"{$thumb->height}\" alt=\"\" />";
+                } else {
+                    if (!is_scalar($content) && (!is_object($content) || !method_exists($content, '__toString'))) {
+                        $content = $c->getAttribute($this->attributeHandle, 'displaySanitized');
+                    }
+
                 }
                 break;
         }
 
-        if (!strlen($content) && $c->isMasterCollection()) {
+        $is_stack = $c->getController() instanceof \Concrete\Controller\SinglePage\Dashboard\Blocks\Stacks;
+        if (!strlen(trim(strip_tags($content))) && ($c->isMasterCollection() || $is_stack)) {
             $content = $this->getPlaceHolderText($this->attributeHandle);
         }
         return $content;

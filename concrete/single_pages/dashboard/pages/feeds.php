@@ -18,6 +18,10 @@
     $pfDisplayFeaturedOnly = false;
     $pfContentToDisplay = 'S';
     $pfAreaHandleToDisplay = 'Main';
+    $customTopicAttributeKeyHandle = null;
+    $customTopicTreeNodeID = 0;
+    $iconFID = 0;
+    $imageFile = null;
     $button = t('Add');
     if (is_object($feed)) {
         $pfTitle = $feed->getTitle();
@@ -30,6 +34,12 @@
         $pfDisplayFeaturedOnly = $feed->getDisplayFeaturedOnly();
         $pfContentToDisplay = $feed->getTypeOfContentToDisplay();
         $pfAreaHandleToDisplay = $feed->getAreaHandleToDisplay();
+        $customTopicAttributeKeyHandle = $feed->getCustomTopicAttributeKeyHandle();
+        $customTopicTreeNodeID = $feed->getCustomTopicTreeNodeID();
+        $iconFID = $feed->getIconFileID();
+        if ($iconFID) {
+            $imageFile = File::getByID($iconFID);
+        }
         $action = $view->action('edit_feed', $feed->getID());
         $token = 'edit_feed';
         $button = t('Update');
@@ -87,6 +97,10 @@
             <?php echo $form->textarea('pfDescription', $pfDescription, array('rows' => 5))?>
         </div>
         <div class="form-group">
+            <?php echo $form->label('iconFID', t('Image'))?>
+            <?php echo Core::make('helper/concrete/asset_library')->image('iconFID', 'iconFID', t('Choose Image'), $imageFile);?>
+        </div>
+        <div class="form-group">
             <label class="control-label"><?php echo t('Filter by Parent Page')?></label>
             <?php
             print Loader::helper('form/page_selector')->selectPage('cParentID', $cParentID);
@@ -95,6 +109,22 @@
         <div class="form-group">
             <?php echo $form->label('ptID', t('Filter By Page Type'))?>
             <?php echo $form->select('ptID', $pageTypes, $ptID)?>
+        </div>
+        <div class="form-group">
+            <?php echo $form->label('customTopicAttributeKeyHandle', t('Filter By Topic'))?>
+            <select class="form-control" name="customTopicAttributeKeyHandle" id="customTopicAttributeKeyHandle">
+                <option value=""><?php echo t('** No Filtering')?></option>
+                <?php foreach($topicAttributes as $attributeKey) {
+                    $attributeController = $attributeKey->getController();
+                    ?>
+                    <option data-topic-tree-id="<?php echo $attributeController->getTopicTreeID()?>" value="<?php echo $attributeKey->getAttributeKeyHandle()?>" <?php if ($attributeKey->getAttributeKeyHandle() == $customTopicAttributeKeyHandle) { ?>selected<?php } ?>><?php echo $attributeKey->getAttributeKeyDisplayName()?></option>
+                <?php } ?>
+            </select>
+            <div class="tree-view-container" style="margin-top: 20px">
+                <div class="tree-view-template">
+                </div>
+            </div>
+            <input type="hidden" name="customTopicTreeNodeID" value="<?php echo $customTopicTreeNodeID ?>">
         </div>
         <div class="form-group">
             <label class="control-label"><?php echo t('Include All Sub-Pages of Parent?')?></label>
@@ -171,6 +201,30 @@
 
     <script type="text/javascript">
         $(function() {
+            var treeViewTemplate = $('.tree-view-template');
+
+            $('select[name=customTopicAttributeKeyHandle]').on('change', function() {
+                var toolsURL = '<?php echo Loader::helper('concrete/urls')->getToolsURL('tree/load'); ?>';
+                var chosenTree = $(this).find('option:selected').attr('data-topic-tree-id');
+                $('.tree-view-template').remove();
+                if (!chosenTree) {
+                    return;
+                }
+                $('.tree-view-container').append(treeViewTemplate);
+                $('.tree-view-template').ccmtopicstree({
+                    'treeID': chosenTree,
+                    'chooseNodeInForm': true,
+                    'selectNodesByKey': [<?php echo intval($customTopicTreeNodeID)?>],
+                    'onSelect' : function(select, node) {
+                        if (select) {
+                            $('input[name=customTopicTreeNodeID]').val(node.data.key);
+                        } else {
+                            $('input[name=customTopicTreeNodeID]').val('');
+                        }
+                    }
+                });
+            }).trigger('change');
+
             $('input[name=pfContentToDisplay]').on('change', function() {
                 var pfContentToDisplay = $('input[name=pfContentToDisplay]:checked').val();
                 if (pfContentToDisplay == 'A') {

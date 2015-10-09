@@ -4,6 +4,8 @@ use Concrete\Controller\Backend\UserInterface\Block as BackendInterfaceBlockCont
 use Concrete\Core\Block\CustomStyle;
 use Concrete\Core\Block\View\BlockView;
 use Concrete\Core\Page\EditResponse;
+use Concrete\Core\Page\Type\Composer\Control\BlockControl;
+use Concrete\Core\Page\Type\Composer\FormLayoutSetControl;
 use Concrete\Core\StyleCustomizer\Inline\StyleSet;
 
 class Design extends BackendInterfaceBlockController {
@@ -41,36 +43,23 @@ class Design extends BackendInterfaceBlockController {
             }
 
             $r = $this->request->request->all();
-            $set = new StyleSet();
-            $set->setBackgroundColor($r['backgroundColor']);
-            $set->setBackgroundImageFileID(intval($r['backgroundImageFileID']));
-            $set->setBackgroundRepeat($r['backgroundRepeat']);
-            $set->setLinkColor($r['linkColor']);
-            $set->setTextColor($r['textColor']);
-            $set->setBaseFontSize($r['baseFontSize']);
-            $set->setMarginTop($r['marginTop']);
-            $set->setMarginRight($r['marginRight']);
-            $set->setMarginBottom($r['marginBottom']);
-            $set->setMarginLeft($r['marginLeft']);
-            $set->setPaddingTop($r['paddingTop']);
-            $set->setPaddingRight($r['paddingRight']);
-            $set->setPaddingBottom($r['paddingBottom']);
-            $set->setPaddingLeft($r['paddingLeft']);
-            $set->setBorderWidth($r['borderWidth']);
-            $set->setBorderStyle($r['borderStyle']);
-            $set->setBorderColor($r['borderColor']);
-            $set->setBorderRadius($r['borderRadius']);
-            $set->setAlignment($r['alignment']);
-            $set->setRotate($r['rotate']);
-            $set->setBoxShadowBlur($r['boxShadowBlur']);
-            $set->setBoxShadowColor($r['boxShadowColor']);
-            $set->setBoxShadowHorizontal($r['boxShadowHorizontal']);
-            $set->setBoxShadowVertical($r['boxShadowVertical']);
-            $set->setBoxShadowSpread($r['boxShadowSpread']);
-            $set->setCustomClass($r['customClass']);
-            $set->save();
+            $set = StyleSet::populateFromRequest($this->request);
+            if (is_object($set)) {
+                $set->save();
+                $b->setCustomStyleSet($set);
+            } else if ($oldStyleSet) {
+                $b->resetCustomStyle();
+            }
 
-            $b->setCustomStyleSet($set);
+            if (isset($r['enableBlockContainer'])) {
+                if ($r['enableBlockContainer'] === '-1') {
+                    $b->resetBlockContainerSettings();
+                }
+                if ($r['enableBlockContainer'] === '0' ||
+                    $r['enableBlockContainer'] === '1') {
+                    $b->setCustomContainerSettings($r['enableBlockContainer']);
+                }
+            }
 
             if ($this->permissions->canEditBlockCustomTemplate()) {
                 $data = array();
@@ -83,15 +72,20 @@ class Design extends BackendInterfaceBlockController {
             $pr->setAdditionalDataAttribute('aID', $this->area->getAreaID());
             $pr->setAdditionalDataAttribute('arHandle', $this->area->getAreaHandle());
             $pr->setAdditionalDataAttribute('originalBlockID', $this->block->getBlockID());
-            $pr->setAdditionalDataAttribute('issID', $set->getID());
 
             if (is_object($oldStyleSet)) {
                 $pr->setAdditionalDataAttribute('oldIssID', $oldStyleSet->getID());
             }
 
-            $style = new CustomStyle($set, $b->getBlockID(), $this->area->getAreaHandle());
+            if (is_object($set)) {
+                $pr->setAdditionalDataAttribute('issID', $set->getID());
+                $style = new CustomStyle($set, $b, $this->page->getCollectionThemeObject());
+                $css = $style->getCSS();
+                if ($css !== '') {
+                    $pr->setAdditionalDataAttribute('css', $style->getStyleWrapper($css));
+                }
+            }
 
-            $pr->setAdditionalDataAttribute('css', $style->getCSS());
             $pr->setAdditionalDataAttribute('bID', $b->getBlockID());
             $pr->setMessage(t('Design updated.'));
             $pr->outputJSON();
@@ -108,14 +102,33 @@ class Design extends BackendInterfaceBlockController {
         $canEditCustomTemplate = false;
         if ($this->permissions->canEditBlockCustomTemplate()) {
             $canEditCustomTemplate = true;
-            if ($this->block->getBlockTypeHandle() == BLOCK_HANDLE_SCRAPBOOK_PROXY) {
-                $bi = $this->block->getInstance();
-                $bx = \Block::getByID($bi->getOriginalBlockID());
-                $bt = \BlockType::getByID($bx->getBlockTypeID());
-            } else {
-                $bt = \BlockType::getByID($this->block->getBlockTypeID());
+            switch($this->block->getBlockTypeHandle()) {
+                case BLOCK_HANDLE_SCRAPBOOK_PROXY:
+                    $bi = $this->block->getInstance();
+                    $bx = \Block::getByID($bi->getOriginalBlockID());
+                    $bt = \BlockType::getByID($bx->getBlockTypeID());
+                    $bFilename = $bx->getBlockFilename();
+                    break;
+                case BLOCK_HANDLE_PAGE_TYPE_OUTPUT_PROXY:
+                    $bi = $this->block->getInstance();
+                    $output = $bi->getComposerOutputControlObject();
+                    $control = FormLayoutSetControl::getByID($output->getPageTypeComposerFormLayoutSetControlID());
+                    $object = $control->getPageTypeComposerControlObject();
+                    if ($object instanceof BlockControl) {
+                        $bt = $object->getBlockTypeObject();
+                    }
+                    $bFilename = $this->block->getBlockFilename();
+                    break;
+                default:
+                    $bt = \BlockType::getByID($this->block->getBlockTypeID());
+                    $bFilename = $this->block->getBlockFilename();
+                    break;
             }
-            $templates = $bt->getBlockTypeCustomTemplates();
+            $templates = array();
+            if (is_object($bt)) {
+                $templates = $bt->getBlockTypeCustomTemplates();
+            }
+            $this->set('bFilename', $bFilename);
             $this->set('templates', $templates);
         }
         $this->set('canEditCustomTemplate', $canEditCustomTemplate);

@@ -1,14 +1,12 @@
 <?php
+
 namespace Concrete\Core\Database\Connection;
 
-use Concrete\Core\Cache\Adapter\DoctrineCacheDriver;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Setup;
-use Config;
+use ORM;
 
 class Connection extends \Doctrine\DBAL\Connection
 {
-
     /** @var EntityManager */
     protected $entityManager;
 
@@ -20,30 +18,24 @@ class Connection extends \Doctrine\DBAL\Connection
         if (!$this->entityManager) {
             $this->entityManager = $this->createEntityManager();
         }
+
         return $this->entityManager;
     }
 
     /**
      * @return EntityManager
+     *
      * @throws \Doctrine\ORM\ORMException
      */
     public function createEntityManager()
     {
-
-        $config = Setup::createConfiguration(
-            false,
-            Config::get('database.proxy_classes'),
-            new DoctrineCacheDriver('cache/expensive')
-        );
-        $driverImpl = $config->newDefaultAnnotationDriver(DIR_BASE_CORE . '/' . DIRNAME_CLASSES);
-        $config->setMetadataDriverImpl($driverImpl);
-        return EntityManager::create($this, $config);
+        return ORM::makeEntityManager($this, 'core');
     }
 
     /**
      * Returns true if a table exists – is NOT case sensitive.
      *
-     * @return boolean
+     * @return bool
      */
     public function tableExists($tableName)
     {
@@ -155,6 +147,17 @@ class Connection extends \Doctrine\DBAL\Connection
 
     /**
      * @deprecated
+     * alias to old ADODB method
+     */
+    public function GetAssoc($q, $arguments = array())
+    {
+        $query = $this->query($q, $arguments);
+
+        return $query->fetchAll(\PDO::FETCH_KEY_PAIR);
+    }
+
+    /**
+     * @deprecated
      * Returns an associative array of all columns in a table
      */
     public function MetaColumnNames($table)
@@ -183,7 +186,11 @@ class Connection extends \Doctrine\DBAL\Connection
             $keyCol = array($keyCol);
         }
         foreach ($keyCol as $key) {
-            $field = $fieldArray[$key];
+            if (isset($fieldArray[$key])) {
+                $field = $fieldArray[$key];
+            } else {
+                $field = null;
+            }
             $updateKeys[$key] = $field;
             if ($autoQuote) {
                 $field = $qb->expr()->literal($field);
@@ -248,7 +255,6 @@ class Connection extends \Doctrine\DBAL\Connection
         $schemaColumns = $sm->listTableColumns($table);
 
         return $schemaColumns;
-
     }
 
     /**
@@ -310,5 +316,4 @@ class Connection extends \Doctrine\DBAL\Connection
 
         return true;
     }
-
 }

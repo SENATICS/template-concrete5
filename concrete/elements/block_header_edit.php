@@ -42,29 +42,23 @@ $(function() {
 </script>
 
 <?php
-$hih = Loader::helper("concrete/ui/help");
-$blockTypes = $hih->getBlockTypes();
 $cont = $bt->getController();
 if ($b->getBlockTypeHandle() == BLOCK_HANDLE_SCRAPBOOK_PROXY) {
 	$bx = Block::getByID($b->getController()->getOriginalBlockID());
 	$cont = $bx->getController();
 }
 
-if (isset($blockTypes[$bt->getBlockTypeHandle()])) {
-	$help = $blockTypes[$bt->getBlockTypeHandle()];
-} else {
-	if ($cont->getBlockTypeHelp()) {
-		$help = $cont->getBlockTypeHelp();
-	}
+$hih = Core::make("help/block_type");
+$message = $hih->getMessage($bt->getBlockTypeHandle());
+
+if (!$message && $cont->getBlockTypeHelp()) {
+	$message = new \Concrete\Core\Application\Service\UserInterface\Help\Message();
+	$message->setIdentifier($bt->getBlockTypeHandle());
+	$message->setMessageContent($cont->getBlockTypeHelp());
 }
-if (isset($help) && !$bt->supportsInlineEdit()) { ?>
-	<div class="dialog-help" id="ccm-menu-help-content"><?php 
-		if (is_array($help)) { 
-			print $help[0] . '<br><br><a href="' . $help[1] . '" target="_blank">' . t('Learn More') . '</a>';
-		} else {
-			print $help;
-		}
-	?></div>
+
+if (isset($message) && is_object($message) && !$bt->supportsInlineEdit()) { ?>
+	<div class="dialog-help" id="ccm-menu-help-content"><?php print $message->getContent() ?></div>
 <?php } ?>
 
 <div <?php if (!$bt->supportsInlineEdit()) { ?>class="ccm-ui"<?php } else { ?>data-container="inline-toolbar"<?php } ?>>
@@ -77,6 +71,10 @@ if (isset($help) && !$bt->supportsInlineEdit()) { ?>
 
 <?php if (!$bt->supportsInlineEdit()) { ?>
 <div id="ccm-block-fields">
-<?php } else { ?>
-    <div>
+<?php } else {
+	$css = $b->getCustomStyle();
+?>
+
+	<div <?php if (is_object($css) && $b->getBlockTypeHandle() != BLOCK_HANDLE_LAYOUT_PROXY) { ?>class="<?php echo $css->getContainerClass() ?>" <?php } ?>>
+
 <?php } ?>

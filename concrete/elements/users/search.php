@@ -18,8 +18,8 @@ $searchRequest = $flr->getSearchRequest();
 ?>
 
 <script type="text/template" data-template="search-form">
-<form role="form" data-search-form="users" action="<?php echo URL::to('/ccm/system/search/users/submit')?>" class="form-inline ccm-search-fields">
-	<div class="ccm-search-fields-row">
+<form role="form" data-search-form="users" action="<?php echo URL::to('/ccm/system/search/users/submit')?>" class="ccm-search-fields">
+	<div class="ccm-search-fields-row form-inline">
 	<div class="form-group">
 		<select data-bulk-action="users" disabled class="ccm-search-bulk-action form-control">
 			<option value=""><?php echo t('Items Selected')?></option>
@@ -76,9 +76,15 @@ $searchRequest = $flr->getSearchRequest();
 		</div>
 	</div>
 	<div class="ccm-search-fields-advanced"></div>
-    <div class="ccm-search-fields-submit">
-        <button type="submit" class="btn btn-primary pull-right"><?php echo t('Search')?></button>
-    </div>
+	<div class="ccm-search-fields-row ccm-search-fields-submit">
+		<div class="form-group form-group-full">
+			<label class="control-label"><?php echo t('Per Page')?></label>
+			<div class="ccm-search-field-content ccm-search-field-content-select2">
+				<?php echo $form->select('numResults', array(10 => t('10'), 20 => t('20'), 50 => t('50'), 100 => t('100'), 250 => t('250'), 500 => t('500'), 1000 => t('1000'))); ?>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary pull-right"><?php echo t('Search')?></button>
+	</div>
 </form>
 </script>
 

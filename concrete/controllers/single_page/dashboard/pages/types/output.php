@@ -14,6 +14,10 @@ class Output extends DashboardPageController {
 		if (!$this->pagetype) {
 			$this->redirect('/dashboard/pages/types');
 		}
+        $cmp = new \Permissions($this->pagetype);
+        if (!$cmp->canEditPageType()) {
+            throw new \Exception(t('You do not have access to edit this page type.'));
+        }
 		$this->set('pagetype', $this->pagetype);
 	}
 
@@ -38,7 +42,7 @@ class Output extends DashboardPageController {
 			// we load up the master template for this composer/template combination.
 			$c = $this->pagetype->getPageTypePageTemplateDefaultPageObject($template);
 			Session::set('mcEditID', $c->getCollectionID());
-			Redirect::url(BASE_URL . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID())->send();
+			Redirect::url(\URL::to($c))->send();
 		}
 
 	}

@@ -26,7 +26,7 @@
                     ?>
                     <option
                         value="<?php echo $ct->getPageTypeID() ?>" <?php if ($ptID == $ct->getPageTypeID()) { ?> selected <?php } ?>>
-                        <?php echo $ct->getPageTypeName() ?>
+                        <?php echo $ct->getPageTypeDisplayName() ?>
                     </option>
                 <?php
                 }

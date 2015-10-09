@@ -128,9 +128,9 @@ var ImageEditor = function (settings) {
     im.saveUrl = settings.saveUrl;
     im.width = settings.width;
     im.height = settings.height;
-    im.saveWidth = settings.saveWidth || round(im.width / 2);
-    im.saveHeight = settings.saveHeight || round(im.height / 2);
-    im.strictSize = settings.saveWidth !== undefined;
+    im.strictSize = typeof settings.strictSize !== 'undefined' ? !!settings.strictSize : settings.saveWidth > 0;
+    im.saveWidth = settings.saveWidth || (im.strictSize ? 0 : round(im.width / 2));
+    im.saveHeight = settings.saveHeight || (im.strictSize ? 0 : round(im.height / 2));
     im.stage = new Kinetic.Stage(settings);
     im.namespaces = {};
     im.controlSets = {};
@@ -145,12 +145,13 @@ var ImageEditor = function (settings) {
     im.domContext = im.editorContext.parent();
     im.controlContext = im.domContext.children('div.controls');
     im.controlSetNamespaces = [];
+    debugger;
 
     im.showLoader = $.fn.dialog.showLoader;
     im.hideLoader = $.fn.dialog.hideLoader;
     im.stage.im = im;
     im.stage.elementType = 'stage';
-    im.crosshair.src = CCM_REL + '/concrete/images/image_editor/crosshair.png';
+    im.crosshair.src = CCM_IMAGE_PATH + '/image_editor/crosshair.png';
 
     im.center = {
         x: Math.round(im.width / 2),
@@ -417,7 +418,15 @@ im.save = function saveImage() {
             im.stage.setWidth(im.saveWidth + 100);
             im.stage.draw();
 
+            var mime = settings.mime;
+            if (mime !== 'image/jpeg' && mime !== 'image/png') {
+                // default to png
+                mime = 'image/png';
+            }
+
             im.stage.toDataURL({
+                mimeType: mime,
+                quality: settings.jpegCompression,
                 width: im.saveWidth,
                 height: im.saveHeight,
                 callback: function saveImageDataUrlCallback(url) {
@@ -682,7 +691,7 @@ im.bind('load', function(){
     im.setActiveElement(im.stage);
   });
 }, im.bgimage);
-im.bgimage.src = '/concrete/images/testbg.png';
+im.bgimage.src = CCM_REL + '/concrete/images/testbg.png';
 im.buildBackground = function() {
   var dimensions = im.stage.getTotalDimensions();
 
@@ -795,7 +804,28 @@ if (settings.src) {
             im.saveHeight = img.height;
             im.fire('saveSizeChange');
             im.buildBackground();
+        } else if (im.saveWidth == 0 || im.saveHeight == 0) {
+            if (im.saveWidth == 0) {
+                if (im.saveHeight == 0) {
+                    im.saveWidth = img.width;
+                    im.saveHeight = img.height;
+
+                    im.fire('saveSizeChange');
+                    im.buildBackground();
+                } else {
+                    im.saveWidth = Math.floor(img.width / img.height * im.saveHeight);
+
+                    im.fire('saveSizeChange');
+                    im.buildBackground();
+                }
+            } else if (im.saveHeight == 0) {
+                im.saveHeight = Math.floor(img.height / img.width * im.saveWidth);
+
+                im.fire('saveSizeChange');
+                im.buildBackground();
+            }
         }
+        debugger;
         var center = {
             x: Math.floor(im.center.x - (img.width / 2)),
             y: Math.floor(im.center.y - (img.height / 2))

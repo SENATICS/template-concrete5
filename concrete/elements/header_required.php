@@ -1,5 +1,6 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
+
 $c = Page::getCurrentPage();
 if (is_object($c)) {
 	$cp = new Permissions($c);
@@ -24,7 +25,14 @@ if (is_object($c)) {
 			if($c->isSystemPage()) {
 				$pageTitle = t($pageTitle);
 			}
-			$pageTitle = sprintf(Config::get('concrete.seo.title_format'), Config::get('concrete.site'), $pageTitle);
+			$seo = Core::make('helper/seo');
+			if (!$seo->hasCustomTitle()) {
+				$seo->addTitleSegmentBefore($pageTitle);
+			}
+			$seo->setSiteName(Config::get('concrete.site'));
+			$seo->setTitleFormat(Config::get('concrete.seo.title_format'));
+			$seo->setTitleSegmentSeparator(Config::get('concrete.seo.title_segment_separator'));
+			$pageTitle = $seo->getTitle();
 		}
 	}
 	$pageDescription = (!isset($pageDescription) || !$pageDescription) ? $c->getCollectionDescription() : $pageDescription;
@@ -50,10 +58,6 @@ if (is_object($c)) {
 	$cID = 1;
 }
 ?>
-<!--[if lt IE 9]>
-<script src="<?php echo ASSETS_URL_JAVASCRIPT?>/ie/html5-shiv.js"></script>
-<script src="<?php echo ASSETS_URL_JAVASCRIPT?>/ie/respond.js"></script>
-<![endif]-->
 
 <meta http-equiv="content-type" content="text/html; charset=<?php echo APP_CHARSET?>" />
 <?php
@@ -96,12 +100,12 @@ else {
 ?>
 var CCM_IMAGE_PATH = "<?php echo ASSETS_URL_IMAGES?>";
 var CCM_TOOLS_PATH = "<?php echo REL_DIR_FILES_TOOLS_REQUIRED?>";
-var CCM_BASE_URL = "<?php echo BASE_URL?>";
-var CCM_REL = "<?php echo DIR_REL?>";
+var CCM_APPLICATION_URL = "<?php echo \Core::getApplicationURL()?>";
+var CCM_REL = "<?php echo \Core::getApplicationRelativePath()?>";
 
 </script>
 
-<?php if (is_object($scc)) { ?>
+<?php if (isset($scc) && is_object($scc)) { ?>
     <style type="text/css">
         <?php print $scc->getValue();?>
     </style>
@@ -122,24 +126,36 @@ $modernIconFID = intval(Config::get('concrete.misc.modern_tile_thumbnail_fid'));
 $modernIconBGColor = strval(Config::get('concrete.misc.modern_tile_thumbnail_bgcolor'));
 
 if($favIconFID) {
-	$f = File::getByID($favIconFID); ?>
-	<link rel="shortcut icon" href="<?php echo $f->getRelativePath()?>" type="image/x-icon" />
-	<link rel="icon" href="<?php echo $f->getRelativePath()?>" type="image/x-icon" />
-<?php }
+    $f = File::getByID($favIconFID);
+    if (is_object($f)) {
+        ?>
+        <link rel="shortcut icon" href="<?php echo $f->getURL() ?>" type="image/x-icon"/>
+        <link rel="icon" href="<?php echo $f->getURL() ?>" type="image/x-icon"/>
+    <?php
+    }
+}
 
 if($appleIconFID) {
-	$f = File::getByID($appleIconFID); ?>
-	<link rel="apple-touch-icon" href="<?php echo $f->getRelativePath()?>"  />
-<?php }
+    $f = File::getByID($appleIconFID);
+    if (is_object($f)) {
+        ?>
+        <link rel="apple-touch-icon" href="<?php echo $f->getURL() ?>"/>
+    <?php
+    }
+}
 
 if($modernIconFID) {
 	$f = File::getByID($modernIconFID);
-	?><meta name="msapplication-TileImage" content="<?php echo $f->getRelativePath(); ?>" /><?php
-	echo "\n";
-	if(strlen($modernIconBGColor)) {
-		?><meta name="msapplication-TileColor" content="<?php echo $modernIconBGColor; ?>" /><?php
-		echo "\n";
-	}
+    if(is_object($f)) {
+        ?>
+        <meta name="msapplication-TileImage" content="<?php echo $f->getURL(); ?>" /><?php
+        echo "\n";
+        if (strlen($modernIconBGColor)) {
+            ?>
+            <meta name="msapplication-TileColor" content="<?php echo $modernIconBGColor; ?>" /><?php
+            echo "\n";
+        }
+    }
 }
 
 if (is_object($cp)) {
@@ -148,9 +164,10 @@ if (is_object($cp)) {
 
 	$cih = Loader::helper('concrete/ui');
 	if ($cih->showNewsflowOverlay()) {
-		$v->addFooterItem('<script type="text/javascript">$(function() { ccm_showDashboardNewsflowWelcome(); });</script>');
+		$v->addFooterItem('<script type="text/javascript">$(function() { new ConcreteNewsflowDialog().open(); });</script>');
 	}
-	if ($_COOKIE['ccmLoadAddBlockWindow'] && $c->isEditMode()) {
+
+	if (array_get($_COOKIE, 'ccmLoadAddBlockWindow') && $c->isEditMode()) {
 		$v->addFooterItem('<script type="text/javascript">$(function() { setTimeout(function() { $("a[data-launch-panel=add-block]").click()}, 100); });</script>', 'CORE');
 		setcookie("ccmLoadAddBlockWindow", false, -1, DIR_REL . '/');
 	}

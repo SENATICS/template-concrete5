@@ -3,11 +3,11 @@
 use Concrete\Core\File\Image\Thumbnail\Type\Version;
 
 defined('C5_EXECUTE') or die("Access Denied.");
-/** @var FileVersion $version */
+/* @var FileVersion $version */
 ?>
 <div class="ccm-ui">
     <?php
-    /** @var Version $type */
+    /* @var Version $type */
     foreach ($types as $type) {
         $width = $type->getWidth();
         $height = $type->getHeight() ? $type->getHeight() : t('Automatic');
@@ -21,11 +21,11 @@ defined('C5_EXECUTE') or die("Access Denied.");
         $query = http_build_query(array(
             'fID' => $version->getFileID(),
             'fvID' => $version->getFileVersionID(),
-            'thumbnail' => $type->getHandle()
+            'thumbnail' => $type->getHandle(),
         ));
         ?>
         <h4>
-            <?php echo $type->getName() ?>
+            <?php echo $type->getDisplayName() ?>
             <small><?php echo t('%s x %s dimensions', $width, $height) ?></small>
             <?php if ($fp->canEditFileContents() && $hasFile) { ?>
                 <a href="<?php echo $url . '?' . $query ?>"
@@ -48,7 +48,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
                      data-fvid="<?php echo $version->getFileVersionID() ?>"
                      style="max-width: 100%"
                      src="<?php echo $configuration->getPublicURLToFile($thumbnailPath) ?>"/>
-            <?php
+                <?php
             } else {
                 echo t(
                     'No thumbnail found. Usually this is because the ' .

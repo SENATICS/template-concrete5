@@ -1,8 +1,15 @@
-<?php use Concrete\Core\Validation\CSRF\Token;
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 
-defined('C5_EXECUTE') or die("Access Denied."); ?>
+$footerSiteTitle = new GlobalArea('Footer Site Title');
+$footerSocial = new GlobalArea('Footer Social');
+$footerSiteTitleBlocks = $footerSiteTitle->getTotalBlocksInArea();
+$footerSocialBlocks = $footerSocial->getTotalBlocksInArea();
+$displayFirstSection = $footerSiteTitleBlocks > 0 || $footerSocialBlocks > 0 || $c->isEditMode();
+
+?>
 
 <footer id="footer-theme">
+    <?php if ($displayFirstSection) { ?>
     <section>
     <div class="container">
         <div class="row">
@@ -21,6 +28,7 @@ defined('C5_EXECUTE') or die("Access Denied."); ?>
         </div>
     </div>
     </section>
+    <?php } ?>
     <section>
     <div class="container">
         <div class="row">
@@ -53,25 +61,7 @@ defined('C5_EXECUTE') or die("Access Denied."); ?>
             <div class="col-sm-12">
                 <span><?php echo t('Built with <a href="http://www.concrete5.org" class="concrete5">concrete5</a> CMS.')?></span>
                 <span class="pull-right">
-                    <?php
-                    if (!id(new User)->isLoggedIn()) {
-                        ?>
-                        <a href="<?php echo URL::to('/login')?>">
-                            <?php echo t('Log in') ?>
-                        </a>
-                        <?php
-                    } else {
-                        $token = new Token();
-                        ?>
-                        <form action="<?php echo URL::to('/login', 'logout') ?>">
-                            <?php id(new Token())->output('logout'); ?>
-                            <a href="#" onclick="$(this).closest('form').submit();return false">
-                                <?php echo t('Log out') ?>
-                            </a>
-                        </form>
-                        <?php
-                    }
-                    ?>
+                    <?php echo Core::make('helper/navigation')->getLogInOutLink()?>
                 </span>
             </div>
         </div>

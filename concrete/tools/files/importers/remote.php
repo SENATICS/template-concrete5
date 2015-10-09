@@ -11,9 +11,15 @@ if (!$fp->canAddFiles()) {
     die(t("Unable to add files."));
 }
 
+$error = Loader::helper('validation/error');
+
 if (isset($_REQUEST['fID'])) {
     // we are replacing a file
     $fr = File::getByID($_REQUEST['fID']);
+    $frp = new Permissions($fr);
+    if (!$frp->canEditFileContents()) {
+        $error->add(t('You do not have permission to modify this file.'));
+    }
 } else {
     $fr = false;
 }
@@ -23,8 +29,6 @@ $r = new FileEditResponse();
 $valt = Loader::helper('validation/token');
 $file = Loader::helper('file');
 Loader::helper('mime');
-
-$error = Loader::helper('validation/error');
 
 // load all the incoming fields into an array
 $incoming_urls = array();
@@ -64,6 +68,7 @@ if (!$error->has()) {
 }
 
 $import_responses = array();
+$files = array();
 
 // if we haven't gotten any errors yet then try to process the form
 if (!$error->has()) {
@@ -126,6 +131,7 @@ if (!$error->has()) {
                         // we check $fr because we don't want to set it if we are replacing an existing file
                         $respf = $resp->getFile();
                         $respf->setOriginalPage($_POST['ocID']);
+                        $files[] = $respf;
                     } else {
                         $respf = $fr;
                     }
@@ -136,17 +142,15 @@ if (!$error->has()) {
                 unlink($fpath.'/'.$fname);
             } else {
                 // could not figure out a file name
-                $error->add(t(/*i18n: %s is an URL*/'Could not determine the name of the file at %s', $this_url));
+                $error->add(t(/*i18n: %s is an URL*/'Could not determine the name of the file at %s', h($this_url)));
             }
         } else {
             // warn that we couldn't download the file
-            $error->add(t(/*i18n: %s is an URL*/'There was an error downloading %s', $this_url));
+            $error->add(t(/*i18n: %s is an URL*/'There was an error downloading %s', h($this_url)));
         }
     }
 }
 
 $r->setError($error);
-if (is_object($respf)) {
-    $r->setFile($respf);
-}
+$r->setFiles($files);
 $r->outputJSON();

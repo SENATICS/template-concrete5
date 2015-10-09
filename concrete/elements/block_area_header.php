@@ -30,6 +30,10 @@ if ($ap->canAddLayout()) {
     $handles .= BLOCK_HANDLE_LAYOUT_PROXY . ' ';
 }
 
+if ($ap->canAddStack()) {
+    $handles .= 'stack ';
+}
+
 if ($canAddGathering) {
     $handles .= BLOCK_HANDLE_GATHERING_ITEM_PROXY . ' ';
 }
@@ -52,6 +56,7 @@ $gf = $pt->getThemeGridFrameworkObject();
      data-area-menu-handle="<?php echo $a->getAreaID() ?>"
      data-area-enable-grid-container="<?php echo $a->isGridContainerEnabled() ?>"
      data-launch-area-menu="area-menu-a<?php echo $a->getAreaID() ?>"
+     data-area-custom-templates='<?php echo json_encode($a->getAreaCustomTemplates(), ENT_QUOTES)?>'
      class="<?php echo $class ?>">
 
     <?php unset($class); ?>
@@ -60,7 +65,7 @@ $gf = $pt->getThemeGridFrameworkObject();
         if ($pt->supportsGridFramework() && $a->isGridContainerEnabled()) {
             echo $gf->getPageThemeGridFrameworkContainerStartHTML();
             echo $gf->getPageThemeGridFrameworkRowStartHTML();
-            printf('<div class="%s">', $gf->getPageThemeGridFrameworkColumnClassForSpan(
+            printf('<div class="%s">', $gf->getPageThemeGridFrameworkColumnClassesForSpan(
                                           $gf->getPageThemeGridFrameworkNumColumns()
             ));
             ?>

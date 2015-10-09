@@ -1,7 +1,7 @@
 <?php
 namespace Concrete\Core\File\StorageLocation\Configuration;
 use Concrete\Core\Error\Error;
-use \League\Flysystem\Adapter\Local;
+use \Concrete\Flysystem\Adapter\Local;
 
 class LocalConfiguration extends Configuration implements ConfigurationInterface
 {
@@ -46,14 +46,23 @@ class LocalConfiguration extends Configuration implements ConfigurationInterface
 
     public function getPublicURLToFile($file)
     {
-        return BASE_URL . $this->getRelativePathToFile($file);
+        $rel = $this->getRelativePathToFile($file);
+        if(strpos($rel, '://')) {
+            return $rel;
+        }
+
+        $url = \Core::getApplicationURL(true);
+        $url = $url->setPath($rel);
+        return trim((string) $url, '/');
     }
 
     public function loadFromRequest(\Concrete\Core\Http\Request $req)
     {
         $data = $req->get('fslType');
         $this->path = rtrim($data['path'], '/');
-        $this->relativePath = rtrim($data['relativePath'], '/');
+        if (isset($data['relativePath'])) {
+            $this->relativePath = rtrim($data['relativePath'], '/');
+        }
     }
 
     /**
@@ -69,6 +78,8 @@ class LocalConfiguration extends Configuration implements ConfigurationInterface
             $e->add(t("You must include a root path for this storage location."));
         } else if (!is_dir($this->path)) {
             $e->add(t("The specified root path does not exist."));
+        } else if ($this->path == '/') {
+            $e->add(t('Invalid path to file storage location. You may not choose the root directory.'));
         }
         return $e;
     }

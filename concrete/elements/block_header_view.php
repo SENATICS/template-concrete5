@@ -22,17 +22,22 @@ if ($showMenu) { ?>
     <div data-container="block">
 <?php } ?>
 
+<?php if (is_object($css) && $b->getBlockTypeHandle() == BLOCK_HANDLE_LAYOUT_PROXY) { ?>
+    <?php // in this instance, the css container comes OUTSIDE any theme container ?>
+    <div class="<?php echo $css->getContainerClass() ?>" >
+<?php } ?>
+
 <?php
 if (
     $pt->supportsGridFramework()
     && $a->isGridContainerEnabled()
-    && !$bt->ignorePageThemeGridFrameworkContainer()
+    && !$b->ignorePageThemeGridFrameworkContainer()
 ) {
     $gf = $pt->getThemeGridFrameworkObject();
     print $gf->getPageThemeGridFrameworkContainerStartHTML();
     print $gf->getPageThemeGridFrameworkRowStartHTML();
-    printf('<div class="%s">', $gf->getPageThemeGridFrameworkColumnClassForSpan(
-        $gf->getPageThemeGridFrameworkNumColumns()
+    printf('<div class="%s">', $gf->getPageThemeGridFrameworkColumnClassesForSpan(
+        min($a->getAreaGridMaximumColumns(), $gf->getPageThemeGridFrameworkNumColumns())
     ));
 }
 
@@ -98,7 +103,7 @@ if ($showMenu) {
         data-cID="<?php echo $c->getCollectionID()?>"
         data-area-id="<?php echo $a->getAreaID()?>"
         data-block-id="<?php echo $b->getBlockID()?>"
-        data-block-type-wraps="<?php echo intval(!$bt->ignorePageThemeGridFrameworkContainer(), 10) ?>"
+        data-block-type-wraps="<?php echo intval(!$b->ignorePageThemeGridFrameworkContainer(), 10) ?>"
         class="<?php echo $class?>"
         data-block-type-handle="<?php echo $btHandle?>"
         data-launch-block-menu="block-menu-b<?php echo $b->getBlockID()?>-<?php echo $a->getAreaID()?>"
@@ -106,7 +111,7 @@ if ($showMenu) {
         <?php if ($btw->getBlockTypeHandle() == BLOCK_HANDLE_LAYOUT_PROXY) { ?> data-block-menu-handle="none"<?php } ?>
         >
 
-    <?php if (is_object($css)) { ?>
+    <?php if (is_object($css) && $b->getBlockTypeHandle() != BLOCK_HANDLE_LAYOUT_PROXY) { ?>
     <div class="<?php echo $css->getContainerClass() ?>" >
     <?php } ?>
 
@@ -148,7 +153,7 @@ if ($showMenu) {
                                     <li><a href="javascript:void(0)" data-menu-action="edit_inline" data-area-enable-grid-container="<?php echo $a->isGridContainerEnabled()?>" data-area-grid-maximum-columns="<?php echo $a->getAreaGridMaximumColumns()?>"><?php echo t("Edit Block")?></a></li>
                                 <?php } ?>
                             <?php } else { ?>
-                                <li><a data-menu-action="block_dialog" data-menu-href="<?php echo URL::to('/ccm/system/dialogs/block/edit')?>" dialog-title="<?php echo t('Edit %s', $btOriginal->getBlockTypeName())?>" dialog-modal="false" dialog-width="<?php echo $btOriginal->getBlockTypeInterfaceWidth()?>" dialog-height="<?php echo $btOriginal->getBlockTypeInterfaceHeight() + $heightPlus?>" ><?php echo t("Edit Block")?></a></li>
+                                <li><a data-menu-action="block_dialog" data-menu-href="<?php echo URL::to('/ccm/system/dialogs/block/edit')?>" dialog-title="<?php echo t('Edit %s', t($btOriginal->getBlockTypeName()))?>" dialog-modal="false" dialog-width="<?php echo $btOriginal->getBlockTypeInterfaceWidth()?>" dialog-height="<?php echo $btOriginal->getBlockTypeInterfaceHeight() + $heightPlus?>" ><?php echo t("Edit Block")?></a></li>
                             <?php } ?>
 
                         <?php } ?>
@@ -162,7 +167,7 @@ if ($showMenu) {
                             <li><a href="javascript:void(0)" data-menu-action="delete_block" data-menu-delete-message="<?php echo $deleteMessage?>"><?php echo t("Delete")?></a></li>
                         <?php } ?>
 
-                        <?php if ($b->getBlockTypeHandle() != BLOCK_HANDLE_LAYOUT_PROXY && $b->getBlockTypeHandle() != BLOCK_HANDLE_PAGE_TYPE_OUTPUT_PROXY) { ?>
+                        <?php if ($b->getBlockTypeHandle() != BLOCK_HANDLE_LAYOUT_PROXY) { ?>
 
                             <?php if ($canDesign || $canEditCustomTemplate || $canEditBlockName || $canEditCacheSettings) { ?>
                                 <li class="divider"></li>
@@ -170,18 +175,18 @@ if ($showMenu) {
                                 <?php if ($canDesign || $canEditCustomTemplate) { ?>
                                     <li><a href="#" data-menu-action="block_design"><?php echo t("Design &amp; Custom Template")?></a></li>
                                 <?php } ?>
-                                <?php if ($canEditBlockName || $canEditCacheSettings) { ?>
+                                <?php if ($b->getBlockTypeHandle() != BLOCK_HANDLE_PAGE_TYPE_OUTPUT_PROXY && ($canEditBlockName || $canEditCacheSettings)) { ?>
                                     <li><a dialog-title="<?php echo t('Advanced Block Settings')?>" dialog-modal="false" dialog-width="500" dialog-height="320" data-menu-action="block_dialog" data-menu-href="<?php echo URL::to('/ccm/system/dialogs/block/cache')?>" ><?php echo t("Advanced")?></a></li>
                                 <?php } ?>
                             <?php } ?>
 
-                            <?php if ($canModifyGroups || $canScheduleGuestAccess || $canAliasBlockOut) { ?>
+                            <?php if ($b->getBlockTypeHandle() != BLOCK_HANDLE_PAGE_TYPE_OUTPUT_PROXY && ($canModifyGroups || $canScheduleGuestAccess || $canAliasBlockOut)) { ?>
                                 <li class="divider"></li>
                                 <?php if ($canModifyGroups) { ?>
-                                    <li><a dialog-title="<?php echo t('Block Permissions')?>" dialog-modal="false" dialog-width="350" dialog-height="420" data-menu-action="block_dialog" data-menu-href="<?php echo URL::to('/ccm/system/dialogs/block/permissions/list')?>" ><?php echo t("Permissions")?></a></li>
+                                    <li><a dialog-title="<?php echo t('Block Permissions')?>" dialog-modal="false" dialog-width="350" dialog-height="450" data-menu-action="block_dialog" data-menu-href="<?php echo URL::to('/ccm/system/dialogs/block/permissions/list')?>" ><?php echo t("Permissions")?></a></li>
                                 <?php } ?>
                                 <?php if ($canScheduleGuestAccess) { ?>
-                                    <li><a dialog-title="<?php echo t('Schedule Guest Access')?>" dialog-modal="false" dialog-width="500" dialog-height="220" data-menu-action="block_dialog" data-menu-href="<?php echo URL::to('/ccm/system/dialogs/block/permissions/guest_access')?>" ><?php echo t("Schedule Guest Access")?></a></li>
+                                    <li><a dialog-title="<?php echo t('Schedule Guest Access')?>" dialog-modal="false" dialog-width="500" dialog-height="320" data-menu-action="block_dialog" data-menu-href="<?php echo URL::to('/ccm/system/dialogs/block/permissions/guest_access')?>" ><?php echo t("Schedule Guest Access")?></a></li>
                                 <?php } ?>
                                 <?php if ($canAliasBlockOut) { ?>
                                     <li><a dialog-title="<?php echo t('Setup on Child Pages')?>" dialog-modal="false" dialog-width="550" dialog-height="450" data-menu-action="block_dialog" data-menu-href="<?php echo URL::to('/ccm/system/dialogs/block/aliasing')?>" ><?php echo t("Setup on Child Pages")?></a></li>
@@ -196,7 +201,7 @@ if ($showMenu) {
         </div>
 
 <?php } else { ?>
-    <?php if (is_object($css)) { ?>
+    <?php if (is_object($css) && $b->getBlockTypeHandle() != BLOCK_HANDLE_LAYOUT_PROXY) { ?>
     <div class="<?php echo $css->getContainerClass() ?>" >
     <?php } ?>
 <?php } ?>

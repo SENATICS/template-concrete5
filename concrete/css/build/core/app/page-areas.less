@@ -184,6 +184,16 @@ div.ccm-area[data-total-blocks="0"] {
 
 }
 
+/**
+ * Empty areas - firefox stupidity
+ */
+@-moz-document url-prefix() {
+  div.ccm-area[data-total-blocks="0"] {
+    border:1px solid #e6e6e6;
+    outline:none!important;
+  }
+}
+
 div.ccm-area[data-total-blocks="0"].ccm-area-drag-block-type-over, div.ccm-area[data-total-blocks="0"].ccm-menu-item-hover {
 
   outline: 1px solid #0c6;
@@ -259,7 +269,7 @@ div#ccm-menu-highlighter.ccm-area-highlight {
 div.ccm-area.ccm-area-inline-edit-disabled {
   outline-color: transparent;
   div.ccm-area-footer {
-    .opacity(0);
+    display: none;
   }
 
   div.ccm-block-edit {
@@ -367,7 +377,7 @@ ul.ccm-edit-mode-inline-commands:hover {
         }
 
         &.divider {
-          background-color: #212123;
+          background-color: #444;
         }
       }
     }
@@ -434,6 +444,7 @@ div.ccm-area-drag-area {
   outline-style: solid;
   text-indent: -10000em;
   line-height: 0px;
+  font-size: 0px;
   outline-color: rgb(170, 255, 170);
 
   &.ccm-area-drag-area-contender {

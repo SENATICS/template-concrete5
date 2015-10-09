@@ -22,7 +22,7 @@ class TopicTreeNodeResponse extends Response {
 	}
 
 	public function canDuplicateTreeNode() {
-		return $this->canAccessTopics();
+		return false;
 	}
 
 	public function canEditTreeNode() {
@@ -34,6 +34,10 @@ class TopicTreeNodeResponse extends Response {
 	}
 
 	public function canAddTreeSubNode() {
+		return $this->canAccessTopics();
+	}
+
+	public function canAddTopicTreeNode() {
 		return $this->canAccessTopics();
 	}
 

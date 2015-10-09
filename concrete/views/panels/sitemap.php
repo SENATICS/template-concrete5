@@ -5,10 +5,10 @@
 	<h5><?php echo t('New Page')?></h5>
 	<ul class="ccm-panel-sitemap-list">
 	<?php foreach($frequentPageTypes as $pt) { ?>
-		<li><a href="<?php echo URL::to('/ccm/system/page/', 'create', $pt->getPageTypeID())?>"><?php echo $pt->getPageTypeName()?></a></li>
+		<li><a href="<?php echo URL::to('/ccm/system/page/', 'create', $pt->getPageTypeID())?>"><?php echo $pt->getPageTypeDisplayName()?></a></li>
 	<?php } ?>
     <?php foreach($otherPageTypes as $pt) { ?>
-        <li data-page-type="other" <?php if (count($frequentPageTypes)) { ?>style="display: none"<?php } ?>><a href="<?php echo URL::to('/ccm/system/page/', 'create', $pt->getPageTypeID())?>"><?php echo $pt->getPageTypeName()?></a></li>
+        <li data-page-type="other" <?php if (count($frequentPageTypes)) { ?>style="display: none"<?php } ?>><a href="<?php echo URL::to('/ccm/system/page/', 'create', $pt->getPageTypeID())?>"><?php echo $pt->getPageTypeDisplayName()?></a></li>
     <?php } ?>
 
     <?php if (count($frequentPageTypes) && count($otherPageTypes)) { ?>
@@ -33,7 +33,7 @@ if ($canViewSitemap) { ?>
 	<script type="text/javascript">
 	$(function() {
 		$('#ccm-sitemap-panel-sitemap').concreteSitemap({
-			onSelectNode: function(node) {
+			onClickNode: function(node) {
 				window.location.href = CCM_DISPATCHER_FILENAME + '?cID=' + node.data.cID;
 			}
 		});

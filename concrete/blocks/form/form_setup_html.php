@@ -1,10 +1,8 @@
 <?php 
 defined('C5_EXECUTE') or die("Access Denied.");
-/* @var $uh ConcreteUrlsHelper */ 
 $uh = Loader::helper('concrete/urls');
-/* @var $form FormHelper */
 $form = Loader::helper('form');
-/* @var $ih ConcreteInterfaceHelper */
+$datetime = loader::helper('form/date_time');
 $ih = Loader::helper('concrete/ui');
 $a = $view->getAreaObject();
 $bt = BlockType::getByHandle('form');
@@ -41,6 +39,10 @@ $addSelected = true;
 			<?php echo $form->label('surveyName', t('Form Name'))?>
 			<?php echo $form->text('surveyName', $miniSurveyInfo['surveyName'])?>
 		</div>
+        <div class="form-group">
+            <?php echo $form->label('submitText', t('Submit Text'))?>
+            <?php echo $form->text('submitText', $this->controller->submitText)?>
+        </div>
 		<div class="form-group">
 			<?php echo $form->label('thankyouMsg', t('Message to display when completed'))?>
 			<?php echo $form->textarea('thankyouMsg', $this->controller->thankyouMsg, array('rows' => 3))?>
@@ -55,7 +57,7 @@ $addSelected = true;
 			<span class="help-block"><?php echo t('(Seperate multiple emails with a comma)')?></span>
 		</div>
 		<div class="form-group">
-			<label class="control-label"><?php echo t('Solving a <a href="%s" target="_blank">CAPTCHA</a> Required to Post?', 'http://en.wikipedia.org/wiki/Captcha')?></label>
+			<label class="control-label"><?php echo t('Solving a <a href="%s" target="_blank">CAPTCHA</a> Required to Post?', t('http://en.wikipedia.org/wiki/Captcha'))?></label>
 			<div class="radio">
 			<label>
 				<?php echo $form->radio('displayCaptcha', 1, (int) $miniSurveyInfo['displayCaptcha'])?>
@@ -112,7 +114,7 @@ $addSelected = true;
 
 		<div class="form-group">
 			<?php echo $form->label('question', t('Question'))?>
-			<?php echo $form->text('question')?>
+			<?php echo $form->text('question', array('maxlength' => '255'))?>
 		</div>
 		<div class="form-group">
 			<?php echo $form->label('answerType', t('Answer Type'))?>
@@ -150,7 +152,21 @@ $addSelected = true;
 			</div>
 		</div>
 
-		<div class="form-group">
+        <div id="answerDateDefault">
+            <div class="form-group">
+                <?php echo $form->label('defaultDate', t('Default Value'))?>
+                <?php echo $form->select(
+                    'defaultDate',
+                    array(
+                        '' => t('Blank'),
+                        'now' => t('Current Date/Time'),
+                    ),
+                    'blank'
+                )?>
+            </div>
+        </div>
+
+        <div class="form-group">
 			<label class="control-label"><?php echo t('Required')?></label>
 			<div class="radio"><label><?php echo $form->radio('required', 1)?> <?php echo t('Yes')?></label></div>
 			<div class="radio"><label><?php echo $form->radio('required', 0)?> <?php echo t('No')?></label></div>
@@ -221,6 +237,20 @@ $addSelected = true;
 				</div>
 			</div>
 
+            <div id="answerDateDefaultEdit">
+                <div class="form-group">
+                    <?php echo $form->label('defaultDateEdit', t('Default Value'))?>
+                    <?php echo $form->select(
+                        'defaultDateEdit',
+                        array(
+                            '' => t('Blank'),
+                            'now' => t('Current Date/Time'),
+                        ),
+                        'blank'
+                    )?>
+                </div>
+            </div>
+
 			<div class="form-group">
 				<label class="control-label"><?php echo t('Required')?></label>
 				<div class="radio"><label><?php echo $form->radio('requiredEdit', 1)?> <?php echo t('Yes')?></label></div>
@@ -228,14 +258,14 @@ $addSelected = true;
 			</div>
 
 			<div class="form-group">
-				<div id="emailSettings">
+				<div id="emailSettingsEdit">
 					<?php print $form->label('send_notification_from_edit', t('Reply to this email address'));?>
 					<span class="send_notification_from_edit"><?php print $form->checkbox('send_notification_from_edit', 1); ?></span>
 				</div>
 			</div>
 		</fieldset>
 		
-		<input type="hidden" id="positionEdit" name="position" type="text" value="1000" />
+		<input type="hidden" id="positionEdit" name="position" value="1000" />
 		
 		<div>
 			<?php echo $ih->button(t('Cancel'), 'javascript:void(0)', 'left', '', array('id' => 'cancelEditQuestion'))?>
@@ -260,7 +290,7 @@ $addSelected = true;
 
 <style type="text/css">
 	div.miniSurveyQuestion {
-		float: left; 
+		float: left;
 		width: 80%;
 	}
 	div.miniSurveyOptions {
@@ -275,7 +305,7 @@ $addSelected = true;
 function initFormBlockWhenReady(){
 	if(miniSurvey && typeof(miniSurvey.init)=='function'){
 		miniSurvey.cID=parseInt(<?php echo $c->getCollectionID()?>);
-		miniSurvey.arHandle="<?php echo $a->getAreaHandle()?>";
+		miniSurvey.arHandle="<?php echo urlencode($_REQUEST['arHandle'])?>";
 		miniSurvey.bID=thisbID;
 		miniSurvey.btID=thisbtID;
 		miniSurvey.qsID=parseInt(<?php echo $miniSurveyInfo['questionSetId']?>);	

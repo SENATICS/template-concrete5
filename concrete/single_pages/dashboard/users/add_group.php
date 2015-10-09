@@ -22,7 +22,7 @@ $registeredGroupNode = GroupTreeNode::getTreeNodeByGroupID(REGISTERED_GROUP_ID);
 	<legend><?php echo t('Group Details')?></legend>
 <div class="form-group">
 <?php echo $form->label('gName', t('Name'))?>
-	<input type="text" class="form-control" name="gName" value="<?php echo htmlentities($_POST['gName'])?>" />
+	<input type="text" class="form-control" name="gName" value="<?php echo Core::make('helper/text')->entities($_POST['gName'])?>" />
 </div>
 
 <div class="form-group">
@@ -141,6 +141,11 @@ $registeredGroupNode = GroupTreeNode::getTreeNodeByGroupID(REGISTERED_GROUP_ID);
                 <?php echo $form->checkbox('gCheckAutomationOnJobRun', 1)?>
                 <span><?php echo t('When the "Check Automated Groups" Job runs.')?></span>
             </label>
+        </div>
+        <div class="alert alert-info">
+            <?php
+            print t('For custom automated group actions, make sure an automation group controller exists.');
+            ?>
         </div>
 	</div>
 </div>

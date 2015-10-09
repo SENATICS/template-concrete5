@@ -5,25 +5,25 @@ use \Concrete\Core\Conversation\Message\ThreadedList as ConversationMessageThrea
 $cnv = Conversation::getByID($_POST['cnvID']);
 if (is_object($cnv)) {
 	$displayForm = true;
-	$enableOrdering = strip_tags($_POST['enableOrdering'] == 1) ? true : false;
-	$enablePosting = strip_tags($_POST['enablePosting'] == 1) ? true : false;
-	$paginate = strip_tags($_POST['paginate'] == 1) ? true : false;
-	$enableCommentRating = strip_tags($_POST['enableCommentRating']);
+	$enableOrdering = ($_POST['enableOrdering'] == 1) ? true : false;
+	$enablePosting = ($_POST['enablePosting'] == 1) ? Conversation::POSTING_ENABLED : Conversation::POSTING_DISABLED_MANUALLY;
+	$paginate = ($_POST['paginate'] == 1) ? true : false;
+	$enableCommentRating = ($_POST['enableCommentRating']);
 
     $cp = new Permissions($cnv);
     if (!$cp->canAddConversationMessage()) {
-        $enablePosting = false;
+        $enablePosting = Conversation::POSTING_DISABLED_PERMISSIONS;
     }
 
 	if (in_array($_POST['displayMode'], array('flat'))) {
-		$displayMode = strip_tags($_POST['displayMode']);
+		$displayMode = $_POST['displayMode'];
 	} else {
 		$displayMode = 'threaded';
 	}
 	
 	$addMessageLabel = t('Add Message');
 	if ($_POST['addMessageLabel']) {
-		$addMessageLabel = Loader::helper('security')->sanitizeString($_POST['addMessageLabel']); //ya satiniza el valor
+		$addMessageLabel = Loader::helper('security')->sanitizeString($_POST['addMessageLabel']);
 	}
 	switch($_POST['task']) {
 		case 'get_messages':
@@ -54,7 +54,7 @@ if (is_object($cnv)) {
 	}
 
 	if ($paginate && Loader::helper('validation/numbers')->integer($_POST['itemsPerPage'])) {
-		$ml->setItemsPerPage(strip_tags($_POST['itemsPerPage']));
+		$ml->setItemsPerPage($_POST['itemsPerPage']);
 	} else {
 		$ml->setItemsPerPage(-1);
 	}
@@ -62,8 +62,8 @@ if (is_object($cnv)) {
 	$summary = $ml->getSummary();
 	$totalPages = $summary->pages;
 	$args = array(
-		'cID' => $_POST['cID'],
-		'bID' => $_POST['blockID'],
+		'cID' => intval($_POST['cID']),
+		'bID' => intval($_POST['blockID']),
 		'conversation' => $cnv,
 		'messages' => $ml->getPage(),
 		'displayMode' => $displayMode,
@@ -72,16 +72,15 @@ if (is_object($cnv)) {
 		'addMessageLabel' => $addMessageLabel,
 		'currentPage' => 1,
 		'totalPages' => $totalPages,
-		'orderBy' => strip_tags($_POST['orderBy']),
+		'orderBy' => $_POST['orderBy'],
 		'enableOrdering' => $enableOrdering,
-		'displayPostingForm' => strip_tags($_POST['displayPostingForm']),
-		'insertNewMessages' => strip_tags($_POST['insertNewMessages']),
-		'enableCommentRating' => strip_tags($_POST['enableCommentRating']),
-		'dateFormat' => strip_tags($_POST['dateFormat']), 
-		'customDateFormat' => strip_tags($_POST['customDateFormat']),
-		'blockAreaHandle' => strip_tags($_POST['blockAreaHandle']),
-        'attachmentsEnabled' => strip_tags($_POST['attachmentsEnabled']),
-        'attachmentOverridesEnabled' => strip_tags($_POST['attachmentOverridesEnabled'])
+		'displayPostingForm' => $_POST['displayPostingForm'],
+		'enableCommentRating' => $_POST['enableCommentRating'],
+		'dateFormat' => $_POST['dateFormat'], 
+		'customDateFormat' => $_POST['customDateFormat'],
+		'blockAreaHandle' => $_POST['blockAreaHandle'],
+        'attachmentsEnabled' => $_POST['attachmentsEnabled'],
+        'attachmentOverridesEnabled' => $_POST['attachmentOverridesEnabled']
 	);
 	Loader::element('conversation/display', $args);
 }

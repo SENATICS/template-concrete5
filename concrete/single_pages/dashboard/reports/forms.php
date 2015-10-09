@@ -119,7 +119,7 @@ $db = Loader::db();
                             <input type="hidden" name="action" value="deleteFormAnswers"/>
                             <?php $valt->output('deleteFormAnswers') ?>
                             <div class="btn-group">
-                                <a href="<?php echo DIR_REL . '/index.php?cID=' . $c->getCollectionID() . '&qsid=' . $qsid ?>"
+                                <a href="<?php echo URL::to($c->getCollectionPath() . '?qsid=' . $qsid) ?>"
                                    class="btn btn-default btn-sm">
                                     <?php echo t('View Responses') ?>
                                 </a>
@@ -210,7 +210,7 @@ else {
     <?php } else: { ?>
 
         <div class="ccm-dashboard-header-buttons">
-            <a id="ccm-export-results" class="btn btn-success" href="<?php echo $view->action('csv', '?qsid=' . $questionSet) ?>">
+            <a id="ccm-export-results" class="btn btn-success" href="<?php echo $view->action('csv')?>?qsid=<?php echo $questionSet ?>">
                 <i class='fa fa-download'></i> <?php echo t('Export to CSV') ?>
             </a>
         </div>
@@ -286,7 +286,7 @@ else {
                                 <input type="hidden" name="asid" value="<?php echo intval($answerSet['asID']) ?>"/>
                                 <input type="hidden" name="action" value="deleteResponse"/>
                                 <?php $valt->output('deleteResponse') ?>
-                                <?php echo $ih->submit(t('Delete'), false, 'left', 'btn pull-right btn-danger') ?>
+                                <?php echo $ih->submit(t('Delete'), false, 'left', 'btn pull-right btn-danger delete-response') ?>
                             </form>
                         </td>
                     </tr>
@@ -296,17 +296,15 @@ else {
         </div>
         </div>
         <?php if ($paginator && strlen($paginator->getPages()) > 0) { ?>
-            <div class="ccm-pane-footer">
-                <div class="pagination">
-                    <ul>
-                        <li class="prev"><?php echo $paginator->getPrevious() ?></li>
+            <div class="ccm-search-results-pagination">
+                <ul class="pagination">
+                    <li class="prev"><?php echo $paginator->getPrevious() ?></li>
 
-                        <?php // Call to pagination helper's 'getPages' method with new $wrapper var ?>
-                        <?php echo $paginator->getPages('li') ?>
+                    <?php // Call to pagination helper's 'getPages' method with new $wrapper var ?>
+                    <?php echo $paginator->getPages('li') ?>
 
-                        <li class="next"><?php echo $paginator->getNext() ?></li>
-                    </ul>
-                </div>
+                    <li class="next"><?php echo $paginator->getNext() ?></li>
+                </ul>
             </div>
         <?php } ?>
     <?php }endif ?>

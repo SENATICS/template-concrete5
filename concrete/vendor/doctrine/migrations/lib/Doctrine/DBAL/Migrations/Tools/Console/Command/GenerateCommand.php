@@ -21,10 +21,8 @@
 namespace Doctrine\DBAL\Migrations\Tools\Console\Command;
 
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
-use Doctrine\DBAL\Migrations\MigrationException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -51,12 +49,18 @@ use Doctrine\DBAL\Schema\Schema;
  */
 class Version<version> extends AbstractMigration
 {
+    /**
+     * @param Schema $schema
+     */
     public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
 <up>
     }
 
+    /**
+     * @param Schema $schema
+     */
     public function down(Schema $schema)
     {
         // this down() migration is auto-generated, please modify it to your needs
@@ -110,6 +114,7 @@ EOT
             $down ? "        " . implode("\n        ", explode("\n", $down)) : null
         );
         $code = str_replace($placeHolders, $replacements, self::$_template);
+        $code = preg_replace('/^ +$/m', '', $code);
         $dir = $configuration->getMigrationsDirectory();
         $dir = $dir ? $dir : getcwd();
         $dir = rtrim($dir, '/');
@@ -122,7 +127,7 @@ EOT
         file_put_contents($path, $code);
 
         if ($editorCmd = $input->getOption('editor-cmd')) {
-            shell_exec($editorCmd . ' ' . escapeshellarg($path));
+            proc_open($editorCmd . ' ' . escapeshellarg($path), array(), $pipes);
         }
 
         return $path;

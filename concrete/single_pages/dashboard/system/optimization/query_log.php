@@ -49,16 +49,22 @@ $th = Loader::helper('text');
         </div>
 
         <div class="ccm-search-results-pagination">
-            <?php print $pagination->renderDefaultView();?>
+            <?php print $pagination->renderView('dashboard');?>
         </div>
 
     </div>
 
     <div class="ccm-dashboard-header-buttons">
-        <form method="post" action="<?php echo $view->action('clear')?>">
+        <form method="post" action="<?php echo $view->action('clear')?>" class='form-inline' style='display:inline'>
             <?php echo Loader::helper('validation/token')->output('clear')?>
             <button type="submit" class="btn btn-danger"><?php echo t('Clear Log')?></button>
         </form>
+
+        <form method="post" action="<?php echo $view->action('csv')?>" class='form-inline' style='display:inline'>
+            <?php echo Loader::helper('validation/token')->output('csv')?>
+            <button type="submit" class="btn btn-success"><?php echo t('Export to CSV') ?></button>
+        </form>
+
     </div>
 
     <?php } else { ?>

@@ -8,7 +8,7 @@ defined('C5_EXECUTE') or die('Access Denied');
     <hr>
 </div>
 <div class="form-group">
-    <a href="<?php echo \URL::to('/system/authentication/twitter/attempt_attach'); ?>"
+    <a href="<?php echo \URL::to('/ccm/system/authentication/oauth2/twitter/attempt_attach'); ?>"
        class="btn btn-primary btn-twitter">
         <i class="fa fa-twitter"></i>
         <?php echo t('Attach a %s account', t('twitter')) ?>

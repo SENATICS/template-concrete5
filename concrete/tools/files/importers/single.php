@@ -14,17 +14,21 @@ if (!$fp->canAddFiles()) {
 
 $errorCode = -1;
 
+$error = Loader::helper('validation/error');
 if (isset($_POST['fID'])) {
 	// we are replacing a file
 	$fr = File::getByID($_REQUEST['fID']);
+	$frp = new Permissions($fr);
+	if (!$frp->canEditFileContents()) {
+		$error->add(t('You do not have permission to modify this file.'));
+	}
 } else {
 	$fr = false;
 }
 
 $r = new FileEditResponse();
-$error = Loader::helper('validation/error');
 
-if ($valt->validate('upload')) {
+if ($valt->validate('upload') && !$error->has()) {
 	if (isset($_FILES['Filedata']) && (is_uploaded_file($_FILES['Filedata']['tmp_name']))) {
 		if (!$fp->canAddFileType($cf->getExtension($_FILES['Filedata']['name']))) {
 			$resp = FileImporter::E_FILE_INVALID_EXTENSION;
@@ -37,7 +41,7 @@ if ($valt->validate('upload')) {
 			}
 
 		}
-		if (!($resp instanceof FileVersion)) {
+		if (!($resp instanceof \Concrete\Core\File\Version)) {
 			$errorCode = $resp;
 		} else if (!is_object($fr)) {
 			// we check $fr because we don't want to set it if we are replacing an existing file

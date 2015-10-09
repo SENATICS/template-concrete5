@@ -32,7 +32,7 @@ switch(Config::get('concrete.cache.full_page_lifetime')) {
 	<header><?php echo t('Page Caching')?></header>
 	<form method="post" action="<?php echo $controller->action('submit')?>" data-dialog-form="caching" data-panel-detail-form="caching">
 
-	<?php echo Loader::helper('concrete/ui/help')->notify('panel', '/page/caching')?>
+	<?php echo Loader::helper('concrete/ui/help')->display('panel', '/page/caching')?>
 
 		<p class="lead"><?php echo t('Enable Cache')?></p>
 

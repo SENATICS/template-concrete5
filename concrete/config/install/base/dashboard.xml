@@ -205,6 +205,7 @@
                 </attributekey>
             </attributes>
         </page>
+
         <page name="Pages &amp; Themes" path="/dashboard/pages" filename="/dashboard/pages/view.php" pagetype="" description="Reskin your site." package="" />
         <page name="Themes" path="/dashboard/pages/themes" filename="/dashboard/pages/themes/view.php" pagetype=""
               description="Reskin your site." package="">
@@ -260,6 +261,15 @@
 
         <page name="Defaults and Output" path="/dashboard/pages/types/output"
               filename="/dashboard/pages/types/output.php" pagetype="" description="" package="">
+            <attributes>
+                <attributekey handle="exclude_nav">
+                    <value><![CDATA[1]]></value>
+                </attributekey>
+            </attributes>
+        </page>
+
+        <page name="Page Type Attributes" path="/dashboard/pages/types/attributes"
+              filename="/dashboard/pages/types/attributes.php" pagetype="" description="" package="">
             <attributes>
                 <attributekey handle="exclude_nav">
                     <value><![CDATA[1]]></value>
@@ -330,10 +340,10 @@
                 </attributekey>
             </attributes>
         </page>
-        <page name="Workflow List" path="/dashboard/workflow/workflows" filename="/dashboard/workflow/workflows.php"
-              pagetype="" description="" package="" />
         <page name="Waiting for Me" path="/dashboard/workflow/me" filename="/dashboard/workflow/me.php" pagetype=""
               description="" package="" />
+        <page name="Workflow List" path="/dashboard/workflow/workflows" filename="/dashboard/workflow/workflows.php"
+              pagetype="" description="" package="" />
         <page name="Stacks &amp; Blocks" path="/dashboard/blocks" filename="/dashboard/blocks/view.php" pagetype=""
               description="Manage sitewide content and administer block types." package=""/>
         <page name="Stacks" path="/dashboard/blocks/stacks" filename="/dashboard/blocks/stacks/view.php" pagetype=""
@@ -504,6 +514,24 @@
                 </attributekey>
             </attributes>
         </page>
+
+
+        <page name="Multilingual" path="/dashboard/system/multilingual" filename="/dashboard/system/multilingual/view.php" pagetype="" description="Run your site in multiple languages." package="">
+            <attributes>
+                <attributekey handle="meta_keywords">
+                    <value>multilingual, localization, internationalization, i18n</value>
+                </attributekey>
+            </attributes>
+        </page>
+        <page name="Multilingual Setup" path="/dashboard/system/multilingual/setup" filename="/dashboard/system/multilingual/setup.php" pagetype=""
+              description="" package="" />
+        <page name="Copy Languages" path="/dashboard/system/multilingual/copy" filename="/dashboard/system/multilingual/copy.php" pagetype=""
+              description="" package="" />
+        <page name="Page Report" path="/dashboard/system/multilingual/page_report" filename="/dashboard/system/multilingual/page_report.php" pagetype=""
+              description="" package="" />
+        <page name="Translate Site Interface" path="/dashboard/system/multilingual/translate_interface" filename="/dashboard/system/multilingual/translate_interface.php" pagetype=""
+              description="" package="" />
+
         <!--
         <page name="Interface Preferences" path="/dashboard/system/basics/images"
               filename="/dashboard/system/basics/images.php" pagetype="" description="" package="">
@@ -517,11 +545,11 @@
 
         <page name="SEO &amp; Statistics" path="/dashboard/system/seo" filename="/dashboard/system/seo/view.php"
               pagetype="" description="Enable pretty URLs and tracking codes." package=""/>
-        <page name="Pretty URLs" path="/dashboard/system/seo/urls" filename="/dashboard/system/seo/urls.php" pagetype=""
+        <page name="URLs and Redirection" path="/dashboard/system/seo/urls" filename="/dashboard/system/seo/urls.php" pagetype=""
               description="" package="">
             <attributes>
                 <attributekey handle="meta_keywords">
-                    <value>vanity, pretty url, seo, pageview, view</value>
+                    <value>vanity, pretty url, redirection, hostname, canonical, seo, pageview, view</value>
                 </attributekey>
             </attributes>
         </page>
@@ -878,6 +906,15 @@
                 </attributekey>
             </attributes>
         </page>
+        <page name="Database Entities" path="/dashboard/system/environment/entities"
+              filename="/dashboard/system/environment/entities.php" pagetype=""
+              description="" package="">
+            <attributes>
+                <attributekey handle="meta_keywords">
+                    <value>database, entities, doctrine, orm</value>
+                </attributekey>
+            </attributes>
+        </page>
         <page name="Backup &amp; Restore" path="/dashboard/system/backup" filename="/dashboard/system/backup/view.php"
               pagetype="" description="Backup or restore your website." package="">
             <attributes>
@@ -900,6 +937,7 @@
     </singlepages>
     <pagetypes>
         <pagetype handle="core_stack" name="Stack" internal="1" package=""/>
+        <pagetype handle="core_stack_category" name="Stack Category" internal="1" package=""/>
         <pagetype handle="dashboard_primary_five" name="Dashboard Primary + Five" internal="1" package=""/>
         <pagetype handle="dashboard_header_four_col" name="Dashboard Header + Four Column" internal="1" package=""/>
         <pagetype handle="dashboard_full" name="Dashboard Full" internal="1" package=""/>

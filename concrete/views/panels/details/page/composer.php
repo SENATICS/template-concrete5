@@ -1,18 +1,17 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
-$token = Loader::helper('validation/token')->generate('composer');
 $cID = $c->getCollectionID();
 ?>
 
 <section class="ccm-ui">
-	<header><?php echo t('Composer - %s', $pagetype->getPageTypeName())?></header>
+	<header><?php echo t('Composer - %s', $pagetype->getPageTypeDisplayName())?></header>
 	<form method="post" data-panel-detail-form="compose">
-		<?php echo Loader::helper('concrete/ui/help')->notify('panel', '/page/composer')?>
+		<?php echo Loader::helper('concrete/ui/help')->display('panel', '/page/composer')?>
 
 		<?php Loader::helper('concrete/composer')->display($pagetype, $c); ?>
 	</form>
 
-	<div class="ccm-panel-detail-form-actions">
+	<div class="ccm-panel-detail-form-actions dialog-buttons">
 		<?php Loader::helper('concrete/composer')->displayButtons($pagetype, $c); ?>
 	</div>
 </section>
@@ -57,14 +56,16 @@ ConcretePageComposerDetail = {
 	start: function() {
 		var my = this;
 	    $('button[data-page-type-composer-form-btn=discard]').on('click', function() {
-	    	my.disableAutosave();
-	    	$.concreteAjax({
-	    		'url': '<?php echo $controller->action('discard')?>',
-	    		'data': {token: '<?php echo $token?>', cID: '<?php echo $cID?>'},
-	    		success: function(r) {
-					window.location.href = r.redirectURL;
-	    		}
-	    	});
+			if (confirm('<?php echo t('This will remove this draft and it cannot be undone. Are you sure?')?>')) {
+		    	my.disableAutosave();
+		    	$.concreteAjax({
+		    		'url': '<?php echo $controller->action('discard')?>',
+		    		'data': {cID: '<?php echo $cID?>'},
+		    		success: function(r) {
+						window.location.href = r.redirectURL;
+		    		}
+		    	});
+			}
 		});
 
 	    $('button[data-page-type-composer-form-btn=preview]').on('click', function() {

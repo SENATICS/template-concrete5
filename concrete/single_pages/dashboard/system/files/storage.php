@@ -12,7 +12,7 @@
         $fslIsDefault = $location->isDefault();
         $method = 'update';
 
-        if (!$fslIsDefault) { ?>
+        if (!$fslIsDefault && $type->getHandle() != 'default') { ?>
 
         <div class="ccm-dashboard-header-buttons">
             <form method="post" action="<?php echo $this->action('delete')?>">
@@ -99,7 +99,7 @@
     <h3><?php echo t('Storage Locations')?></h3>
     <ul class="item-select-list">
     <?php foreach($locations as $location) { ?>
-        <li><a href="<?php echo $this->action('edit', $location->getID())?>"><i class="fa fa-hdd-o"></i> <?php echo $location->getName()?></a></li>
+        <li><a href="<?php echo $this->action('edit', $location->getID())?>"><i class="fa fa-hdd-o"></i> <?php echo $location->getDisplayName()?></a></li>
     <?php } ?>
     </ul>
 

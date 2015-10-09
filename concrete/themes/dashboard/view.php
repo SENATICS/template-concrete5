@@ -37,7 +37,7 @@ if (isset($message)) { ?>
 	</div>
 <?php } ?>
 
-<?php echo Loader::helper('concrete/ui/help')->notify('page', $c->getCollectionPath())?>
+<?php echo Loader::helper('concrete/ui/help')->display('dashboard', $c->getCollectionPath())?>
 
 <?php print $innerContent; ?>
 

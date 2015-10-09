@@ -15,7 +15,7 @@
     </ul>
 
 <?php } else { ?>
-    <p>You have no presets.</p>
+    <p><?php echo t('You have no presets.')?></p>
 <?php } ?>
 
 

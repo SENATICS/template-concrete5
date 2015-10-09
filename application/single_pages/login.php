@@ -17,7 +17,6 @@ if ($authType) {
     $active = $authType;
     $activeAuths = array($authType);
 }
-$image = date('Ymd') . '.jpg';
 
 /** @var Key[] $required_attributes */
 
@@ -25,70 +24,70 @@ $attribute_mode = (isset($required_attributes) && count($required_attributes));
 ?>
 <style>
     body {
-        background: url("/application/single_pages/bg_login.png") no-repeat fixed center top !important;
-		background-size:cover;
+        background: url("<?php echo BASE_URL ?>/application/single_pages/bg_login.jpg");
+        background-size: cover;
     }
-	.login-page .types{
-		display:none;
-	}
-	.login-page .controls{
-		width:100% !important;
-		height:auto !important;
-		color:#333;
-		background-color:rgba(255,255,255,0.7);
-		border-radius:20px;
-		-webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.30);
-		-moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.50);
-		box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.50);
-	}
-	.backstretch img{
-		display:none !important;
-	}
-	.background-credit{
-		color:#FFF !important;
-		font-size:18px;
-		font-weight:bold;
-	}
-	.login-page .login-title{
-		margin-bottom:30px;
-	}
+    html{
+        height:100%;   
+    }
+    #ccm-toolbar{
+        display:none !important;   
+    }
+    .types{
+        display:none;   
+    }
+    .container{
+        padding-top:0px !important;    
+    }
+    .footer-SENATICs{
+        background:rgba(0,0,0,0.8);
+        color:#FFF;
+        padding:10px;
+        box-sizing:border-box;
+        position:fixed;
+        width:100%;
+        bottom:0;
+        left:0;
+        text-align:center;
+    }
+    .login-page .types{
+        padding:0px !important;
+    }
+    .titulo-Iniciar{
+        font-size: 40px !important; 
+        color: #FFF !important;
+        font-weight:300;
+        text-align:center;
+        margin-bottom:40px !important;
+        text-shadow:3px 3px 7px rgba(0,0,0,0.2);
+        font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    }
+    .login-form{
+        height:auto !important;   
+    }
+    @media only screen and (max-width: 768px) {
+        .login-page .types{
+            height:auto;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        .titulo-Iniciar{
+            font-size: 20px !important;
+        }   
+    }
 </style>
 <div class="login-page">
-    <div class="col-sm-6 col-sm-offset-3 login-title">
-        <span><?php echo !$attribute_mode ? t('Acceder al Portal') : t('Required Attributes') ?></span>
+    <div class="col-sm-4 col-sm-offset-4">
+        <h3 class="titulo-Iniciar">Acceder al Portal</h3>
     </div>
-    <div class="col-sm-6 col-sm-offset-3 login-form">
-        <div class="row">
-            <div class="visible-xs ccm-authentication-type-select form-group text-center">
-                <?php
-                if ($attribute_mode) {
-                    ?>
-                    <i class="fa fa-question"></i>
-                    <span><?php echo t('Attributes') ?></span>
-                <?php
-                } else if (count($activeAuths) > 1) {
-                    ?>
-                    <select class="form-control col-xs-12">
-                        <?php
-                        foreach ($activeAuths as $auth) {
-                            ?>
-                            <option value="<?php echo $auth->getAuthenticationTypeHandle() ?>">
-                                <?php echo $auth->getAuthenticationTypeName() ?>
-                            </option>
-                        <?php
-                        }
-                        ?>
-                    </select>
-
-                    <?php
-                }
-                ?>
-                <label>&nbsp;</label>
-            </div>
-        </div>
+    <div class="col-sm-4 col-sm-offset-4 login-form">
+        
         <div class="row login-row">
-            <div class="types col-sm-4 hidden-xs">
-                <ul class="auth-types">
+            <div class="types col-sm-8">
+                
+                <p>Imagen</p>
+
+                <ul class="auth-types" style="display:none !important;">
                     <?php
                     if ($attribute_mode) {
                         ?>
@@ -111,7 +110,7 @@ $attribute_mode = (isset($required_attributes) && count($required_attributes));
                     ?>
                 </ul>
             </div>
-            <div class="controls col-sm-8 col-xs-12">
+            <div class="controls col-sm-12 col-xs-12">
                 <?php
                 if ($attribute_mode) {
                     $attribute_helper = new Concrete\Core\Form\Service\Widget\Attribute();
@@ -135,8 +134,6 @@ $attribute_mode = (isset($required_attributes) && count($required_attributes));
                     </form>
                     <?php
                 } else {
-                    /** @var AuthenticationType[] $activeAuths */
-
                     foreach ($activeAuths as $auth) {
                         ?>
                         <div data-handle="<?php echo $auth->getAuthenticationTypeHandle() ?>"
@@ -150,107 +147,10 @@ $attribute_mode = (isset($required_attributes) && count($required_attributes));
             </div>
         </div>
     </div>
-    <div class="background-credit" style="display:none">
-        <?php echo t('Sitio Alojado por SENATICs') ?>
+    <div class="footer-SENATICs">
+        <p>Sitio Desarrollado por la SENATICs | <a href="http://www.senatics.gov.py" target="_blank">www.senatics.gov.py</a></p>
     </div>
-
     <script type="text/javascript">
-        (function ($) {
-            "use strict";
-
-            var forms = $('div.controls').find('div.authentication-type').hide(),
-                select = $('div.ccm-authentication-type-select > select');
-            var types = $('ul.auth-types > li').each(function () {
-                var me = $(this),
-                    form = forms.filter('[data-handle="' + me.data('handle') + '"]');
-                me.click(function () {
-                    select.val(me.data('handle'));
-                    if (typeof Concrete !== 'undefined') {
-                        Concrete.event.fire('AuthenticationTypeSelected', me.data('handle'));
-                    }
-
-                    if (form.hasClass('active')) return;
-                    types.removeClass('active');
-                    me.addClass('active');
-                    if (forms.filter('.active').length) {
-                        forms.stop().filter('.active').removeClass('active').fadeOut(250, function () {
-                            form.addClass('active').fadeIn(250);
-                        });
-                    } else {
-                        form.addClass('active').show();
-                    }
-                });
-            });
-
-            select.change(function() {
-                types.filter('[data-handle="' + $(this).val() + '"]').click();
-            });
-            types.first().click();
-
-            var title = $('.login-title').find('span');
-            title.css({
-                lineHeight: '1000px',
-                fontSize: 10
-            });
-
-            setTimeout(function() {
-                var start_height = title.parent().height(), size = 10, last;
-                while (title.parent().height() === start_height) {
-                    last = size++;
-                    title.css('font-size', size);
-                }
-                title.css({
-                    fontSize: last,
-                    lineHeight: ''
-                });
-                var fade_div = $('<div/>').css({
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%'
-                }).prependTo('body').height(title.offset().top + title.outerHeight() + 50);
-
-                fade_div.hide()
-                    .append(
-                    $('<img/>')
-                        .css({ width: '100%', height: '100%' })
-                        .attr('src', '<?php echo DIR_REL ?>/concrete/images/login_fade.png'))
-                    .fadeIn();
-            }, 0);
-
-
-            <?php if(Config::get('concrete.white_label.background_image') !== 'none') { ?>
-            $(function () {
-                var shown = false, info;
-                $.getJSON('<?php echo BASE_URL . DIR_REL . '/' . DISPATCHER_FILENAME . '/tools/required/dashboard/get_image_data' ?>', { image: '<?php echo $image ?>' }, function (data) {
-                    if (shown) {
-                        $('div.background-credit').fadeIn().children().attr('href', data.link).text(data.author.join());
-                    } else {
-                        info = data;
-                    }
-                });
-                $(window).on('backstretch.show', function() {
-                    shown = true;
-
-                    if (info) {
-                        $('div.background-credit').fadeIn().children().attr('href', info.link).text(info.author.join());
-                    }
-
-                });
-                $.backstretch("<?php echo Config::get('concrete.urls.background_feed') . '/' . $image ?>", {
-                    fade: 500
-                });
-            });
-            <?php } ?>
-            $('ul.nav.nav-tabs > li > a').on('click', function () {
-                var me = $(this);
-                if (me.parent().hasClass('active')) return false;
-                $('ul.nav.nav-tabs > li.active').removeClass('active');
-                var at = me.attr('data-authType');
-                me.parent().addClass('active');
-                $('div.authTypes > div').hide().filter('[data-authType="' + at + '"]').show();
-                return false;
-            });
-        })(jQuery);
+        
     </script>
 </div>

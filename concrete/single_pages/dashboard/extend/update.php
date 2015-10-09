@@ -46,7 +46,7 @@ if (!$tp->canInstallPackages()) { ?>
 			?>
 
 				<tr>
-					<td class="ccm-marketplace-list-thumbnail" rowspan="2"><img src="<?php echo $ci->getPackageIconURL($pkg)?>" /></td>
+					<td class="ccm-marketplace-list-thumbnail" rowspan="2"><img style="max-width: 50px" src="<?php echo $ci->getPackageIconURL($pkg)?>" /></td>
 					<td class="ccm-addon-list-description"><h3><?php echo $pkg->getPackageName()?></h3><p><?php echo $pkg->getPackageDescription()?></p>
 					<p><strong><?php echo t('New Version: %s. Upgrading from: %s.', $pkg->getPackageVersionUpdateAvailable(), $pkg->getPackageVersion())?></strong></p>
 
@@ -84,7 +84,7 @@ if (!$tp->canInstallPackages()) { ?>
 			foreach($pkgLocal as $pkg) { ?>
 
 				<tr>
-					<td class="ccm-marketplace-list-thumbnail" rowspan="2"><img src="<?php echo $ci->getPackageIconURL($pkg)?>" /></td>
+					<td class="ccm-marketplace-list-thumbnail" rowspan="2"><img style="max-width: 50px" src="<?php echo $ci->getPackageIconURL($pkg)?>" /></td>
 					<td class="ccm-addon-list-description"><h3><?php echo $pkg->getPackageName()?></h3><p><?php echo $pkg->getPackageDescription()?></p>
 					<p><strong><?php echo t('New Version: %s. Upgrading from: %s.', $pkg->getPackageVersion(), $pkg->getPackageCurrentlyInstalledVersion())?></strong></p>
 					</td>

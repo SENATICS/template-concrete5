@@ -22,7 +22,7 @@
 	<?php echo $form->select('pageTypesIncluded[' . $entity->getAccessEntityID() . ']', array('A' => t('All Page Types'), 'C' => t('Custom')), $assignment->getPageTypesAllowedPermission())?><br/><br/>
 	<ul class="page-type-list inputs-list" <?php if ($assignment->getPageTypesAllowedPermission() != 'C') { ?>style="display: none"<?php } ?>>
 		<?php foreach($pageTypes as $ct) { ?>
-			<li><label><input type="checkbox" name="ptIDInclude[<?php echo $entity->getAccessEntityID()?>][]" value="<?php echo $ct->getPageTypeID()?>" <?php if (in_array($ct->getPageTypeID(), $assignment->getPageTypesAllowedArray())) { ?> checked="checked" <?php } ?> /> <span><?php echo $ct->getPageTypeName()?></span></label></li>
+			<li><label><input type="checkbox" name="ptIDInclude[<?php echo $entity->getAccessEntityID()?>][]" value="<?php echo $ct->getPageTypeID()?>" <?php if (in_array($ct->getPageTypeID(), $assignment->getPageTypesAllowedArray())) { ?> checked="checked" <?php } ?> /> <span><?php echo $ct->getPageTypeDisplayName()?></span></label></li>
 		<?php } ?>
 	</ul>
 	<ul class="inputs-list">
@@ -53,7 +53,7 @@
 	<?php echo $form->select('pageTypesExcluded[' . $entity->getAccessEntityID() . ']', array('N' => t('No Page Types'), 'C' => t('Custom')), $assignment->getPageTypesAllowedPermission())?><br/><br/>
 	<ul class="page-type-list inputs-list" <?php if ($assignment->getPageTypesAllowedPermission() != 'C') { ?>style="display: none"<?php } ?>>
 		<?php foreach($pageTypes as $ct) { ?>
-			<li><label><input type="checkbox" name="ptIDExclude[<?php echo $entity->getAccessEntityID()?>][]" value="<?php echo $ct->getPageTypeID()?>" <?php if (in_array($ct->getPageTypeID(), $assignment->getPageTypesAllowedArray())) { ?> checked="checked" <?php } ?> /> <span><?php echo $ct->getPageTypeName()?></span></label></li>
+			<li><label><input type="checkbox" name="ptIDExclude[<?php echo $entity->getAccessEntityID()?>][]" value="<?php echo $ct->getPageTypeID()?>" <?php if (in_array($ct->getPageTypeID(), $assignment->getPageTypesAllowedArray())) { ?> checked="checked" <?php } ?> /> <span><?php echo $ct->getPageTypeDisplayName()?></span></label></li>
 		<?php } ?>
 	</ul>
 	<ul class="inputs-list">

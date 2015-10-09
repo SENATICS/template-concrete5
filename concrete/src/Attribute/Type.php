@@ -1,23 +1,25 @@
 <?php
+
 namespace Concrete\Core\Attribute;
 
-use \Concrete\Core\Foundation\Object;
-use \Concrete\Core\Attribute\View as AttributeTypeView;
-use Loader;
-use \Concrete\Core\Package\PackageList;
+use Concrete\Core\Foundation\Object;
+use Concrete\Core\Attribute\View as AttributeTypeView;
+use Gettext\Translations;
+use Database;
+use Concrete\Core\Package\PackageList;
 use Environment;
 use Package;
 use Core;
 
 class Type extends Object
 {
-
     /** @var  \Concrete\Core\Attribute\Controller */
     public $controller;
     public $atName;
     public $atHandle;
 
     protected $atID;
+    protected $pkgID;
 
     public function getAttributeTypeID()
     {
@@ -43,6 +45,7 @@ class Type extends Object
      * @param string $format = 'html'
      *    Escape the result in html format (if $format is 'html').
      *    If $format is 'text' or any other value, the display name won't be escaped.
+     *
      * @return string
      */
     public function getAttributeTypeDisplayName($format = 'html')
@@ -59,11 +62,12 @@ class Type extends Object
 
     public static function getByID($atID)
     {
-        $db = Loader::db();
+        $db = Database::get();
         $row = $db->GetRow('select atID, pkgID, atHandle, atName from AttributeTypes where atID = ?', array($atID));
         $at = new static();
         $at->setPropertiesFromArray($row);
         $at->loadController();
+
         return $at;
     }
 
@@ -74,7 +78,7 @@ class Type extends Object
 
     public static function getList($akCategoryHandle = false)
     {
-        $db = Loader::db();
+        $db = Database::get();
         $list = array();
         if ($akCategoryHandle == false) {
             $r = $db->Execute('select atID from AttributeTypes order by atID asc');
@@ -89,13 +93,14 @@ class Type extends Object
             $list[] = static::getByID($row['atID']);
         }
         $r->Close();
+
         return $list;
     }
 
     public static function exportList($xml)
     {
         $attribs = static::getList();
-        $db = Loader::db();
+        $db = Database::get();
         $axml = $xml->addChild('attributetypes');
         foreach ($attribs as $at) {
             $atype = $axml->addChild('attributetype');
@@ -116,7 +121,7 @@ class Type extends Object
 
     public function delete()
     {
-        $db = Loader::db();
+        $db = Database::get();
         if (method_exists($this->controller, 'deleteType')) {
             $this->controller->deleteType();
         }
@@ -127,7 +132,7 @@ class Type extends Object
 
     public static function getListByPackage($pkg)
     {
-        $db = Loader::db();
+        $db = Database::get();
         $list = array();
         $r = $db->Execute(
             'select atID from AttributeTypes where pkgID = ? order by atID asc',
@@ -137,6 +142,7 @@ class Type extends Object
             $list[] = static::getByID($row['atID']);
         }
         $r->Close();
+
         return $list;
     }
 
@@ -152,11 +158,12 @@ class Type extends Object
 
     public function isAssociatedWithCategory($cat)
     {
-        $db = Loader::db();
+        $db = Database::get();
         $r = $db->GetOne(
             "select count(akCategoryID) from AttributeTypeCategories where akCategoryID = ? and atID = ?",
             array($cat->getAttributeKeyCategoryID(), $this->getAttributeTypeID())
         );
+
         return $r > 0;
     }
 
@@ -170,15 +177,16 @@ class Type extends Object
                 break;
         }
 
-        $db = Loader::db();
+        $db = Database::get();
         $row = $db->GetRow(
             'select atID, pkgID, atHandle, atName from AttributeTypes where atHandle = ?',
             array($atHandle)
         );
-        if ($row['atID']) {
+        if ($row && $row['atID']) {
             $at = new static();
             $at->setPropertiesFromArray($row);
             $at->loadController();
+
             return $at;
         }
     }
@@ -189,7 +197,7 @@ class Type extends Object
         if (is_object($pkg)) {
             $pkgID = $pkg->getPackageID();
         }
-        $db = Loader::db();
+        $db = Database::get();
         $db->Execute(
             'insert into AttributeTypes (atHandle, atName, pkgID) values (?, ?, ?)',
             array($atHandle, $atName, $pkgID)
@@ -201,12 +209,14 @@ class Type extends Object
         if ($path) {
             Package::installDB($path);
         }
+
         return $est;
     }
 
     public function getValue($avID)
     {
         $cnt = $this->getController();
+
         return $cnt->getValue($avID);
     }
 
@@ -240,6 +250,7 @@ class Type extends Object
             implode('/', array(DIRNAME_ATTRIBUTES . '/' . $this->getAttributeTypeHandle() . '/' . FILENAME_BLOCK_ICON)),
             $this->getPackageHandle()
         );
+
         return $url;
     }
 
@@ -277,4 +288,14 @@ class Type extends Object
         $this->controller = Core::make($class, array($this));
     }
 
+    public static function exportTranslations()
+    {
+        $translations = new Translations();
+        $attribs = static::getList();
+        foreach ($attribs as $type) {
+            $translations->insert('AttributeTypeName', $type->getAttributeTypeName());
+        }
+
+        return $translations;
+    }
 }

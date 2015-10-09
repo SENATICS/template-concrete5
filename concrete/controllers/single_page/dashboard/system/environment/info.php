@@ -2,6 +2,7 @@
 
 namespace Concrete\Controller\SinglePage\Dashboard\System\Environment;
 
+use Concrete\Core\Foundation\Environment;
 use \Concrete\Core\Page\Controller\DashboardPageController;
 use \Concrete\Core\Package\PackageList;
 use Config;
@@ -10,6 +11,7 @@ use Localization;
 
 class Info extends DashboardPageController
 {
+
     public function get_environment_info()
     {
         $activeLocale = Localization::activeLocale();
@@ -19,7 +21,11 @@ class Info extends DashboardPageController
         $maxExecutionTime = ini_get('max_execution_time');
         set_time_limit(5);
 
-        $environmentMessage = "# concrete5 Version\n" . APP_VERSION . "\n\n";
+        $environmentMessage = "# concrete5 Version\n";
+        $environmentMessage .= "Core Version - " . \Config::get('concrete.version') . "\n";
+        $environmentMessage .= "Version Installed - " . \Config::get('concrete.version_installed') . "\n";
+        $environmentMessage .= "Database Version - " . \Config::get('concrete.version_db') . "\n\n";
+
         $environmentMessage .= "# concrete5 Packages\n";
         $pla = PackageList::get();
         $pl = $pla->getPackages();
@@ -40,53 +46,8 @@ class Info extends DashboardPageController
 
         // overrides
         $environmentMessage .= "# concrete5 Overrides\n";
-        $fh = Loader::helper('file');
-        $overrides = array();
-        $ovBlocks = $fh->getDirectoryContents(DIR_FILES_BLOCK_TYPES);
-        $ovControllers = $fh->getDirectoryContents(DIR_FILES_CONTROLLERS);
-        $ovElements = $fh->getDirectoryContents(DIR_FILES_ELEMENTS);
-        $ovJobs = $fh->getDirectoryContents(DIR_FILES_JOBS);
-        $ovCSS = $fh->getDirectoryContents(DIR_APPLICATION . '/' . DIRNAME_CSS);
-        $ovJS = $fh->getDirectoryContents(DIR_APPLICATION . '/' . DIRNAME_JAVASCRIPT);
-        $ovLng = $fh->getDirectoryContents(DIR_APPLICATION . '/' . DIRNAME_LANGUAGES);
-        $ovMail = $fh->getDirectoryContents(DIR_FILES_EMAIL_TEMPLATES);
-        $ovSingle = $fh->getDirectoryContents(DIR_FILES_CONTENT);
-        $ovThemes = $fh->getDirectoryContents(DIR_FILES_THEMES);
-        $ovTools = $fh->getDirectoryContents(DIR_FILES_TOOLS);
-
-        foreach ($ovBlocks as $ovb) {
-            $overrides[] = DIRNAME_BLOCKS . '/' . $ovb;
-        }
-        foreach ($ovControllers as $ovb) {
-            $overrides[] = DIRNAME_CONTROLLERS . '/' . $ovb;
-        }
-        foreach ($ovElements as $ovb) {
-            $overrides[] = DIRNAME_ELEMENTS . '/' . $ovb;
-        }
-        foreach ($ovJobs as $ovb) {
-            $overrides[] = DIRNAME_JOBS . '/' . $ovb;
-        }
-        foreach ($ovJS as $ovb) {
-            $overrides[] = DIRNAME_JAVASCRIPT . '/' . $ovb;
-        }
-        foreach ($ovCSS as $ovb) {
-            $overrides[] = DIRNAME_CSS . '/' . $ovb;
-        }
-        foreach ($ovLng as $ovb) {
-            $overrides[] = DIRNAME_LANGUAGES . '/' . $ovb;
-        }
-        foreach ($ovMail as $ovb) {
-            $overrides[] = DIRNAME_MAIL_TEMPLATES . '/' . $ovb;
-        }
-        foreach ($ovSingle as $ovb) {
-            $overrides[] = DIRNAME_PAGES . '/' . $ovb;
-        }
-        foreach ($ovThemes as $ovb) {
-            $overrides[] = DIRNAME_THEMES . '/' . $ovb;
-        }
-        foreach ($ovTools as $ovb) {
-            $overrides[] = DIRNAME_TOOLS . '/' . $ovb;
-        }
+        $env = Environment::get();
+        $overrides = $env->getOverrideList();
 
         if (count($overrides) > 0) {
             $environmentMessage .= implode(', ', $overrides);

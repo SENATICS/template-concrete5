@@ -1,7 +1,7 @@
 <?php
 namespace Concrete\Controller\SinglePage;
-use \Concrete\Core\Page\Controller\PageController;
+use \PageController;
 class PageNotFound extends PageController {
-	
+
 	
 }

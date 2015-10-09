@@ -15,7 +15,7 @@ if (is_array($extraParams)) { // defined within the area/content classes
 
 <?php if (!$b->getProxyBlock() && !$bt->supportsInlineEdit()) { ?>	
 	<div class="ccm-buttons dialog-buttons">
-	<a href="javascript:clickedButton = true;$('#ccm-form-submit-button').get(0).click()" class="btn pull-right btn-primary btn-success"><?php echo t('Save')?></a>
+	<a href="javascript:clickedButton = true;$('#ccm-form-submit-button').get(0).click()" class="btn pull-right btn-primary"><?php echo t('Save')?></a>
 	<a style="float:left" href="javascript:void(0)" class="btn btn-default btn-hover-danger" onclick="jQuery.fn.dialog.closeTop()"><?php echo t('Cancel')?></a>
 	</div>
 <?php } ?>

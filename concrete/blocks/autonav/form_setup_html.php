@@ -13,9 +13,8 @@ $page_selector = Loader::helper('form/page_selector');
                value="<?php echo Loader::helper('concrete/urls')->getBlockTypeToolsURL($bt) ?>/preview_pane"/>
 
         <fieldset>
-            <legend><?php echo t('Settings') ?></legend>
-        </fieldset>
-
+        <legend><?php echo t('Settings') ?></legend>
+        
         <div class="form-group">
             <label for="orderBy"><?php echo t('Page Order') ?></label>
             <select class="form-control" name="orderBy">
@@ -86,7 +85,7 @@ $page_selector = Loader::helper('form/page_selector');
         </div>
 
         <div class="form-group">
-            <label for="displaySubPages"><?php echo t('Sibling Pages') ?></label>
+            <label for="displaySubPages"><?php echo t('Child Pages') ?></label>
 
             <select class='form-control' name="displaySubPages" onchange="toggleSubPageLevels(this.value);">
                 <option value="none"<?php if ($info['displaySubPages'] == 'none') { ?> selected<?php } ?>>
@@ -107,7 +106,7 @@ $page_selector = Loader::helper('form/page_selector');
         </div>
 
         <div class="form-group">
-            <label for="displaySubPages"><?php echo t('Page Levels') ?></label>
+            <label for="displaySubPageLevels"><?php echo t('Page Levels') ?></label>
 
             <select class="form-control" id="displaySubPageLevels"
                     name="displaySubPageLevels" <?php if ($info['displaySubPages'] == 'none') { ?> disabled <?php } ?>
@@ -133,6 +132,7 @@ $page_selector = Loader::helper('form/page_selector');
                 <span class="input-group-addon"> <?php echo t('levels') ?></span>
             </div>
         </div>
+        </fieldset>
 
         <div class="loader">
             <i class="fa fa-cog fa-spin"></i>
@@ -140,15 +140,13 @@ $page_selector = Loader::helper('form/page_selector');
     </div>
 
     <div class="col-xs-6">
+        <fieldset>
+        <legend><?php echo t('Included Pages') ?></legend>
         <div class="preview">
-            <fieldset>
-                <legend><?php echo t('Included Pages') ?></legend>
-            </fieldset>
-            <div class="render">
-
-            </div>
-            <div class="cover"></div>
+         	<div class="render"></div>
+			<div class="cover"></div>
         </div>
+        </fieldset>
     </div>
 
 </div>

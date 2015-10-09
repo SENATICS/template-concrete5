@@ -1,6 +1,7 @@
 <?php
 namespace Concrete\Controller\Search;
 
+use Concrete\Core\Http\ResponseAssetGroup;
 use Concrete\Core\Search\StickyRequest;
 use Controller;
 use PageList;
@@ -44,7 +45,7 @@ class Pages extends Controller
 
         if (!$this->pageList->getActiveSortColumn()) {
             $col = $columns->getDefaultSortColumn();
-            $this->pageList->sortBy($col->getColumnKey(), $col->getColumnDefaultSortDirection());
+            $this->pageList->sanitizedSortBy($col->getColumnKey(), $col->getColumnDefaultSortDirection());
         }
 
         $cvName = htmlentities($req['cvName'], ENT_QUOTES, APP_CHARSET);
@@ -56,10 +57,6 @@ class Pages extends Controller
 
         if ($req['numResults'] && Loader::helper('validation/numbers')->integer($req['numResults'])) {
             $this->pageList->setItemsPerPage($req['numResults']);
-        }
-
-        if ($req['ptID']) {
-            $this->pageList->filterByPageTypeID($req['ptID']);
         }
 
         if (is_array($req['field'])) {
@@ -80,6 +77,15 @@ class Pages extends Controller
                                 $symbol = '<';
                             }
                             $this->pageList->filterByNumberOfChildren($req['cChildren'], $symbol);
+                            break;
+                        case 'type':
+                            $this->pageList->filterByPageTypeID($req['ptID']);
+                            break;
+                        case 'template':
+                            $template = \PageTemplate::getByID($req['pTemplateID']);
+                            if (is_object($template)) {
+                                $this->pageList->filterByPageTemplate($template);
+                            }
                             break;
                         case 'owner':
                             $ui = \UserInfo::getByUserName($req['owner']);
@@ -107,10 +113,12 @@ class Pages extends Controller
                             }
                             break;
                         case 'version_status':
-                            if (isset($req['_cvIsApproved'])) {
-                                $req['cvIsApproved'] = $req['_cvIsApproved'];
+                            if (in_array($req['versionToRetrieve'], array(
+                                \Concrete\Core\Page\PageList::PAGE_VERSION_RECENT,
+                                \Concrete\Core\Page\PageList::PAGE_VERSION_ACTIVE
+                            ))) {
+                                $this->pageList->setPageVersionToRetrieve($req['versionToRetrieve']);
                             }
-                            $this->pageList->filterByIsApproved($req['cvIsApproved']);
                             break;
                         case 'permissions_inheritance':
                             $this->pageList->filter('cInheritPermissionsFrom', $req['cInheritPermissionsFrom']);
@@ -187,6 +195,11 @@ class Pages extends Controller
         return $this->result;
     }
 
+    public function getListObject()
+    {
+        return $this->pageList;
+    }
+
     public function field($field)
     {
         $r = $this->getField($field);
@@ -204,7 +217,7 @@ class Pages extends Controller
         $html = '';
         switch ($field) {
             case 'keywords':
-                $html .= $form->text('keywords', $searchRequest['keywords'], array('style' => 'width: 120px'));
+                $html .= $form->text('keywords', $searchRequest['keywords']);
                 break;
             case 'date_public':
                 $html .= $wdt->datetime('date_public_from', $wdt->translate('date_public_from', $searchRequest)) . t('to') . $wdt->datetime('date_public_to', $wdt->translate('date_public_to', $searchRequest));
@@ -216,7 +229,7 @@ class Pages extends Controller
                 $html .= $wdt->datetime('last_modified_from', $wdt->translate('last_modified_from', $searchRequest)) . t('to') . $wdt->datetime('last_modified_to', $wdt->translate('last_modified_to', $searchRequest));
                 break;
             case 'owner':
-                $html .= $form->text('owner', array('class'=>'span5'));
+                $html .= $form->text('owner');
                 break;
             case 'permissions_inheritance':
                 $html .= '<select name="cInheritPermissionsFrom" class="form-control">';
@@ -225,26 +238,46 @@ class Pages extends Controller
                     $html .= '<option value="OVERRIDE"' . ($searchRequest['cInheritPermissionsFrom'] == 'OVERRIDE' ? ' selected' : '') . '>' . t('Itself (Override)') . '</option>';
                 $html .= '</select>';
                 break;
+            case 'type':
+                $html .= $form->select('ptID', array_reduce(
+                    \PageType::getList(), function($types, $type) {
+                        $types[$type->getPageTypeID()] = $type->getPageTypeDisplayName();
+                        return $types;
+                    }
+                ), $searchRequest['ptID']);
+                break;
+            case 'template':
+                $html .= $form->select('pTemplateID', array_reduce(
+                    \PageTemplate::getList(), function($templates, $template) {
+                    $templates[$template->getPageTemplateID()] = $template->getPageTemplateDisplayName();
+                    return $templates;
+                }
+                ), $searchRequest['pTemplateID']);
+                break;
             case 'version_status':
-                $html .= '<div class="radio"><label>' . $form->radio('cvIsApproved', 0, false) . '<span>' . t('Unapproved') . '</span></label></div>';
-                $html .= '<div class="radio"><label>' . $form->radio('cvIsApproved', 1, false) . '<span>' . t('Approved') . '</span></label></div>';
+                $versionToRetrieve = \Concrete\Core\Page\PageList::PAGE_VERSION_RECENT;
+                if ($searchRequest['versionToRetrieve']) {
+                    $versionToRetrieve = $searchRequest['versionToRetrieve'];
+                }
+                $html .= '<div class="radio"><label>' . $form->radio('versionToRetrieve', \Concrete\Core\Page\PageList::PAGE_VERSION_RECENT, $versionToRetrieve) . t('All') . '</label></div>';
+                $html .= '<div class="radio"><label>' . $form->radio('versionToRetrieve', \Concrete\Core\Page\PageList::PAGE_VERSION_ACTIVE, $versionToRetrieve) . t('Approved') . '</label></div>';
                 break;
             case 'parent':
                 $ps = Loader::helper("form/page_selector");
                 $html .= $ps->selectPage('cParentIDSearchField');
-                $html .= '<div>';
-                    $html .= '<div>' . t('Search All Children?') . '</div>';
-                    $html .= '<label class="radio-inline">' . $form->radio('cParentAll', 0, false) . ' ' . t('No') . '</label>';
-                    $html .= '<label class="radio-inline">' . $form->radio('cParentAll', 1, false) . ' ' . t('Yes') . '</label>';
+                $html .= '<div class="form-group">';
+                    $html .= '<label class="control-label">' . t('Search All Children?') . '</label>';
+                    $html .= '<div class="radio"><label>' . $form->radio('cParentAll', 0, false) . ' ' . t('No') . '</label></div>';
+                    $html .= '<div class="radio"><label>' . $form->radio('cParentAll', 1, false) . ' ' . t('Yes') . '</label></div>';
                 $html .= '</div>';
                 break;
             case 'num_children':
-                $html .= '<select name="cChildrenSelect" class="form-control">';
+                $html .= '<div class="form-inline"><select name="cChildrenSelect" class="form-control">';
                     $html .= '<option value="gt"' . ($searchRequest['cChildrenSelect'] == 'gt' ? ' selected' : '') . '>' . t('More Than') . '</option>';
                     $html .= '<option value="eq"' . ($searchRequest['cChildrenSelect'] == 'eq' ? ' selected' : '') . '>' . t('Equal To') . '</option>';
                     $html .= '<option value="lt"' . ($searchRequest['cChildrenSelect'] == 'lt' ? ' selected' : '') . '>' . t('Fewer Than') . '</option>';
                 $html .= '</select>';
-                $html .= '<input type="text" name="cChildren" class="form-control" value="' . $searchRequest['cChildren'] . '" />';
+                $html .= ' <input type="text" name="cChildren" class="form-control" value="' . $searchRequest['cChildren'] . '" /></div>';
                 break;
             case 'theme':
                 $html .= '<select name="pThemeID" class="form-control">';
@@ -262,7 +295,16 @@ class Pages extends Controller
                 break;
         }
         $r->html = $html;
-
+        $ag = ResponseAssetGroup::get();
+        $r->assets = array();
+        foreach ($ag->getAssetsToOutput() as $position => $assets) {
+            foreach ($assets as $asset) {
+                if (is_object($asset)) {
+                    // have to do a check here because we might be included a dumb javascript call like i18n_js
+                    $r->assets[$asset->getAssetType()][] = $asset->getAssetURL();
+                }
+            }
+        }
         return $r;
     }
 
@@ -282,6 +324,8 @@ class Pages extends Controller
     {
         $r = array(
             'parent' => t('Parent Page'),
+            'type' => t('Page Type'),
+            'template' => t('Page Template'),
             'keywords' => t('Full Page Index'),
             'date_added' => t('Date Added'),
             'theme' => t('Theme'),

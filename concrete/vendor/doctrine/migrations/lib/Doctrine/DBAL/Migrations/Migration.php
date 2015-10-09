@@ -84,6 +84,8 @@ class Migration
             $to = $this->configuration->getLatestVersion();
         }
 
+        $direction = $from > $to ? 'down' : 'up';
+
         $string  = sprintf("# Doctrine Migration File Generated on %s\n", date('Y-m-d H:i:s'));
         $string .= sprintf("# Migrating from %s to %s\n", $from, $to);
 
@@ -91,6 +93,11 @@ class Migration
             $string .= "\n# Version " . $version . "\n";
             foreach ($queries as $query) {
                 $string .= $query . ";\n";
+            }
+            if ($direction == "down") {
+                $string .= "DELETE FROM " . $this->configuration->getMigrationsTableName() . " WHERE version = '" . $version . "';\n";
+            } else {
+                $string .= "INSERT INTO " . $this->configuration->getMigrationsTableName() . " (version) VALUES ('" . $version . "');\n";
             }
         }
         if (is_dir($path)) {
@@ -113,7 +120,7 @@ class Migration
      *
      * @throws MigrationException
      */
-    public function migrate($to = null, $dryRun = false)
+    public function migrate($to = null, $dryRun = false, $timeAllqueries=false)
     {
         if ($to === null) {
             $to = $this->configuration->getLatestVersion();
@@ -135,7 +142,7 @@ class Migration
             return array();
         }
 
-        if ($dryRun === false) {
+        if (! $dryRun) {
             $this->outputWriter->write(sprintf('Migrating <info>%s</info> to <comment>%s</comment> from <comment>%s</comment>', $direction, $to, $from));
         } else {
             $this->outputWriter->write(sprintf('Executing dry run of migration <info>%s</info> to <comment>%s</comment> from <comment>%s</comment>', $direction, $to, $from));
@@ -148,7 +155,7 @@ class Migration
         $sql = array();
         $time = 0;
         foreach ($migrationsToExecute as $version) {
-            $versionSql = $version->execute($direction, $dryRun);
+            $versionSql = $version->execute($direction, $dryRun, $timeAllqueries);
             $sql[$version->getVersion()] = $versionSql;
             $time += $version->getTime();
         }

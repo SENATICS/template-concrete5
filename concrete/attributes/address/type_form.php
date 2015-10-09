@@ -13,7 +13,7 @@ if (isset($_POST['akHasCustomCountries'])) {
 
 ?>
 
-<fieldset>
+<fieldset class="ccm-attribute ccm-attribute-address">
 <legend><?php echo t('Address Options')?></legend>
 
 <div class="form-group">

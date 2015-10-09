@@ -39,13 +39,15 @@
     </fieldset>
 
     <fieldset style="margin-bottom: 15px">
-        <legend style="display: inline-block; margin-bottom: 0; width: auto; font-size: 14px; font-weight: bold" class="launch-tooltip" data-placement="right" title="<?php echo t('Determines whether ')?>"><?php echo t('Compress LESS Output.')?></legend>
+        <legend style="display: inline-block; margin-bottom: 0; width: auto; font-size: 14px; font-weight: bold" class="launch-tooltip" data-placement="right" title="<?php echo t('Determines whether compiled LESS stylesheets should output as compressed CSS. Uncompressed stylesheets are slightly larger but easier to read.')?>"><?php echo t('Compress LESS Output.')?></legend>
 
         <div class="radio">
             <label>
                 <input type="radio" name="COMPRESS_THEME_PREPROCESSOR_OUTPUT" value="0" <?php if (!Config::get('concrete.theme.compress_preprocessor_output')) { ?> checked <?php  } ?> />
                 <span><?php echo t('Off - Good for debugging generated CSS output.')?></span>
             </label>
+            <br>
+            <label><input type="checkbox" name="GENERATE_LESS_SOURCEMAP" value="1" <?php if (Config::get('concrete.theme.generate_less_sourcemap')) { ?> checked <?php  } ?> > <?php echo t('enable source maps in generated CSS files'); ?></label>
         </div>
 
         <div class="radio">
@@ -148,7 +150,7 @@
 
     <div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
-            <button class="pull-right btn btn-success" type="submit" ><?php echo t('Save')?></button>
+            <button class="pull-right btn btn-primary" type="submit" ><?php echo t('Save')?></button>
         </div>
     </div>
 

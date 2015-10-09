@@ -7,7 +7,7 @@
     <hr>
 </div>
 <div class="form-group">
-    <a href="<?php echo \URL::to('/system/authentication/facebook/attempt_attach'); ?>" class="btn btn-primary btn-facebook">
+    <a href="<?php echo \URL::to('/ccm/system/authentication/oauth2/facebook/attempt_attach'); ?>" class="btn btn-primary btn-facebook">
         <i class="fa fa-facebook"></i>
         <?php echo t('Attach a %s account', t('facebook')) ?>
     </a>

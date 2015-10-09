@@ -1,23 +1,25 @@
 <?php
 
 namespace Concrete\Block\Feature;
-defined('C5_EXECUTE') or die("Access Denied.");
 
+use Page;
 use Concrete\Core\Block\BlockController;
 use Less_Parser;
 use Less_Tree_Rule;
 use Core;
 
+defined('C5_EXECUTE') or die("Access Denied.");
+
 class Controller extends BlockController
 {
-
     public $helpers = array('form');
 
     protected $btInterfaceWidth = 400;
     protected $btCacheBlockOutput = true;
     protected $btCacheBlockOutputOnPost = true;
     protected $btCacheBlockOutputForRegisteredUsers = true;
-    protected $btInterfaceHeight = 360;
+    protected $btExportPageColumns = array('internalLinkCID');
+    protected $btInterfaceHeight = 520;
     protected $btTable = 'btFeature';
 
     public function getBlockTypeDescription()
@@ -30,7 +32,24 @@ class Controller extends BlockController
         return t("Feature");
     }
 
-    public function registerViewAssets()
+    public function getLinkURL()
+    {
+        if (!empty($this->externalLink)) {
+            return $this->externalLink;
+        } else {
+            if (!empty($this->internalLinkCID)) {
+                $linkToC = Page::getByID($this->internalLinkCID);
+
+                return (empty($linkToC) || $linkToC->error) ? '' : Core::make('helper/navigation')->getLinkToCollection(
+                    $linkToC
+                );
+            } else {
+                return '';
+            }
+        }
+    }
+
+    public function registerViewAssets($outputContent = '')
     {
         $this->requireAsset('css', 'font-awesome');
         if (is_object($this->block) && $this->block->getBlockFilename() == 'hover_description') {
@@ -46,6 +65,11 @@ class Controller extends BlockController
         $this->edit();
     }
 
+    public function view()
+    {
+        $this->set('linkURL', $this->getLinkURL());
+    }
+
     protected function getIconClasses()
     {
         $iconLessFile = DIR_BASE_CORE . '/css/build/vendor/font-awesome/variables.less';
@@ -55,7 +79,7 @@ class Controller extends BlockController
         $parser = $l->parseFile($iconLessFile, false, true);
         $rules = $parser->rules;
 
-        foreach($rules as $rule) {
+        foreach ($rules as $rule) {
             if ($rule instanceof Less_Tree_Rule) {
                 if (strpos($rule->name, '@fa-var') === 0) {
                     $name = str_replace('@fa-var-', '', $rule->name);
@@ -64,6 +88,7 @@ class Controller extends BlockController
             }
         }
         asort($icons);
+
         return $icons;
     }
 
@@ -75,7 +100,7 @@ class Controller extends BlockController
         // let's clean them up
         $icons = array('' => t('Choose Icon'));
         $txt = Core::make('helper/text');
-        foreach($classes as $class) {
+        foreach ($classes as $class) {
             $icons[$class] = $txt->unhandle($class);
         }
         $this->set('icons', $icons);
@@ -86,5 +111,21 @@ class Controller extends BlockController
         return $this->title . ' ' . $this->paragraph;
     }
 
-
+    public function save($args)
+    {
+        switch (isset($args['linkType']) ? intval($args['linkType']) : 0) {
+            case 1:
+                $args['externalLink'] = '';
+                break;
+            case 2:
+                $args['internalLinkCID'] = 0;
+                break;
+            default:
+                $args['externalLink'] = '';
+                $args['internalLinkCID'] = 0;
+                break;
+        }
+        unset($args['linkType']);
+        parent::save($args);
+    }
 }

@@ -1,14 +1,15 @@
 <?php
+
 namespace Concrete\Core\Page\Type\Composer\Control;
 
+use Concrete\Core\Page\Type\Type;
 use Loader;
-use \Concrete\Core\Foundation\Object;
+use Concrete\Core\Foundation\Object;
 use Page;
-use PageType;
 use Controller;
-use \Concrete\Core\Page\Type\Composer\FormLayoutSet as PageTypeComposerFormLayoutSet;
-use \Concrete\Core\Page\Type\Composer\FormLayoutSetControl as PageTypeComposerFormLayoutSetControl;
-use \Concrete\Core\Page\Type\Composer\Control\Type\Type as PageTypeComposerControlType;
+use Concrete\Core\Page\Type\Composer\FormLayoutSet as PageTypeComposerFormLayoutSet;
+use Concrete\Core\Page\Type\Composer\FormLayoutSetControl as PageTypeComposerFormLayoutSetControl;
+use Concrete\Core\Page\Type\Composer\Control\Type\Type as PageTypeComposerControlType;
 
 abstract class Control extends Object
 {
@@ -55,6 +56,16 @@ abstract class Control extends Object
         return $this->page;
     }
 
+    public function setTargetParentPageID($ptTargetParentPageID)
+    {
+        $this->ptTargetParentPageID = $ptTargetParentPageID;
+    }
+
+    public function getTargetParentPageID()
+    {
+        return $this->ptTargetParentPageID;
+    }
+
     public function isPageTypeComposerFormControlRequiredOnThisRequest()
     {
         return $this->ptComposerControlRequiredOnThisRequest;
@@ -66,7 +77,7 @@ abstract class Control extends Object
     }
     public function getPageTypeComposerControlDisplayName($format = 'html')
     {
-        $value = tc('PageTypeComposerControlName', $this->getPageTypeComposerControlName());
+        $value = $this->getPageTypeComposerControlName();
         switch ($format) {
             case 'html':
                 return h($value);
@@ -132,6 +143,7 @@ abstract class Control extends Object
 
     /**
      * @param PageTypeComposerFormLayoutSet $set
+     *
      * @return \Concrete\Core\Page\Type\Composer\FormLayoutSetControl
      */
     public function addToPageTypeComposerFormLayoutSet(PageTypeComposerFormLayoutSet $set)
@@ -142,12 +154,12 @@ abstract class Control extends Object
             $displayOrder = 0;
         }
         $ptComposerFormLayoutSetControlRequired = 0;
-        if ($this->isPageTypeComposerControlRequiredByDefault) {
+        if ($this->isPageTypeComposerControlRequiredByDefault()) {
             $ptComposerFormLayoutSetControlRequired = 1;
         }
         $controlType = $this->getPageTypeComposerControlTypeObject();
         $db->Execute('insert into PageTypeComposerFormLayoutSetControls (ptComposerFormLayoutSetID, ptComposerControlTypeID, ptComposerControlObject, ptComposerFormLayoutSetControlDisplayOrder, ptComposerFormLayoutSetControlRequired) values (?, ?, ?, ?, ?)', array(
-            $set->getPageTypeComposerFormLayoutSetID(), $controlType->getPageTypeComposerControlTypeID(), serialize($this), $displayOrder, $ptComposerFormLayoutSetControlRequired
+            $set->getPageTypeComposerFormLayoutSetID(), $controlType->getPageTypeComposerControlTypeID(), serialize($this), $displayOrder, $ptComposerFormLayoutSetControlRequired,
         ));
 
         return PageTypeComposerFormLayoutSetControl::getByID($db->Insert_ID());
@@ -163,7 +175,7 @@ abstract class Control extends Object
         return false;
     }
 
-    public static function getList(PageType $pagetype)
+    public static function getList(Type $pagetype)
     {
         $sets = PageTypeComposerFormLayoutSet::getList($pagetype);
         $controls = array();
@@ -180,4 +192,13 @@ abstract class Control extends Object
         return $controls;
     }
 
+    public function isPageTypeComposerControlRequiredByDefault()
+    {
+        return $this->ptComposerControlRequiredByDefault;
+    }
+
+    public function objectExists()
+    {
+        return true;
+    }
 }

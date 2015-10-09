@@ -4,10 +4,6 @@ $form = Loader::helper('form');
 
 <form method='post'
       action='<?php echo View::url('/login', 'authenticate', $this->getAuthenticationTypeHandle()) ?>'>
-    <div class="form-group concrete-login">
-        <span><?php echo t('Sign in with a local account.') ?> </span>
-        <hr>
-    </div>
     <div class="form-group">
         <input name="uName" class="form-control col-sm-12"
                placeholder="<?php echo Config::get('concrete.user.registration.email_registration') ? t('Email Address') : t('Username')?>" />
@@ -16,7 +12,7 @@ $form = Loader::helper('form');
     <div class="form-group">
         <label>&nbsp;</label>
         <input name="uPassword" class="form-control" type="password"
-               placeholder="Password" />
+               placeholder="<?php echo t('Password')?>" />
     </div>
 
     <div class="checkbox">
@@ -46,4 +42,10 @@ $form = Loader::helper('form');
         document.querySelector('input[name=uName]').focus();
     </script>
     <?php Loader::helper('validation/token')->output('login_' . $this->getAuthenticationTypeHandle()); ?>
+
+    <?php if (Config::get('concrete.user.registration.enabled')) { ?>
+        <br/>
+        <hr/>
+        <a href="<?php echo URL::to('/register')?>" class="btn btn-block btn-success"><?php echo t('Not a member? Register')?></a>
+    <?php } ?>
 </form>

@@ -31,7 +31,7 @@ if ($_REQUEST['displayNodePagination']) {
     $dh->setDisplayNodePagination(false);
 }
 
-if ($_REQUEST['includeSystemPages']) {
+if ($_GET['includeSystemPages']) {
     $dh->setIncludeSystemPages(true);
 } else {
     $dh->setIncludeSystemPages(false);
@@ -56,6 +56,10 @@ if ($_REQUEST['displaySingleLevel']) {
     }
     $nodes[] = $n;
 } else {
+    $openNodeArray = explode(',', str_replace('_', '', $_COOKIE['ConcreteSitemap-expand']));
+    if (is_array($openNodeArray)) {
+        $dh->setExpandedNodes($openNodeArray);
+    }
     $nodes = $dh->getSubNodes($cParentID);
 }
 print Loader::helper('json')->encode($nodes);

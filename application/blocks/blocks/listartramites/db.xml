@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+    <table name="btListarTramites">
+        <field name="bID" type="I">
+            <key />
+            <unsigned />
+        </field>
+        <field name="titulo" type="C" size="50"></field>
+		<field name="cantItemsPag" type="I"></field>
+    </table>
+    
+    <table name="btListarTramitesEntries">
+        <field name="id" type="I">
+            <key />
+            <unsigned />
+            <autoincrement />
+        </field>
+        <field name="bID" type="I"><unsigned /></field>
+        <field name="nombre" type="C" size="100"></field>        
+        <field name="sitio_web" type="C" size="100"></field>  
+        <field name="descripcion" type="X" size="300"></field>
+        <field name="institucion" type="C" size="200"></field>          
+        <field name="tipo_servicio" type="C" size="200"></field>  
+        <field name="producto" type="C" size="150"></field>  
+        <field name="direccion" type="C" size="200"></field>  
+        <field name="correo" type="C" size="100"></field>  
+        <field name="telefono" type="C" size="50"></field>  
+        <field name="canal" type="X" size="200"></field>  
+        <field name="area_servicio" type="C" size="100"></field>  
+        <field name="audiencia" type="C" size="100"></field>  
+        <field name="tramite" type="X" size="1000"></field>  
+        <field name="etiqueta" type="C" size="150"></field>  
+        <field name="documentacion" type="C" size="100"></field>  
+        <field name="tiempo_estimado" type="C" size="100"></field>  
+        <field name="precio" type="C" size="100"></field>  
+        <field name="forma_pago" type="C" size="100"></field>  
+        <field name="atencion" type="C" size="100"></field>  
+        <field name="correo_servicio" type="C" size="100"></field>  
+        <field name="formulario" type="X" size="150"></field>  
+        <field name="online" type="C" size="100"></field>  
+        <field name="orden" type="I">
+            <notnull />
+        </field>   
+		<field name="fID" type="I"><UNSIGNED /><default value="0" /></field>
+    </table>
+</schema>

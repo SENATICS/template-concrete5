@@ -43,13 +43,20 @@ if (count($entries) > 0) { ?>
         		$ui = $up->getUserPointEntryUserObject();
         		$action = $up->getUserPointEntryActionObject();
     		?>
-    		<td><?php if (is_object($ui)) { ?><?php echo $ui->getUserName()?><?php } ?></td>
-    		<td><?php if (is_object($action)) { ?><?php echo $action->getUserPointActionName()?><?php } ?></td>
+    		<td><?php if (is_object($ui)) { ?><?php echo h($ui->getUserName())?><?php } ?></td>
+    		<td><?php if (is_object($action)) { ?><?php echo h($action->getUserPointActionName())?><?php } ?></td>
     		<td><?php echo number_format($up->getUserPointEntryValue())?></td>
     		<td><?php echo $dh->formatDateTime($up->getUserPointEntryTimestamp());?></td>
-    		<td><?php echo $up->getUserPointEntryDescription()?></td>
+    		<td><?php echo h($up->getUserPointEntryDescription())?></td>
     		<td style="Text-align: right">
-    		    <a href="<?php echo $view->action('deleteEntry', $up->getUserPointEntryID())?>" class="btn btn-sm btn-danger"><?php echo t('Delete')?></a>
+                <?php
+                $delete = \Concrete\Core\Url\Url::createFromUrl($view->action('deleteEntry', $up->getUserPointEntryID()));
+
+                $delete->setQuery(array(
+                    'ccm_token' => \Core::make('helper/validation/token')->generate('delete_community_points')
+                ));
+                ?>
+    		    <a href="<?php echo $delete?>" class="btn btn-sm btn-danger"><?php echo t('Delete')?></a>
     		</td>
     	</tr>
     <?php } ?>

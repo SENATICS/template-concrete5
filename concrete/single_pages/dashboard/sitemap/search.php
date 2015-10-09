@@ -16,8 +16,6 @@ $(function() {
 </script>
 
 <?php } else { ?>
-	<div class="ccm-pane-body">
-		<p><?php echo t("You must have access to the dashboard sitemap to search pages.")?></p>
-	</div>
+	<p><?php echo t("You must have access to the dashboard sitemap to search pages.")?></p>
 <?php } ?>
 

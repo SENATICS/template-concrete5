@@ -85,7 +85,7 @@ $(function() {
 <?php echo $successMessage?>
 <br/><br/>
 <div class="well">
-<input type="button" class="btn btn-large btn-primary" onclick="window.location.href='<?php echo DIR_REL?>/'" value="<?php echo t('Continue to your site')?>" />
+<input type="button" class="btn btn-large btn-primary" onclick="window.location.href='<?php echo URL::to('/')?>'" value="<?php echo t('Continue to your site')?>" />
 </div>
 </div>
 
@@ -142,7 +142,7 @@ $(function() {
 <div class="row">
 <div class="col-md-5 col-md-offset-1">
 
-	<input type="hidden" name="locale" value="<?php echo $locale?>" />
+	<input type="hidden" name="locale" value="<?php echo h($locale)?>" />
 
 	<fieldset>
 		<legend><?php echo t('Site Information')?></legend>
@@ -165,13 +165,13 @@ $(function() {
 		<div class="form-group">
 		<label for="uPassword" class="control-label col-md-4"><?php echo t('Password')?>:</label>
 		<div class="col-md-8">
-		<?php echo $form->password('uPassword', array('class' => ''))?>
+		<?php echo $form->password('uPassword', array('class' => '', 'autocomplete'=>'off'))?>
 		</div>
 		</div>
 		<div class="form-group">
 		<label for="uPasswordConfirm" class="control-label col-md-4"><?php echo t('Confirm Password')?>:</label>
 		<div class="col-md-8">
-			<?php echo $form->password('uPasswordConfirm', array('class' => ''))?>
+			<?php echo $form->password('uPasswordConfirm', array('class' => '', 'autocomplete'=>'off'))?>
 		</div>
 		</div>
 
@@ -200,7 +200,7 @@ $(function() {
 	<div class="form-group">
 	<label class="control-label col-md-4" for="DB_PASSWORD"><?php echo t('MySQL Password')?>:</label>
 	<div class="col-md-8">
-		<?php echo $form->password('DB_PASSWORD', array('class' => ''))?>
+		<?php echo $form->password('DB_PASSWORD', array('class' => '', 'autocomplete'=>'off'))?>
 	</div>
 	</div>
 
@@ -363,13 +363,6 @@ $(function() {
 	</td>
 	<td><?php if (!$jsonTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('You must enable PHP\'s JSON support. This should be enabled by default in PHP 5.2 and above.')?>"></i><?php } ?></td>
 </tr>
-
-<tr>
-    <td><?php if ($finfoTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-exclamation-circle"></i><?php } ?></td>
-    <td width="100%"><?php echo t('File Info Extension')?></td>
-    <td><?php if (!$finfoTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('You must enable PHP\'s Fileinfo Extension.')?>"></i><?php } ?></td>
-</tr>
-
 <tr>
     <td><?php if ($aspTagsTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-exclamation-circle"></i><?php } ?></td>
     <td width="100%"><?php echo t('ASP Style Tags Disabled')?></td>
@@ -386,7 +379,7 @@ $(function() {
 	<td><?php if ($imageTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-exclamation-circle"></i><?php } ?></td>
 	<td width="100%"><?php echo t('Image Manipulation Available')?>
 	</td>
-	<td><?php if (!$imageTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('concrete5 requires GD library 2.0.1 or Imagick and ImageMagick 6.2.9 or greater.')?>"></i><?php } ?></td>
+	<td><?php if (!$imageTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('concrete5 requires GD library 2.0.1 with JPEG, PNG and GIF support. Doublecheck that your installation has support for all these image types.')?>"></i><?php } ?></td>
 </tr>
 <tr>
 	<td><?php if ($xmlTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-exclamation-circle"></i><?php } ?></td>
@@ -410,7 +403,7 @@ $(function() {
     <td><?php if ($i18nTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-exclamation-circle"></i><?php } ?></td>
     <td width="100%"><?php echo t('Internationalization Support')?>
     </td>
-    <td><?php if (!$i18nTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('You must enable ctype support in your copy of PHP.')?>"></i><?php } ?></td>
+    <td><?php if (!$i18nTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('You must enable ctype and multibyte string (mbstring) support in PHP.')?>"></i><?php } ?></td>
 </tr>
 <tr>
     <td><?php if ($docCommentTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-exclamation-circle"></i><?php } ?></td>
@@ -440,7 +433,7 @@ $(function() {
 	<td><?php if ($remoteFileUploadTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-warning"></i><?php } ?></td>
 	<td width="100%"><?php echo t('Remote File Importing Available')?>
 	</td>
-	<td><?php if (!$remoteFileUploadTest) { ?><img src="<?php echo ASSETS_URL_IMAGES?>/icons/tooltip.png" class="launch-tooltip" title="<?php echo t('Remote file importing through the file manager requires the iconv PHP extension.')?>" /><?php } ?></td>
+	<td><?php if (!$remoteFileUploadTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('Remote file importing through the file manager requires the iconv PHP extension.')?>"></i><?php } ?></td>
 </tr>
 </table>
 
@@ -454,7 +447,7 @@ $(function() {
             <td><?php if ($fileZipTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-warning"></i><?php } ?></td>
             <td width="100%"><?php echo t('Zip Support')?>
             </td>
-            <td><?php if (!fileZipTest) { ?><img src="<?php echo ASSETS_URL_IMAGES?>/icons/tooltip.png" class="launch-tooltip" title="<?php echo t('Downloading zipped files from the file manager and remote updating requires the Zip extension.')?>" /><?php } ?></td>
+            <td><?php if (!$fileZipTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('Downloading zipped files from the file manager, remote updating and marketplace integration requires the Zip extension.')?>"></i><?php } ?></td>
         </tr>
     </table>
 
@@ -511,7 +504,7 @@ $(function() {
 <div class="col-sm-10 col-sm-offset-1">
 <div class="well" id="install-success">
 	<form method="post" action="<?php echo $view->url('/install','setup')?>">
-	<input type="hidden" name="locale" value="<?php echo $locale?>" />
+	<input type="hidden" name="locale" value="<?php echo h($locale)?>" />
 	<a class="btn btn-large btn-primary" href="javascript:void(0)" onclick="$(this).parent().submit()"><?php echo t('Continue to Installation')?> <i class="fa fa-arrow-right fa-white"></i></a>
 	</form>
 </div>
@@ -520,7 +513,8 @@ $(function() {
 	<?php echo t('There are problems with your installation environment. Please correct them and click the button below to re-run the pre-installation tests.')?>
     <br/><br/>
 	<form method="post" action="<?php echo $view->url('/install')?>">
-	<button class="btn btn-default" type="submit"><?php echo t('Run Tests')?> <i class="fa fa-refresh"></i></button>
+    	<input type="hidden" name="locale" value="<?php echo h($locale)?>" />
+    	<button class="btn btn-default" type="submit"><?php echo t('Run Tests')?> <i class="fa fa-refresh"></i></button>
 	</form>
 </div>
 

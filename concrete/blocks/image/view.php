@@ -17,10 +17,10 @@ if (is_object($f)) {
     }
     $tag->addClass('ccm-image-block img-responsive bID-'.$bID);
     if ($altText) {
-        $tag->alt($altText);
+        $tag->alt(h($altText));
     }
     if ($title) {
-        $tag->title($title);
+        $tag->title(h($title));
     }
     if ($linkURL):
         print '<a href="' . $linkURL . '">';
@@ -37,7 +37,7 @@ if (is_object($f)) {
 
 <?php } ?>
 
-<?php if(is_object($foS)) { ?>	
+<?php if(is_object($foS)) { ?>
 <script>
 $(function() {
     $('.bID-<?php print $bID;?>')

@@ -18,22 +18,30 @@ use Concrete\Core\Application\Application;
 use Concrete\Core\Asset\AssetList;
 use Concrete\Core\Config\DatabaseLoader;
 use Concrete\Core\Config\DatabaseSaver;
+use Concrete\Core\Config\FileLoader;
 use Concrete\Core\Config\FileSaver;
+use Concrete\Core\Config\Repository\Repository as ConfigRepository;
+use Concrete\Core\File\Type\TypeList;
 use Concrete\Core\Foundation\ClassAliasList;
 use Concrete\Core\Foundation\Service\ProviderList;
 use Concrete\Core\Permission\Key\Key as PermissionKey;
 use Concrete\Core\Support\Facade\Facade;
-use Patchwork\Utf8\Bootup;
-use Concrete\Core\Config\Repository\Repository as ConfigRepository;
-use Concrete\Core\File\Type\TypeList;
-use Concrete\Core\Config\FileLoader;
 use Illuminate\Filesystem\Filesystem;
+use Patchwork\Utf8\Bootup as PatchworkUTF8;
+
+/**
+ * ----------------------------------------------------------------------------
+ * Handle text encoding.
+ * ----------------------------------------------------------------------------
+ */
+PatchworkUTF8::initAll();
 
 /**
  * ----------------------------------------------------------------------------
  * Instantiate concrete5.
  * ----------------------------------------------------------------------------
  */
+/** @var Application $cms */
 $cms = require DIR_APPLICATION . '/bootstrap/start.php';
 $cms->instance('app', $cms);
 
@@ -47,28 +55,53 @@ Facade::setFacadeApplication($cms);
 
 /**
  * ----------------------------------------------------------------------------
+ * Load path detection for relative assets, URL and path to home.
+ * ----------------------------------------------------------------------------
+ */
+require DIR_BASE_CORE . '/bootstrap/paths.php';
+
+
+/**
+ * ----------------------------------------------------------------------------
  * Add install environment detection
  * ----------------------------------------------------------------------------
  */
-
-$db_config = @include DIR_APPLICATION . '/config/database.php';
-
+$db_config = array();
+if (file_exists(DIR_APPLICATION . '/config/database.php')) {
+    $db_config = include DIR_APPLICATION . '/config/database.php';
+}
 $environment = $cms->environment();
-$cms->detectEnvironment(function() use ($db_config, $environment) {
+$cms->detectEnvironment(function() use ($db_config, $environment, $cms) {
+    try {
+        $installed = $cms->isInstalled();
+        return $installed;
+    } catch (\Exception $e) {}
+
     return isset($db_config['default-connection']) ? $environment : 'install';
 });
-
 
 /**
  * ----------------------------------------------------------------------------
  * Enable Filesystem Config.
  * ----------------------------------------------------------------------------
  */
+if (!$cms->bound('config')) {
+    $cms->bindShared('config', function(Application $cms) {
+        $file_system = new Filesystem();
+        $file_loader = new FileLoader($file_system);
+        $file_saver = new FileSaver($file_system);
+        return new ConfigRepository($file_loader, $file_saver, $cms->environment());
+    });
+}
 
-$file_system = new Filesystem();
-$file_loader = new FileLoader($file_system);
-$file_saver = new FileSaver($file_system);
-$cms->instance('config', $config = new ConfigRepository($file_loader, $file_saver, $cms->environment()));
+$config = $cms->make('config');
+
+/*
+ * ----------------------------------------------------------------------------
+ * Finalize paths.
+ * ----------------------------------------------------------------------------
+ */
+require DIR_BASE_CORE . '/bootstrap/paths_configured.php';
 
 /**
  * ----------------------------------------------------------------------------
@@ -89,15 +122,6 @@ if (!$config->has('app.server_timezone')) {
 
 /**
  * ----------------------------------------------------------------------------
- * Legacy Definitions
- * ----------------------------------------------------------------------------
- */
-
-define('APP_VERSION', $config->get('concrete.version'));
-define('APP_CHARSET', $config->get('concrete.charset'));
-
-/**
- * ----------------------------------------------------------------------------
  * Setup core classes aliases.
  * ----------------------------------------------------------------------------
  */
@@ -111,18 +135,45 @@ $list->registerMultiple($config->get('app.facades'));
  * ----------------------------------------------------------------------------
  */
 
-$database_loader = new DatabaseLoader();
-$database_saver = new DatabaseSaver();
+if (!$cms->bound('config/database')) {
+    $cms->bindShared('config/database', function(Application $cms) {
+        $database_loader = new DatabaseLoader();
+        $database_saver = new DatabaseSaver();
+        return new ConfigRepository($database_loader, $database_saver, $cms->environment());
+    });
+}
 
-$cms->instance('config/database', $database_config = new ConfigRepository($database_loader, $database_saver, $cms->environment()));
+$database_config = $cms->make('config/database');
 
 /**
  * ----------------------------------------------------------------------------
  * Setup the core service groups.
  * ----------------------------------------------------------------------------
  */
+
 $list = new ProviderList($cms);
+
+// Register events first so that they can be used by other providers.
+$list->registerProvider($config->get('app.providers.core_events'));
+
+// Register all other providers
 $list->registerProviders($config->get('app.providers'));
+
+/**
+ * ----------------------------------------------------------------------------
+ * Legacy Definitions
+ * ----------------------------------------------------------------------------
+ */
+define('APP_VERSION', $config->get('concrete.version'));
+define('APP_CHARSET', $config->get('concrete.charset'));
+try {
+    define('BASE_URL', \Core::getApplicationURL());
+} catch (\Exception $x) {
+    echo $x->getMessage();
+    die(1);
+}
+define('DIR_REL', $cms['app_relative_path']);
+
 
 /**
  * ----------------------------------------------------------------------------
@@ -131,13 +182,6 @@ $list->registerProviders($config->get('app.providers'));
  * ----------------------------------------------------------------------------
  */
 $cms->setupFilesystem();
-
-/**
- * ----------------------------------------------------------------------------
- * Handle text encoding.
- * ----------------------------------------------------------------------------
- */
-Bootup::initAll();
 
 /**
  * ----------------------------------------------------------------------------
@@ -171,6 +215,22 @@ if ($cms->isRunThroughCommandLineInterface()) {
  */
 include DIR_APPLICATION . '/bootstrap/app.php';
 
+
+/**
+ * ----------------------------------------------------------------------------
+ * Set trusted proxies and headers for the request
+ * ----------------------------------------------------------------------------
+ */
+
+if($proxyHeaders = $config->get('concrete.security.trusted_proxies.headers')){
+    foreach($proxyHeaders as $key => $value) {
+        Request::setTrustedHeaderName($key, $value);
+    }
+}
+
+if($trustedProxiesIps = $config->get('concrete.security.trusted_proxies.ips')) {
+    Request::setTrustedProxies($trustedProxiesIps);
+}
 
 /**
  * ----------------------------------------------------------------------------
@@ -212,6 +272,13 @@ if ($response) {
 
 /**
  * ----------------------------------------------------------------------------
+ * Now we load all installed packages, and register their package autoloaders.
+ * ----------------------------------------------------------------------------
+ */
+$cms->setupPackageAutoloaders();
+
+/**
+ * ----------------------------------------------------------------------------
  * Load preprocess items
  * ----------------------------------------------------------------------------
  */
@@ -230,22 +297,14 @@ $loc = Localization::getInstance();
 $loc->setLocale($lan);
 
 /**
- * ----------------------------------------------------------------------------
- * Redirect user based on their trailing or non-trailing slash. Must come after
- * preferences because we use the pretty URLs preference.
- * ----------------------------------------------------------------------------
- */
-$cms->handleBaseURLRedirection();
-$cms->handleURLSlashes();
-
-/**
  * Handle automatic updating
  */
 $cms->handleAutomaticUpdates();
 
 /**
  * ----------------------------------------------------------------------------
- * Now we load all installed packages, and run package events on them.
+ * Now that we have languages out of the way, we can run our package on_start
+ * methods
  * ----------------------------------------------------------------------------
  */
 $cms->setupPackages();
@@ -259,6 +318,13 @@ PermissionKey::loadAll();
 
 /**
  * ----------------------------------------------------------------------------
+ * Fire an event for intercepting the dispatch
+ * ----------------------------------------------------------------------------
+ */
+\Events::dispatch('on_before_dispatch');
+
+/**
+ * ----------------------------------------------------------------------------
  * Get the response to the current request
  * ----------------------------------------------------------------------------
  */
@@ -268,7 +334,6 @@ $response = $cms->dispatch($request);
  * Send it to the user
  * ----------------------------------------------------------------------------
  */
-
 $response->send();
 
 /**

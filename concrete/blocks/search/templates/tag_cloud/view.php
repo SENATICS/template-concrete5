@@ -39,7 +39,7 @@
 
 
 <?php if ($title) { ?>
-	<h3><?php echo $title?></h3>
+	<h3><?php echo h($title)?></h3>
 <?php } ?>
 
 <div class="ccm-search-block-tag-cloud-wrapper ">
@@ -49,7 +49,7 @@
 <?php
 	for ($i = 0; $i < $ttags->count(); $i++) {
 		$akct = $tags[$i];
-		$qs = $akc->field('atSelectOptionID') . '[]=' . $akct->getSelectAttributeOptionID();
+		$qs = urlencode($akc->field('atSelectOptionID') . '[]') . '=' . urlencode($akct->getSelectAttributeOptionID());
 		?>
 		<li><a style="font-size: <?php echo $tagSizes[$akct->getSelectAttributeOptionUsageCount()]?>px !important" href="<?php echo $view->url($resultTargetURL)?>?<?php echo $qs?>"><?php echo $akct->getSelectAttributeOptionValue()?></a>
 		<span>(<?php echo $akct->getSelectAttributeOptionUsageCount()?>)</span>

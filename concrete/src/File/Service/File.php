@@ -1,18 +1,20 @@
 <?php
+
 namespace Concrete\Core\File\Service;
 
+use Concrete\Core\File\Exception\RequestTimeoutException;
 use Config;
 use Environment;
-use Loader;
+use Core;
 
 /**
- * File helper
+ * File helper.
  *
  * Functions useful for working with files and directories.
  *
  * Used as follows:
  * <code>
- * $file = Loader::helper('file');
+ * $file = Core::make('helper/file');
  * $path = 'http://www.concrete5.org/tools/get_latest_version_number';
  * $contents = $file->getContents($path);
  * echo $contents;
@@ -26,10 +28,22 @@ use Loader;
  */
 class File
 {
-
+    /**
+     * Returns the contents of a directory.
+     *
+     *
+     * @param string $dir
+     * @param array $ignoreFilesArray
+     * @param bool $recursive
+     *
+     * @return array
+     *
+     * @see \Concrete\Core\Foundation\Environment::getDirectoryContents()
+     */
     public function getDirectoryContents($dir, $ignoreFilesArray = array(), $recursive = false)
     {
         $env = Environment::get();
+
         return $env->getDirectoryContents($dir, $ignoreFilesArray, $recursive);
     }
 
@@ -37,19 +51,22 @@ class File
      * Removes the extension of a filename, uncamelcases it.
      *
      * @param string $filename
+     *
      * @return string
      */
     public function unfilename($filename)
     {
-        // removes the extension and makes it look nice
-        $txt = Loader::helper('text');
-        return substr($txt->unhandle($filename), 0, strrpos($filename, '.'));
+        $parts = $this->splitFilename($filename);
+        $txt = Core::make('helper/text');
+        /* @var $txt \Concrete\Core\Utility\Service\Text */
+
+        return $txt->unhandle($parts[0] . $parts[1]);
     }
 
     /**
-     * Recursively copies all items in the source directory or file to the target directory
+     * Recursively copies all items in the source directory or file to the target directory.
      *
-     * @param string $source Source to copy
+     * @param string $source Source dir/file to copy
      * @param string $target Place to copy the source
      * @param int    $mode   What to chmod the file to
      */
@@ -57,8 +74,8 @@ class File
     {
         if (is_dir($source)) {
             if ($mode == null) {
-                @mkdir($target, DIRECTORY_PERMISSIONS_MODE);
-                @chmod($target, DIRECTORY_PERMISSIONS_MODE);
+                @mkdir($target, Config::get('concrete.filesystem.permissions.directory'));
+                @chmod($target, Config::get('concrete.filesystem.permissions.directory'));
             } else {
                 @mkdir($target, $mode);
                 @chmod($target, $mode);
@@ -95,12 +112,13 @@ class File
     }
 
     /**
-     * returns an object with two permissions modes (octal):
+     * Returns an object with two permissions modes (octal):
      * one for files: $res->file
-     * and another for directories: $res->dir
+     * and another for directories: $res->dir.
      *
      * @param string $path (optional)
-     * @return StdClass
+     *
+     * @return \stdClass
      */
     public function getCreateFilePermissions($path = null)
     {
@@ -115,7 +133,7 @@ class File
             $perms = @fileperms($path);
 
             if (!$perms) {
-                throw new Exception(t('An error occured while attempting to determine file permissions.'));
+                throw new Exception(t('An error occurred while attempting to determine file permissions.'));
             }
             clearstatcache();
             $dir_perms = substr(decoct($perms), 1);
@@ -134,7 +152,7 @@ class File
         } catch (Exception $e) {
             return false;
         }
-        $res = new \stdClass;
+        $res = new \stdClass();
         $res->file = intval($file_perms, 8);
         $res->dir = intval($dir_perms, 8);
 
@@ -142,10 +160,11 @@ class File
     }
 
     /**
-     * Removes all files from within a specified directory
+     * Removes all files from within a specified directory.
      *
      * @param string $source Directory
      * @param bool   $inc    Remove the passed directory as well or leave it alone
+     *
      * @return bool Whether the methods succeeds or fails
      */
     public function removeAll($source, $inc = false)
@@ -156,23 +175,31 @@ class File
 
         $iterator = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($source, \FilesystemIterator::SKIP_DOTS),
-            \RecursiveIteratorIterator::CHILD_FIRST);
+            \RecursiveIteratorIterator::CHILD_FIRST
+        );
 
         foreach ($iterator as $path) {
             if ($path->isDir()) {
-                rmdir($path->__toString());
+                if (!rmdir($path->__toString())) {
+                    return false;
+                }
             } else {
-                unlink($path->__toString());
+                if (!unlink($path->__toString())) {
+                    return false;
+                }
             }
         }
         if ($inc) {
-            rmdir($source);
+            if (!rmdir($source)) {
+                return false;
+            }
         }
+
         return true;
     }
 
     /**
-     * Takes a path to a file and sends it to the browser, streaming it, and closing the HTTP connection afterwards. Basically a force download method
+     * Takes a path to a file and sends it to the browser, streaming it, and closing the HTTP connection afterwards. Basically a force download method.
      *
      * @param stings $file
      */
@@ -194,7 +221,7 @@ class File
         // This code isn't ready yet. It will allow us to no longer force download
 
         /*
-        $h = Loader::helper('mime');
+        $h = Core::make('helper/mime');
         $mimeType = $h->mimeFromExtension($this->getExtension($file));
         header('Content-type: ' . $mimeType);
         */
@@ -215,24 +242,25 @@ class File
     }
 
     /**
-     * Returns the full path to the temporary directory
+     * Returns the full path to the temporary directory.
      *
      * @return string
      */
     public function getTemporaryDirectory()
     {
-        if (defined('DIR_TMP')) {
-            return DIR_TMP;
+        $temp = Config::get('concrete.filesystem.temp_directory');
+        if ($temp && @is_dir($temp)) {
+            return $temp;
         }
 
-        if (!is_dir(DIR_FILES_UPLOADED . '/tmp')) {
-            @mkdir(DIR_FILES_UPLOADED . '/tmp', DIRECTORY_PERMISSIONS_MODE);
-            @chmod(DIR_FILES_UPLOADED . '/tmp', DIRECTORY_PERMISSIONS_MODE);
-            @touch(DIR_FILES_UPLOADED . '/tmp/index.html');
+        if (!is_dir(DIR_FILES_UPLOADED_STANDARD . '/tmp')) {
+            @mkdir(DIR_FILES_UPLOADED_STANDARD . '/tmp', Config::get('concrete.filesystem.permissions.directory'));
+            @chmod(DIR_FILES_UPLOADED_STANDARD . '/tmp', Config::get('concrete.filesystem.permissions.directory'));
+            @touch(DIR_FILES_UPLOADED_STANDARD . '/tmp/index.html');
         }
 
-        if (is_dir(DIR_FILES_UPLOADED . '/tmp') && is_writable(DIR_FILES_UPLOADED . '/tmp')) {
-            return DIR_FILES_UPLOADED . '/tmp';
+        if (is_dir(DIR_FILES_UPLOADED_STANDARD . '/tmp') && is_writable(DIR_FILES_UPLOADED_STANDARD . '/tmp')) {
+            return DIR_FILES_UPLOADED_STANDARD . '/tmp';
         }
 
         if ($temp = getenv('TMP')) {
@@ -248,43 +276,39 @@ class File
         $temp = tempnam(__FILE__, '');
         if (file_exists($temp)) {
             unlink($temp);
+
             return dirname($temp);
         }
     }
 
     /**
-     * Adds content to a new line in a file. If a file is not there it will be created
+     * Adds content to a new line in a file. If a file is not there it will be created.
      *
      * @param string $filename
      * @param string $content
+     *
+     * @return bool
      */
     public function append($filename, $content)
     {
-        file_put_contents($filename, $content, FILE_APPEND);
+        return file_put_contents($filename, $content, FILE_APPEND) !== false;
     }
 
     /**
      * Just a consistency wrapper for file_get_contents
-     * Should use curl if it exists and fopen isn't allowed (thanks Remo)
+     * Should use curl if it exists and fopen isn't allowed (thanks Remo).
      *
      * @param string $filename
      * @param string $timeout
-     * @return string $contents
+     *
+     * @throws RequestTimeoutException Request timed out
+     *
+     * @return string|bool Returns false in case of failure
      */
-    public function getContents($file, $timeout = 5)
+    public function getContents($file, $timeout = null)
     {
         $url = @parse_url($file);
         if (isset($url['scheme']) && isset($url['host'])) {
-            if (ini_get('allow_url_fopen')) {
-                $ctx = stream_context_create(
-                    array(
-                        'http' => array('timeout' => $timeout)
-                    ));
-                if ($contents = @file_get_contents($file, 0, $ctx)) {
-                    return $contents;
-                }
-            }
-
             if (function_exists('curl_init')) {
                 $curl_handle = curl_init();
 
@@ -302,21 +326,35 @@ class File
                     }
                 }
 
+                if ($timeout === null) {
+                    $timeout = Config::get('app.curl.connectionTimeout');
+                }
+
                 curl_setopt($curl_handle, CURLOPT_URL, $file);
                 curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, $timeout);
                 curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, Config::get('app.curl.verifyPeer'));
+
                 $contents = curl_exec($curl_handle);
+                $error = curl_errno($curl_handle);
+
+
                 $http_code = curl_getinfo($curl_handle, CURLINFO_HTTP_CODE);
                 curl_close($curl_handle);
-                if ($http_code == 404) {
+
+                if ($error == 28) {
+                    throw new RequestTimeoutException(t('Request timed out.'));
+                }
+
+                if ($http_code >= 400) {
                     return false;
                 }
 
                 return $contents;
             }
         } else {
-            if ($contents = @file_get_contents($file)) {
+            $contents = @file_get_contents($file);
+            if ($contents !== false) {
                 return $contents;
             }
         }
@@ -325,25 +363,28 @@ class File
     }
 
     /**
-     * Removes contents of the file
+     * Removes contents of the file.
      *
      * @param $filename
+     *
+     * @return bool
      */
     public function clear($file)
     {
-        file_put_contents($file, '');
+        return file_put_contents($file, '') !== false;
     }
 
     /**
-     * Cleans up a filename and returns the cleaned up version
+     * Cleans up a filename and returns the cleaned up version.
      *
      * @param string $file
-     * @return string @file
+     *
+     * @return string
      */
     public function sanitize($file)
     {
         // Let's build an ASCII-only version of name, to avoid filesystem-specific encoding issues.
-        $asciiName = Loader::helper('text')->asciify($file);
+        $asciiName = Core::make('helper/text')->asciify($file);
         // Let's keep only letters, numbers, underscore and dots.
         $asciiName = trim(preg_replace(array("/[\\s]/", "/[^0-9A-Z_a-z-.]/"), array("_", ""), $asciiName));
         // Trim underscores at start and end
@@ -355,32 +396,94 @@ class File
             // If the resulting name is only composed by the file extension
             $asciiName = md5($file) . $asciiName;
         }
+
         return $asciiName;
     }
 
     /**
-     * Returns the extension for a file name
+     * Splits a filename into directory, base file name, extension.
+     * If the file name starts with a dot and it's the only dot (eg: '.htaccess'), we don't consider the file to have an extension.
      *
      * @param string $filename
-     * @return string $extension
+     *
+     * @return array
      */
-    public function getExtension($filename)
+    public function splitFilename($filename)
     {
-        $extension = trim(end(explode(".", $filename)));
-        return $extension;
+        $result = array('', '', '');
+        if (is_string($filename)) {
+            $result[1] = $filename;
+            $slashAt = strrpos(str_replace('\\', '/', $result[1]), '/');
+            if ($slashAt !== false) {
+                $result[0] = substr($result[1], 0, $slashAt + 1);
+                $result[1] = (string) substr($result[1], $slashAt + 1);
+            }
+            $dotAt = strrpos($result[1], '.');
+            if (($dotAt !== false) && ($dotAt > 0)) {
+                $result[2] = (string) substr($result[1], $dotAt + 1);
+                $result[1] = substr($result[1], 0, $dotAt);
+            }
+        }
+
+        return $result;
     }
 
     /**
-     * Takes a path and replaces the files extension in that path with the specified extension
+     * Returns the extension for a file name.
+     *
+     * @param string $filename
+     *
+     * @return string
+     */
+    public function getExtension($filename)
+    {
+        $parts = $this->splitFilename($filename);
+
+        return $parts[2];
+    }
+
+    /**
+     * Takes a path and replaces the files extension in that path with the specified extension.
      *
      * @param string $filename
      * @param string $extension
-     * @return string $newFileName
+     *
+     * @return string
      */
     public function replaceExtension($filename, $extension)
     {
-        $newFileName = substr($filename, 0, strrpos($filename, '.')) . '.' . $extension;
-        return $newFileName;
+        $parts = $this->splitFilename($filename);
+        $newFilename = $parts[0] . $parts[1];
+        if (is_string($extension) && ($extension !== '')) {
+            $newFilename .= '.' . $extension;
+        }
+
+        return $newFilename;
     }
 
+    /**
+     * Checks if two path are the same, considering directory separator and OS case sensitivity.
+     *
+     * @param string $path1
+     * @param string $path2
+     *
+     * @return bool
+     */
+    public function isSamePath($path1, $path2)
+    {
+        $path1 = str_replace(DIRECTORY_SEPARATOR, '/', $path1);
+        $path2 = str_replace(DIRECTORY_SEPARATOR, '/', $path2);
+        // Check if OS is case insensitive
+        $checkFile = strtoupper(__FILE__);
+        if ($checkFile === __FILE__) {
+            $checkFile = strtolower(__FILE__);
+        }
+        if (@is_file($checkFile)) {
+            $same = (strcasecmp($path1, $path2) === 0) ? true : false;
+        } else {
+            $same = ($path1 === $path2) ? true : false;
+        }
+
+        return $same;
+    }
 }
