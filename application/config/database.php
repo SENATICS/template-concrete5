@@ -6,9 +6,9 @@ return array(
         'concrete' => array(
             'driver' => 'c5_pdo_mysql',
             'server' => 'localhost',
-            'database' => 'NOMBRE_DB',
-            'username' => 'USUARIO_DB',
-            'password' => 'PASS_DB',
+            'database' => 'concrete_template',
+            'username' => 'concrete_tp',
+            'password' => 'p4ssw0rd',
             'charset' => 'utf8',
 	    'driverOptions' => array(
                    1002=>'SET NAMES utf8')

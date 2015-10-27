@@ -69,7 +69,7 @@ body {
   background-color: #637884;
 }
 .page-footer {
-  background: #637884 url(/application/themes/TemplateV2/img/Republica-del-Paraguay.png) no-repeat;
+  background: #637884 url(/template-concrete5/application/themes/TemplateV2/img/Republica-del-Paraguay.png) no-repeat;
   background-position: 10% 10%;
   border-top: 5px solid rgba(0, 0, 0, 0.2);
 }
@@ -92,7 +92,7 @@ body {
   color: #ffffff;
 }
 .parallax {
-  background: transparent url("/application/themes/TemplateV2/img/background1.jpg");
+  background: transparent url("/template-concrete5/application/themes/TemplateV2/img/background1.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
