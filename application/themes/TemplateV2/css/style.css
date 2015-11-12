@@ -10,12 +10,16 @@
     background-size: cover;
 }*/
 
+/* Actualización 02/11/2015*/
+.parallax-container img{
+    width: 100% !important;
+    height: auto !important;
+}
+
 .contenido_principal input::-webkit-input-placeholder { color: #444; } /* WebKit */
 .contenido_principal input:-moz-placeholder { color: #444; } /* Firefox 18- */
 .contenido_principal input::-moz-placeholder { color: #444; } /* Firefox 19+ */
 .contenido_principal input:-ms-input-placeholder { color: #444; } /* IE 10+ */
-
-
 
 /* Fuente */
 .progress{
