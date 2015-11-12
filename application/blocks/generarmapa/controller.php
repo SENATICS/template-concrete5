@@ -8,7 +8,7 @@ class Controller extends BlockController
     protected $btTable = 'btMapa';
 	protected $btExportTables = array('btMapa', 'btMapaEntries');
     protected $btInterfaceWidth = "1050";
-    protected $btInterfaceHeight = "600";
+    protected $btInterfaceHeight = "500";
     protected $btCacheBlockRecord = true;
     protected $btCacheBlockOutput = true;
     protected $btCacheBlockOutputOnPost = true;

@@ -1,3 +1,10 @@
+<link rel="stylesheet" href="<?php echo BASE_URL?>/application/blocks/agregarslider/owl-carousel/owl.carousel.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>/application/blocks/agregarslider/owl-carousel/owl.theme.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>/application/blocks/agregarslider/owl-carousel/owl.transitions.css">
+<script src="<?php echo BASE_URL?>/application/blocks/agregarslider/owl-carousel/jquery-2.1.1.min.js" ></script>
+<script src="<?php echo BASE_URL?>/application/blocks/agregarslider/owl-carousel/owl.carousel.js" ></script>
+
+
 <?php defined('C5_EXECUTE') or die("Access Denied.");
 if($navigationType == 0) {
     $navigationTypeText = 'fade';
@@ -29,8 +36,6 @@ if($autoHeight == 0) {
         $autoHeightText = 'false';
     }
 }
-
-
 
 
 $c = Page::getCurrentPage();

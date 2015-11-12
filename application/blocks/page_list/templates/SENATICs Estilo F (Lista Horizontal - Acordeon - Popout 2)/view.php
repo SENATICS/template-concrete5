@@ -58,7 +58,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
         </li>
     <?php endif; ?>
     
-<ul class="collapsible popout page_list" data-collapsible="accordion">
+<ul class="collapsible popout page_list" data-collapsible="accordion" style="padding-left:0px !important">
 
     <?php if ($rssUrl): ?>
         <a href="<?php echo $rssUrl ?>" target="_blank" class="ccm-block-page-list-rss-feed"><i class="fa fa-rss"></i></a>
@@ -126,11 +126,12 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
             <?php if ($includeEntryText): ?> 
                 <?php if ($includeName): ?>
                     <li class="collection-item">
-                        <div class="collapsible-header">
+                        <div class="collapsible-header" >
                             <a href="#!" class="secondary-content right"><i class="material-icons">info_outline</i></a>
-                            <span class="fecha_publicacion right"><?php echo $date?></span>
-                            
-                            <b style="color:#222"><?php echo $title ?></b>
+                            <?php if ($includeDate): ?>
+                                <span class="fecha_publicacion right"><?php echo $date?></span>
+                            <?php endif; ?>
+                            <b style="color:#222" class="truncate"><?php echo $title ?></b>
                             
                         </div>
                             
@@ -142,7 +143,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                                     <?php
                                     $img = Core::make('html/image', array($thumbnail));
                                     $tag = $img->getTag();
-                                    $tag->addClass('activator img-responsive materialboxed');
+                                    $tag->addClass('img-responsive');
                                     print $tag;
                                     ?>
                                 </div>
