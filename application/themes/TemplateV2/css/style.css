@@ -213,7 +213,7 @@ nav .waves-effect{
 }
 
 /* General */
-hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee}
+hr{margin-top:10px;margin-bottom:10px;border:0;border-top:1px solid #eee}
 
 .contenido_principal ul, .contenido_principal ul li{
     list-style-type: disc !important;
@@ -222,7 +222,7 @@ hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee}
     padding-left:40px !important;   
 }
 
-.pagination{
+ul.pagination{
     padding-left:0 !important;   
 }
 
@@ -249,7 +249,6 @@ p {
 }
 
 .parallax-container {
-  min-height: 100px;
   height: auto;
   color: #333;
 }
@@ -272,7 +271,76 @@ p {
 footer.page-footer {
   margin: 0;
 }
+.card .card-content{
+    padding: 10px !important;   
+}
 
+
+/* Galeria */
+.web_page #paginacion li {
+  float: left;
+  font-size: 1.2rem;
+  padding: 0 10px;
+  line-height: 30px;
+  border-radius: 2px;
+  text-align: center; }
+  .web_page #paginacion li a {
+    color: #444; }
+  .web_page #paginacion li.active a {
+    color: #fff !important; }
+
+  .web_page #paginacion li.disabled a {
+    cursor: default;
+    color: #999; }
+  .web_page #paginacion li i {
+    font-size: 2rem; }
+.web_page #paginacion li.pages ul li {
+  display: inline-block;
+  float: none; }
+
+@media only screen and (max-width : 1035px) {
+  .web_page #paginacion {
+    width: 100%; }
+    .web_page #paginacion li.prev, .web_page #paginacion li.next {
+      width: 10%; }
+    .web_page  #paginacion li.pages {
+      width: 80%;
+      overflow: hidden;
+      white-space: nowrap; } }
+
+/* Noticias */
+@media only screen and (max-width: 600px)
+.contenido_detalle {
+    padding: 10px !important;
+}
+.listado_enlaces{
+    margin-top:10px;   
+}
+
+/* Formularios */
+img.ccm-captcha-image{
+    display: block;
+    margin: 5px 0 5px 0 !important;
+}
+.form-control{
+    display: inline-block;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 18px;
+    color: #555555;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;   
+    min-width: 200px;
+    box-shadow: 2px 3px 5px rgba(0,0,0,.10);
+}
+@media only screen and (max-width : 600px) {
+    .form-control{
+        width: 100% !important; 
+    }
+}
 
 /* Concrete5 */
 @media only screen and (max-width : 1035px) {

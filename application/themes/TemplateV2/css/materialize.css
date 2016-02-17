@@ -2054,37 +2054,6 @@ img.responsive-img, video.responsive-video {
   max-width: 100%;
   height: auto; }
 
-.web_page .pagination li {
-  float: left;
-  font-size: 1.2rem;
-  padding: 0 10px;
-  line-height: 30px;
-  border-radius: 2px;
-  text-align: center; }
-  .web_page .pagination li a {
-    color: #444; }
-  .web_page .pagination li.active a {
-    color: #fff !important; }
-
-  .web_page .pagination li.disabled a {
-    cursor: default;
-    color: #999; }
-  .web_page .pagination li i {
-    font-size: 2rem; }
-.web_page .pagination li.pages ul li {
-  display: inline-block;
-  float: none; }
-
-@media only screen and (max-width : 1035px) {
-  .web_page .pagination {
-    width: 100%; }
-    .web_page .pagination li.prev, .web_page .pagination li.next {
-      width: 10%; }
-    .web_page .pagination li.pages {
-      width: 80%;
-      overflow: hidden;
-      white-space: nowrap; } }
-
 .parallax-container {
   position: relative;
   /*overflow: hidden;*/
@@ -5416,34 +5385,34 @@ html {
   font-weight: inherit; }
 
 .web_page h1 {
-  font-size: 4.2rem;
+  font-size: 2.7rem;
   line-height: 110%;
-  margin: 2.1rem 0 1.68rem 0; }
+  margin: 15px 0 10px 0; }
 
 .web_page h2 {
-  font-size: 3.56rem;
+  font-size: 2.2rem;
   line-height: 110%;
-  margin: 1.78rem 0 1.424rem 0; }
+  margin: 14px 0 10px 0; }
 
 .web_page h3 {
-  font-size: 2.92rem;
+  font-size: 1.8rem;
   line-height: 110%;
-  margin: 1.46rem 0 1.168rem 0; }
+  margin: 13px 0 9px 0; }
 
 .web_page h4 {
-  font-size: 2.28rem;
+  font-size: 1.5rem;
   line-height: 110%;
-  margin: 1.14rem 0 0.912rem 0; }
+  margin: 12px 0 8px 0; }
 
 .web_page h5 {
-  font-size: 1.64rem;
+  font-size: 1.2rem;
   line-height: 110%;
-  margin: 0.82rem 0 0.656rem 0; }
+  margin: 11px 0 8px 0; }
 
 .web_page h6 {
   font-size: 1rem;
   line-height: 110%;
-  margin: 0.5rem 0 0.4rem 0; }
+  margin: 10px 0 7px 0; }
 
 .web_page em {
   font-style: italic; }
@@ -6212,7 +6181,7 @@ label {
 :-ms-input-placeholder {
   color: #d1d1d1; }
 
-.web_page input[type=text], .web_page input[type=password], .web_page input[type=email], .web_page input[type=url], .web_page input[type=time], .web_page input[type=date], .web_page input[type=datetime-local], .web_page input[type=tel], .web_page input[type=number], .web_page input[type=search], .web_page textarea.materialize-textarea {
+.web_page .cabecera input[type=text],.web_page .cabecera input[type=search], .buscador_menu input[type=text] {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #9e9e9e;
@@ -6333,11 +6302,11 @@ label {
     font-size: 2rem;
     transition: .3s color; }
 
-textarea {
+.web_page textarea {
   width: 100%;
-  height: 3rem;
+  min-height: 150px;
   background-color: transparent; }
-  textarea.materialize-textarea {
+  .web_page textarea.materialize-textarea {
     overflow-y: hidden;
     /* prevents scroll bar flash */
     padding: 1.6rem 0;
@@ -6931,14 +6900,14 @@ input[type=range]:focus::-ms-fill-upper {
 /***************************
    Text Inputs + Textarea
 ****************************/
-.web_page select {
+/*.web_page select {
   background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
   padding: 5px;
   border: 1px solid #f2f2f2;
   border-radius: 2px;
   height: 3rem; }
-
+*/
 /***************
     Nav List
 ***************/
@@ -7034,7 +7003,7 @@ input[type=range]:focus::-ms-fill-upper {
   left: 0;
   right: 0;
   height: 120vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 997;
   will-change: opacity; }
 
