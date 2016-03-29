@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btContentIframe">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+		<field name="content" type="X2">
+		</field>
+		<field name="maxHeight" type="I">
+			<unsigned />
+			<default value="0" />
+		</field>
+		<field name="externalLink"  type="C" size="255"/>
+		<field name="internalLinkCID"  type="I">
+			<unsigned />
+			<default value="0" />
+		</field>
+        <field name="title" type="C" size="255"/>
+	</table>
+</schema>

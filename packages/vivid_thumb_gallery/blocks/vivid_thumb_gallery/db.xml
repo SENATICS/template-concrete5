@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+    <table name="btVividThumbGallery">
+        <field name="bID" type="I">
+            <key />
+            <unsigned />
+        </field>
+        <field name="fileset" type="C" size="255"></field>
+        <field name="thumbWidth" type="C" size="10"></field>
+        <field name="thumbHeight" type="C" size="10"></field>
+        <field name="imageWidth" type="C" size="10"></field>
+        <field name="imageHeight" type="C" size="10"></field>
+        <field name="zoomType" type="C" size="10"></field>
+        <field name="cols" type="c" size="10"></field>
+        <field name="colsMobile" type="C" size="10"></field>
+    </table>
+    <table name="btVividThumbGalleryThumb">
+        <field name="id" type="I"><unsigned/><key/><autoincrement/></field>
+        <field name="bID" type="I"></field>
+        <field name="fID" type="I"></field>
+        <field name="sort" type="I"></field>
+    </table>
+</schema>
