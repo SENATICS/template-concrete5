@@ -333,7 +333,6 @@ img.ccm-captcha-image{
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;   
-    min-width: 200px;
     box-shadow: 2px 3px 5px rgba(0,0,0,.10);
 }
 @media only screen and (max-width : 600px) {
