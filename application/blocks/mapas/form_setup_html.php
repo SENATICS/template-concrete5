@@ -352,7 +352,7 @@ $tp = new TaskPermission();
             <i class="material-icons right ccm-delete-mapas-entry red-text text-darken-2" style="cursor:pointer">delete</i>
         </div>
         <div class="collapsible-header active">
-            <img src="<?php echo BASE_URL;?>/application/blocks/generarmapa/images/posicion.png" class="circle"/>
+            <img src="<?php echo BASE_URL;?>/application/blocks/mapas/images/posicion.png" class="circle"/>
             <% if (titulo == "") { %>
                 <span class="title">Esta posición en el Mapa no tiene titulo</span>
             <% } else { %>

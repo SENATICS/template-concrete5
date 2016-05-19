@@ -191,10 +191,21 @@ function MarkerClusterer(map, opt_markers, opt_options) {
  * @type {string}
  * @private
  */
-MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ =
-    'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/' +
-    'images/m';
 
+pathArray = location.href.split( '/' );
+protocol = pathArray[0];
+host = pathArray[2];
+dominio = pathArray[3];
+url = protocol + '//' + host+'/'+dominio;
+if (dominio!=='template-concrete5') {
+  url = protocol + '//' + host;
+};
+
+MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ =
+
+    url+'/application/blocks/mapas/'+
+    'images/m';
+    //'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/' +
 
 /**
  * The marker cluster image path.
