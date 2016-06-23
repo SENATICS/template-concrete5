@@ -41,11 +41,11 @@
             foreach($items as $item) {
                 ?>
                 <tr>
-                    <td><?php echo $item['numero']; ?></td>
-                    <td><?php echo $item['anho']; ?></td>
-                    <td><?php echo $item['titulo']; ?></td>
-                    <td><?php echo $item['descripcion']; ?></td>
-                    <td><?php echo $item['institucion']; ?></td>
+                    <td><?php echo stripslashes(html_entity_decode($item['numero'])); ?></td>
+                    <td><?php echo stripslashes(html_entity_decode($item['anho'])); ?></td>
+                    <td><?php echo stripslashes(html_entity_decode($item['titulo'])); ?></td>
+                    <td><?php echo stripslashes(html_entity_decode($item['descripcion'])); ?></td>
+                    <td><?php echo stripslashes(html_entity_decode($item['institucion'])); ?></td>
                     <td><?php echo $item['fecha']; ?></td>
                     <td style="text-align:center;"><a href="<?php echo $item['enlace']; ?>" target="_blank"><i class="material-icons" >get_app</i></a></td>
                 </tr>

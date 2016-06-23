@@ -16,14 +16,18 @@
       <autoincrement />
     </field>
     <field name="bID" type="I"><unsigned /></field>
-    <field name="numero" type="C" size="11"/>
-    <field name="anho" type="C" size="4"/>
-    <field name="titulo" type="C" size="255"/>
+    <field name="numero" type="X"/>
+    <field name="anho" type="X"/>
+    <field name="titulo" type="X"/>
     <field name="descripcion" type="X" /> 
-    <field name="institucion" type="C" size="100"/> 
+    <field name="institucion" type="X"/> 
     <field name="fecha" type="D"/> 
     <field name="enlace" type="C" size="255"/> 
     <field name="orden" type="I"><notnull /></field>
+     <field name="fecha_actualizacion" type="TS">
+      <DEFTIMESTAMP/>
+      <notnull/>
+    </field>
   </table>
   
 </schema>

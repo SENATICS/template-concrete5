@@ -73,33 +73,39 @@ class Controller extends BlockController
         
         parent::save($args);
         while( $i < $count) {
+            
             if ($data['fecha'][$i]=="") { 
-                $db->execute('INSERT INTO btConveniosEntries (bID, numero, anho, titulo, descripcion, institucion, enlace, orden) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                array(
+                $query_save= 'INSERT INTO btConveniosEntries (bID, numero, anho, titulo, descripcion, institucion, enlace, orden) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+                $datos_save = array(
                 $this->bID,
-                $data['numero'][$i],
-                $data['anho'][$i],
-                $data['titulo'][$i],
-                $data['descripcion'][$i],
-                $data['institucion'][$i],
+                addslashes(htmlentities($data['numero'][$i])),
+                addslashes(htmlentities($data['anho'][$i])),
+                addslashes(htmlentities($data['titulo'][$i])),
+                addslashes(rtrim(htmlentities($data['descripcion'][$i]))),
+                addslashes(htmlentities($data['institucion'][$i])),
                 $data['enlace'][$i],
                 intval($data['orden'][$i])
-                ));
+                );
+
             }else{
-               
-                $db->execute('INSERT INTO btConveniosEntries (bID, numero, anho, titulo, descripcion, institucion, fecha, enlace, orden) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                array(
+
+                $query_save = 'INSERT INTO btConveniosEntries (bID, numero, anho, titulo, descripcion, institucion, fecha, enlace, orden) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+                $datos_save = array(
                 $this->bID,
-                $data['numero'][$i],
-                $data['anho'][$i],
-                $data['titulo'][$i],
-                $data['descripcion'][$i],
-                $data['institucion'][$i],
+                addslashes(htmlentities($data['numero'][$i])),
+                addslashes(htmlentities($data['anho'][$i])),
+                addslashes(htmlentities($data['titulo'][$i])),
+                addslashes(trim(htmlentities($data['descripcion'][$i]))),
+                addslashes(htmlentities($data['institucion'][$i])),
                 $data['fecha'][$i],
                 $data['enlace'][$i],
                 intval($data['orden'][$i])
-                ));
-            } 
+                );
+   
+            }
+                $db->execute($query_save,$datos_save);
+                
+
             $i++;
         }
 
@@ -121,19 +127,19 @@ class Controller extends BlockController
             $db->execute('INSERT INTO btConveniosEntries (bID, numero, anho, titulo, descripcion, institucion, fecha, enlace, orden) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
             array(
                 $newBID,
-                $data['numero'],
-                $data['anho'],
-                $data['titulo'],
-                $data['descripcion'],
-                $data['institucion'],
-                $data['fecha'],
-                $data['enlace'],
-                intval($data['orden'])
+                $item['numero'],
+                $item['anho'],
+                $item['titulo'],
+                $item['descripcion'],
+                $item['institucion'],
+                $item['fecha'],
+                $item['enlace'],
+                intval($item['orden'])
             ));
         }
         
         //Elimina registros anteriores sin uso del bID anterior
-        $db->execute('DELETE FROM btConveniosEntries WHERE bID=?', array($this->bID));
+        //$db->execute('DELETE FROM btConveniosEntries WHERE bID=?', array($this->bID));
     }
     
 
