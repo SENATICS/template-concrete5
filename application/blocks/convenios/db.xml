@@ -6,6 +6,10 @@
       <key />
       <unsigned />
     </field>
+    <field name="fecha_actualizacion" type="TS">
+      <DEFTIMESTAMP/>
+      <notnull/>
+    </field>
   </table>
 
   
@@ -24,7 +28,7 @@
     <field name="fecha" type="D"/> 
     <field name="enlace" type="C" size="255"/> 
     <field name="orden" type="I"><notnull /></field>
-     <field name="fecha_actualizacion" type="TS">
+    <field name="fecha_actualizacion" type="TS">
       <DEFTIMESTAMP/>
       <notnull/>
     </field>

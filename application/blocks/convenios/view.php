@@ -1,5 +1,12 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");?>
 
+<?php 
+function jsspecialchars_inv_convenios( $string = '') {
+    $string = preg_replace("/\\n/","<br/>",$string);
+    return $string;
+}
+ ?>
+
 <style type="text/css" media="screen">
 	div.dataTables_wrapper {
         width: 100%;
@@ -41,11 +48,11 @@
             foreach($items as $item) {
                 ?>
                 <tr>
-                    <td><?php echo stripslashes(html_entity_decode($item['numero'])); ?></td>
-                    <td><?php echo stripslashes(html_entity_decode($item['anho'])); ?></td>
-                    <td><?php echo stripslashes(html_entity_decode($item['titulo'])); ?></td>
-                    <td><?php echo stripslashes(html_entity_decode($item['descripcion'])); ?></td>
-                    <td><?php echo stripslashes(html_entity_decode($item['institucion'])); ?></td>
+                    <td><?php echo $item['numero']; ?></td>
+                    <td><?php echo $item['anho']; ?></td>
+                    <td><?php echo $item['titulo']; ?></td>
+                    <td><?php echo jsspecialchars_inv_convenios($item['descripcion']); ?></td>
+                    <td><?php echo $item['institucion']; ?></td>
                     <td><?php echo $item['fecha']; ?></td>
                     <td style="text-align:center;"><a href="<?php echo $item['enlace']; ?>" target="_blank"><i class="material-icons" >get_app</i></a></td>
                 </tr>

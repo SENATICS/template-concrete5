@@ -78,11 +78,11 @@ class Controller extends BlockController
                 $query_save= 'INSERT INTO btConveniosEntries (bID, numero, anho, titulo, descripcion, institucion, enlace, orden) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
                 $datos_save = array(
                 $this->bID,
-                addslashes(htmlentities($data['numero'][$i])),
-                addslashes(htmlentities($data['anho'][$i])),
-                addslashes(htmlentities($data['titulo'][$i])),
-                addslashes(rtrim(htmlentities($data['descripcion'][$i]))),
-                addslashes(htmlentities($data['institucion'][$i])),
+                $data['numero'][$i],
+                $data['anho'][$i],
+                $data['titulo'][$i],
+                $data['descripcion'][$i],
+                $data['institucion'][$i],
                 $data['enlace'][$i],
                 intval($data['orden'][$i])
                 );
@@ -92,11 +92,11 @@ class Controller extends BlockController
                 $query_save = 'INSERT INTO btConveniosEntries (bID, numero, anho, titulo, descripcion, institucion, fecha, enlace, orden) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
                 $datos_save = array(
                 $this->bID,
-                addslashes(htmlentities($data['numero'][$i])),
-                addslashes(htmlentities($data['anho'][$i])),
-                addslashes(htmlentities($data['titulo'][$i])),
-                addslashes(trim(htmlentities($data['descripcion'][$i]))),
-                addslashes(htmlentities($data['institucion'][$i])),
+                $data['numero'][$i],
+                $data['anho'][$i],
+                $data['titulo'][$i],
+                $data['descripcion'][$i],
+                $data['institucion'][$i],
                 $data['fecha'][$i],
                 $data['enlace'][$i],
                 intval($data['orden'][$i])

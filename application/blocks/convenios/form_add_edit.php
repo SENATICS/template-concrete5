@@ -4,6 +4,17 @@ $al = Loader::helper('concrete/asset_library');
 $tp = new TaskPermission();
 $args = array();
 $dh = Loader::helper('form/date_time');
+
+function jsspecialchars( $string = '') {
+    $string = preg_replace("/\r*\n/","\\n",$string);
+    return $string;
+    }
+
+function jsspecialchars_inv_convenios( $string = '') {
+    $string = preg_replace("/\\n/","<br/>",$string);
+    return $string;
+}
+
 ?>
 
 
@@ -53,15 +64,15 @@ $dh = Loader::helper('form/date_time');
             $conteoAux = 1;
             foreach($items as $item) { ?>
             conveniosEntriesContainer.prepend(_templateConvenios({
-                id: '<?php echo $item['id']?>',
-                numero: '<?php echo $item['numero']?>',
-                anho: '<?php echo $item['anho']?>',
-                titulo: '<?php echo $item['titulo'] ?>',  
-                descripcion: '<?php echo $item['descripcion'] ?>',
-                institucion: '<?php echo $item['institucion'] ?>',
-                fecha: '<?php echo $item['fecha']?>',
-                enlace: '<?php echo $item['enlace']?>',
-                orden: '<?php echo $item['orden']?>'
+                id: '<?php echo addslashes($item['id'])?>',
+                numero: '<?php echo addslashes($item['numero'])?>',
+                anho: '<?php echo addslashes($item['anho'])?>',
+                titulo: '<?php echo addslashes($item['titulo']) ?>',  
+                descripcion: '<?php echo jsspecialchars(addslashes($item['descripcion'])) ?>',
+                institucion: '<?php echo addslashes($item['institucion']) ?>',
+                fecha: '<?php echo addslashes($item['fecha'])?>',
+                enlace: '<?php echo addslashes($item['enlace'])?>',
+                orden: '<?php echo addslashes($item['orden'])?>'
             }));
             <?php
             }}
@@ -213,35 +224,35 @@ $dh = Loader::helper('form/date_time');
                 <div class="form-group">
                     <label><?php echo t('Número')?></label>
 
-                    <input type="text" class="form-control" name="<?php echo $view->field('numero')?>[]" value="<?php echo stripslashes(html_entity_decode('<%=numero%>'))?>" placeholder="Número del Documento" size="11" maxlength="11" required="required" />
+                    <input type="text" class="form-control" name="<?php echo $view->field('numero')?>[]" value="<%=numero%>" placeholder="Número del Documento" size="11" maxlength="11" required="required" />
                 </div>
             </div>
             <div class="col-xs-6 sin_padding_col">
                 <div class="form-group">
                     <label><?php echo t('Año')?></label>
 
-                    <input type="text" class="form-control" name="<?php echo $view->field('anho')?>[]" value="<?php echo stripslashes(html_entity_decode('<%=anho%>'))?>" placeholder="Año al que corresponde el Documnento" size="4" maxlength="4" required="required" />
+                    <input type="text" class="form-control" name="<?php echo $view->field('anho')?>[]" value="<%=anho%>" placeholder="Año al que corresponde el Documnento" size="4" maxlength="4" required="required" />
                 </div>
             </div>
             <div class="col-xs-12 sin_padding_col">
                 <div class="form-group">
                     <label><?php echo t('Título')?></label>
 
-                    <input type="text" class="form-control" name="<?php echo $view->field('titulo')?>[]" value="<?php echo stripslashes(html_entity_decode('<%=titulo%>'))?>" placeholder="Título del Documento" size="255" maxlength="255" required="required" />
+                    <input type="text" class="form-control" name="<?php echo $view->field('titulo')?>[]" value="<%=titulo%>" placeholder="Título del Documento" size="255" maxlength="255" required="required" />
                 </div>
             </div>
             <div class="col-xs-12 sin_padding_col">
                 <div class="form-group">
                     <label><?php echo t('Descripción')?></label>
 
-                    <textarea class="form-control" name="<?php echo $view->field('descripcion')?>[]" placeholder="Descripción del Documento" required="required"><?php echo stripslashes(html_entity_decode('<%=descripcion%>'))?></textarea>
+                    <textarea class="form-control" name="<?php echo $view->field('descripcion')?>[]" placeholder="Descripción del Documento" required="required"><%=descripcion%></textarea>
                 </div>
             </div>
             <div class="col-xs-6 sin_padding_col">
                 <div class="form-group">
                     <label><?php echo t('Institución')?></label>
 
-                    <input type="text" class="form-control" name="<?php echo $view->field('institucion')?>[]" value="<?php echo stripslashes(html_entity_decode('<%=institucion%>'))?>" placeholder="Institución al que pertenece el Documento" size="100" maxlength="100" required="required" />
+                    <input type="text" class="form-control" name="<?php echo $view->field('institucion')?>[]" value="<?php echo jsspecialchars_inv_convenios('<%=institucion%>') ?>" placeholder="Institución al que pertenece el Documento" size="100" maxlength="100" required="required" />
                 </div>
             </div>
             <div class="col-xs-6 sin_padding_col">
