@@ -171,6 +171,14 @@ $form = Loader::helper('form/page_selector');
 
         <div class="checkbox">
             <label>
+                <input type="checkbox" name="ignorePermissions"
+                       value="1" <?php if ($ignorePermissions == 1) { ?> checked <?php } ?> />
+                <?php echo t('Ignore page permissions.') ?>
+            </label>
+        </div>
+
+            <div class="checkbox">
+            <label>
                 <input type="checkbox" name="enableExternalFiltering" value="1" <?php if ($enableExternalFiltering) { ?>checked<?php } ?> />
                 <?php echo t('Enable Other Blocks to Filter This Page List.') ?>
             </label>

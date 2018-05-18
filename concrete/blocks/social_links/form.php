@@ -17,7 +17,7 @@
                  checked
                 <?php } ?>
             value="<?php echo $link->getID()?>" />
-            <?php echo $service->getName()?>
+            <?php echo $service->getDisplayName()?>
             </label>
 
             <i class="pull-right fa fa-arrows"></i>

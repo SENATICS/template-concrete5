@@ -37,7 +37,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
     <fieldset>
         <legend><?php echo t("Entities")?></legend>
 
-        <p><?php echo t("Search for application specific entities, refresh their database schema and generate their proxy classes.") ?></p>
+        <p><?php echo t("Search for application and package-specific entities, refresh their database schema and generate their proxy classes.") ?></p>
 
         <?php echo $interface->submit(tc('Doctrine', 'Refresh Entities'), 'entities-refresh-form', 'left', 'btn-default') ?>
     </fieldset>

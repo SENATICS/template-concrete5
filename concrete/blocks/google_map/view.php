@@ -29,6 +29,7 @@ if ($c->isEditMode()) { ?>
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 streetViewControl: false,
                 scrollwheel: <?php echo !!$scrollwheel ? "true" : "false"?>,
+                draggable: <?php echo !!$scrollwheel ? "true" : "false"?>,
                 mapTypeControl: false
             };
             var map = new google.maps.Map(document.getElementById('googleMapCanvas<?php echo $unique_identifier?>'), mapOptions);

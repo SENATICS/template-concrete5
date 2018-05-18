@@ -149,7 +149,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase
         // parameter verification
 
         try {
-            $null = new Queue('Null', array());
+            $null = new Queue('NullAdapter', array());
             $this->message->setQueue($null);
             $this->fail('invalid class passed to setQueue()');
         } catch (\Exception $e) {

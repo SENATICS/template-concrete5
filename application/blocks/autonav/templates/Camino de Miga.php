@@ -138,11 +138,19 @@ foreach ($navItems as $ni) {
 
 //*** Step 2 of 2: Output menu HTML ***/
 echo'<div class="breadcrumb"><ul>';
-
+$i=0;
 foreach ($navItems as $ni) {
+    $i++;
     $name = (isset($translate) && $translate == true) ? t($ni->name) : $ni->name;
-    echo '<li><a href="' . $ni->url . '" target="' . $ni->target . '">' . $name . '</a></li><li>/</li>';
+
+    if ($i == 1) {
+        echo '<li><a href="' . $ni->url . '" target="' . $ni->target . '"><i class="tiny material-icons" style="vertical-align: text-top;" >home</i></a></li>';
+    }else{
+        echo '<li><a href="' . $ni->url . '" target="' . $ni->target . '">' . $name . '</a></li>';
+    }
+    if ($i < sizeof($navItems)) {
+        echo '<li>/</li>';
+    }
 }
-echo '<li>Pagina actual</li>';
 
 echo'</ul></div>';

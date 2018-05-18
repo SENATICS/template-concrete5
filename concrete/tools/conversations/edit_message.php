@@ -35,7 +35,7 @@ if (Loader::helper('validation/numbers')->integer($_POST['cnvMessageID']) && $_P
 
             <div class="ccm-conversation-edit-message" data-conversation-message-id="<?php echo $message->getConversationMessageID()?>">
                 <form method="post" class="aux-reply-form">
-                    <div class="ccm-conversation-avatar"><?php print Loader::helper('concrete/avatar')->outputUserAvatar($ui)?></div>
+                    <div class="ccm-conversation-avatar"><?php print $ui->getUserAvatar()->output()?></div>
                     <div class="ccm-conversation-message-form">
                         <div class="ccm-conversation-errors alert alert-danger"></div>
                         <?php $editor->outputConversationEditorReplyMessageForm(); ?>

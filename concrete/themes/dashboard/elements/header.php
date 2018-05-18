@@ -1,14 +1,24 @@
-<?php defined('C5_EXECUTE') or die("Access Denied.");
-if (\Request::getInstance()->get('_ccm_dashboard_external')) {
-        return;
+<?php defined('C5_EXECUTE') or die('Access Denied.');
+
+if (Request::getInstance()->get('_ccm_dashboard_external')) {
+    return;
 }
-$html = Loader::helper('html');
+$html = Core::make('helper/html');
+/** @var Concrete\Core\Html\Service\Html $html */
+
+$valt = Core::make('helper/validation/token');
+/** @var Concrete\Core\Validation\CSRF\Token $valt */
+
+if (!isset($hideDashboardPanel)) {
+    $hideDashboardPanel = false;
+}
+
 ?><!DOCTYPE html>
-<html <?php if (!$hideDashboardPanel) { ?>class="ccm-panel-open ccm-panel-right"<?php } ?>>
+<html<?php echo $hideDashboardPanel ? '' : ' class="ccm-panel-open ccm-panel-right"'; ?>>
 <head>
     <link rel="stylesheet" type="text/css" href="<?php echo $this->getThemePath()?>/main.css" />
 <?php
-$v = View::getInstance();
+$v = View::getRequestInstance();
 $v->requireAsset('dashboard');
 $v->requireAsset('javascript-localized', 'core/localization');
 $v->addFooterItem('<script type="text/javascript">$(function() { ConcreteToolbar.start(); });</script>');
@@ -19,9 +29,8 @@ if (Localization::activeLanguage() != 'en') {
     $v->addFooterItem($html->javascript('i18n/ui.datepicker-'.Localization::activeLanguage().'.js'));
 }
 
-$valt = Loader::helper('validation/token');
 $v->addHeaderItem('<meta name="viewport" content="width=device-width, initial-scale=1">');
-Loader::element('header_required', array('disableTrackingCode' => true));
+View::element('header_required', array('disableTrackingCode' => true));
 $v->addFooterItem('<script type="text/javascript">$(function() { ConcreteDashboard.start(); });</script>');
 
 $u = new User();
@@ -57,6 +66,9 @@ $large_font = !!Config::get('concrete.accessibility.toolbar_large_font');
                         <li class="last-li"><a href="<?php echo View::url('/dashboard/system') ?>"><?php echo t('System & Settings'); ?></a></li>
                     </ul>
                 </li>
+                <li>
+                    <i class="fa fa-sign-out mobile-leading-icon"></i><a href="<?php echo URL::to('/login', 'logout', $valt->generate('logout')); ?>"><?php echo t('Sign Out'); ?></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -73,7 +85,8 @@ $large_font = !!Config::get('concrete.accessibility.toolbar_large_font');
         </li>
         <li class="pull-right hidden-xs hidden-sm">
             <a href="<?php echo URL::to('/dashboard')?>"
-                data-launch-panel="dashboard" <?php if (!$hideDashboardPanel) { ?>class="ccm-launch-panel-active" <?php } ?>
+                data-launch-panel="dashboard"
+                <?php echo $hideDashboardPanel ? '' : ' class="ccm-launch-panel-active"' ?>
                 data-panel-url="<?php echo URL::to('/system/panels/dashboard')?>">
                 <i class="fa fa-sliders"></i>
                 <span class="ccm-toolbar-accessibility-title ccm-toolbar-accessibility-title-site-settings">
@@ -99,30 +112,36 @@ $large_font = !!Config::get('concrete.accessibility.toolbar_large_font');
     </ul>
 </div>
 <?php
-$dh = Loader::helper('concrete/dashboard');
-print $dh->getIntelligentSearchMenu();
+$dh = Core::make('helper/concrete/dashboard');
+echo $dh->getIntelligentSearchMenu();
 
-if (!$hideDashboardPanel) { ?>
-
-<div id="ccm-panel-dashboard" class="hidden-xs hidden-sm ccm-panel ccm-panel-right ccm-panel-transition-slide ccm-panel-active ccm-panel-loaded">
-    <div class="ccm-panel-content-wrapper ccm-ui">
-        <div class="ccm-panel-content ccm-panel-content-visible">
-<?php
-$cnt = new \Concrete\Controller\Panel\Dashboard();
-$cnt->setPageObject($c);
-$cnt->view();
-$nav = $cnt->get('nav');
-$tab = $cnt->get('tab');
-$ui = $cnt->get('ui');
-Loader::element('panels/dashboard', array(
-    'nav' => $nav,
-    'tab' => $tab,
-    'ui' => $ui,
-    'c' => $c
-)); ?>
-</div></div>
-</div>
-
-<?php } ?>
+if (!$hideDashboardPanel) {
+    ?>
+    <div id="ccm-panel-dashboard" class="hidden-xs hidden-sm ccm-panel ccm-panel-right ccm-panel-transition-slide ccm-panel-active ccm-panel-loaded">
+        <div class="ccm-panel-content-wrapper ccm-ui">
+            <div class="ccm-panel-content ccm-panel-content-visible">
+                <?php
+                $cnt = new \Concrete\Controller\Panel\Dashboard();
+                $cnt->setPageObject($c);
+                $cnt->view();
+                $nav = $cnt->get('nav');
+                $tab = $cnt->get('tab');
+                $ui = $cnt->get('ui');
+                View::element(
+                    'panels/dashboard',
+                    array(
+                        'nav' => $nav,
+                        'tab' => $tab,
+                        'ui' => $ui,
+                        'c' => $c,
+                    )
+                );
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php 
+}
+?>
 
 <div id="ccm-dashboard-content" class="container-fluid">

@@ -3,6 +3,7 @@ $pageSelector = Loader::helper('form/page_selector');
 $nh = Loader::helper('navigation');
 $th = Loader::helper('text');
 $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service\Date */
+/* @var Concrete\Controller\SinglePage\Dashboard\System\Seo\Bulk $controller */
 ?>
 
 <style>
@@ -22,8 +23,18 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
         position: relative;
     }
 
+    .seo-page-edit .form-group {
+        position: relative;
+    }
+
     .seo-page-edit, .seo-page-details {
         margin-bottom: 20px;
+    }
+
+    .seo-page-edit .help-block {
+        position: absolute;
+        top: -5px;
+        right: 0;
     }
 
     .ccm-ui .form-inline .radio input[type="radio"], .ccm-ui .form-inline .checkbox input[type="checkbox"] {
@@ -43,13 +54,10 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
         margin-right: 15px;
     }
 
-    .ccm-seo-rows input[type="text"], .ccm-seo-rows textarea {
-        max-width: 300px;
-    }
-
     .ccm-ui .container-fluid.ccm-search-results-table {
         margin-left: 80px;
     }
+
 </style>
 <div class="ccm-dashboard-content-full">
     <div data-search-element="wrapper">
@@ -61,7 +69,6 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                         <div class="ccm-search-main-lookup-field">
                             <i class="fa fa-search"></i>
                             <?php echo $form->search('keywords', array('placeholder' => t('Keywords')))?>
-                            <button type="submit" class="ccm-search-field-hidden-submit" tabindex="-1"><?php echo t('Search')?></button>
                         </div>
                     </div>
                 </div>
@@ -112,6 +119,11 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                 </div>
             </div>
 
+            <div class="ccm-search-fields-submit">
+                <button type="submit" class="btn btn-primary pull-right"><?php echo t('Search')?></button>
+            </div>
+
+
         </form>
     </div>
     <div data-search-element="results">
@@ -126,7 +138,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                 ?>
             <div class="row page-title"><legend><?php echo $cobj->getCollectionName() ?></legend></div>
             <div class="ccm-seoRow-<?php echo $cID; ?> ccm-seo-rows <?php echo $i % 2 == 0 ? 'even' : '' ?> row">
-                    <div class="col-md-2 seo-page-details">
+                    <div class="col-md-3 seo-page-details">
                         <strong><?php echo t('Page Name'); ?></strong><br/>
                         <?php echo $cobj-> getCollectionName() ? $cobj->getCollectionName() : ''; ?><br/><br/>
                         <strong><?php echo t('Page Type'); ?></strong><br/>
@@ -134,12 +146,12 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                         <strong><?php echo t('Modified'); ?></strong><br/>
                         <?php echo $cobj->getCollectionDateLastModified() ? $dh->formatDateTime($cobj->getCollectionDateLastModified()) : ''; ?>
                     </div>
-                    <div class="col-md-9 col-md-offset-1 seo-page-edit">
+                    <div class="col-md-7 col-md-offset-1 seo-page-edit">
                         <div class="form-group">
                             <label><?php echo t('Meta Title'); ?></label>
                             <?php $seoPageTitle = $cobj->getCollectionName();
                             $seoPageTitle = htmlspecialchars($seoPageTitle, ENT_COMPAT, APP_CHARSET);
-                            $autoTitle = sprintf(Config::get('concrete.seo.title_format'), $siteName, $seoPageTitle);
+                            $autoTitle = sprintf(Config::get('concrete.seo.title_format'), $controller->getSiteNameForPage($cobj), $seoPageTitle);
                             $titleInfo = array('title' => $cID);
                             if(strlen($cobj->getAttribute('meta_title')) <= 0) {
                                 $titleInfo[style] = 'background: whiteSmoke';
@@ -165,7 +177,9 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                             <label><?php echo t('Slug'); ?></label>
                             <?php echo $form->text('collection_handle', $cobj->getCollectionHandle(), array('title' => $cID, 'class' => 'collectionHandle')); ?>
                             <?php
-                            Page::rescanCollectionPath($cID);
+                            if ($page = Page::getByID($cID)) {
+                                $page->rescanCollectionPath();
+                            }
                             $path = $cobj->getCollectionPath();
                             $tokens = explode('/', $path);
                             $lastkey = array_pop(array_keys($tokens));
@@ -177,6 +191,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                         <?php } ?>
                         <div class="form-group submit-changes">
                             <form id="seoForm<?php echo $cID; ?>" action="<?php echo View::url('/dashboard/system/seo/page_data/', 'saveRecord')?>" method="post" class="pageForm">
+                                <?php $token->output('save_seo_record_' . $cobj->getCollectionID()) ?>
                                 <a class="btn btn-default submit-changes" data-cID="<?php echo $cobj->getCollectionID() ?>"><?php echo t('Save') ?></a>
                             </form>
                             <img style="display: none; position: absolute; top: 20px; right: 20px;" id="throbber<?php echo $cID ?>"  class="throbber" src="<?php echo ASSETS_URL_IMAGES . '/throbber_white_32.gif' ?>" />
@@ -201,7 +216,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                   $(this).closest('.ccm-seo-rows').find('.btn').addClass('btn-success');
                });
             });
-            $('.submit-changes').click(function(event) {
+            $('a.submit-changes').click(function(event) {
                 event.preventDefault();
                 var iterator = $(this).attr('data-cID');
                 var throbber = $('.ccm-seoRow-'+iterator+' .throbber');
@@ -211,7 +226,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                 data.meta_title = $('.ccm-seoRow-'+iterator+' input[name="meta_title"].hasChanged').val();
                 data.meta_description = $('.ccm-seoRow-'+iterator+' textarea[name="meta_description"]').val();
                 data.collection_handle = $('.ccm-seoRow-'+iterator+' input[name="collection_handle"]').val();
-
+                data.ccm_token = $('.ccm-seoRow-'+iterator+' input[name="ccm_token"]').val();
                 $.ajax({
                     url: '<?php echo $view->action("saveRecord") ?>',
                     dataType: 'json',
@@ -225,6 +240,8 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                             $('.ccm-seoRow-'+cID+' .collectionHandle').val(res.cHandle);
                             $('.hasChanged').removeClass('.hasChanged');
                             $('.btn-success').removeClass('btn-success');
+                        } else if (res.message) {
+                            alert(res.message);
                         } else {
                             alert('<?php echo t('An error occured while saving.'); ?>');
                         }
@@ -241,6 +258,15 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                 $(this).css({'background' : 'white'});
                 $(this).next('.help-inline').hide();
             })
+
+            $('.seo-page-edit input, .seo-page-edit textarea').textcounter({
+                type: "character",
+                max: -1,
+                countSpaces: true,
+                stopInputAtMaximum: false,
+                counterText: '<?php echo t('Characters'); ?>: ',
+                countContainerClass: 'help-block'
+            });
         });
         </script>
     </div>

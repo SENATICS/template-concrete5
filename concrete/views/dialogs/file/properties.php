@@ -2,7 +2,7 @@
 
 use Concrete\Core\File\Exception\InvalidDimensionException;
 use Concrete\Core\File\StorageLocation as FileStorageLocation;
-
+$token = \Core::make('token');
 $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service\Date */
 ?>
 
@@ -141,8 +141,9 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                             <td><?php echo $dh->formatDateTime($fvv->getDateAdded(), true) ?></td>
                             <?php if ($fp->canEditFileContents()) { ?>
                                 <td><a data-action="delete-version"
-                                       data-file-version-id="<?php echo $fvv->getFileVersionID() ?>" href="javascript:void(0)"><i
-                                            class="fa fa-trash-o"></i></a></td>
+                                       data-file-version-id="<?php echo $fvv->getFileVersionID() ?>"
+                                       data-token="<?php echo $token->generate('version/delete/' . $fvv->getFileID() . "/" . $fvv->getFileVersionId()) ?>"
+                                       href="javascript:void(0)"><i class="fa fa-trash-o"></i></a></td>
                             <?php } ?>
                         </tr>
 
@@ -189,7 +190,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                                         echo t('Anonymous');
                                     } else {
                                         $downloadUI = UserInfo::getById($uID);
-                                        if ($downloadUI instanceof UserInfo) {
+                                        if ($downloadUI instanceof \Concrete\Core\User\UserInfo) {
                                             echo $downloadUI->getUserName();
                                         } else {
                                             echo t('Deleted User');
@@ -299,7 +300,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                     var fvID = $(this).attr('data-file-version-id');
                     $.concreteAjax({
                         url: '<?php echo URL::to('/ccm/system/file/delete_version')?>',
-                        data: {'fID': '<?php echo $f->getFileID()?>', 'fvID': fvID},
+                        data: {'fID': '<?php echo $f->getFileID()?>', 'fvID': fvID, ccm_token: $(this).data('token')},
                         success: function (r) {
                             my.handleAjaxResponse(r, function () {
                                 var $row = $versions.find('tr[data-file-version-id=' + fvID + ']');

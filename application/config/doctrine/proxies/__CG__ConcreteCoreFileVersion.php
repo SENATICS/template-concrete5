@@ -473,6 +473,17 @@ class Version extends \Concrete\Core\File\Version implements \Doctrine\ORM\Proxy
     /**
      * {@inheritDoc}
      */
+    public function duplicateUnderlyingFile()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'duplicateUnderlyingFile', array());
+
+        return parent::duplicateUnderlyingFile();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function logVersionUpdate($updateTypeID, $updateTypeAttributeID = 0)
     {
 

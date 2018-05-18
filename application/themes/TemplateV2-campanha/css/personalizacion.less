@@ -1,0 +1,69 @@
+@import "presets/defaults.less";
+body {
+    background-color: #ffffff;
+    font-family:  @body-type-font-family;
+    font-size: @body-type-font-size;
+
+    font-weight: @body-type-font-weight; 
+    font-style: @body-type-font-style; 
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+}
+.web_page h1, .web_page h2, .web_page h3, .web_page h4, .web_page h5, .web_page h6, .web_page span, .web_page p { font-family: @body-type-font-family;  }
+.parallax-container h1, .parallax-container h2, .parallax-container h3, .parallax-container h4, .parallax-container h5, .parallax-container h6, .parallax-container span, .parallax-container p{
+    color: @bg-title-color !important   
+}
+.parallax-container a{
+    color: @linksTitle-color !important;
+}
+
+.contenedor_principal a{  color: @enlaces-color;  }
+.contenedor_principal h1{ color: @estiloh1-color }
+.contenedor_principal h2{ color: @estiloh2-color }
+.contenedor_principal h3{ color: @estiloh3-color }
+.contenedor_principal h4{ color: @estiloh4-color }
+.contenedor_principal h5{ color: @estiloh5-color }
+.contenedor_principal h6{ color: @estiloh6-color }
+.contenedor_principal p{ color: @estiloparrafos-color !important }
+
+.Slider h1, .Slider h2, .Slider h3, .Slider h4, .Slider h5, .Slider h6, .Slider p, .Slider a{
+    color: @estiloslider-color !important;
+}
+
+.fondo_color, .fondo_menu_lateral{
+    background-color:@headerBg-action-color;
+}
+.page-footer{
+    background: @footerBg-action-color url(../img/Republica-del-Paraguay.png) no-repeat;  
+    background-position: 10% 10%;
+    border-top: 5px solid rgba(0,0,0,.2);
+}
+.page-footer h1, .page-footer h2, .page-footer h3, .page-footer h4, .page-footer h5, .page-footer h6, .page-footer p, .page-footer a, .page-footer ul li{
+    color: @footerText-color !important;
+}
+.menu_color{
+    background-color:@MenuABg-action-color !important;
+    color:@MenuATexto-color !important;
+}
+.web_page nav ul a{
+    color:@MenuATexto-color;
+}
+
+.parallax, .Fondo_diseño{
+    background: @bgcolor-site-color url(@bg-site-image);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment:fixed;
+}
+.parallax-container .listado_enlaces p, .parallax-container .listado_enlaces h1, .parallax-container .listado_enlaces h2, .parallax-container .listado_enlaces h3, .parallax-container .listado_enlaces h4, .parallax-container .listado_enlaces h5, .parallax-container .listado_enlaces h6{
+    color:#222 !important;
+}
+.parallax-container .listado_enlaces a{
+    color: @enlaces-color !important;   
+}
+
+#menu a{  color: #222 !important; }
+#menu a:hover{  color: #FFF !important; }
+.collection .collection-item.active, .calendar .calendar-holder p, .estiloA a{ color:#FFF !important;}
+.calendar .calendar-month-view p{ color:#FFF !important; line-height:2 !important}

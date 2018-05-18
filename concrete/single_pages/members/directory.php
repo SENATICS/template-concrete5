@@ -32,8 +32,8 @@
 		foreach($users as $user) { 	?>
 
 		<tr>
-			<td class="ccm-members-directory-avatar"><a href="<?php echo $view->url('/members/profile','view', $user->getUserID())?>"><?php echo $av->outputUserAvatar($user)?></a></td>
-			<td class="ccm-members-directory-name"><a href="<?php echo $view->url('/members/profile','view', $user->getUserID())?>"><?php echo ucfirst($user->getUserName())?></a></td>
+			<td class="ccm-members-directory-avatar"><a href="<?php echo $user->getUserPublicProfileURL()?>"><?php echo $user->getUserAvatar()->output()?></a></td>
+			<td class="ccm-members-directory-name"><a href="<?php echo $user->getUserPublicProfileURL()?>"><?php echo ucfirst($user->getUserName())?></a></td>
 			<?php
 			foreach($attribs as $ak) { ?>
 				<td>

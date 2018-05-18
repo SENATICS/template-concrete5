@@ -39,6 +39,6 @@ class Queue2Test extends QueueBaseTest
             'name'      => 'queue1'
         );
 
-        $this->queue = new \ZendQueue\Queue('Null', $this->config);
+        $this->queue = new \ZendQueue\Queue('NullAdapter', $this->config);
     }
 }

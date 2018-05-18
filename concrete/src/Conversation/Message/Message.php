@@ -4,22 +4,26 @@ namespace Concrete\Core\Conversation\Message;
 use Concrete\Core\Conversation\FlagType\FlagType;
 use Concrete\Core\Conversation\Rating\Type;
 use Config;
-use File;
-use FileSet;
+use Concrete\Core\File\File;
+use Concrete\Core\File\Set\Set as FileSet;
 use Core;
 use Loader;
-use Conversation;
-use ConversationEditor;
+use Concrete\Core\Conversation\Conversation;
+use Concrete\Core\Conversation\Editor\Editor as ConversationEditor;
 use \Concrete\Core\Foundation\Object;
-use User;
-use UserInfo;
+use Concrete\Core\User\User;
+use Concrete\Core\User\UserInfo;
 use Concrete\Core\Utility\IPAddress;
+use Events;
 
 class Message extends Object implements \Concrete\Core\Permission\ObjectInterface
 {
+    protected $cnvMessageDateCreated;
+
     public function getConversationMessageID() {return $this->cnvMessageID;}
     public function getConversationMessageSubject() {return $this->cnvMessageSubject;}
     public function getConversationMessageBody() {return $this->cnvMessageBody;}
+    public function getConversationMessageDateCreated() {return $this->cnvMessageDateCreated;}
     public function getConversationID() {return $this->cnvID;}
     public function getConversationEditorID() {return $this->cnvEditorID;}
     public function getConversationMessageLevel() {return $this->cnvMessageLevel;}
@@ -81,6 +85,15 @@ class Message extends Object implements \Concrete\Core\Permission\ObjectInterfac
         }
 
         return false;
+    }
+
+    public function setMessageDateCreated($cnvMessageDateCreated)
+    {
+        $this->cnvMessageDateCreated = $cnvMessageDateCreated;
+        $db = Loader::db();
+        $db->Execute('update ConversationMessages set cnvMessageDateCreated = ? where cnvMessageID = ?', array(
+            $cnvMessageDateCreated, $this->getConversationMessageID()
+        ));
     }
 
     public function setMessageBody($cnvMessageBody)
@@ -309,8 +322,9 @@ class Message extends Object implements \Concrete\Core\Permission\ObjectInterfac
             $msg->setPropertiesFromArray($r);
 
             $author = new Author();
-            if ($r['uID'] > 0) {
-                $author->setUser(\UserInfo::getByID($r['uID']));
+            $authorUser = ($r['uID'] > 0) ? \UserInfo::getByID($r['uID']) : null;
+            if ($authorUser !== null) {
+                $author->setUser($authorUser);
             } else {
                 $author->setName($r['cnvMessageAuthorName']);
                 $author->setEmail($r['cnvMessageAuthorEmail']);
@@ -408,6 +422,11 @@ class Message extends Object implements \Concrete\Core\Permission\ObjectInterfac
                           array($cnvMessageSubject, $cnvMessageBody, $date, $cnvMessageParentID, $cnvEditorID, $cnvMessageLevel, $cnvID, $uID, $cnvMessageAuthorName, $cnvMessageAuthorEmail, $cnvMessageAuthorWebsite, ($ip === false)?(''):($ip->getIp()), $_SERVER['HTTP_USER_AGENT']));
 
         $cnvMessageID = $db->Insert_ID();
+        
+        $message = static::getByID($cnvMessageID);
+
+        $event = new MessageEvent($message);
+        Events::dispatch('on_new_conversation_message', $event);
 
         if ($cnv instanceof \Concrete\Core\Conversation\Conversation) {
             $cnv->updateConversationSummary();

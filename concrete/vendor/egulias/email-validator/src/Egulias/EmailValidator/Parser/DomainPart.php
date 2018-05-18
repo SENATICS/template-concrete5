@@ -23,6 +23,9 @@ class DomainPart extends Parser
         if ($this->lexer->token['type'] === EmailLexer::S_EMPTY) {
             throw new \InvalidArgumentException('ERR_NODOMAIN');
         }
+        if ($this->lexer->token['type'] === EmailLexer::S_HYPHEN) {
+            throw new \InvalidArgumentException('ERR_DOMAINHYPHENEND');
+        }
 
         if ($this->lexer->token['type'] === EmailLexer::S_OPENPARENTHESIS) {
             $this->warnings[] = EmailValidator::DEPREC_COMMENT;
@@ -102,6 +105,10 @@ class DomainPart extends Parser
         $domain = '';
         do {
             $prev = $this->lexer->getPrevious();
+
+            if ($this->lexer->token['type'] === EmailLexer::S_SLASH) {
+                throw new \InvalidArgumentException('ERR_DOMAIN_CHAR_NOT_ALLOWED');
+            }
 
             if ($this->lexer->token['type'] === EmailLexer::S_OPENPARENTHESIS) {
                 $this->parseComments();
@@ -210,6 +217,9 @@ class DomainPart extends Parser
         return $addressLiteral;
     }
 
+    /**
+     * @param string $addressLiteral
+     */
     protected function checkIPV4Tag($addressLiteral)
     {
         $matchesIP  = array();
@@ -235,12 +245,18 @@ class DomainPart extends Parser
 
     protected function checkDomainPartExceptions($prev)
     {
+        if ($this->lexer->token['type'] === EmailLexer::S_COMMA) {
+            throw new \InvalidArgumentException('ERR_COMMA_IN_DOMAIN');
+        }
+
         if ($this->lexer->token['type'] === EmailLexer::S_AT) {
             throw new \InvalidArgumentException('ERR_CONSECUTIVEATS');
         }
+
         if ($this->lexer->token['type'] === EmailLexer::S_OPENQBRACKET && $prev['type'] !== EmailLexer::S_AT) {
             throw new \InvalidArgumentException('ERR_EXPECTING_ATEXT');
         }
+
         if ($this->lexer->token['type'] === EmailLexer::S_HYPHEN && $this->lexer->isNextToken(EmailLexer::S_DOT)) {
             throw new \InvalidArgumentException('ERR_DOMAINHYPHENEND');
         }
@@ -289,5 +305,4 @@ class DomainPart extends Parser
             throw new \InvalidArgumentException('ERR_EXPECTING_ATEXT');
         }
     }
-
 }

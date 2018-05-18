@@ -1,10 +1,12 @@
 <?php
+
 namespace Gettext;
 
 use Gettext\Languages\Language;
+use BadMethodCallException;
 
 /**
- * Class to manage a collection of translations
+ * Class to manage a collection of translations.
  */
 class Translations extends \ArrayObject
 {
@@ -15,6 +17,7 @@ class Translations extends \ArrayObject
     const MERGE_COMMENTS = 16;
     const MERGE_LANGUAGE = 32;
     const MERGE_PLURAL = 64;
+    const MERGE_OVERRIDE = 128;
 
     const HEADER_LANGUAGE = 'Language';
     const HEADER_PLURAL = 'Plural-Forms';
@@ -47,38 +50,47 @@ class Translations extends \ArrayObject
 
     /**
      * Magic method to create new instances using extractors
-     * For example: Translations::fromMoFile($filename);
+     * For example: Translations::fromMoFile($filename);.
      *
      * @return Translations
      */
     public static function __callStatic($name, $arguments)
     {
         if (!preg_match('/^from(\w+)(File|String)$/i', $name, $matches)) {
-            throw new \Exception("The method $name does not exists");
+            throw new BadMethodCallException("The method $name does not exists");
         }
 
         return call_user_func_array('Gettext\\Extractors\\'.$matches[1].'::from'.$matches[2], $arguments);
     }
 
     /**
-     * Magic method to export the translations to a specific format
+     * Magic method to import/export the translations to a specific format
      * For example: $translations->toMoFile($filename);
+     * For example: $translations->addFromMoFile($filename);.
      *
-     * @return bool|string
+     * @return self|bool
      */
     public function __call($name, $arguments)
     {
-        if (!preg_match('/^to(\w+)(File|String)$/i', $name, $matches)) {
-            throw new \Exception("The method $name does not exists");
+        if (!preg_match('/^(addFrom|to)(\w+)(File|String)$/i', $name, $matches)) {
+            throw new BadMethodCallException("The method $name does not exists");
+        }
+
+        if ($matches[1] === 'addFrom') {
+            $arguments[] = $this;
+
+            call_user_func_array('Gettext\\Extractors\\'.$matches[2].'::from'.$matches[3], $arguments);
+
+            return $this;
         }
 
         array_unshift($arguments, $this);
 
-        return call_user_func_array('Gettext\\Generators\\'.$matches[1].'::to'.$matches[2], $arguments);
+        return call_user_func_array('Gettext\\Generators\\'.$matches[2].'::to'.$matches[3], $arguments);
     }
 
     /**
-     * Magic method to clone each translation on clone the translations object
+     * Magic method to clone each translation on clone the translations object.
      */
     public function __clone()
     {
@@ -92,7 +104,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Control the new translations added
+     * Control the new translations added.
      *
      * @param mixed       $index
      * @param Translation $value
@@ -124,10 +136,10 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Set the plural definition
+     * Set the plural definition.
      *
-     * @param integer $count
-     * @param string  $rule
+     * @param int    $count
+     * @param string $rule
      */
     public function setPluralForms($count, $rule)
     {
@@ -135,7 +147,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Returns the parsed plural definition
+     * Returns the parsed plural definition.
      *
      * @param null|array [count, rule]
      */
@@ -143,7 +155,7 @@ class Translations extends \ArrayObject
     {
         $header = $this->getHeader(self::HEADER_PLURAL);
 
-        if ($header && preg_match('/^nplurals\s*=\s*(\d+)\s*;\s*plural\s*=\s*([^;]+)\s*;$/', $header, $matches)) {
+        if (!empty($header) && preg_match('/^nplurals\s*=\s*(\d+)\s*;\s*plural\s*=\s*([^;]+)\s*;$/', $header, $matches)) {
             return array(intval($matches[1]), $matches[2]);
         }
     }
@@ -173,7 +185,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Returns a header value
+     * Returns a header value.
      *
      * @param string $name
      *
@@ -185,7 +197,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Returns all header for this translations
+     * Returns all header for this translations.
      *
      * @return array
      */
@@ -195,7 +207,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Removes all headers
+     * Removes all headers.
      */
     public function deleteHeaders()
     {
@@ -203,7 +215,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Removes one header
+     * Removes one header.
      *
      * @param string $name
      */
@@ -213,7 +225,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Returns the language value
+     * Returns the language value.
      *
      * @return string $language
      */
@@ -223,11 +235,11 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Sets the language and the plural forms
+     * Sets the language and the plural forms.
      *
      * @param string $language
      *
-     * @return boolean Returns true if the plural rules has been updated, false if $language hasn't been recognized
+     * @return bool Returns true if the plural rules has been updated, false if $language hasn't been recognized
      */
     public function setLanguage($language)
     {
@@ -243,9 +255,9 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Checks whether the language is empty or not
+     * Checks whether the language is empty or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasLanguage()
     {
@@ -255,7 +267,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Set a new domain for this translations
+     * Set a new domain for this translations.
      *
      * @param string $domain
      */
@@ -265,7 +277,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Returns the domain
+     * Returns the domain.
      *
      * @return string
      */
@@ -275,9 +287,9 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Checks whether the domain is empty or not
+     * Checks whether the domain is empty or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasDomain()
     {
@@ -287,7 +299,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Search for a specific translation
+     * Search for a specific translation.
      *
      * @param string|Translation $context  The context of the translation or a translation instance
      * @param string             $original The original string
@@ -306,7 +318,7 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Creates and insert/merges a new translation
+     * Creates and insert/merges a new translation.
      *
      * @param string $context  The translation context
      * @param string $original The translation original string
@@ -320,10 +332,10 @@ class Translations extends \ArrayObject
     }
 
     /**
-     * Merges this translations with other translations
+     * Merges this translations with other translations.
      *
      * @param Translations $translations The translations instance to merge with
-     * @param integer|null $method       One or various Translations::MERGE_* constants to define how to merge the translations
+     * @param int|null     $method       One or various Translations::MERGE_* constants to define how to merge the translations
      */
     public function mergeWith(Translations $translations, $method = null)
     {
@@ -366,11 +378,11 @@ class Translations extends \ArrayObject
             $pluralForm = $translations->getPluralForms();
 
             if (!$pluralForm) {
-                if ($language) {
+                if (!empty($language)) {
                     $this->setLanguage($language);
                 }
             } else {
-                if ($language) {
+                if (!empty($language)) {
                     $this->setHeader(self::HEADER_LANGUAGE, $language);
                 }
 

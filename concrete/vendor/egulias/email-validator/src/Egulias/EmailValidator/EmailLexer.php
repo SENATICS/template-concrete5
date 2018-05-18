@@ -31,10 +31,13 @@ class EmailLexer extends AbstractLexer
     const S_SEMICOLON        = 275;
     const S_OPENQBRACKET     = 276;
     const S_CLOSEQBRACKET    = 277;
+    const S_SLASH            = 278;
     const S_EMPTY            = null;
     const GENERIC            = 300;
     const CRLF               = 301;
     const INVALID            = 302;
+    const ASCII_INVALID_FROM = 127;
+    const ASCII_INVALID_TO   = 199;
 
     /**
      * US-ASCII visible characters not valid for atext (@link http://tools.ietf.org/html/rfc5322#section-3.2.3)
@@ -52,6 +55,7 @@ class EmailLexer extends AbstractLexer
         ';'    => self::S_SEMICOLON,
         '@'    => self::S_AT,
         '\\'   => self::S_BACKSLASH,
+        '/'    => self::S_SLASH,
         ','    => self::S_COMMA,
         '.'    => self::S_DOT,
         '"'    => self::S_DQUOTE,
@@ -67,14 +71,31 @@ class EmailLexer extends AbstractLexer
         '>'    => self::S_GREATERTHAN,
         '{'    => self::S_OPENQBRACKET,
         '}'    => self::S_CLOSEQBRACKET,
-        ''     => self::S_EMPTY
+        ''     => self::S_EMPTY,
+        '\0'   => self::C_NUL,
     );
 
+    protected $invalidASCII = array(226 => 1,);
+
+    protected $hasInvalidTokens = false;
+
     protected $previous;
+
+    public function reset()
+    {
+        $this->hasInvalidTokens = false;
+        parent::reset();
+    }
+
+    public function hasInvalidTokens()
+    {
+        return $this->hasInvalidTokens;
+    }
 
     /**
      * @param $type
      * @throws \UnexpectedValueException
+     * @return boolean
      */
     public function find($type)
     {
@@ -84,6 +105,7 @@ class EmailLexer extends AbstractLexer
         if (!$search->lookahead) {
             throw new \UnexpectedValueException($type . ' not found');
         }
+        return true;
     }
 
     /**
@@ -99,7 +121,7 @@ class EmailLexer extends AbstractLexer
     /**
      * moveNext
      *
-     * @return mixed
+     * @return boolean
      */
     public function moveNext()
     {
@@ -111,25 +133,25 @@ class EmailLexer extends AbstractLexer
     /**
      * Lexical catchable patterns.
      *
-     * @return array
+     * @return string[]
      */
     protected function getCatchablePatterns()
     {
         return array(
-            '[a-zA-Z_]+[4,6]?',
+            '[a-zA-Z_]+[46]?',
             '[0-9]+',
             '\r\n',
             '::',
             '\s+',
-            '[\x1-\x1F]+',
-            '.'
+            '[\x10-\x1F]+',
+            '.',
             );
     }
 
     /**
      * Lexical non-catchable patterns.
      *
-     * @return array
+     * @return string[]
      */
     protected function getNonCatchablePatterns()
     {
@@ -145,14 +167,48 @@ class EmailLexer extends AbstractLexer
      */
     protected function getType(&$value)
     {
+
+        if ($this->isNullType($value)) {
+            return self::C_NUL;
+        }
+
         if (isset($this->charValue[$value])) {
             return $this->charValue[$value];
         }
 
-        if (preg_match('/[\x1-\x1F]+/', $value)) {
+        if ($this->isInvalid($value)) {
+            $this->hasInvalidTokens = true;
             return self::INVALID;
         }
 
         return  self::GENERIC;
+    }
+
+    /**
+     * @param string $value
+     */
+    protected function isNullType($value)
+    {
+        if ($value === "\0") {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param string $value
+     */
+    protected function isInvalid($value)
+    {
+        if (preg_match('/[\x10-\x1F]+/', $value)) {
+            return true;
+        }
+
+        if (isset($this->invalidASCII[ord($value)])) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="0.3">
+
+  <table name="btConvenios">
+    <field name="bID" type="I">
+      <key />
+      <unsigned />
+    </field>
+    <field name="fecha_actualizacion" type="TS">
+      <DEFTIMESTAMP/>
+      <notnull/>
+    </field>
+  </table>
+
+  
+  <table name="btConveniosEntries">
+    <field name="id" type="I">
+      <key />
+      <unsigned />
+      <autoincrement />
+    </field>
+    <field name="bID" type="I"><unsigned /></field>
+    <field name="numero" type="X"/>
+    <field name="anho" type="X"/>
+    <field name="titulo" type="X"/>
+    <field name="descripcion" type="X" /> 
+    <field name="institucion" type="X"/> 
+    <field name="fecha" type="D"/> 
+    <field name="enlace" type="C" size="255"/> 
+    <field name="orden" type="I"><notnull /></field>
+    <field name="fecha_actualizacion" type="TS">
+      <DEFTIMESTAMP/>
+      <notnull/>
+    </field>
+  </table>
+  
+</schema>

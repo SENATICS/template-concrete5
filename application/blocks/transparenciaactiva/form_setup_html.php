@@ -160,6 +160,10 @@ $tp = new TaskPermission();
         text-align: center;
         vertical-align: center;
     }
+    
+    .redactor-content{
+        max-height: 180px !important;   
+    }
 
 	.redactor-toolbar li a{
         padding: 9px 5px !important;   
@@ -183,10 +187,6 @@ $tp = new TaskPermission();
     .collapsible-body{
         border-bottom:0px !important;   
     }
-    .redactor-content, .redactor-editor{
-       max-height:180px !important; 
-   }
-
 	
 </style>
 

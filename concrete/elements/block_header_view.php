@@ -159,7 +159,7 @@ if ($showMenu) {
                         <?php } ?>
 
                         <?php if ($b->getBlockTypeHandle() != BLOCK_HANDLE_LAYOUT_PROXY && $b->getBlockTypeHandle() != BLOCK_HANDLE_PAGE_TYPE_OUTPUT_PROXY) { ?>
-                            <li><a href="javascript:void(0)" data-menu-action="block_scrapbook"><?php echo t("Copy to Clipboard")?></a></li>
+                            <li><a href="javascript:void(0)" data-menu-action="block_scrapbook" data-token="<?php echo Core::make('token')->generate('tools/clipboard/to'); ?>"><?php echo t("Copy to Clipboard")?></a></li>
                         <?php } ?>
 
 
@@ -169,13 +169,13 @@ if ($showMenu) {
 
                         <?php if ($b->getBlockTypeHandle() != BLOCK_HANDLE_LAYOUT_PROXY) { ?>
 
-                            <?php if ($canDesign || $canEditCustomTemplate || $canEditBlockName || $canEditCacheSettings) { ?>
+                            <?php if ($canDesign || $canEditCustomTemplate || $canEditName || $canEditCacheSettings) { ?>
                                 <li class="divider"></li>
 
                                 <?php if ($canDesign || $canEditCustomTemplate) { ?>
                                     <li><a href="#" data-menu-action="block_design"><?php echo t("Design &amp; Custom Template")?></a></li>
                                 <?php } ?>
-                                <?php if ($b->getBlockTypeHandle() != BLOCK_HANDLE_PAGE_TYPE_OUTPUT_PROXY && ($canEditBlockName || $canEditCacheSettings)) { ?>
+                                <?php if ($b->getBlockTypeHandle() != BLOCK_HANDLE_PAGE_TYPE_OUTPUT_PROXY && ($canEditName || $canEditCacheSettings)) { ?>
                                     <li><a dialog-title="<?php echo t('Advanced Block Settings')?>" dialog-modal="false" dialog-width="500" dialog-height="320" data-menu-action="block_dialog" data-menu-href="<?php echo URL::to('/ccm/system/dialogs/block/cache')?>" ><?php echo t("Advanced")?></a></li>
                                 <?php } ?>
                             <?php } ?>

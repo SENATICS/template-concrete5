@@ -1,4 +1,5 @@
 <?php
+
 namespace Gettext\Generators;
 
 use Gettext\Translations;
@@ -6,7 +7,7 @@ use Gettext\Translations;
 class PhpArray extends Generator implements GeneratorInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function toString(Translations $translations)
     {
@@ -16,7 +17,7 @@ class PhpArray extends Generator implements GeneratorInterface
     }
 
     /**
-     * Generates an array with the translations
+     * Generates an array with the translations.
      *
      * @param Translations $translations
      *
@@ -24,20 +25,7 @@ class PhpArray extends Generator implements GeneratorInterface
      */
     public static function toArray(Translations $translations)
     {
-        $array = array();
-
-        $context_glue = "\004";
-
-        foreach ($translations as $translation) {
-            $key = ($translation->hasContext() ? $translation->getContext().$context_glue : '').$translation->getOriginal();
-            $entry = array($translation->getPlural(), $translation->getTranslation());
-
-            if ($translation->hasPluralTranslation()) {
-                $entry = array_merge($entry, $translation->getPluralTranslation());
-            }
-
-            $array[$key] = $entry;
-        }
+        $array = static::buildArray($translations);
 
         $domain = $translations->getDomain() ?: 'messages';
         $lang = $translations->getLanguage() ?: 'en';
@@ -59,5 +47,32 @@ class PhpArray extends Generator implements GeneratorInterface
         $fullArray[$domain] = array_merge($fullArray[$domain], $array);
 
         return $fullArray;
+    }
+
+    /**
+     * Generates an array with all translations.
+     * 
+     * @param Translations $translations
+     *
+     * @return array
+     */
+    protected static function buildArray(Translations $translations)
+    {
+        $array = array();
+
+        $context_glue = "\004";
+
+        foreach ($translations as $translation) {
+            $key = ($translation->hasContext() ? $translation->getContext().$context_glue : '').$translation->getOriginal();
+            $entry = array($translation->getPlural(), $translation->getTranslation());
+
+            if ($translation->hasPluralTranslation()) {
+                $entry = array_merge($entry, $translation->getPluralTranslation());
+            }
+
+            $array[$key] = $entry;
+        }
+
+        return $array;
     }
 }

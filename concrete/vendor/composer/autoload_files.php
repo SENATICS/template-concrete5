@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    $vendorDir . '/illuminate/support/Illuminate/Support/helpers.php',
-    $vendorDir . '/htmlawed/htmlawed/htmLawed.php',
+    '3b5531f8bb4716e1b6014ad7e734f545' => $vendorDir . '/illuminate/support/Illuminate/Support/helpers.php',
+    'ef836782e1b8d747e78815386b148139' => $vendorDir . '/htmlawed/htmlawed/htmLawed.php',
 );

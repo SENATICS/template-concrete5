@@ -18,6 +18,8 @@ if (is_object($f)) {
     $tag->addClass('ccm-image-block img-responsive bID-'.$bID);
     if ($altText) {
         $tag->alt(h($altText));
+    } else {
+        $tag->alt('');
     }
     if ($title) {
         $tag->title(h($title));
@@ -37,7 +39,7 @@ if (is_object($f)) {
 
 <?php } ?>
 
-<?php if(is_object($foS)) { ?>
+<?php if(isset($foS) && is_object($foS)) { ?>
 <script>
 $(function() {
     $('.bID-<?php print $bID;?>')

@@ -143,6 +143,7 @@
 	ConcreteAjaxSearch.prototype.updateResults = function(result) {
 		var cs = this,
 			options = cs.options;
+
 		cs.$resultsTableHead.html(cs._templateSearchResultsTableHead({'columns': result.columns}));
 		cs.$resultsTableBody.html(cs._templateSearchResultsTableBody({'items': result.items}));
 		cs.$resultsPagination.html(cs._templateSearchResultsPagination({'paginationTemplate': result.paginationTemplate}));
@@ -243,6 +244,12 @@
                 }
             });
         }
+
+		if (type == 'progressive') {
+			ccm_triggerProgressiveOperation($option.attr('data-bulk-action-url'), itemIDs,	$option.attr('data-bulk-action-title'), function() {
+				cs.refreshResults();
+			});
+		}
 		cs.publish('SearchBulkActionSelect', {value: value, option: $option, items: $items});
 	}
 

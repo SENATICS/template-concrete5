@@ -218,6 +218,7 @@ class Section extends Page
         if (!$item->isMiss()) {
             $returnID = $item->get();
         } else {
+            $returnID = null;
             $item->lock();
             if ($page->getPageTypeHandle() == STACKS_PAGE_TYPE) {
                 $parent = Page::getByID($page->getCollectionParentID());
@@ -230,17 +231,26 @@ class Section extends Page
 
                     return static::getByLocale($locale);
                 }
-            }
-            // looks at the page, traverses its parents until it finds the proper language
-            $nav = \Core::make('helper/navigation');
-            $pages = $nav->getTrailToCollection($page);
-            $pages = array_reverse($pages);
-            $pages[] = $page;
-            $ids = self::getIDList();
-            $returnID = false;
-            foreach ($pages as $pc) {
-                if (in_array($pc->getCollectionID(), $ids)) {
-                    $returnID = $pc->getCollectionID();
+            } else {
+
+                if ($page->isPageDraft() && $page->getPageDraftTargetParentPageID()) {
+                    $cParentID = $page->getPageDraftTargetParentPageID();
+                } else {
+                    $cParentID = $page->getCollectionParentID();
+                }
+
+                $parent = \Page::getByID($cParentID);
+                $nav = \Core::make('helper/navigation');
+                $pages = $nav->getTrailToCollection($parent);
+                $pages = array_reverse($pages);
+                $pages[] = $parent;
+                $pages[] = $page;
+                $ids = self::getIDList();
+                $returnID = false;
+                foreach ($pages as $pc) {
+                    if (in_array($pc->getCollectionID(), $ids)) {
+                        $returnID = $pc->getCollectionID();
+                    }
                 }
             }
             $item->set($returnID);
@@ -436,14 +446,16 @@ class Section extends Page
         $db = Database::get();
         $mpRelationID = self::getMultilingualPageRelationID($oldPage->getCollectionID());
 
-        if ($mpRelationID) {
-            $v = array($mpRelationID, $newPage->getCollectionID(), $locale);
+        $section = Section::getByLocale($locale);
+
+        if ($mpRelationID && $section) {
+            $v = array($mpRelationID, $newPage->getCollectionID(), $section->getLocale(), $section->getLanguage());
             $db->Execute(
                 'delete from MultilingualPageRelations where mpRelationID = ? and mpLocale = ?',
-                array($mpRelationID, $locale)
+                array($mpRelationID, $section->getLocale())
             );
             $db->Execute('delete from MultilingualPageRelations where cID = ?', array($newPage->getCollectionID()));
-            $db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLocale) values (?, ?, ?)', $v);
+            $db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLocale, mpLanguage) values (?, ?, ?, ?)', $v);
             $pde = new Event($newPage);
             $pde->setLocale($locale);
             \Events::dispatch('on_multilingual_page_relate', $pde);

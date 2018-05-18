@@ -8,7 +8,6 @@ $navItems = $controller->getNavItems();
 $menuline = 0;
 
 echo '
-
 <style>
 .Menu_'.$bID.' .submenu a{
     display: inline-block;
@@ -20,10 +19,6 @@ echo '
 .Menu_'.$bID.' .submenu li a{
     line-height:15px !important;
     padding: 10px 15px !important;
-}
-
-.Menu_'.$bID.' > .submenu > a{
-    margin-top: -4px;
 }
 .Menu_'.$bID.' .submenu > ul > .submenu .icono_submenu{
     transform: rotate(-90deg);
@@ -45,15 +40,15 @@ echo '
 }
 .Menu_'.$bID.' .submenu ul{
     overflow-y:visible;
+    display: none;
 }
 .Menu_'.$bID.' > li > ul > .submenu a{
     float:left;
 }
 .Menu_'.$bID.' > li > ul > .submenu ul{
-    left:100px;
-    margin-top:5px;
+    left:200px;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1035px) {
 	.Menu_'.$bID.' .submenu .icono_submenu{
         color:#222;
     }
@@ -180,16 +175,36 @@ foreach ($navItems as $ni) {
     $ni->classes = implode(" ", $classes);
 }
 
+//ICONO
+
+function getContent($obj)
+{
+    $content = "";
+
+    $content = $obj->getAttribute('icon');
+    if (is_object($content) && $content instanceof \Concrete\Core\File\File) {
+
+        $im = Core::make('helper/image');
+        $thumb = $im->getThumbnail(
+            $content,
+            30,
+            30
+        ); //<-- set these 2 numbers to max width and height of thumbnails
+        $content = "<img class='hola' src=\"{$thumb->src}\" width=\"{$thumb->width}\" height=\"{$thumb->height}\" alt=\"\" />";
+    }
+  
+return $content;
+}
+//FIN ICONO
 
 //*** Step 2 of 2: Output menu HTML ***/
 
 echo'<ul class="hide-on-med-and-down Menu_'.$bID.'">';
-
 foreach ($navItems as $ni) {
-
+    
     echo '<li class="' . $ni->classes . '">'; //opens a nav item
     $name = (isset($translate) && $translate == true) ? t($ni->name) : $ni->name;
-    echo '<a class="waves-effect waves-brow" href="' . $ni->url . '" target="' . $ni->target . '">' . $name . '</a>';
+    echo '<a class="waves-effect waves-brow no-opacity" href="' . $ni->url . '" target="' . $ni->target . '">'.getContent($ni->cObj).'<div class="linea_icono"></div>' .$name . '</a>';
 
     if ($ni->hasSubmenu) {
         echo '<i class="mdi-navigation-arrow-drop-down right icono_submenu"></i><ul class="dropdown-content sub-menu children">'; //opens a dropdown sub-menu

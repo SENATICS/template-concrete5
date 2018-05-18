@@ -10,6 +10,7 @@ use Concrete\Core\Updater\ApplicationUpdate\DiagnosticFactory;
 use Zend\Http\Client;
 use \Config;
 use Zend\Http\Request;
+use Concrete\Core\Cache\OpCache;
 
 class ApplicationUpdate
 {
@@ -90,6 +91,7 @@ class ApplicationUpdate
 
         $renderer = new Renderer($updates);
         file_put_contents($update_file, $renderer->render());
+        OpCache::clear($update_file);
 
         return true;
     }
@@ -151,6 +153,9 @@ class ApplicationUpdate
         }
         $overrides = id(Environment::get())->getOverrideList();
         $request->getPost()->set('overrides', $overrides);
+        $info = \Core::make('\Concrete\Core\System\Info');
+        $info = $info->getJSONOBject();
+        $request->getPost()->set('environment', json_encode($info));
 
         $client = new Client();
         $client->setMethod('POST');

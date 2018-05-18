@@ -66,7 +66,7 @@
 
     <?php if (Config::get('concrete.marketplace.enabled') == true) { ?>
     <div class="alert alert-info">
-        <a class="btn btn-success btn-xs pull-right" href="<?php echo $view->url('/dashboard/extend/add-ons')?>"><?php echo t("More Add-ons")?></a>
+        <a class="btn btn-success btn-xs pull-right" href="<?php echo $view->url('/dashboard/extend/addons')?>"><?php echo t("More Add-ons")?></a>
         <p><?php echo t('Browse our marketplace of add-ons to extend your site!')?></p>
     </div>
     <?php } ?>

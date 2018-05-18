@@ -27,8 +27,9 @@ if (isset($successMessage)) { ?>
 <script type="text/javascript">
 $(function() {
 
-<?php for ($i = 1; $i <= count($installRoutines); $i++) {
-	$routine = $installRoutines[$i-1]; ?>
+<?php for ($i = 1; $i <= count($installRoutines); ++$i) {
+	$routine = $installRoutines[$i - 1];
+	?>
 
 	ccm_installRoutine<?php echo $i?> = function() {
 		<?php if ($routine->getText() != '') { ?>
@@ -49,7 +50,7 @@ $(function() {
 				} else {
 					$('#install-progress-bar div.progress-bar').css('width', '<?php echo $routine->getProgress()?>%');
 					<?php if ($i < count($installRoutines)) { ?>
-						ccm_installRoutine<?php echo $i+1?>();
+						ccm_installRoutine<?php echo $i + 1?>();
 					<?php } else { ?>
 						$("#install-progress-wrapper").fadeOut(300, function() {
 							$("#success-message").fadeIn(300);
@@ -113,7 +114,7 @@ $(function() {
 </div>
 </div>
 
-<?php } else if ($this->controller->getTask() == 'setup' || $this->controller->getTask() == 'configure') { ?>
+<?php } elseif ($this->controller->getTask() == 'setup' || $this->controller->getTask() == 'configure') { ?>
 
 <script type="text/javascript">
 $(function() {
@@ -165,13 +166,13 @@ $(function() {
 		<div class="form-group">
 		<label for="uPassword" class="control-label col-md-4"><?php echo t('Password')?>:</label>
 		<div class="col-md-8">
-		<?php echo $form->password('uPassword', array('class' => '', 'autocomplete'=>'off'))?>
+		<?php echo $form->password('uPassword', array('class' => '', 'autocomplete' => 'off'))?>
 		</div>
 		</div>
 		<div class="form-group">
 		<label for="uPasswordConfirm" class="control-label col-md-4"><?php echo t('Confirm Password')?>:</label>
 		<div class="col-md-8">
-			<?php echo $form->password('uPasswordConfirm', array('class' => '', 'autocomplete'=>'off'))?>
+			<?php echo $form->password('uPasswordConfirm', array('class' => '', 'autocomplete' => 'off'))?>
 		</div>
 		</div>
 
@@ -200,7 +201,7 @@ $(function() {
 	<div class="form-group">
 	<label class="control-label col-md-4" for="DB_PASSWORD"><?php echo t('MySQL Password')?>:</label>
 	<div class="col-md-8">
-		<?php echo $form->password('DB_PASSWORD', array('class' => '', 'autocomplete'=>'off'))?>
+		<?php echo $form->password('DB_PASSWORD', array('class' => '', 'autocomplete' => 'off'))?>
 	</div>
 	</div>
 
@@ -228,7 +229,7 @@ $(function() {
 		<tbody>
 		<?php
 		$availableSampleContent = StartingPointPackage::getAvailableList();
-		foreach($availableSampleContent as $spl) {
+		foreach ($availableSampleContent as $spl) {
 			$pkgHandle = $spl->getPackageHandle();
 		?>
 
@@ -264,7 +265,7 @@ $(function() {
 </form>
 
 
-<?php } else if (isset($locale) || count($locales) == 0) { ?>
+<?php } elseif (isset($locale) || count($locales) == 0) { ?>
 
 <script type="text/javascript">
 
@@ -362,6 +363,12 @@ $(function() {
 	<td width="100%"><?php echo t('JSON Extension Enabled')?>
 	</td>
 	<td><?php if (!$jsonTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('You must enable PHP\'s JSON support. This should be enabled by default in PHP 5.2 and above.')?>"></i><?php } ?></td>
+</tr>
+<tr>
+	<td><?php if ($domTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-exclamation-circle"></i><?php } ?></td>
+	<td width="100%"><?php echo t('DOM Extension Enabled')?>
+	</td>
+	<td><?php if (!$domTest) { ?><i class="fa fa-question-circle launch-tooltip" title="<?php echo t('You must enable PHP\'s DOM support.')?>"></i><?php } ?></td>
 </tr>
 <tr>
     <td><?php if ($aspTagsTest) { ?><i class="fa fa-check"></i><?php } else { ?><i class="fa fa-exclamation-circle"></i><?php } ?></td>
@@ -472,7 +479,7 @@ $(function() {
                     <td>
                         <?php if ($memoryTest === -1) { ?>
                             <i class="fa fa-exclamation-circle"></i>
-                        <?php } else if ($memoryTest === 1) { ?>
+                        <?php } elseif ($memoryTest === 1) { ?>
                             <i class="fa fa-check"></i>
                         <?php } else { ?>
                             <i class="fa fa-warning"></i>
@@ -488,7 +495,7 @@ $(function() {
                             <span class="text-warning"><?php echo t('concrete5 runs best with at least 64MB of RAM.
                             Your memory limit is currently %sMB. You may experience problems uploading and resizing large images, and may have to install concrete5 without sample content.', round(Core::make('helper/number')->formatSize($memoryBytes, 'MB'), 2))?></span>
                         <?php } ?>
-                        <?php if ($memoryTest === 1) { ?>
+								<?php if ($memoryTest === 1) { ?>
                             <span class="text-success"><?php echo t('Memory limit %sMB.', round(Core::make('helper/number')->formatSize($memoryBytes, 'MB'), 2))?></span>
                         <?php } ?>
 
@@ -503,7 +510,7 @@ $(function() {
 <div class="row">
 <div class="col-sm-10 col-sm-offset-1">
 <div class="well" id="install-success">
-	<form method="post" action="<?php echo $view->url('/install','setup')?>">
+	<form method="post" action="<?php echo $view->url('/install', 'setup')?>">
 	<input type="hidden" name="locale" value="<?php echo h($locale)?>" />
 	<a class="btn btn-large btn-primary" href="javascript:void(0)" onclick="$(this).parent().submit()"><?php echo t('Continue to Installation')?> <i class="fa fa-arrow-right fa-white"></i></a>
 	</form>

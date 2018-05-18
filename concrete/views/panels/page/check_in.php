@@ -1,6 +1,7 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
 $v = $c->getVersionObject();
+$require_version_comments = (bool) Config::get('concrete.misc.require_version_comments');
 ?>
 
 <div class="ccm-panel-content-inner">
@@ -9,20 +10,32 @@ $v = $c->getVersionObject();
 
 <h5><?php echo t('Version Comments')?></h5>
 
-<div class="ccm-panel-check-in-comments"><textarea name="comments" id="ccm-check-in-comments" /></textarea></div>
+<div class="ccm-panel-check-in-comments"><textarea name="comments" id="ccm-check-in-comments"<?php echo $require_version_comments ? ' required="required"' : ''; ?>></textarea></div>
 
 <?php if ($cp->canApprovePageVersions()) {
 	if ($c->isPageDraft()) {
 		$publishTitle = t('Publish Page');
 	} else {
 		$publishTitle = t('Publish Changes');
-		$pk = PermissionKey::getByHandle('approve_page_versions');
-		$pk->setPermissionObject($c);
-		$pa = $pk->getPermissionAccessObject();
-		if (is_object($pa) && count($pa->getWorkflows()) > 0) {
-			$publishTitle = t('Submit to Workflow');
-		}
-	}
+    }
+    $pk = PermissionKey::getByHandle('approve_page_versions');
+    $pk->setPermissionObject($c);
+    $pa = $pk->getPermissionAccessObject();
+    $workflows = array();
+    $canApproveWorkflow = true;
+    if (is_object($pa)) {
+        $workflows = $pa->getWorkflows();
+    }
+    foreach($workflows as $wf) {
+        if (!$wf->canApproveWorkflow()) {
+            $canApproveWorkflow = false;
+        }
+    }
+
+    if (count($workflows) > 0 && !$canApproveWorkflow) {
+        $publishTitle = t('Submit to Workflow');
+    }
+        
 ?>
 <div class="ccm-panel-check-in-publish">
 

@@ -25,10 +25,12 @@ $(function() {
         <?php } ?>
 
 
-        <?php if (Config::get('concrete.user.profiles_enabled')) { ?>
+        <?php
+        $profileURL = $profile->getUserPublicProfileURL();
+        if ($profileURL) { ?>
             <hr/>
             <div>
-                <a href="<?php echo URL::to('/members/profile')?>"><?php echo t("View Public Profile")?></a>
+                <a href="<?php echo $profileURL?>"><?php echo t("View Public Profile")?></a>
                 <p><?php echo t('View your public user profile and the information you are sharing.')?></p>
             </div>
 

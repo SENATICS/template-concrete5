@@ -95,8 +95,8 @@
             $service = $link->getServiceObject(); ?>
         <tr>
             <td style="width: 48px"><?php echo $service->getServiceIconHTML()?></td>
-            <td><a href="<?php echo $view->action('edit', $link->getID())?>"><?php echo $service->getName()?></a></td>
-            <td><?php echo $link->getURL()?></td>
+            <td><a href="<?php echo $view->action('edit', $link->getID())?>"><?php echo $service->getDisplayName() ?></a></td>
+            <td><?php echo h($link->getURL()) ?></td>
         </tr>
         <?php } ?>
         </table>

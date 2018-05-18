@@ -54,11 +54,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
 <section id="menu">
     <ul style="padding-left:0px !important">
         <li class="nivel1" style="list-style-type:none !important">
-            <?php if($linkURL != "none") { ?>
-    <a href="<?php echo $linkURL;?>" target="_blank"><img src="<?php echo BASE_URL?>/application/blocks/leytransparencia/Transparencia.png" width="100%" style="border-radius:3px;"/></a>
-            <?php }else{ ?>
-                <img src="<?php echo BASE_URL?>/application/blocks/leytransparencia/Transparencia.png" width="100%" style="border-radius:3px;"/>
-            <?php } ?>
+            <img src="<?php echo BASE_URL?>/application/blocks/leytransparencia/Transparencia.png" width="100%" style="border-radius:3px;"/>
             <ul style="z-index:999; padding-left:0px !important;">
                 <?php
                     foreach($items as $item) {
@@ -73,7 +69,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
                 
                 <?php if($linkURL != "none") { ?>
                     <hr style="margin:5px !important">
-                    <li style="list-style-type:none !important"><a href="<?php echo $linkURL;?>" target="_blank">Ir al Historial</a></li>
+                    <li style="list-style-type:none !important"><a href="<?php echo $linkURL;?>" target="_blank">Histórico</a></li>
                 <?php } ?>
             </ul>
         </li>

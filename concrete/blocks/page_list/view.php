@@ -26,7 +26,13 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
     <?php
 
     $includeEntryText = false;
-    if ($includeName || $includeDescription || $useButtonForLink) {
+    if (
+        (isset($includeName) && $includeName)
+        ||
+        (isset($includeDescription) && $includeDescription)
+        ||
+        (isset($useButtonForLink) && $useButtonForLink)
+    ) {
         $includeEntryText = true;
     }
 
@@ -102,9 +108,9 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
         <?php if ($includeEntryText): ?>
             <div class="ccm-block-page-list-page-entry-text">
 
-                <?php if ($includeName): ?>
+                <?php if (isset($includeName) && $includeName): ?>
                 <div class="ccm-block-page-list-title">
-                    <?php if ($useButtonForLink) { ?>
+                    <?php if (isset($useButtonForLink) && $useButtonForLink) { ?>
                         <?php echo $title; ?>
                     <?php } else { ?>
                         <a href="<?php echo $url ?>" target="<?php echo $target ?>"><?php echo $title ?></a>
@@ -112,19 +118,19 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                 </div>
                 <?php endif; ?>
 
-                <?php if ($includeDate): ?>
+                <?php if (isset($includeDate) && $includeDate): ?>
                     <div class="ccm-block-page-list-date"><?php echo $date?></div>
                 <?php endif; ?>
 
-                <?php if ($includeDescription): ?>
+                <?php if (isset($includeDescription) && $includeDescription): ?>
                     <div class="ccm-block-page-list-description">
                         <?php echo $description ?>
                     </div>
                 <?php endif; ?>
 
-                <?php if ($useButtonForLink): ?>
+                <?php if (isset($useButtonForLink) && $useButtonForLink): ?>
                 <div class="ccm-block-page-list-page-entry-read-more">
-                    <a href="<?php echo $url?>" class="<?php echo $buttonClasses?>"><?php echo $buttonLinkText?></a>
+                    <a href="<?php echo $url?>" target="<?php echo $target?>" class="<?php echo $buttonClasses?>"><?php echo $buttonLinkText?></a>
                 </div>
                 <?php endif; ?>
 

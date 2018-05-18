@@ -36,7 +36,7 @@ abstract class QueueBaseTest extends \PHPUnit_Framework_TestCase
             'name'      => 'queue1',
         );
 
-        $this->queue = new Queue('Null', $this->config);
+        $this->queue = new Queue('NullAdapter', $this->config);
     }
 
     protected function tearDown()

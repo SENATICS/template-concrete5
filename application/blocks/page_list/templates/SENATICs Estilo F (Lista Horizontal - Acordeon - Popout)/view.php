@@ -129,9 +129,10 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                     <li>
                         <div class="collapsible-header">
                             <a href="#!" class="secondary-content right"><i class="material-icons">info_outline</i></a>
-                            <span class="fecha_publicacion right"><?php echo $date?></span>
-                            
-                            <b><a href="<?php echo $url ?>" target="<?php echo $target ?>"><?php echo $title ?></a></b>
+                            <?php if ($includeDate): ?>
+                                <span class="fecha_publicacion right"><?php echo $date?></span>
+                            <?php endif; ?>
+                            <b  class="truncate"><a href="<?php echo $url ?>" target="<?php echo $target ?>"><?php echo $title ?></a></b>
                             
                         </div>
                             

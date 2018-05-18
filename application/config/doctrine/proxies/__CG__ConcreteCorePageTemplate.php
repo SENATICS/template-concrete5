@@ -176,6 +176,17 @@ class Template extends \Concrete\Core\Page\Template implements \Doctrine\ORM\Pro
     /**
      * {@inheritDoc}
      */
+    public function export($node)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'export', array($node));
+
+        return parent::export($node);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getPageTemplateID()
     {
 

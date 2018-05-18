@@ -63,22 +63,22 @@ class Controller extends BlockController {
 
         switch (intval($args['linkType'])) {
             case 1:
-                $args['externalLink'] = '';
-                $args['fID'] = '';
+                $args['externalLink'] = null;
+                $args['fID'] = null;
                 break;
             case 2:
-                $args['internalLinkCID'] = 0;
-                $args['fID'] = '';
+                $args['internalLinkCID'] = null;
+                $args['fID'] = null;
                 break;
             case 3:
-                $args['externalLink'] = '';
-                $args['internalLinkCID'] = 0;
+                $args['externalLink'] = null;
+                $args['internalLinkCID'] = null;
 
                 break;
             default:
-                $args['externalLink'] = '';
-                $args['internalLinkCID'] = 0;
-                $args['fID'] = '';
+                $args['externalLink'] = null;
+                $args['internalLinkCID'] = null;
+                $args['fID'] = null;
                 break;
         }   
 		

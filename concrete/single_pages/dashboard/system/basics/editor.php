@@ -15,7 +15,7 @@
 		</div>
 	</fieldset>
 	<fieldset>
-		<p class="lead"><?php echo t('Redactor Plugins')?></p>
+		<p class="lead"><?php echo t('Editor Plugins')?></p>
 		<?php foreach($plugins as $key => $plugin) { ?>
 		<div class="checkbox">
 			<label>

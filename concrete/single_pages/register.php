@@ -1,4 +1,7 @@
-<?php defined('C5_EXECUTE') or die("Access Denied."); ?>
+<?php defined('C5_EXECUTE') or die("Access Denied.");
+
+$token = \Core::make('Concrete\Core\Validation\CSRF\Token');
+?>
 <div class="row">
 <div class="col-sm-10 col-sm-offset-1">
 <div class="page-header">
@@ -39,6 +42,7 @@ if($registerSuccess) { ?>
 <?php
 } else { ?>
 	<form method="post" action="<?php echo $view->url('/register', 'do_register')?>" class="form-stacked">
+		<?php $token->output('register.do_register') ?>
 		<div class="row">
 			<div class="col-sm-10 col-sm-offset-1">
 				<fieldset>

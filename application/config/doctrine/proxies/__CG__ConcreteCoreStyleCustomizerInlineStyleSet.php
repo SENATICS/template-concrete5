@@ -64,10 +64,10 @@ class StyleSet extends \Concrete\Core\StyleCustomizer\Inline\StyleSet implements
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'issID', 'customClass', 'backgroundColor', 'backgroundImageFileID', 'backgroundRepeat', 'borderColor', 'borderStyle', 'borderWidth', 'borderRadius', 'baseFontSize', 'alignment', 'textColor', 'linkColor', 'marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'rotate', 'boxShadowHorizontal', 'boxShadowVertical', 'boxShadowBlur', 'boxShadowSpread', 'boxShadowColor', 'hideOnExtraSmallDevice', 'hideOnSmallDevice', 'hideOnMediumDevice', 'hideOnLargeDevice');
+            return array('__isInitialized__', 'issID', 'customClass', 'backgroundColor', 'backgroundImageFileID', 'backgroundRepeat', 'backgroundSize', 'backgroundPosition', 'borderColor', 'borderStyle', 'borderWidth', 'borderRadius', 'baseFontSize', 'alignment', 'textColor', 'linkColor', 'marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'rotate', 'boxShadowHorizontal', 'boxShadowVertical', 'boxShadowBlur', 'boxShadowSpread', 'boxShadowColor', 'hideOnExtraSmallDevice', 'hideOnSmallDevice', 'hideOnMediumDevice', 'hideOnLargeDevice');
         }
 
-        return array('__isInitialized__', 'issID', 'customClass', 'backgroundColor', 'backgroundImageFileID', 'backgroundRepeat', 'borderColor', 'borderStyle', 'borderWidth', 'borderRadius', 'baseFontSize', 'alignment', 'textColor', 'linkColor', 'marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'rotate', 'boxShadowHorizontal', 'boxShadowVertical', 'boxShadowBlur', 'boxShadowSpread', 'boxShadowColor', 'hideOnExtraSmallDevice', 'hideOnSmallDevice', 'hideOnMediumDevice', 'hideOnLargeDevice');
+        return array('__isInitialized__', 'issID', 'customClass', 'backgroundColor', 'backgroundImageFileID', 'backgroundRepeat', 'backgroundSize', 'backgroundPosition', 'borderColor', 'borderStyle', 'borderWidth', 'borderRadius', 'baseFontSize', 'alignment', 'textColor', 'linkColor', 'marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'rotate', 'boxShadowHorizontal', 'boxShadowVertical', 'boxShadowBlur', 'boxShadowSpread', 'boxShadowColor', 'hideOnExtraSmallDevice', 'hideOnSmallDevice', 'hideOnMediumDevice', 'hideOnLargeDevice');
     }
 
     /**
@@ -259,6 +259,50 @@ class StyleSet extends \Concrete\Core\StyleCustomizer\Inline\StyleSet implements
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBackgroundRepeat', array());
 
         return parent::getBackgroundRepeat();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBackgroundSize($backgroundSize)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBackgroundSize', array($backgroundSize));
+
+        return parent::setBackgroundSize($backgroundSize);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBackgroundSize()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBackgroundSize', array());
+
+        return parent::getBackgroundSize();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBackgroundPosition($backgroundPosition)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBackgroundPosition', array($backgroundPosition));
+
+        return parent::setBackgroundPosition($backgroundPosition);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBackgroundPosition()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBackgroundPosition', array());
+
+        return parent::getBackgroundPosition();
     }
 
     /**
@@ -875,17 +919,6 @@ class StyleSet extends \Concrete\Core\StyleCustomizer\Inline\StyleSet implements
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'export', array($node));
 
         return parent::export($node);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getClass($theme = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getClass', array($theme));
-
-        return parent::getClass($theme);
     }
 
     /**

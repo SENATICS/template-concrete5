@@ -51,12 +51,10 @@ $(document).ready(function(){
                                 <?php } ?>
                             </div>
                             <div class="col l4 m6 s12 ">
-                                <div class="contenido">
-                                    <?php if($row['title']) { ?>
-                                        <h4 class="ccm-image-slider-title"><?php echo $row['title'] ?></h4>
-                                    <?php } ?>
-                                    <?php echo $row['description'] ?>
-                                </div>
+                                <?php if($row['title']) { ?>
+                                    <p style="font-size:20px !important; font-weight:bold !important; margin:0px !important"><?php echo $row['title'] ?></p>
+                                <?php } ?>
+                                <?php echo $row['description'] ?>
                             </div>
                         <?php }else{ ?>
                             <div class="col l12 m12 s12">

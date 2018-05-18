@@ -14,13 +14,14 @@ foreach($permissions as $pk) {
 	<td id="ccm-permission-grid-cell-<?php echo $pk->getPermissionKeyID()?>" class="ccm-permission-grid-cell"><?php echo Loader::element('permission/labels', array('pk' => $pk))?></td>
 </tr>
 <?php } ?>
+<?php if ($editPermissions) { ?>
 <tr>
 	<td class="ccm-permission-grid-name" ></td>
 	<td>
 	<?php echo Loader::element('permission/clipboard', array('pkCategory' => $cat))?>
 	</td>
 </tr>
-
+<?php } ?>
 </table>
 
 

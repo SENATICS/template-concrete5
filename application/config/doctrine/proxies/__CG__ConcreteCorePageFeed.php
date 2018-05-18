@@ -536,4 +536,15 @@ class Feed extends \Concrete\Core\Page\Feed implements \Doctrine\ORM\Proxy\Proxy
         return parent::getOutput($request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getHeadLinkElement()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getHeadLinkElement', array());
+
+        return parent::getHeadLinkElement();
+    }
+
 }

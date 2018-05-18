@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+
+    <table name="dsOpenData">
+        <field name="opendataID" type="I">
+            <key/>
+            <unsigned/>
+            <autoincrement/>
+        </field>
+         <field name="title" type="C" size="150">
+        </field>
+        <field name="organization" type="C" size="150">
+        </field>
+        <field name="url" type="X">
+        </field>
+        <field name="email_organization" type="C" size="150">
+        </field>
+        <field name="date_created" type="T">
+            <deftimestamp/>
+        </field>
+    </table>
+
+    <table name="dsOpenDataDataset">
+        <field name="datasetsID" type="I">
+            <key/>
+            <unsigned/>
+            <autoincrement/>
+        </field>
+        <field name="opendataID" type="I">
+            <unsigned/>
+        </field>
+        <field name="dictionaryID" type="I">
+            <unsigned/>
+        </field>
+        <field name="title" type="C" size="150">
+        </field>
+        <field name="description" type="X">
+        </field>
+        <field name="url_download_page" type="X">
+        </field>
+        <field name="author" type="C" size="150">
+        </field>
+        <field name="email_author" type="C" size="150">
+        </field>
+
+        <field name="licenseID" type="I">
+            <unsigned/>
+        </field>
+        <field name="tags" type="C" size="255">
+        </field>
+        <field name="version" type="C" size="10">
+        </field>
+    </table>
+
+    <table name="dsOpenDataDictionary">
+        <field name="dictionaryID" type="I">
+            <key/>
+            <unsigned/>
+            <autoincrement/>
+        </field>
+        <field name="datasetsID" type="I">
+            <unsigned/>
+        </field>
+        <field name="column_name" type="C" size="255">
+        </field>
+        <field name="property_name" type="C" size="255">
+        </field>
+        <field name="alternative_label" type="C" size="150">
+        </field>
+        <field name="example" type="C" size="150">
+        </field>
+        <field name="datatype" type="C" size="30">
+        </field>
+        <field name="cardinality" type="C" size="50">
+        </field>
+        <field name="format" type="C" size="100">
+        </field>
+        <field name="restrictions" type="C" size="150">
+        </field>
+        <field name="description" type="X">
+        </field>
+        <field name="equivalent_property" type="X">
+        </field>
+    </table>
+
+    <table name="dsOpenDataResource">
+        <field name="resourceID" type="I">
+            <key/>
+            <unsigned/>
+            <autoincrement/>
+        </field>
+        <field name="datasetsID" type="I">
+            <unsigned/>
+        </field>
+        <field name="resource_title" type="C" size="255">
+        </field>
+        <field name="description" type="X">
+        </field>
+    </table>
+    <table name="dsOpenDataFile">
+        <field name="fileID" type="I">
+            <key/>
+            <unsigned/>
+            <autoincrement/>
+        </field>
+        <field name="resourceID" type="I">
+            <unsigned/>
+        </field>
+        <field name="formatID" type="I">
+            <unsigned/>
+        </field>
+        <field name="externalLink"  type="C" size="255"/>
+        <field name="internalLinkCID"  type="I">
+            <unsigned />
+            <default value="0" />
+        </field>
+        <field name="target" type="I" size="2">
+            <default value="0" />
+            <unsigned />
+        </field>
+        <field name="level" type="I">
+        </field>
+        <field name="fID" type="I">
+            <unsigned />
+        </field>
+        <index name="fID">
+            <col>fID</col>
+        </index>
+    </table>
+    <table name="dsOpenDataFormat">
+        <field name="formatID" type="I">
+            <key/>
+            <unsigned/>
+            <autoincrement/>
+        </field>
+        <field name="description" type="C" size="255">
+        </field>
+    </table>
+    <table name="dsOpenDataSettings">
+        <field name="settingID" type="I">
+            <key/>
+            <unsigned/>
+            <autoincrement/>
+        </field>
+        <field name="opt" type="C" size="255">
+        </field>
+        <field name="value" type="C" size="255">
+        </field>
+    </table>
+    <table name="dsOpenDataLicense">
+        <field name="licenseID" type="I">
+            <key/>
+            <unsigned/>
+            <autoincrement/>
+        </field>
+        <field name="license_name" type="C" size="255">
+        </field>
+        <field name="code_license" type="C" size="255">
+        </field>
+    </table>
+
+</schema>

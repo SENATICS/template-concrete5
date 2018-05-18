@@ -7,9 +7,9 @@ return array(
      *
      * @var string
      */
-    'version'           => '5.7.5.2',
-    'version_installed' => '5.7.5.2',
-    'version_db' => '20150731000000', // the key of the latest database migration
+    'version'           => '5.7.5.13',
+    'version_installed' => '5.7.5.13',
+    'version_db' => '20160615000000', // the key of the latest database migration
 
     /**
      * Installation status
@@ -448,7 +448,9 @@ return array(
         'page_search_index_lifetime'    => 259200,
         'enable_trash_can'              => true,
         'app_version_display_in_header' => true,
-        'default_jpeg_image_compression'     => 80
+        'default_jpeg_image_compression'     => 80,
+        'help_overlay'                  => true,
+        'require_version_comments'      => false,
     ),
 
     'theme' => array(
@@ -498,11 +500,11 @@ return array(
     ),
 
     'file_manager' => array(
-
         'images' => array(
-            'use_exim_data_to_rotate_images' => false
-        )
-
+            'use_exim_data_to_rotate_images' => false,
+            'manipulation_library' => 'gd'
+        ),
+        'results' => 10
     ),
 
     'sitemap_xml'       => array(
@@ -623,7 +625,7 @@ return array(
             'cookie_lifetime' => 0,
             'cookie_domain'   => false,
             'cookie_secure'   => false,
-            'cookie_httponly' => false
+            'cookie_httponly' => true
         )
     ),
 
@@ -763,6 +765,13 @@ return array(
      * ------------------------------------------------------------------------
      */
     'security'          => array(
+        'session' => array(
+
+            'invalidate_on_user_agent_mismatch' => true,
+
+            'invalidate_on_ip_mismatch' => true
+
+        ),
         'ban'   => array(
             'ip' => array(
 
@@ -783,6 +792,15 @@ return array(
                  */
                 'length'   => 10
             )
+        ),
+        'misc' => array(
+
+            /**
+             * Defence Click Jacking.
+             *
+             * @var bool|string DENY, SAMEORIGIN, ALLOW-FROM uri
+             */
+            'x_frame_options' => 'SAMEORIGIN'
         )
     ),
 
@@ -861,11 +879,11 @@ return array(
      * ------------------------------------------------------------------------
      */
     'statistics'        => array(
-//        'track_page_views' => true
+        'track_downloads' => true
     ),
     'limits'            => array(
         'sitemap_pages'           => 100,
-        'delete_pages'            => 10,
+        'delete_pages'            => 100,
         'copy_pages'              => 10,
         'page_search_index_batch' => 200,
         'job_queue_batch'         => 10,

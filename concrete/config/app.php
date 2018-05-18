@@ -81,7 +81,6 @@ return array(
         'TaskPermission'                       => '\Concrete\Core\Legacy\TaskPermission',
         'User'                                 => '\Concrete\Core\User\User',
         'UserAttributeKey'                     => '\Concrete\Core\Attribute\Key\UserKey',
-        'UserInfo'                             => '\Concrete\Core\User\UserInfo',
         'UserList'                             => '\Concrete\Core\User\UserList',
         'View'                                 => '\Concrete\Core\View\View',
         'Workflow'                             => '\Concrete\Core\Workflow\Workflow'
@@ -91,6 +90,9 @@ return array(
      * Core Providers
      */
     'providers'           => array(
+        // Router service provider
+        'core_router' => 'Concrete\Core\Routing\RoutingServiceProvider',
+
         'core_file'                   => '\Concrete\Core\File\FileServiceProvider',
         'core_encryption'             => '\Concrete\Core\Encryption\EncryptionServiceProvider',
         'core_validation'             => '\Concrete\Core\Validation\ValidationServiceProvider',
@@ -102,6 +104,7 @@ return array(
         'core_mail'                   => '\Concrete\Core\Mail\MailServiceProvider',
         'core_application'            => '\Concrete\Core\Application\ApplicationServiceProvider',
         'core_utility'                => '\Concrete\Core\Utility\UtilityServiceProvider',
+        'core_content_importer'       => '\Concrete\Core\Backup\ContentImporter\ContentImporterServiceProvider',
         'core_manager_grid_framework' => '\Concrete\Core\Page\Theme\GridFramework\ManagerServiceProvider',
         'core_manager_pagination_view' => '\Concrete\Core\Search\Pagination\View\ManagerServiceProvider',
         'core_manager_page_type_validator' => '\Concrete\Core\Page\Type\Validator\ManagerServiceProvider',
@@ -118,13 +121,18 @@ return array(
         'core_url'          => '\Concrete\Core\Url\UrlServiceProvider',
         'core_devices'      => '\Concrete\Core\Device\DeviceServiceProvider',
         'core_imageeditor'  => '\Concrete\Core\ImageEditor\EditorServiceProvider',
+        'core_user'  => '\Concrete\Core\User\UserServiceProvider',
 
         // Authentication
         'core_oauth'          => '\Concrete\Core\Authentication\Type\OAuth\ServiceProvider',
         'core_auth_community' => '\Concrete\Core\Authentication\Type\Community\ServiceProvider',
         'core_auth_facebook'  => '\Concrete\Core\Authentication\Type\Facebook\ServiceProvider',
         'core_auth_google'    => '\Concrete\Core\Authentication\Type\Google\ServiceProvider',
-        'core_auth_twitter'   => '\Concrete\Core\Authentication\Type\Twitter\ServiceProvider'
+        'core_auth_twitter'   => '\Concrete\Core\Authentication\Type\Twitter\ServiceProvider',
+
+        // Validator
+        'core_validator'          => '\Concrete\Core\Validator\ValidatorServiceProvider',
+        'core_validator_password' => '\Concrete\Core\Validator\PasswordValidatorServiceProvider',
     ),
 
     /**
@@ -138,6 +146,7 @@ return array(
         'ORM'      => '\Concrete\Core\Support\Facade\DatabaseORM',
         'Events'   => '\Concrete\Core\Support\Facade\Events',
         'Route'    => '\Concrete\Core\Support\Facade\Route',
+        'UserInfo' => '\Concrete\Core\Support\Facade\UserInfoFactory',
         'Log'      => '\Concrete\Core\Support\Facade\Log',
         'Image'    => '\Concrete\Core\Support\Facade\Image',
         'Config'   => '\Concrete\Core\Support\Facade\Config',
@@ -155,7 +164,7 @@ return array(
         "/ccm/system/dialogs/area/design/"                                              => array('\Concrete\Controller\Dialog\Area\Design::view'),
         "/ccm/system/dialogs/area/design/reset"                                         => array('\Concrete\Controller\Dialog\Area\Design::reset'),
         "/ccm/system/dialogs/area/design/submit"                                        => array('\Concrete\Controller\Dialog\Area\Design::submit'),
-        "/ccm/system/dialogs/area/layout/presets/manage/"                               => array('\Concrete\Controller\Dialog\Area\Layout\Presets\Manage::view'),
+        "/ccm/system/dialogs/area/layout/presets/manage/"                               => array('\Concrete\Controller\Dialog\Area\Layout\Presets\Manage::viewPresets'),
         "/ccm/system/dialogs/area/layout/presets/manage/delete"                         => array('\Concrete\Controller\Dialog\Area\Layout\Presets\Manage::delete'),
         "/ccm/system/dialogs/area/layout/presets/{arLayoutID}"                          => array('\Concrete\Controller\Dialog\Area\Layout\Presets::view'),
         "/ccm/system/dialogs/area/layout/presets/{arLayoutID}/submit"                   => array('\Concrete\Controller\Dialog\Area\Layout\Presets::submit'),
@@ -182,6 +191,8 @@ return array(
         "/ccm/system/dialogs/file/bulk/sets/submit"                                     => array('\Concrete\Controller\Dialog\File\Bulk\Sets::submit'),
         "/ccm/system/dialogs/file/bulk/properties/clear_attribute"                      => array('\Concrete\Controller\Dialog\File\Bulk\Properties::clearAttribute'),
         "/ccm/system/dialogs/file/bulk/properties/update_attribute"                     => array('\Concrete\Controller\Dialog\File\Bulk\Properties::updateAttribute'),
+        "/ccm/system/dialogs/file/bulk/storage"                                         => array('\Concrete\Controller\Dialog\File\Bulk\Storage::view'),
+        "/ccm/system/dialogs/file/bulk/storage/submit"                                  => array('\Concrete\Controller\Dialog\File\Bulk\Storage::submit'),
         "/ccm/system/dialogs/file/sets"                                                 => array('\Concrete\Controller\Dialog\File\Sets::view'),
         "/ccm/system/dialogs/file/sets/submit"                                          => array('\Concrete\Controller\Dialog\File\Sets::submit'),
         "/ccm/system/dialogs/file/properties"                                           => array('\Concrete\Controller\Dialog\File\Properties::view'),
@@ -253,6 +264,7 @@ return array(
         "/ccm/system/file/duplicate"                                                    => array('\Concrete\Controller\Backend\File::duplicate'),
         "/ccm/system/file/get_json"                                                     => array('\Concrete\Controller\Backend\File::getJSON'),
         "/ccm/system/file/rescan"                                                       => array('\Concrete\Controller\Backend\File::rescan'),
+        "/ccm/system/file/rescan_multiple"                                              => array('\Concrete\Controller\Backend\File::rescanMultiple'),
         "/ccm/system/file/star"                                                         => array('\Concrete\Controller\Backend\File::star'),
         "/ccm/system/file/upload"                                                       => array('\Concrete\Controller\Backend\File::upload'),
 
@@ -391,7 +403,7 @@ return array(
          * RSS Feeds
          */
         "/rss/{identifier}"                                                             => array(
-            '\Concrete\Controller\Feed::get',
+            '\Concrete\Controller\Feed::output',
             'rss',
             array('identifier' => '[A-Za-z0-9_/.]+')),
 
@@ -428,7 +440,7 @@ return array(
             VIEW_CORE_THEME_TEMPLATE_BACKGROUND_IMAGE
         ),
         '/register'         => VIEW_CORE_THEME,
-        '/maintenance_mode' => VIEW_CORE_THEME,
+        '/frontend/maintenance_mode' => VIEW_CORE_THEME,
         '/upgrade'          => VIEW_CORE_THEME
     ),
 
@@ -534,6 +546,10 @@ return array(
         'picturefill'              => array(
             array('javascript', 'js/picturefill.js', array('minify' => false))
         ),
+        'responsive-slides'              => array(
+            array('javascript', 'js/responsive-slides.js', array('minify' => false)),
+            array('css', 'css/responsive-slides.css', array('minify' => false))
+        ),
         'html5-shiv'              => array(
             array('javascript-conditional', 'js/ie/html5-shiv.js',
                 array('conditional' => 'lt IE 9')
@@ -598,6 +614,9 @@ return array(
         ),
         'jquery/fileupload'        => array(
             array('javascript', 'js/jquery-fileupload.js')
+        ),
+        'jquery/textcounter'        => array(
+            array('javascript', 'js/textcounter.js')
         ),
         'swfobject'                => array(
             array('javascript', 'js/swfobject.js')
@@ -748,6 +767,12 @@ return array(
                 array('javascript', 'dropzone'),
                 array('javascript-localized', 'dropzone'),
                 array('css', 'dropzone')
+            )
+        ),
+        'responsive-slides'                  => array(
+            array(
+                array('javascript', 'responsive-slides'),
+                array('css', 'responsive-slides')
             )
         ),
         'ace'         => array(

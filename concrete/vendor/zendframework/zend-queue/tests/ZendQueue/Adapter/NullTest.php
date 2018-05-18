@@ -36,7 +36,7 @@ class NullTest extends AdapterTest
      */
     public function getAdapterName()
     {
-        return 'Null';
+        return 'NullAdapter';
     }
 
     /**

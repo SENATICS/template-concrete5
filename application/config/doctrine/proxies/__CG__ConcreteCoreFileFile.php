@@ -418,6 +418,17 @@ class File extends \Concrete\Core\File\File implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function createNewVersion($copyUnderlyingFile = false)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'createNewVersion', array($copyUnderlyingFile));
+
+        return parent::createNewVersion($copyUnderlyingFile);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getFileID()
     {
 

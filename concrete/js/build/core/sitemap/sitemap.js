@@ -14,9 +14,10 @@
 			cookieId: 'ConcreteSitemap',
 			includeSystemPages: false,
             displaySingleLevel: false,
+			minExpandLevel: false,
 			dataSource: CCM_TOOLS_PATH + '/dashboard/sitemap_data',
 			ajaxData: {},
-			selectMode: false, // 1 - single, 2 = multi - has NOTHING to do with clicks. If you enable select mode you CANNOT use a click handler.
+			selectMode: false, // 1 - single, 2 = multiple , 3 = hierarchical-multiple - has NOTHING to do with clicks. If you enable select mode you CANNOT use a click handler.
 			onClickNode: false, // This handles clicking on the title.
 			onSelectNode: false, // this handles when a radio or checkbox in the tree is checked
 			onPostInit: false
@@ -53,24 +54,31 @@
 			} else if (my.options.selectMode == 'multiple') {
 				dynatreeSelectMode = 2;
 				checkbox = true;
+			} else if (my.options.selectMode == 'hierarchical-multiple') {
+				dynatreeSelectMode = 3;
+				checkbox = true;
 			}
 
 			if (checkbox) {
 				doPersist = false;
 			}
 
-			if (my.options.displaySingleLevel) {
-				if (my.options.cParentID == 1) {
-					minExpandLevel = 2;
-				} else {
-					minExpandLevel = 3;
-				}
-				doPersist = false;
+			if (my.options.minExpandLevel !== false) {
+				minExpandLevel = my.options.minExpandLevel;
 			} else {
-				if (my.options.selectMode) {
-					minExpandLevel = 2;
+				if (my.options.displaySingleLevel) {
+					if (my.options.cParentID == 1) {
+						minExpandLevel = 2;
+					} else {
+						minExpandLevel = 3;
+					}
+					doPersist = false;
 				} else {
-					minExpandLevel = 1;
+					if (my.options.selectMode) {
+						minExpandLevel = 2;
+					} else {
+						minExpandLevel = 1;
+					}
 				}
 			}
 

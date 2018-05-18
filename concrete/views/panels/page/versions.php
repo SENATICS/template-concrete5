@@ -35,7 +35,9 @@ defined('C5_EXECUTE') or die("Access Denied.");
 					<li><% if (cvIsApproved == 1) { %><span><?php echo t('Approve')?></span><% } else { %><a href="#" data-version-menu-task="approve" data-version-id="<%-cvID%>"><?php echo t('Approve')?></a><% } %></li>
 					<li><a href="#" data-version-menu-task="duplicate" data-version-id="<%-cvID%>"><?php echo t('Duplicate')?></a></li>
 					<li class="divider"></li>
+					<% if ( ! cIsStack) { %>
 					<li><a href="#" data-version-menu-task="new-page" data-version-id="<%-cvID%>"><?php echo t('New Page')?></a></li>
+					<% } %>
 					<% if (cpCanDeletePageVersions) { %>
 						<li><% if (cvIsApproved == 1) { %><span><?php echo t('Delete')?></span><% } else { %><a href="#" data-version-menu-task="delete" data-version-id="<%-cvID%>"><?php echo t('Delete')?></a><% } %></li>
 					<% } %>

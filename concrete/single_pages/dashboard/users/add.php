@@ -68,7 +68,7 @@
 	                	<div class="form-group">
 	                    	<label class="control-label col-sm-3"><?php echo $ak->getAttributeKeyDisplayName()?></label>
 	                    	<div class="col-sm-7">
-		                        <?php $ak->render('form', $caValue, false)?>
+		                        <?php $ak->render('form', null, false)?>
 		                    </div>
 		                </div>
 		            </div>
@@ -92,7 +92,7 @@
 				<div class="col-sm-7">
 					<div class="checkbox">
 					<label>
-						<input type="checkbox" name="gID[]" value="<?php echo $g->getGroupID()?>" <?php if (is_array($_POST['gID']) && in_array($g->getGroupID(), $_POST['gID'])) { ?> checked <?php } ?>>
+						<input type="checkbox" name="gID[]" value="<?php echo $g->getGroupID()?>" <?php if (isset($_POST['gID']) && is_array($_POST['gID']) && in_array($g->getGroupID(), $_POST['gID'])) { ?> checked <?php } ?>>
 						<?php echo $g->getGroupDisplayName()?>
 					</label>
 					</div>

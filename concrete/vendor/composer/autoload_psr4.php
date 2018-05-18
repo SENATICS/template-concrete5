@@ -32,6 +32,7 @@ return array(
     'OAuth\\UserData\\' => array($vendorDir . '/oryzone/oauth-user-data/src/OAuth/UserData'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'League\\Url\\' => array($vendorDir . '/league/url/src'),
+    'HtmlObject\\' => array($vendorDir . '/anahkiasen/html-object/src'),
     'Gettext\\Languages\\' => array($vendorDir . '/gettext/languages/src'),
     'Gettext\\' => array($vendorDir . '/gettext/gettext/src'),
     'DoctrineXml\\' => array($vendorDir . '/concrete5/doctrine-xml/src'),

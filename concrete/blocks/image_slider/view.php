@@ -2,7 +2,7 @@
 $navigationTypeText = ($navigationType == 0) ? 'arrows' : 'pages';
 $c = Page::getCurrentPage();
 if ($c->isEditMode()) { ?>
-    <div class="ccm-edit-mode-disabled-item" style="width: <?php echo $width; ?>; height: <?php echo $height; ?>">
+    <div class="ccm-edit-mode-disabled-item" style="<?php echo isset($width) ? "width: $width;" : '' ?><?php echo isset($height) ? "height: $height;" : '' ?>">
         <div style="padding: 40px 0px 40px 0px"><?php echo t('Image Slider disabled in edit mode.')?></div>
     </div>
 <?php  } else { ?>
@@ -13,10 +13,15 @@ $(document).ready(function(){
             prevText: "",   // String: Text for the "previous" button
             nextText: "",
             <?php if($navigationType == 0) { ?>
-            nav:true
+            nav:true,
             <?php } else { ?>
-            pager: true
+            pager: true,
             <?php } ?>
+            <?php if ($timeout) { echo "timeout: $timeout,"; } ?>
+            <?php if ($speed) { echo "speed: $speed,"; } ?>
+            <?php if ($pause) { echo "pause: true,"; } ?>
+            <?php if ($noAnimate) { echo "auto: false,"; } ?>
+            <?php if ($maxWidth) { echo "maxWidth: $maxWidth,"; } ?>
         });
     });
 });
@@ -41,7 +46,7 @@ $(document).ready(function(){
                     if($row['title']) {
                     	$tag->alt($row['title']);
                     }else{
-                    	$tag->alt("slide"); 
+                    	$tag->alt("");
                     }
                     print $tag; ?>
                 <?php } ?>

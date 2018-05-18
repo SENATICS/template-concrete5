@@ -1,6 +1,6 @@
 <?php  
 defined('C5_EXECUTE') or die("Access Denied.");
-$al = Loader::helper('concrete/asset_library');
+$al = Core::make('helper/concrete/asset_library');
 $bf = null;
 $bfo = null;
 
@@ -54,7 +54,7 @@ if ($maxHeight == 0) {
 
 <div id="imageLinkTypePage" style="display: none;" class="form-group">
 	<?php echo $form->label('internalLinkCID', t('Choose Page:'))?>
-	<?php echo Loader::helper('form/page_selector')->selectPage('internalLinkCID', $internalLinkCID); ?>
+	<?php echo Core::make('helper/form/page_selector')->selectPage('internalLinkCID', $internalLinkCID); ?>
 </div>
 
 <div id="imageLinkTypeExternal" style="display: none;" class="form-group">

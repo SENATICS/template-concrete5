@@ -19,10 +19,11 @@ $req = $flr->getSearchRequest();
                 <option value="download"><?php echo t('Download')?></option>
                 <option data-bulk-action-type="dialog" data-bulk-action-title="<?php echo t('Edit Properties')?>" data-bulk-action-url="<?php echo URL::to('/ccm/system/dialogs/file/bulk/properties')?>" data-bulk-action-dialog-width="630" data-bulk-action-dialog-height="450"><?php echo t('Edit Properties')?></option>
                 <option data-bulk-action-type="dialog" data-bulk-action-title="<?php echo t('Sets')?>" data-bulk-action-url="<?php echo URL::to('/ccm/system/dialogs/file/bulk/sets')?>" data-bulk-action-dialog-width="500" data-bulk-action-dialog-height="400"><?php echo t('Sets')?></option>
-                <option data-bulk-action-type="ajax" data-bulk-action-url="<?php echo URL::to('/ccm/system/file/rescan')?>"><?php echo t('Rescan')?></option>
+                <option data-bulk-action-type="progressive" data-bulk-action-url="<?php echo URL::to('/ccm/system/file/rescan_multiple')?>" data-bulk-action-title="<?php echo t('Rescan')?>"><?php echo t('Rescan')?></option>
                 <?php /*
                 <option data-bulk-action-type="dialog" data-bulk-action-title="<?=t('Duplicate')?>" data-bulk-action-url="<?=REL_DIR_FILES_TOOLS_REQUIRED?>/files/duplicate" data-bulk-action-dialog-width="500" data-bulk-action-dialog-height="400"><?=t('Copy')?></option>
  */ ?>
+                <option data-bulk-action-type="dialog" data-bulk-action-title="<?php echo t('Storage Location')?>" data-bulk-action-url="<?php echo URL::to('/ccm/system/dialogs/file/bulk/storage')?>" data-bulk-action-dialog-width="500" data-bulk-action-dialog-height="400"><?php echo t('Storage Location')?></option>
                 <option data-bulk-action-type="dialog" data-bulk-action-title="<?php echo t('Delete')?>" data-bulk-action-url="<?php echo URL::to('/ccm/system/dialogs/file/bulk/delete')?>" data-bulk-action-dialog-width="500" data-bulk-action-dialog-height="400"><?php echo t('Delete')?></option>
             </select>
         </div>
@@ -38,8 +39,14 @@ $req = $flr->getSearchRequest();
             <li><a href="#" data-search-toggle="customize" data-search-column-customize-url="<?php echo URL::to('/ccm/system/dialogs/file/search/customize')?>"><?php echo t('Customize Results')?></a>
             <?php
             $fp = FilePermissions::getGlobal();
-            if ($fp->canAddFile()) { ?>
-                <li class="ccm-file-manager-show-dialog ccm-file-manager-upload"><a href="javascript:void"><?php echo t('Upload Files')?><input type="file" name="files[]" multiple="multiple" /></a></li>
+            if ($fp->canAddFile()) {
+            $imageresize = Config::get('concrete.file_manager.restrict_uploaded_image_sizes');
+            if ($imageresize) {
+                $datastring = ' data-image-max-width="'. (int)Config::get('concrete.file_manager.restrict_max_width') . '" ';
+                $datastring .=' data-image-max-height="'. (int) Config::get('concrete.file_manager.restrict_max_height'). '" ';
+                $datastring .= ' data-image-quality="'. (int)Config::get('concrete.file_manager.restrict_resize_quality'). '" ';
+            }  ?>
+                <li class="ccm-file-manager-show-dialog ccm-file-manager-upload" <?php echo $datastring?>><a href="javascript:void"><?php echo t('Upload Files')?><input type="file" name="files[]" multiple="multiple" /></a></li>
                 <li class="ccm-file-manager-show-dialog">        <a href="<?php echo REL_DIR_FILES_TOOLS_REQUIRED?>/files/import"
                                class="dialog-launch"
                                dialog-width="500"
@@ -79,7 +86,7 @@ $req = $flr->getSearchRequest();
         <div class="form-group form-group-full">
             <label class="control-label"><?php echo t('Per Page')?></label>
             <div class="ccm-search-field-content ccm-search-field-content-select2">
-                <?php echo $form->select('numResults', array(10 => t('10'), 20 => t('20'), 50 => t('50'), 100 => t('100'), 250 => t('250'), 500 => t('500'), 1000 => t('1000'))); ?>
+                <?php echo $form->select('numResults', array(10 => t('10'), 20 => t('20'), 50 => t('50'), 100 => t('100'), 250 => t('250'), 500 => t('500'), 1000 => t('1000')), Config::get('concrete.file_manager.results')); ?>
             </div>
         </div>
         <button type="submit" class="btn btn-primary pull-right"><?php echo t('Search')?></button>

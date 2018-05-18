@@ -32,7 +32,6 @@ return array(
     'Illuminate\\Filesystem' => array($vendorDir . '/illuminate/filesystem'),
     'Illuminate\\Container' => array($vendorDir . '/illuminate/container'),
     'Illuminate\\Config' => array($vendorDir . '/illuminate/config'),
-    'HtmlObject' => array($vendorDir . '/anahkiasen/html-object/src'),
     'Hautelook' => array($vendorDir . '/hautelook/phpass/src'),
     'Egulias\\' => array($vendorDir . '/egulias/email-validator/src'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),

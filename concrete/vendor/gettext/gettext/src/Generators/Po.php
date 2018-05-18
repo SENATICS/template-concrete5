@@ -1,4 +1,5 @@
 <?php
+
 namespace Gettext\Generators;
 
 use Gettext\Translations;
@@ -6,7 +7,7 @@ use Gettext\Translations;
 class Po extends Generator implements GeneratorInterface
 {
     /**
-     * {@parentDoc}
+     * {@parentDoc}.
      */
     public static function toString(Translations $translations)
     {
@@ -46,11 +47,10 @@ class Po extends Generator implements GeneratorInterface
             }
 
             if ($translation->hasContext()) {
-                $lines[] = 'msgctxt '.self::quote($translation->getContext());
+                $lines[] = 'msgctxt '.self::convertString($translation->getContext());
             }
 
             self::addLines($lines, 'msgid', $translation->getOriginal());
-
             if ($translation->hasPlural()) {
                 self::addLines($lines, 'msgid_plural', $translation->getPlural());
                 self::addLines($lines, 'msgstr[0]', $translation->getTranslation());
@@ -69,19 +69,7 @@ class Po extends Generator implements GeneratorInterface
     }
 
     /**
-     * Escapes and adds double quotes to a string
-     *
-     * @param string $string
-     *
-     * @return string
-     */
-    private static function quote($string)
-    {
-        return '"'.str_replace(array('\\', "\r", "\n", "\t", '"'), array('\\\\', '', '\n', '\t', '\\"'), $string).'"';
-    }
-
-    /**
-     * Escapes and adds double quotes to a string
+     * Escapes and adds double quotes to a string.
      *
      * @param string $string
      *
@@ -94,9 +82,9 @@ class Po extends Generator implements GeneratorInterface
 
         foreach ($lines as $k => $line) {
             if ($k === $last) {
-                $lines[$k] = self::quote($line);
+                $lines[$k] = self::convertString($line);
             } else {
-                $lines[$k] = self::quote($line."\n");
+                $lines[$k] = self::convertString($line."\n");
             }
         }
 
@@ -104,7 +92,7 @@ class Po extends Generator implements GeneratorInterface
     }
 
     /**
-     * Add one or more lines depending whether the string is multiline or not
+     * Add one or more lines depending whether the string is multiline or not.
      *
      * @param array  &$lines
      * @param string $name
@@ -123,5 +111,26 @@ class Po extends Generator implements GeneratorInterface
                 $lines[] = $line;
             }
         }
+    }
+
+    /**
+     * Convert a string to its PO representation.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public static function convertString($value)
+    {
+        return '"'.strtr(
+            $value,
+            array(
+                "\x00" => '',
+                '\\' => '\\\\',
+                "\t" => '\t',
+                "\n" => '\n',
+                '"' => '\\"',
+            )
+        ).'"';
     }
 }

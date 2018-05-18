@@ -7,7 +7,7 @@
         	<div class="form-group">
         		<?php echo $form->label('tracking_code', t('Tracking Codes'))?>
         		<div class="input">
-        			<?php echo $form->textarea('tracking_code', $tracking_code, array('class' => 'xxlarge', 'rows' => 4, 'cols' => 50))?>
+        			<?php echo $form->textarea('tracking_code', $tracking_code, array('class' => 'xxlarge', 'rows' => 12, 'cols' => 50))?>
         			<span class="help-block"><?php echo t('Any HTML you paste here will be inserted at either the bottom or top of every page in your website automatically.')?></span>
         		</div>
         	</div>

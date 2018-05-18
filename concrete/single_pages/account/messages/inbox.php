@@ -19,8 +19,15 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
 			), false)?>
 
     		<div id="ccm-private-message-detail">
-				<a href="<?php echo $view->url('/members/profile', 'view', $msg->getMessageRelevantUserID())?>"><?php echo $av->outputUserAvatar($msg->getMessageRelevantUserObject())?></a>
-				<a href="<?php echo $view->url('/members/profile', 'view', $msg->getMessageRelevantUserID())?>"><?php echo $msg->getMessageRelevantUserName()?></a>
+			<?php
+			$profileURL = $msg->getMessageRelevantUserObject()->getUserPublicProfileURL();
+			if ($profileURL) { ?>
+				<a href=""><?php echo $msg->getMessageRelevantUserObject()->getUserAvatar()->output()?></a>
+				<a href="<?php echo $profileURL?>"><?php echo $msg->getMessageRelevantUserName()?></a>
+			<?php } else { ?>
+				<?php echo $msg->getMessageRelevantUserObject()->getUserAvatar()->output()?>
+				<?php echo $msg->getMessageRelevantUserName()?>
+			<?php } ?>
 
 				<div id="ccm-private-message-actions">
 
@@ -91,12 +98,23 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
 
     		<?php
     			if (is_array($messages)) {
-					foreach($messages as $msg) { ?>
-
+					foreach($messages as $msg) {
+						$profileURL = $msg->getMessageRelevantUserObject()->getUserPublicProfileURL();
+						?>
 					<tr>
 						<td class="ccm-profile-message-from">
-						<a href="<?php echo $view->url('/members/profile', 'view', $msg->getMessageRelevantUserID())?>"><?php echo $av->outputUserAvatar($msg->getMessageRelevantUserObject())?></a>
-						<a href="<?php echo $view->url('/members/profile', 'view', $msg->getMessageRelevantUserID())?>"><?php echo $msg->getMessageRelevantUserName()?></a>
+
+							<?php if ($profileURL) { ?>
+
+								<a href="<?php echo $profileURL?>"><?php echo $msg->getMessageRelevantUserObject()->getUserAvatar()->output()?></a>
+								<a href="<?php echo $profileURL?>"><?php echo $msg->getMessageRelevantUserName()?></a>
+
+							<?php } else { ?>
+
+								<div><?php echo $msg->getMessageRelevantUserObject()->getUserAvatar()->output()?></div>
+								<div><?php echo $msg->getMessageRelevantUserName()?></div>
+
+							<?php } ?>
 						</td>
 						<td class="ccm-profile-messages-item-name"><a href="<?php echo $view->url('/account/messages/inbox', 'view_message', $mailbox, $msg->getMessageID())?>"><?php echo $msg->getFormattedMessageSubject()?></a></td>
 						<td style="white-space: nowrap"><?php echo $dh->formatDateTime($msg->getMessageDateAdded(), true)?></td>
@@ -126,11 +144,15 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
 
     		<?php
     			break;
-    		case 'send_complete': ?>
+    		case 'send_complete':
+				$profileURL = $recipient->getUserPublicProfileURL();
+				?>
 
     		<div class="alert alert-success"><?php echo t('Message Sent.')?></div>
-    		<a href="<?php echo $view->url('/members/profile', 'view', $recipient->getUserID())?>" class="btn btn-default"><?php echo t('Back to Profile')?></a>
 
+				<?php if ($profileURL) { ?>
+		    		<a href="<?php echo $profileURL?>" class="btn btn-default"><?php echo t('Back to Profile')?></a>
+				<?php } ?>
     		<?php
     			break;
 			case 'over_limit': ?>

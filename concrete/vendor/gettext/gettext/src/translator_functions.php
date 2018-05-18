@@ -1,8 +1,9 @@
 <?php
-use Gettext\Translator;
+
+use Gettext\BaseTranslator;
 
 /**
- * Returns the translation of a string
+ * Returns the translation of a string.
  *
  * @param string $original
  *
@@ -10,7 +11,7 @@ use Gettext\Translator;
  */
 function __($original)
 {
-    $text = Translator::$current->gettext($original);
+    $text = BaseTranslator::$current->gettext($original);
 
     if (func_num_args() === 1) {
         return $text;
@@ -22,7 +23,7 @@ function __($original)
 }
 
 /**
- * Returns the singular/plural translation of a string
+ * Returns the singular/plural translation of a string.
  *
  * @param string $original
  * @param string $plural
@@ -32,7 +33,7 @@ function __($original)
  */
 function n__($original, $plural, $value)
 {
-    $text = Translator::$current->ngettext($original, $plural, $value);
+    $text = BaseTranslator::$current->ngettext($original, $plural, $value);
 
     if (func_num_args() === 3) {
         return $text;
@@ -44,7 +45,7 @@ function n__($original, $plural, $value)
 }
 
 /**
- * Returns the translation of a string in a specific context
+ * Returns the translation of a string in a specific context.
  *
  * @param string $context
  * @param string $original
@@ -53,7 +54,7 @@ function n__($original, $plural, $value)
  */
 function p__($context, $original)
 {
-    $text = Translator::$current->pgettext($context, $original);
+    $text = BaseTranslator::$current->pgettext($context, $original);
 
     if (func_num_args() === 2) {
         return $text;
@@ -65,7 +66,7 @@ function p__($context, $original)
 }
 
 /**
- * Returns the translation of a string in a specific domain
+ * Returns the translation of a string in a specific domain.
  *
  * @param string $domain
  * @param string $original
@@ -74,7 +75,7 @@ function p__($context, $original)
  */
 function d__($domain, $original)
 {
-    $text = Translator::dgettext($domain, $original);
+    $text = BaseTranslator::$current->dgettext($domain, $original);
 
     if (func_num_args() === 2) {
         return $text;
@@ -86,7 +87,7 @@ function d__($domain, $original)
 }
 
 /**
- * Returns the translation of a string in a specific domain and context
+ * Returns the translation of a string in a specific domain and context.
  *
  * @param string $domain
  * @param string $context
@@ -96,7 +97,7 @@ function d__($domain, $original)
  */
 function dp__($domain, $context, $original)
 {
-    $text = Translator::dpgettext($domain, $context, $original);
+    $text = BaseTranslator::$current->dpgettext($domain, $context, $original);
 
     if (func_num_args() === 3) {
         return $text;
@@ -108,7 +109,7 @@ function dp__($domain, $context, $original)
 }
 
 /**
- * Returns the singular/plural translation of a string in a specific domain and context
+ * Returns the singular/plural translation of a string in a specific domain and context.
  *
  * @param string $domain
  * @param string $context
@@ -120,7 +121,7 @@ function dp__($domain, $context, $original)
  */
 function dnp__($domain, $context, $original, $plural, $value)
 {
-    $text = Translator::dnpgettext($domain, $context, $original, $plural, $value);
+    $text = BaseTranslator::$current->dnpgettext($domain, $context, $original, $plural, $value);
 
     if (func_num_args() === 5) {
         return $text;
@@ -132,7 +133,7 @@ function dnp__($domain, $context, $original, $plural, $value)
 }
 
 /**
- * Prints function result
+ * Prints function result.
  *
  * @see __
  */
@@ -142,7 +143,7 @@ function __e()
 }
 
 /**
- * Prints function result
+ * Prints function result.
  *
  * @see n__
  */
@@ -152,7 +153,7 @@ function n__e()
 }
 
 /**
- * Prints function result
+ * Prints function result.
  *
  * @see p__
  */
@@ -162,7 +163,7 @@ function p__e()
 }
 
 /**
- * Prints function result
+ * Prints function result.
  *
  * @see d__
  */
@@ -172,7 +173,7 @@ function d__e()
 }
 
 /**
- * Prints function result
+ * Prints function result.
  *
  * @see dp__
  */
@@ -182,7 +183,7 @@ function dp__e()
 }
 
 /**
- * Prints function result
+ * Prints function result.
  *
  * @see dnp__
  */

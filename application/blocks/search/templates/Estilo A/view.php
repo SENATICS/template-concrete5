@@ -23,7 +23,7 @@ if (!isset($query) || !is_string($query)) {
     <?php if (isset($buttonText) && ($buttonText !== '')) { ?> 
         <input name="submit" type="submit" value="<?php echo h($buttonText)?>" class="btn btn-default ccm-search-block-submit right" style="margin-bottom:-40px;"/>
     <?php }?>
-    <input name="query" placeholder="Buscar..." type="text" value="<?php echo htmlentities($query, ENT_COMPAT, APP_CHARSET)?>" class="validate animated bounceInRight" />
+    <input name="query" placeholder="Buscar..." type="text" value="<?php echo htmlentities($query, ENT_COMPAT, APP_CHARSET)?>" class="validate ibuscador" />
     
     <?php
     if (isset($do_search) && $do_search) {

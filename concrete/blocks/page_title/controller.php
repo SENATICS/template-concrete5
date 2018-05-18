@@ -56,7 +56,7 @@ class Controller extends BlockController
 
     public function view()
     {
-        if (!$this->formatting) {
+        if (!(isset($this->formatting) && $this->formatting)) {
             $this->set('formatting', 'h1');
         }
         $this->set('title', $this->getTitleText());
@@ -72,7 +72,9 @@ class Controller extends BlockController
     {
         if ($treeNodeID) {
             $topicObj = Topic::getByID(intval($treeNodeID));
-            $this->set('currentTopic', $topicObj);
+            if ($topicObj instanceof Topic) {
+                $this->set('currentTopic', $topicObj);
+            }
         }
         $this->view();
     }

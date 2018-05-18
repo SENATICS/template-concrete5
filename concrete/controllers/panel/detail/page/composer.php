@@ -63,7 +63,11 @@ class Composer extends BackendInterfacePageController {
 			$c = $this->page;
 			$e = $ptr->error;
 			$validator = $pagetype->getPageTypeValidatorObject();
-			$target = \Page::getByID($this->page->getPageDraftTargetParentPageID());
+			if ($this->page->isPageDraft()) {
+				$target = \Page::getByID($this->page->getPageDraftTargetParentPageID());
+			} else {
+				$target = \Page::getByID($this->page->getCollectionParentID());
+			}
 			$e->add($validator->validatePublishLocationRequest($target));
 			$e->add($validator->validatePublishDraftRequest($c));
 
@@ -118,14 +122,17 @@ class Composer extends BackendInterfacePageController {
 			$c = $c->getVersionToModify();
             $this->page = $c;
 
+			if ($c->isPageDraft()) {
 			/// set the target
-			$configuredTarget = $pagetype->getPageTypePublishTargetObject();
-			$targetPageID = $configuredTarget->getPageTypePublishTargetConfiguredTargetParentPageID();
-			if (!$targetPageID) {
-				$targetPageID = $_POST['cParentID'];
-			}
+				$configuredTarget = $pagetype->getPageTypePublishTargetObject();
+				$targetPageID = $configuredTarget->getPageTypePublishTargetConfiguredTargetParentPageID();
+				if (!$targetPageID) {
+					$targetPageID = $_POST['cParentID'];
+				}
 
-			$c->setPageDraftTargetParentPageID($targetPageID);
+
+				$c->setPageDraftTargetParentPageID($targetPageID);
+			}
 			$outputControls = $pagetype->savePageTypeComposerForm($c);
 		}
         $ptr->setError($e);

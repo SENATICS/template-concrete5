@@ -19,6 +19,9 @@ $json = Loader::helper('json');
 if ($editmode) {
     $pageTitle = t('Edit %s Authentication Type', $at->getAuthenticationTypeName());
     ?><form class="form-stacked" method="post" action="<?php echo $view->action('save', $at->getAuthenticationTypeID())?>"><?php
+
+    $token = \Core::make('token');
+    $token->output("auth_type_save.{$at->getAuthenticationTypeID()}");
 }
 if (!$editmode) {
     ?>
@@ -91,12 +94,16 @@ if (!$editmode) {
 }
 
 if ($editmode) {
+
+    $url = $view->action($at->isEnabled() ? 'disable' : 'enable', $at->getAuthenticationTypeID());
+    $url = Concrete\Core\Url\Url::createFromUrl($url);
+    $url = $url->setQuery(array('ccm_token' => $token->generate("auth_type_toggle.{$at->getAuthenticationTypeID()}")));
     ?>
     <div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
             <a href="<?php echo $view->action('')?>" class="btn btn-default pull-left"><?php echo t('Cancel')?></a>
             <span class="pull-right">
-                <a href="<?php echo $view->action($at->isEnabled() ? 'disable' : 'enable', $at->getAuthenticationTypeID())?>" class="btn btn-<?php echo $at->isEnabled() ? 'danger' : 'success'?>">
+                <a href="<?php echo $url ?>" class="btn btn-<?php echo $at->isEnabled() ? 'danger' : 'success'?>">
                     <?php echo $at->isEnabled() ? t('Disable') : t('Enable')?>
                 </a>
                 <button class='btn btn-primary'><?php echo t('Save')?></button>

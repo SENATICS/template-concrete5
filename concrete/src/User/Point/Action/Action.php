@@ -119,7 +119,7 @@ class Action
         $upa->upaHasCustomClass = 0;
         $upa->upaIsActive = $upaIsActive;
         if (!$upaIsActive) {
-            $up->upaIsActive = 0;
+            $upa->upaIsActive = 0;
         }
 
         if (is_object($group)) {
@@ -258,7 +258,7 @@ class Action
 
         $g = $this->getUserPointActionBadgeGroupObject();
         if ($g instanceof Group) {
-            if ($user instanceof UserInfo) {
+            if ($user instanceof \Concrete\Core\User\UserInfo) {
                 $user = User::getByUserID($user->getUserID());
             }
             $user->enterGroup($g);

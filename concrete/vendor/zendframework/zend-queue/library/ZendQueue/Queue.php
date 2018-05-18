@@ -344,9 +344,9 @@ class Queue implements Countable
         }
 
         /**
-         * @see \ZendQueue\Adapter\Null
+         * @see \ZendQueue\Adapter\NullAdapter
          */
-        $this->setAdapter(new Adapter\Null($this->getOptions()));
+        $this->setAdapter(new Adapter\NullAdapter($this->getOptions()));
 
         return $deleted;
     }

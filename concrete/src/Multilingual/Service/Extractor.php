@@ -2,12 +2,14 @@
 namespace Concrete\Core\Multilingual\Service;
 
 use Concrete\Core\Multilingual\Page\Section\Section;
+use Concrete\Core\Package\Package;
 use Gettext\Extractors\Mo as MoExtractor;
 use Gettext\Extractors\Po as PoExtractor;
 use Gettext\Translations;
 use Gettext\Generators\Po as PoGenerator;
 use Gettext\Generators\Mo as MoGenerator;
 use Concrete\Core\Package\PackageList;
+use Config;
 
 defined('C5_EXECUTE') or die("Access Denied.");
 
@@ -19,6 +21,7 @@ class Extractor
     public function extractTranslatableSiteStrings()
     {
         $translations = new Translations();
+        $translations->insert('SiteName', Config::get('concrete.site'));
         $phpParser = new \C5TL\Parser\Php();
         $blockTemplatesParser = new \C5TL\Parser\BlockTemplates();
         $themesPresetsParser = new \C5TL\Parser\ThemePresets();
@@ -46,6 +49,17 @@ class Extractor
                         );
                     }
                 }
+            }
+        }
+
+        if (is_dir(DIR_PACKAGES)) {
+            $packages = Package::getInstalledList();
+            foreach($packages as $package) {
+                $fullDirname = DIR_PACKAGES.'/'.$package->getPackageHandle();
+                $phpParser->parseDirectory($fullDirname,
+                    DIRNAME_PACKAGES.'/'.$dirname,
+                    $translations
+                );
             }
         }
 
@@ -127,7 +141,7 @@ class Extractor
             /* @var $package \Concrete\Core\Package\Package */
             $baseDir = $package->getPackagePath() . '/' . DIRNAME_LANGUAGES . '/' . $section->getLocale() . '/LC_MESSAGES';
             $poFile = $baseDir . '/messages.po';
-            $moFile = $baseDir . '/messages.po';
+            $moFile = $baseDir . '/messages.mo';
             $packageTranslations = null;
             if (is_file($poFile)) {
                 $packageTranslations = PoExtractor::fromFile($poFile);

@@ -144,7 +144,14 @@ class Controller extends BlockController
 	 */
     public function save($data)
     {
-        $args['cantItemsPag'] = isset($data['cantItemsPag']) ? abs(intval($data['cantItemsPag'])) : 9;
+        ?> 
+        <script type="text/javascript">
+        
+            console.log(<?php echo $data['nombre'][0] ?>);
+
+        </script>
+        <?php
+		$args['cantItemsPag'] = isset($data['cantItemsPag']) ? abs(intval($data['cantItemsPag'])) : 9;
         $db = Loader::db();
         //borramos los valores anteriores antes de volver a escribir la base de datos
         $db->execute('DELETE from btListaItemsEntries WHERE bID = ?', array($this->bID));

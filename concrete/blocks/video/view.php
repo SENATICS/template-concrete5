@@ -1,7 +1,7 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
 
-// now that we're in the specialized content file for this block type, 
+// now that we're in the specialized content file for this block type,
 // we'll include this block type's class, and pass the block to it, and get
 // the content
 
@@ -12,6 +12,8 @@ defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
 $vWidth=intval($controller->width);
 $vHeight=intval($controller->height);
+
+
 if ($c->isEditMode()) { ?>
 	<div class="ccm-edit-mode-disabled-item" style="width:<?php echo $vWidth?>px; height:<?php echo $vHeight?>px;  max-width: 100%; ">
 		<div style="padding:8px 0px; padding-top: <?php echo round($vHeight/2)-10?>px;"><?php echo t('Content disabled in edit mode.')?></div>
@@ -39,6 +41,6 @@ if ($c->isEditMode()) { ?>
 			<embed src="<?php echo $mp4URL?>" width="<?php echo $controller->width?>" height="<?php echo $controller->height?>" autoplay="true" loop="false" controller="true" pluginspage="http://www.apple.com/quicktime/"></embed>
 		</object>
         <?php } ?>
-<?php } ?>
    </video>
+<?php } ?>
 </div>

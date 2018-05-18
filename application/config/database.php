@@ -7,11 +7,9 @@ return array(
             'driver' => 'c5_pdo_mysql',
             'server' => 'localhost',
             'database' => 'NOMBRE_DB',
-            'username' => 'USUARIO_DB',
-            'password' => 'PASS_DB',
+            'username' => 'USUARIO',
+            'password' => 'CONTRASEÑA',
             'charset' => 'utf8',
-	    'driverOptions' => array(
-                   1002=>'SET NAMES utf8')
         ),
     ),
 );

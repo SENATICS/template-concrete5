@@ -18,7 +18,8 @@ class View extends AbstractView
     protected $themeObject;
     protected $themeRelativePath;
     protected $themeAbsolutePath;
-    protected $pkgHandle;
+    protected $viewPkgHandle;
+    protected $themePkgHandle;
     protected $viewRootDirectoryName = DIRNAME_VIEWS;
 
     protected function constructView($path = false)
@@ -29,7 +30,7 @@ class View extends AbstractView
 
     public function setPackageHandle($pkgHandle)
     {
-        $this->pkgHandle = $pkgHandle;
+        $this->viewPkgHandle = $pkgHandle;
     }
 
     public function getThemeDirectory()
@@ -68,10 +69,33 @@ class View extends AbstractView
 
     public function inc($file, $args = array())
     {
-        extract($args);
-        extract($this->getScopeItems());
+        $__data__ = array(
+            'scopedItems' => $this->getScopeItems(),
+        );
+        if ($args && is_array($args)) {
+            $__data__['scopedItems'] += $args;
+        }
         $env = Environment::get();
-        include $env->getPath(DIRNAME_THEMES.'/'.$this->themeHandle.'/'.$file, $this->pkgHandle);
+        $path = $env->getPath(DIRNAME_THEMES.'/'.$this->themeHandle.'/'.$file, $this->themePkgHandle);
+        if (!file_exists($path)) {
+            $path2 = $env->getPath(DIRNAME_THEMES.'/'.$this->themeHandle.'/'.$file, $this->viewPkgHandle);
+            if (file_exists($path2)) {
+                $path = $path2;
+            }
+            unset($path2);
+        }
+        $__data__['path'] = $path;
+        unset($file);
+        unset($args);
+        unset($env);
+        unset($path);
+        if (!empty($__data__['scopedItems'])) {
+            if (array_key_exists('__data__', $__data__['scopedItems'])) {
+                throw new \Exception(t(/*i18n: %1$s is a variable name, %2$s is a function name*/'Illegal variable name \'%1$s\' in %2$s args.', '__data__', __CLASS__.'::'.__METHOD__));
+            }
+            extract($__data__['scopedItems']);
+        }
+        include $__data__['path'];
     }
 
     /**
@@ -117,11 +141,11 @@ class View extends AbstractView
             if ($this->themeHandle != VIEW_CORE_THEME && $this->themeHandle != 'dashboard') {
                 if (!isset($this->themeObject)) {
                     $this->themeObject = PageTheme::getByHandle($this->themeHandle);
-                    $this->pkgHandle = $this->themeObject->getPackageHandle();
+                    $this->themePkgHandle = $this->themeObject->getPackageHandle();
                 }
             }
-            $this->themeAbsolutePath = $env->getPath(DIRNAME_THEMES.'/'.$this->themeHandle, $this->pkgHandle);
-            $this->themeRelativePath = $env->getURL(DIRNAME_THEMES.'/'.$this->themeHandle, $this->pkgHandle);
+            $this->themeAbsolutePath = $env->getPath(DIRNAME_THEMES.'/'.$this->themeHandle, $this->themePkgHandle);
+            $this->themeRelativePath = $env->getURL(DIRNAME_THEMES.'/'.$this->themeHandle, $this->themePkgHandle);
         }
     }
 
@@ -140,14 +164,14 @@ class View extends AbstractView
         $this->loadViewThemeObject();
         $env = Environment::get();
         if (!$this->innerContentFile) { // will already be set in a legacy tools file
-            $this->setInnerContentFile($env->getPath($this->viewRootDirectoryName.'/'.trim($this->viewPath, '/').'.php', $this->pkgHandle));
+            $this->setInnerContentFile($env->getPath($this->viewRootDirectoryName.'/'.trim($this->viewPath, '/').'.php', $this->viewPkgHandle));
         }
         if ($this->themeHandle) {
             $templateFile = FILENAME_THEMES_VIEW;
             if (is_object($this->controller)) {
                 $templateFile = $this->controller->getThemeViewTemplate();
             }
-            $this->setViewTemplate($env->getPath(DIRNAME_THEMES.'/'.$this->themeHandle.'/'.$templateFile, $this->pkgHandle));
+            $this->setViewTemplate($env->getPath(DIRNAME_THEMES.'/'.$this->themeHandle.'/'.$templateFile, $this->themePkgHandle));
         }
     }
 

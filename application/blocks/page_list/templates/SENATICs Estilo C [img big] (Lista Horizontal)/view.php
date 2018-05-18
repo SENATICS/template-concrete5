@@ -45,7 +45,7 @@
         float:none !important;
     }
     .contenido_detalle{
-        padding:20px !important;
+        padding:10px !important;
         margin-top:0px;
     }
     .fecha_publicacion{
@@ -189,8 +189,11 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                 </div>
             <?php endif; ?>
                 <div class="oculto"></div>
+                <div style="clear:both"></div>
             </div>
+            <div style="clear:both"></div>
         </div>
+        <div style="clear:both"></div>
 
 	<?php endforeach; ?>
 

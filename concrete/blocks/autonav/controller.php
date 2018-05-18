@@ -32,6 +32,7 @@ class Controller extends BlockController
     public $haveRetrievedSelfPlus1 = false;
     public $displaySystemPages = false;
     public $displayUnapproved = false;
+    public $ignoreExcludeNav = false;
     protected $btTable = 'btNavigation';
     protected $btInterfaceWidth = "800";
     protected $btInterfaceHeight = "350";
@@ -106,6 +107,7 @@ class Controller extends BlockController
         $args['displayPagesCID'] = isset($args['displayPagesCID']) && $args['displayPagesCID'] ? $args['displayPagesCID'] : 0;
         $args['displaySubPageLevelsNum'] = isset($args['displaySubPageLevelsNum']) && $args['displaySubPageLevelsNum'] > 0 ? $args['displaySubPageLevelsNum'] : 0;
         $args['displayUnavailablePages'] = isset($args['displayUnavailablePages']) && $args['displayUnavailablePages'] ? 1 : 0;
+        $args['displaySystemPages'] = isset($args['displaySystemPages']) && $args['displaySystemPages'] ? 1 : 0;
         parent::save($args);
     }
 
@@ -176,6 +178,8 @@ class Controller extends BlockController
             }
         }
 
+        $this->ignoreExcludeNav = $ignore_exclude_nav;
+
         //Retrieve the raw "pre-processed" list of all nav items (before any custom attributes are considered)
         $allNavItems = $this->generateNav();
 
@@ -201,7 +205,7 @@ class Controller extends BlockController
                 }
             }
 
-            if (!$exclude_page || $ignore_exclude_nav) {
+            if (!$exclude_page || $this->ignoreExcludeNav) {
                 $includedNavItems[] = $ni;
             }
         }
@@ -511,6 +515,15 @@ class Controller extends BlockController
 
     public function getNavigationArray($cParentID, $orderBy, $currentLevel)
     {
+        // Check if the parent page is excluded or if it has been set to exclude child pages
+        foreach ($this->navArray as $ni) {
+            if ($ni->getCollectionID() == $cParentID && $this->ignoreExcludeNav === false) {
+                if ($ni->getCollectionObject()->getAttribute('exclude_nav') == 1 || $ni->getCollectionObject()->getAttribute('exclude_subpages_from_nav') == 1) {
+                    return;
+                }
+            }
+        }
+        
         // increment all items in the nav array with a greater $currentLevel
 
         foreach ($this->navArray as $ni) {

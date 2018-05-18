@@ -85,8 +85,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
      */
     public static function getByID($fID)
     {
-        $db = Database::get();
-        $em = $db->getEntityManager();
+        $em = \ORM::entityManager('core');
         return $em->find('\Concrete\Core\File\File', $fID);
     }
 
@@ -190,7 +189,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
 
     protected function save()
     {
-        $em = Database::get()->getEntityManager();
+        $em = \ORM::entityManager('core');
         $em->persist($this);
         $em->flush();
     }
@@ -290,7 +289,10 @@ class File implements \Concrete\Core\Permission\ObjectInterface
         $fsIDs = $db->Execute("select fsID from FileSetFiles where fID = ?", array($this->getFileID()));
         $filesets = array();
         while ($row = $fsIDs->FetchRow()) {
-            $filesets[] = FileSet::getByID($row['fsID']);
+            $fs = FileSet::getByID($row['fsID']);
+            if (is_object($fs)) {
+                $filesets[] = $fs;
+            }
         }
         return $filesets;
     }
@@ -322,7 +324,6 @@ class File implements \Concrete\Core\Permission\ObjectInterface
         $createNew = false;
 
         $fv = $this->getRecentVersion();
-        $fav = $this->getApprovedVersion();
 
         // first test. Does the user ID of the most recent version match ours? If not, then we create new
         if ($u->getUserID() != $fv->getAuthorUserID()) {
@@ -340,16 +341,27 @@ class File implements \Concrete\Core\Permission\ObjectInterface
         }
 
         if ($createNew) {
-            $fv2 = $fv->duplicate();
-
-            // Are the recent and active versions the same? If so, we approve this new version we just made
-            if ($fv->getFileVersionID() == $fav->getFileVersionID()) {
-                $fv2->approve();
-            }
-            return $fv2;
+            return $this->createNewVersion();
         } else {
             return $fv;
         }
+    }
+
+    public function createNewVersion($copyUnderlyingFile = false)
+    {
+        $fv = $this->getRecentVersion();
+        $fav = $this->getApprovedVersion();
+        $fv2 = $fv->duplicate();
+
+        if ($fv->getFileVersionID() == $fav->getFileVersionID()) {
+            $fv2->approve();
+        }
+
+        if ($copyUnderlyingFile) {
+            $fv2->duplicateUnderlyingFile();
+        }
+
+        return $fv2;
     }
 
     public function getFileID()
@@ -361,7 +373,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
     {
 
         $db = Loader::db();
-        $em = $db->getEntityManager();
+        $em = \ORM::entityManager('core');
 
         $versions = $this->versions;
 
@@ -377,20 +389,11 @@ class File implements \Concrete\Core\Permission\ObjectInterface
         // clear out the versions
         $nf->versions = new ArrayCollection();
 
-        $fi = Core::make('helper/file');
-        $cf = Core::make('helper/concrete/file');
-        $importer = new Importer();
-        $filesystem = $this->getFileStorageLocationObject()->getFileSystemObject();
         foreach($versions as $version) {
             if ($version->isApproved()) {
                 $cloneVersion = clone $version;
                 $cloneVersion->setFile($nf);
-                $prefix = $importer->generatePrefix();
-                $filesystem->write($cf->prefix($prefix, $version->getFilename()), $version->getFileResource()->read(), array(
-                    'visibility' => AdapterInterface::VISIBILITY_PUBLIC,
-                    'mimetype' => Core::make('helper/mime')->mimeFromExtension($fi->getExtension($version->getFilename()))
-                ));
-                $cloneVersion->updateFile($version->getFilename(), $prefix);
+                $cloneVersion->duplicateUnderlyingFile();
                 $nf->versions->add($cloneVersion);
             }
         }
@@ -456,7 +459,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
         $f->uID = $uID;
         $f->storageLocation = $fsl;
         $f->fDateAdded = new Carbon($date);
-        $em = $db->getEntityManager();
+        $em = \ORM::entityManager('core');
         $em->persist($f);
         $em->flush();
 
@@ -492,8 +495,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
             return $item->get();
         }
 
-        $db = Loader::db();
-        $em = $db->getEntityManager();
+        $em = \ORM::entityManager('core');
         $r = $em->getRepository('\Concrete\Core\File\Version');
         $fv = $r->findOneBy(array('file' => $this, 'fvIsApproved' => true));
 
@@ -538,7 +540,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
         $db->Execute("delete from FilePermissionAssignments where fID = ?", array($this->fID));
 
         // now from the DB
-        $em = $db->getEntityManager();
+        $em = \ORM::entityManager('core');
         $em->remove($this);
         $em->flush();
     }
@@ -549,8 +551,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
      */
     public function getRecentVersion()
     {
-        $db = Loader::db();
-        $em = $db->getEntityManager();
+        $em = \ORM::entityManager('core');
         $r = $em->getRepository('\Concrete\Core\File\Version');
         return $r->findOneBy(
             array('file' => $this),
@@ -570,8 +571,7 @@ class File implements \Concrete\Core\Permission\ObjectInterface
             return $this->getApprovedVersion();
         }
 
-        $db = Loader::db();
-        $em = $db->getEntityManager();
+        $em = \ORM::entityManager('core');
         $r = $em->getRepository('\Concrete\Core\File\Version');
         return $r->findOneBy(array('file' => $this, 'fvID' => $fvID));
     }
@@ -626,11 +626,14 @@ class File implements \Concrete\Core\Permission\ObjectInterface
         $fve = new \Concrete\Core\File\Event\FileAccess($fv);
         Events::dispatch('on_file_download', $fve);
 
-        $db = Loader::db();
-        $db->Execute(
-            'insert into DownloadStatistics (fID, fvID, uID, rcID) values (?, ?, ?, ?)',
-            array($this->fID, intval($fvID), $uID, $rcID)
-        );
+        $config = Core::make('config');
+        if ($config->get('concrete.statistics.track_downloads')) {
+            $db = Loader::db();
+            $db->Execute(
+                'insert into DownloadStatistics (fID, fvID, uID, rcID) values (?, ?, ?, ?)',
+                array($this->fID, intval($fvID), $uID, $rcID)
+            );
+        }
     }
 
     /**

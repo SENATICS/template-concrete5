@@ -5,7 +5,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
 <div id="ccm-profile-header">
 
 <div id="ccm-profile-avatar">
-<?php print Loader::helper('concrete/avatar')->outputUserAvatar($profile); ?>
+<?php print $profile->getUserAvatar()->output(); ?>
 </div>
 
 <h1><?php echo $profile->getUserName()?></h1>
@@ -73,7 +73,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
 
 			  <li class="span2">
 
-			    <div class="thumbnail launch-tooltip ccm-profile-badge-image" title="<?php echo $ub->getGroupBadgeDescription()?>">
+			    <div class="thumbnail launch-tooltip ccm-profile-badge-image" title="<?php echo h($ub->getGroupBadgeDescription())?>">
 			      <div><img src="<?php echo $uf->getRelativePath()?>" /></div>
 			      <div><?php echo t("Awarded %s", $dh->formatDate($ub->getGroupDateTimeEntered($profile)))?></div>
 			    </div>
