@@ -666,7 +666,18 @@ INSERT INTO `Areas` (`arID`, `cID`, `arHandle`, `arOverrideCollectionPermissions
 (511,	212,	'Contenido',	0,	0,	0,	0),
 (512,	212,	'Footer Contact',	0,	0,	1,	0),
 (513,	212,	'Footer Navigation',	0,	0,	1,	0),
-(514,	212,	'Footer Legal',	0,	0,	1,	0);
+(514,	212,	'Footer Legal',	0,	0,	1,	0),
+(515,	213,	'info_superior',	0,	0,	1,	0),
+(516,	213,	'search',	0,	0,	1,	0),
+(517,	213,	'Header Site Title',	0,	0,	1,	0),
+(518,	213,	'Espacio 2',	0,	0,	1,	0),
+(519,	213,	'Espacio 3',	0,	0,	1,	0),
+(520,	213,	'Header Navigation',	0,	0,	1,	0),
+(521,	213,	'Titulo',	0,	0,	0,	0),
+(522,	213,	'Contenido',	0,	0,	0,	0),
+(523,	213,	'Footer Contact',	0,	0,	1,	0),
+(524,	213,	'Footer Navigation',	0,	0,	1,	0),
+(525,	213,	'Footer Legal',	0,	0,	1,	0);
 
 DROP TABLE IF EXISTS `atAddress`;
 CREATE TABLE `atAddress` (
@@ -760,7 +771,8 @@ INSERT INTO `atBoolean` (`avID`, `value`) VALUES
 (229,	0),
 (244,	0),
 (279,	0),
-(282,	1);
+(282,	1),
+(285,	1);
 
 DROP TABLE IF EXISTS `atBooleanSettings`;
 CREATE TABLE `atBooleanSettings` (
@@ -1590,7 +1602,8 @@ INSERT INTO `AttributeValues` (`avID`, `akID`, `avDateAdded`, `uID`, `atID`) VAL
 (281,	19,	'2018-05-18 13:44:31',	1,	5),
 (282,	5,	'2018-05-18 13:46:30',	1,	3),
 (283,	18,	'2018-05-18 13:46:30',	1,	10),
-(284,	19,	'2018-05-18 13:46:30',	1,	5);
+(284,	19,	'2018-05-18 13:46:30',	1,	5),
+(285,	5,	'2018-05-18 15:07:47',	1,	3);
 
 DROP TABLE IF EXISTS `AuthenticationTypes`;
 CREATE TABLE `AuthenticationTypes` (
@@ -1743,7 +1756,9 @@ INSERT INTO `BlockRelations` (`brID`, `bID`, `originalBID`, `relationType`) VALU
 (34,	426,	425,	'DUPLICATE'),
 (35,	428,	427,	'DUPLICATE'),
 (36,	430,	429,	'DUPLICATE'),
-(37,	431,	262,	'DUPLICATE');
+(37,	431,	262,	'DUPLICATE'),
+(38,	433,	13,	'DUPLICATE'),
+(39,	434,	432,	'DUPLICATE');
 
 DROP TABLE IF EXISTS `Blocks`;
 CREATE TABLE `Blocks` (
@@ -1906,7 +1921,10 @@ INSERT INTO `Blocks` (`bID`, `bName`, `bDateAdded`, `bDateModified`, `bFilename`
 (428,	'',	'2018-05-18 12:01:54',	'2018-05-18 12:01:59',	NULL,	'1',	52,	1,	'TzozMjoiQ29uY3JldGVcQ29yZVxMZWdhY3lcQmxvY2tSZWNvcmQiOjY6e3M6MzoiYklEIjtzOjM6IjQyOCI7czo5OiIAKgBfdGFibGUiO3M6MTU6ImJ0RXZlbnRDYWxlbmRhciI7czoxMDoiY2FsZW5kYXJJRCI7aToxO3M6NDoibGFuZyI7czoyOiJlcyI7czo2OiJ0eXBlSUQiO2k6MDtzOjEzOiJjb250ZW50SGVpZ2h0IjtzOjA6IiI7fQ=='),
 (429,	'',	'2018-05-18 12:12:30',	'2018-05-18 12:20:39',	NULL,	'0',	46,	1,	'TzozMjoiQ29uY3JldGVcQ29yZVxMZWdhY3lcQmxvY2tSZWNvcmQiOjM6e3M6MzoiYklEIjtzOjM6IjQyOSI7czo5OiIAKgBfdGFibGUiO3M6MTI6ImJ0TGlzdGFJdGVtcyI7czoxMjoiY2FudEl0ZW1zUGFnIjtpOjk7fQ=='),
 (430,	'',	'2018-05-18 12:21:05',	'2018-05-18 12:21:06',	NULL,	'1',	46,	1,	'TzozMjoiQ29uY3JldGVcQ29yZVxMZWdhY3lcQmxvY2tSZWNvcmQiOjM6e3M6MzoiYklEIjtzOjM6IjQzMCI7czo5OiIAKgBfdGFibGUiO3M6MTI6ImJ0TGlzdGFJdGVtcyI7czoxMjoiY2FudEl0ZW1zUGFnIjtpOjY7fQ=='),
-(431,	'',	'2018-05-18 13:42:04',	'2018-05-18 13:42:34',	'',	'1',	42,	1,	'TzozMjoiQ29uY3JldGVcQ29yZVxMZWdhY3lcQmxvY2tSZWNvcmQiOjEyOntzOjM6ImJJRCI7czozOiI0MzEiO3M6OToiACoAX3RhYmxlIjtzOjEwOiJidENhcnJ1c2VsIjtzOjE0OiJuYXZpZ2F0aW9uVHlwZSI7czoxOiIxIjtzOjE0OiJzbGlkZXNUb1Njcm9sbCI7czoxOiIxIjtzOjEyOiJzbGlkZXNUb1Nob3ciO3M6MToiNCI7czo3OiJ0aW1lb3V0IjtzOjQ6IjcwMDAiO3M6NToic3BlZWQiO3M6MzoiMjAwIjtzOjk6Im5vQW5pbWF0ZSI7czoxOiIxIjtzOjg6ImluZmluaXRlIjtzOjE6IjEiO3M6MTE6Im1vZG9fY2VudGVyIjtzOjE6IjAiO3M6MTE6ImF1dG9faGVpZ2h0IjtzOjE6IjEiO3M6ODoibWF4V2lkdGgiO3M6MToiMCI7fQ==');
+(431,	'',	'2018-05-18 13:42:04',	'2018-05-18 13:42:34',	'',	'1',	42,	1,	'TzozMjoiQ29uY3JldGVcQ29yZVxMZWdhY3lcQmxvY2tSZWNvcmQiOjEyOntzOjM6ImJJRCI7czozOiI0MzEiO3M6OToiACoAX3RhYmxlIjtzOjEwOiJidENhcnJ1c2VsIjtzOjE0OiJuYXZpZ2F0aW9uVHlwZSI7czoxOiIxIjtzOjE0OiJzbGlkZXNUb1Njcm9sbCI7czoxOiIxIjtzOjEyOiJzbGlkZXNUb1Nob3ciO3M6MToiNCI7czo3OiJ0aW1lb3V0IjtzOjQ6IjcwMDAiO3M6NToic3BlZWQiO3M6MzoiMjAwIjtzOjk6Im5vQW5pbWF0ZSI7czoxOiIxIjtzOjg6ImluZmluaXRlIjtzOjE6IjEiO3M6MTE6Im1vZG9fY2VudGVyIjtzOjE6IjAiO3M6MTE6ImF1dG9faGVpZ2h0IjtzOjE6IjEiO3M6ODoibWF4V2lkdGgiO3M6MToiMCI7fQ=='),
+(432,	'',	'2018-05-18 15:08:24',	'2018-05-18 15:11:55',	'',	'0',	32,	1,	'TzozMjoiQ29uY3JldGVcQ29yZVxMZWdhY3lcQmxvY2tSZWNvcmQiOjc6e3M6MzoiYklEIjtzOjM6IjQzMiI7czo5OiIAKgBfdGFibGUiO3M6ODoiYnRTZWFyY2giO3M6NToidGl0bGUiO3M6MDoiIjtzOjEwOiJidXR0b25UZXh0IjtzOjA6IiI7czoxNDoiYmFzZVNlYXJjaFBhdGgiO3M6MDoiIjtzOjEwOiJwb3N0VG9fY0lEIjtzOjA6IiI7czoxMDoicmVzdWx0c1VSTCI7czowOiIiO30='),
+(433,	'',	'2018-05-18 15:11:25',	'2018-05-18 15:11:25',	'Estilo A',	'1',	32,	1,	'TzozMjoiQ29uY3JldGVcQ29yZVxMZWdhY3lcQmxvY2tSZWNvcmQiOjc6e3M6MzoiYklEIjtzOjM6IjQzMyI7czo5OiIAKgBfdGFibGUiO3M6ODoiYnRTZWFyY2giO3M6NToidGl0bGUiO3M6MDoiIjtzOjEwOiJidXR0b25UZXh0IjtzOjY6IkJ1c2NhciI7czoxNDoiYmFzZVNlYXJjaFBhdGgiO3M6MDoiIjtzOjEwOiJwb3N0VG9fY0lEIjtpOjIxMztzOjEwOiJyZXN1bHRzVVJMIjtzOjA6IiI7fQ=='),
+(434,	'',	'2018-05-18 15:12:20',	'2018-05-18 15:12:20',	'Estilo A',	'1',	32,	1,	'TzozMjoiQ29uY3JldGVcQ29yZVxMZWdhY3lcQmxvY2tSZWNvcmQiOjc6e3M6MzoiYklEIjtzOjM6IjQzNCI7czo5OiIAKgBfdGFibGUiO3M6ODoiYnRTZWFyY2giO3M6NToidGl0bGUiO3M6MDoiIjtzOjEwOiJidXR0b25UZXh0IjtzOjA6IiI7czoxNDoiYmFzZVNlYXJjaFBhdGgiO3M6MDoiIjtzOjEwOiJwb3N0VG9fY0lEIjtzOjA6IiI7czoxMDoicmVzdWx0c1VSTCI7czowOiIiO30=');
 
 DROP TABLE IF EXISTS `BlockTypePermissionBlockTypeAccessList`;
 CREATE TABLE `BlockTypePermissionBlockTypeAccessList` (
@@ -2902,7 +2920,10 @@ CREATE TABLE `btSearch` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `btSearch` (`bID`, `title`, `buttonText`, `baseSearchPath`, `postTo_cID`, `resultsURL`) VALUES
-(13,	'',	'Buscar',	'',	'',	'');
+(13,	'',	'Buscar',	'',	'',	''),
+(432,	'',	'',	'',	'',	''),
+(433,	'',	'Buscar',	'',	'213',	''),
+(434,	'',	'',	'',	'',	'');
 
 DROP TABLE IF EXISTS `btShareThisPage`;
 CREATE TABLE `btShareThisPage` (
@@ -3307,6 +3328,7 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1,	34,	1,	120),
 (1,	35,	1,	120),
 (1,	36,	1,	120),
+(1,	37,	1,	120),
 (1,	10,	2,	121),
 (1,	11,	2,	121),
 (1,	12,	2,	121),
@@ -3334,6 +3356,7 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1,	34,	2,	121),
 (1,	35,	2,	121),
 (1,	36,	2,	121),
+(1,	37,	2,	121),
 (1,	10,	7,	122),
 (1,	11,	7,	122),
 (1,	12,	7,	122),
@@ -3361,6 +3384,7 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1,	34,	7,	122),
 (1,	35,	7,	122),
 (1,	36,	7,	122),
+(1,	37,	7,	122),
 (1,	10,	11,	123),
 (1,	11,	11,	123),
 (1,	12,	11,	123),
@@ -3388,6 +3412,7 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1,	34,	11,	123),
 (1,	35,	11,	123),
 (1,	36,	11,	123),
+(1,	37,	11,	123),
 (159,	1,	5,	124),
 (159,	2,	5,	124),
 (159,	3,	5,	124),
@@ -3526,7 +3551,11 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (202,	3,	19,	281),
 (202,	4,	5,	282),
 (202,	4,	18,	283),
-(202,	4,	19,	284);
+(202,	4,	19,	284),
+(213,	1,	5,	285),
+(213,	2,	5,	285),
+(213,	3,	5,	285),
+(213,	4,	5,	285);
 
 DROP TABLE IF EXISTS `Collections`;
 CREATE TABLE `Collections` (
@@ -3541,7 +3570,7 @@ CREATE TABLE `Collections` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALUES
-(1,	'2018-05-16 12:09:07',	'2018-05-18 13:42:37',	'home'),
+(1,	'2018-05-16 12:09:07',	'2018-05-18 15:11:27',	'home'),
 (2,	'2018-05-16 12:09:37',	'2018-05-16 12:09:37',	'dashboard'),
 (3,	'2018-05-16 12:09:37',	'2018-05-16 12:09:38',	'sitemap'),
 (4,	'2018-05-16 12:09:38',	'2018-05-16 12:09:38',	'full'),
@@ -3692,7 +3721,7 @@ INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALU
 (149,	'2018-05-16 13:36:30',	'2018-05-18 11:49:29',	'footer-navigation'),
 (150,	'2018-05-16 13:36:30',	'2018-05-18 11:49:29',	'footer-contact'),
 (151,	'2018-05-16 13:55:32',	'2018-05-16 14:16:57',	'info-superior'),
-(152,	'2018-05-16 13:55:32',	'2018-05-16 14:06:14',	'search'),
+(152,	'2018-05-16 13:55:32',	'2018-05-18 15:11:27',	'search'),
 (153,	'2018-05-16 13:55:33',	'2018-05-16 14:16:19',	'espacio-2'),
 (154,	'2018-05-16 13:55:33',	'2018-05-16 14:04:03',	'espacio-3'),
 (155,	'2018-05-16 14:30:27',	'2018-05-16 15:47:06',	''),
@@ -3751,7 +3780,8 @@ INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALU
 (209,	'2018-05-18 11:59:56',	'2018-05-18 11:59:56',	'event'),
 (210,	'2018-05-18 11:59:57',	'2018-05-18 11:59:57',	'types'),
 (211,	'2018-05-18 11:59:57',	'2018-05-18 11:59:57',	'settings'),
-(212,	'2018-05-18 12:00:15',	'2018-05-18 12:02:02',	'');
+(212,	'2018-05-18 12:00:15',	'2018-05-18 12:02:02',	''),
+(213,	'2018-05-18 15:07:46',	'2018-05-18 15:12:23',	'');
 
 DROP TABLE IF EXISTS `CollectionSearchIndexAttributes`;
 CREATE TABLE `CollectionSearchIndexAttributes` (
@@ -3926,7 +3956,8 @@ INSERT INTO `CollectionSearchIndexAttributes` (`cID`, `ak_meta_title`, `ak_meta_
 (202,	NULL,	NULL,	NULL,	NULL,	1,	0,	NULL,	NULL,	0,	0,	0,	'||/Salud||',	17),
 (203,	NULL,	NULL,	NULL,	NULL,	0,	0,	NULL,	NULL,	0,	0,	0,	NULL,	0),
 (204,	NULL,	NULL,	NULL,	NULL,	0,	0,	NULL,	NULL,	0,	0,	0,	NULL,	0),
-(212,	NULL,	NULL,	NULL,	NULL,	0,	0,	NULL,	NULL,	0,	0,	0,	NULL,	0);
+(212,	NULL,	NULL,	NULL,	NULL,	0,	0,	NULL,	NULL,	0,	0,	0,	NULL,	0),
+(213,	NULL,	NULL,	NULL,	NULL,	1,	0,	NULL,	NULL,	0,	0,	0,	NULL,	0);
 
 DROP TABLE IF EXISTS `CollectionVersionAreaStyles`;
 CREATE TABLE `CollectionVersionAreaStyles` (
@@ -4165,6 +4196,19 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (1,	36,	416,	'Contenido A : 6',	2,	0,	0,	0,	0,	0,	0),
 (1,	36,	426,	'Slider : 11',	0,	0,	0,	0,	0,	0,	0),
 (1,	36,	431,	'Slider',	1,	1,	0,	0,	0,	0,	0),
+(1,	37,	239,	'Contenido A : 7',	0,	0,	0,	0,	0,	0,	0),
+(1,	37,	240,	'Contenido A : 6',	0,	0,	0,	0,	0,	0,	0),
+(1,	37,	248,	'Contenido A',	0,	0,	0,	0,	0,	0,	0),
+(1,	37,	249,	'Slider',	0,	0,	0,	0,	0,	0,	0),
+(1,	37,	263,	'Slider : 10',	4,	0,	0,	0,	0,	0,	0),
+(1,	37,	264,	'Slider : 10',	3,	0,	0,	0,	0,	0,	0),
+(1,	37,	265,	'Slider : 10',	2,	0,	0,	0,	0,	0,	0),
+(1,	37,	266,	'Slider : 10',	1,	0,	0,	0,	0,	0,	0),
+(1,	37,	267,	'Slider : 10',	0,	0,	0,	0,	0,	0,	0),
+(1,	37,	415,	'Contenido A : 6',	1,	0,	0,	0,	0,	0,	0),
+(1,	37,	416,	'Contenido A : 6',	2,	0,	0,	0,	0,	0,	0),
+(1,	37,	426,	'Slider : 11',	0,	0,	0,	0,	0,	0,	0),
+(1,	37,	431,	'Slider',	1,	0,	0,	0,	0,	0,	0),
 (127,	1,	1,	'Main',	0,	1,	0,	0,	0,	0,	0),
 (128,	1,	2,	'Primary',	0,	1,	0,	0,	0,	0,	0),
 (128,	1,	3,	'Primary',	1,	1,	0,	0,	0,	0,	0),
@@ -4202,6 +4246,7 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (151,	4,	17,	'Main',	0,	1,	0,	0,	0,	0,	0),
 (152,	2,	13,	'Main',	0,	1,	0,	0,	0,	0,	0),
 (152,	3,	13,	'Main',	0,	0,	0,	0,	0,	0,	0),
+(152,	4,	433,	'Main',	0,	1,	0,	0,	0,	0,	0),
 (153,	2,	11,	'Main',	0,	1,	0,	0,	0,	0,	0),
 (153,	3,	11,	'Main',	1,	0,	0,	0,	0,	0,	0),
 (153,	3,	16,	'Main',	0,	1,	0,	0,	0,	0,	0),
@@ -4610,7 +4655,18 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (212,	2,	427,	'Contenido',	0,	1,	0,	0,	0,	0,	0),
 (212,	3,	23,	'Titulo',	1,	0,	0,	0,	0,	0,	0),
 (212,	3,	32,	'Titulo',	0,	0,	0,	0,	0,	0,	0),
-(212,	3,	428,	'Contenido',	0,	1,	0,	0,	0,	0,	0);
+(212,	3,	428,	'Contenido',	0,	1,	0,	0,	0,	0,	0),
+(213,	1,	23,	'Titulo',	1,	0,	0,	0,	0,	0,	0),
+(213,	1,	32,	'Titulo',	0,	0,	0,	0,	0,	0,	0),
+(213,	2,	23,	'Titulo',	1,	0,	0,	0,	0,	0,	0),
+(213,	2,	32,	'Titulo',	0,	0,	0,	0,	0,	0,	0),
+(213,	2,	432,	'Contenido',	0,	1,	0,	0,	0,	0,	0),
+(213,	3,	23,	'Titulo',	1,	0,	0,	0,	0,	0,	0),
+(213,	3,	32,	'Titulo',	0,	0,	0,	0,	0,	0,	0),
+(213,	3,	432,	'Contenido',	0,	0,	0,	0,	0,	0,	0),
+(213,	4,	23,	'Titulo',	1,	0,	0,	0,	0,	0,	0),
+(213,	4,	32,	'Titulo',	0,	0,	0,	0,	0,	0,	0),
+(213,	4,	434,	'Contenido',	0,	1,	0,	0,	0,	0,	0);
 
 DROP TABLE IF EXISTS `CollectionVersionBlocksCacheSettings`;
 CREATE TABLE `CollectionVersionBlocksCacheSettings` (
@@ -4811,6 +4867,17 @@ INSERT INTO `CollectionVersionBlocksOutputCache` (`cID`, `cvID`, `bID`, `arHandl
 (1,	36,	416,	'Contenido A : 6',	'\r\n<style>\r\n    .enlace416 {\r\n        width:100%; \r\n        padding:5px; \r\n        box-sizing:border-box; \r\n        text-align:center; \r\n        display:inline-block; \r\n        font-size:20px; \r\n        background:; \r\n        color:#c73b3b !important;\r\n        transition:all .4s; \r\n    }\r\n    .enlace416:hover {\r\n        background:#878787; \r\n        color:#ffffff !important; \r\n        transition:all .4s; \r\n    }\r\n</style><div style=\"text-align:center\"><a href=\"http://localhost/index.php/noticias\" target=\"_self\" class=\"enlace416\" style=\"cursor:pointer !important;\"><i class=\"fa fa-plus-square-o\"></i> Ver más noticias</a></div>',	1684431758),
 (1,	36,	420,	'Footer Navigation',	'\n<div id=\"HTMLBlock420\" class=\"HTMLBlock\">\n<style>\r\n\r\n.white-enlaces{\r\n        font-size:12px !important;\r\n    }\r\n</style>\r\n<h5 class=\"white-text\">Enlaces de Interés</h5>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.presidencia.gov.py/\">Presidencia de la República del Paraguay</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sfp.gov.py/\">Secretaría de la Función Pública (SFP)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sas.gov.py/\">Secretaría de Acción Social (SAS)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.fondec.gov.py/\">Fondo Nacional de la Cultura y las Artes (FONDEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.senatur.gov.py/\">Secretaría Nacional de Turismo (SENATUR)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.ministeriodejusticia.gov.py/\">Ministerio de Justicia (MJ)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mtess.gov.py/\">Ministerio de Trabajo, Empleo y Seguridad Social (MTESS)</a></li>\r\n      \r\n  </ul>\r\n</div>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.cultura.gov.py/\">Secretaría Nacional de Cultura (SNC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sicom.gov.py/\">Secretaría de Información y Comunicación (SICOM)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.indi.gov.py/\">Instituto Paraguayo del Indigena (INDI)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mec.gov.py/cms/\">Ministerio de Educación y Cultura (MEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.hacienda.gov.py/\">Ministerio de Hacienda (MH)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.snd.gov.py/\">Secretaría Nacional de Deportes (SND)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mspbs.gov.py/\">Ministerio de Salud Pública y Bienestar Social (MSPyBS)</a></li>\r\n  </ul>\r\n</div></div>',	1684431758),
 (1,	36,	423,	'Footer Contact',	'<img src=\"/application/files/5815/2665/8550/Logo-de-la-SENATICS-en-alfacolor.png\" alt=\"\" width=\"300\" height=\"64\" class=\"ccm-image-block img-responsive bID-423\">\n',	1684431758),
+(1,	37,	10,	'Header Site Title',	'<a href=\"http://localhost/index.php\"><img src=\"/application/files/6315/2649/3706/senatics_1.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-10\"></a>\n',	1684437088),
+(1,	37,	11,	'Espacio 2',	'<img src=\"/application/files/2215/2649/3730/gobierno-nacional.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-11\">\n',	1684437088),
+(1,	37,	12,	'Espacio 3',	'<img src=\"/application/files/6315/2649/3792/marca-pais-paraguay.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-12\">\n',	1684437088),
+(1,	37,	239,	'Contenido A : 7',	'\n<div id=\"HTMLBlock239\" class=\"HTMLBlock\">\n<div id=\"fb-root\"></div>\r\n<script>(function(d, s, id) {\r\n  var js, fjs = d.getElementsByTagName(s)[0];\r\n  if (d.getElementById(id)) return;\r\n  js = d.createElement(s); js.id = id;\r\n  js.src = \"//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4\";\r\n  fjs.parentNode.insertBefore(js, fjs);\r\n}(document, \'script\', \'facebook-jssdk\'));</script>\r\n<div class=\"fb-page\" data-href=\"https://www.facebook.com/SENATICsPy\" data-small-header=\"true\" data-adapt-container-width=\"true\" data-hide-cover=\"true\" data-show-facepile=\"true\" data-show-posts=\"true\"><div class=\"fb-xfbml-parse-ignore\"><blockquote cite=\"https://www.facebook.com/SENATICsPy\"><a href=\"https://www.facebook.com/SENATICsPy\">SENATICs Paraguay</a></blockquote></div></div></div>',	1684437088),
+(1,	37,	264,	'Slider : 10',	'\r\n<style>\r\n    .enlace264 {\r\n        width:100%; \r\n        padding:8px; \r\n        box-sizing:border-box; \r\n        text-align:left; \r\n        display:inline-block; \r\n        font-size:14px; \r\n        background:#ffffff; \r\n        color:#ba3a3a !important;\r\n        transition:all .4s; \r\n    }\r\n    .enlace264:hover {\r\n        background:#f0f0f0; \r\n        color:#222222 !important; \r\n        transition:all .4s; \r\n    }\r\n</style><div style=\"text-align:center\"><a href=\"http://localhost/index.php/servicios\" target=\"_self\" class=\"enlace264\" style=\"cursor:pointer !important;\"><i class=\"fa fa-briefcase\"></i> Servicios</a></div>',	1684437088),
+(1,	37,	265,	'Slider : 10',	'\r\n<style>\r\n    .enlace265 {\r\n        width:100%; \r\n        padding:8px; \r\n        box-sizing:border-box; \r\n        text-align:left; \r\n        display:inline-block; \r\n        font-size:14px; \r\n        background:#ffffff; \r\n        color:#ba3a3a !important;\r\n        transition:all .4s; \r\n    }\r\n    .enlace265:hover {\r\n        background:#f0f0f0; \r\n        color:#222222 !important; \r\n        transition:all .4s; \r\n    }\r\n</style><div style=\"text-align:center\"><a href=\"http://localhost/index.php/compras-publicas\" target=\"_self\" class=\"enlace265\" style=\"cursor:pointer !important;\"><i class=\"fa fa-shopping-cart\"></i> Compras Públicas</a></div>',	1684437088),
+(1,	37,	266,	'Slider : 10',	'\r\n<style>\r\n    .enlace266 {\r\n        width:100%; \r\n        padding:8px; \r\n        box-sizing:border-box; \r\n        text-align:left; \r\n        display:inline-block; \r\n        font-size:14px; \r\n        background:#ffffff; \r\n        color:#ba3a3a !important;\r\n        transition:all .4s; \r\n    }\r\n    .enlace266:hover {\r\n        background:#f0f0f0; \r\n        color:#222222 !important; \r\n        transition:all .4s; \r\n    }\r\n</style><div style=\"text-align:center\"><a href=\"http://localhost/index.php/mecip\" target=\"_self\" class=\"enlace266\" style=\"cursor:pointer !important;\"><i class=\"fa fa-building\"></i> TrámitesMECIP</a></div>',	1684437088),
+(1,	37,	267,	'Slider : 10',	'\r\n<style>\r\n    .enlace267 {\r\n        width:100%; \r\n        padding:8px; \r\n        box-sizing:border-box; \r\n        text-align:left; \r\n        display:inline-block; \r\n        font-size:14px; \r\n        background:#ffffff; \r\n        color:#ba3a3a !important;\r\n        transition:all .4s; \r\n    }\r\n    .enlace267:hover {\r\n        background:#f0f0f0; \r\n        color:#222222 !important; \r\n        transition:all .4s; \r\n    }\r\n</style><div style=\"text-align:center\"><a href=\"http://localhost/index.php/tramites\" target=\"_self\" class=\"enlace267\" style=\"cursor:pointer !important;\"><i class=\"fa fa-bookmark\"></i> Trámites</a></div>',	1684437088),
+(1,	37,	416,	'Contenido A : 6',	'\r\n<style>\r\n    .enlace416 {\r\n        width:100%; \r\n        padding:5px; \r\n        box-sizing:border-box; \r\n        text-align:center; \r\n        display:inline-block; \r\n        font-size:20px; \r\n        background:; \r\n        color:#c73b3b !important;\r\n        transition:all .4s; \r\n    }\r\n    .enlace416:hover {\r\n        background:#878787; \r\n        color:#ffffff !important; \r\n        transition:all .4s; \r\n    }\r\n</style><div style=\"text-align:center\"><a href=\"http://localhost/index.php/noticias\" target=\"_self\" class=\"enlace416\" style=\"cursor:pointer !important;\"><i class=\"fa fa-plus-square-o\"></i> Ver más noticias</a></div>',	1684437088),
+(1,	37,	420,	'Footer Navigation',	'\n<div id=\"HTMLBlock420\" class=\"HTMLBlock\">\n<style>\r\n\r\n.white-enlaces{\r\n        font-size:12px !important;\r\n    }\r\n</style>\r\n<h5 class=\"white-text\">Enlaces de Interés</h5>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.presidencia.gov.py/\">Presidencia de la República del Paraguay</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sfp.gov.py/\">Secretaría de la Función Pública (SFP)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sas.gov.py/\">Secretaría de Acción Social (SAS)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.fondec.gov.py/\">Fondo Nacional de la Cultura y las Artes (FONDEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.senatur.gov.py/\">Secretaría Nacional de Turismo (SENATUR)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.ministeriodejusticia.gov.py/\">Ministerio de Justicia (MJ)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mtess.gov.py/\">Ministerio de Trabajo, Empleo y Seguridad Social (MTESS)</a></li>\r\n      \r\n  </ul>\r\n</div>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.cultura.gov.py/\">Secretaría Nacional de Cultura (SNC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sicom.gov.py/\">Secretaría de Información y Comunicación (SICOM)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.indi.gov.py/\">Instituto Paraguayo del Indigena (INDI)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mec.gov.py/cms/\">Ministerio de Educación y Cultura (MEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.hacienda.gov.py/\">Ministerio de Hacienda (MH)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.snd.gov.py/\">Secretaría Nacional de Deportes (SND)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mspbs.gov.py/\">Ministerio de Salud Pública y Bienestar Social (MSPyBS)</a></li>\r\n  </ul>\r\n</div></div>',	1684437088),
+(1,	37,	423,	'Footer Contact',	'<img src=\"/application/files/5815/2665/8550/Logo-de-la-SENATICS-en-alfacolor.png\" alt=\"\" width=\"300\" height=\"64\" class=\"ccm-image-block img-responsive bID-423\">\n',	1684437088),
 (159,	2,	10,	'Header Site Title',	'<a href=\"http://localhost/index.php\"><img src=\"/application/files/6315/2649/3706/senatics_1.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-10\"></a>\n',	1684335888),
 (159,	2,	11,	'Espacio 2',	'<img src=\"/application/files/2215/2649/3730/gobierno-nacional.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-11\">\n',	1684335888),
 (159,	2,	12,	'Espacio 3',	'<img src=\"/application/files/6315/2649/3792/marca-pais-paraguay.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-12\">\n',	1684335888),
@@ -5083,7 +5150,27 @@ INSERT INTO `CollectionVersionBlocksOutputCache` (`cID`, `cvID`, `bID`, `arHandl
 (212,	3,	11,	'Espacio 2',	'<img src=\"/application/files/2215/2649/3730/gobierno-nacional.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-11\">\n',	1684425722),
 (212,	3,	12,	'Espacio 3',	'<img src=\"/application/files/6315/2649/3792/marca-pais-paraguay.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-12\">\n',	1684425722),
 (212,	3,	420,	'Footer Navigation',	'\n<div id=\"HTMLBlock420\" class=\"HTMLBlock\">\n<style>\r\n\r\n.white-enlaces{\r\n        font-size:12px !important;\r\n    }\r\n</style>\r\n<h5 class=\"white-text\">Enlaces de Interés</h5>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.presidencia.gov.py/\">Presidencia de la República del Paraguay</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sfp.gov.py/\">Secretaría de la Función Pública (SFP)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sas.gov.py/\">Secretaría de Acción Social (SAS)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.fondec.gov.py/\">Fondo Nacional de la Cultura y las Artes (FONDEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.senatur.gov.py/\">Secretaría Nacional de Turismo (SENATUR)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.ministeriodejusticia.gov.py/\">Ministerio de Justicia (MJ)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mtess.gov.py/\">Ministerio de Trabajo, Empleo y Seguridad Social (MTESS)</a></li>\r\n      \r\n  </ul>\r\n</div>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.cultura.gov.py/\">Secretaría Nacional de Cultura (SNC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sicom.gov.py/\">Secretaría de Información y Comunicación (SICOM)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.indi.gov.py/\">Instituto Paraguayo del Indigena (INDI)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mec.gov.py/cms/\">Ministerio de Educación y Cultura (MEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.hacienda.gov.py/\">Ministerio de Hacienda (MH)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.snd.gov.py/\">Secretaría Nacional de Deportes (SND)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mspbs.gov.py/\">Ministerio de Salud Pública y Bienestar Social (MSPyBS)</a></li>\r\n  </ul>\r\n</div></div>',	1684425722),
-(212,	3,	423,	'Footer Contact',	'<img src=\"/application/files/5815/2665/8550/Logo-de-la-SENATICS-en-alfacolor.png\" alt=\"\" width=\"300\" height=\"64\" class=\"ccm-image-block img-responsive bID-423\">\n',	1684425722);
+(212,	3,	423,	'Footer Contact',	'<img src=\"/application/files/5815/2665/8550/Logo-de-la-SENATICS-en-alfacolor.png\" alt=\"\" width=\"300\" height=\"64\" class=\"ccm-image-block img-responsive bID-423\">\n',	1684425722),
+(213,	1,	10,	'Header Site Title',	'<a href=\"http://localhost/index.php\"><img src=\"/application/files/6315/2649/3706/senatics_1.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-10\"></a>\n',	1684436886),
+(213,	1,	11,	'Espacio 2',	'<img src=\"/application/files/2215/2649/3730/gobierno-nacional.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-11\">\n',	1684436886),
+(213,	1,	12,	'Espacio 3',	'<img src=\"/application/files/6315/2649/3792/marca-pais-paraguay.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-12\">\n',	1684436886),
+(213,	1,	420,	'Footer Navigation',	'\n<div id=\"HTMLBlock420\" class=\"HTMLBlock\">\n<style>\r\n\r\n.white-enlaces{\r\n        font-size:12px !important;\r\n    }\r\n</style>\r\n<h5 class=\"white-text\">Enlaces de Interés</h5>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.presidencia.gov.py/\">Presidencia de la República del Paraguay</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sfp.gov.py/\">Secretaría de la Función Pública (SFP)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sas.gov.py/\">Secretaría de Acción Social (SAS)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.fondec.gov.py/\">Fondo Nacional de la Cultura y las Artes (FONDEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.senatur.gov.py/\">Secretaría Nacional de Turismo (SENATUR)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.ministeriodejusticia.gov.py/\">Ministerio de Justicia (MJ)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mtess.gov.py/\">Ministerio de Trabajo, Empleo y Seguridad Social (MTESS)</a></li>\r\n      \r\n  </ul>\r\n</div>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.cultura.gov.py/\">Secretaría Nacional de Cultura (SNC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sicom.gov.py/\">Secretaría de Información y Comunicación (SICOM)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.indi.gov.py/\">Instituto Paraguayo del Indigena (INDI)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mec.gov.py/cms/\">Ministerio de Educación y Cultura (MEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.hacienda.gov.py/\">Ministerio de Hacienda (MH)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.snd.gov.py/\">Secretaría Nacional de Deportes (SND)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mspbs.gov.py/\">Ministerio de Salud Pública y Bienestar Social (MSPyBS)</a></li>\r\n  </ul>\r\n</div></div>',	1684436886),
+(213,	1,	423,	'Footer Contact',	'<img src=\"/application/files/5815/2665/8550/Logo-de-la-SENATICS-en-alfacolor.png\" alt=\"\" width=\"300\" height=\"64\" class=\"ccm-image-block img-responsive bID-423\">\n',	1684436886),
+(213,	2,	10,	'Header Site Title',	'<a href=\"http://localhost/index.php\"><img src=\"/application/files/6315/2649/3706/senatics_1.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-10\"></a>\n',	1684437062),
+(213,	2,	11,	'Espacio 2',	'<img src=\"/application/files/2215/2649/3730/gobierno-nacional.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-11\">\n',	1684437062),
+(213,	2,	12,	'Espacio 3',	'<img src=\"/application/files/6315/2649/3792/marca-pais-paraguay.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-12\">\n',	1684437062),
+(213,	2,	420,	'Footer Navigation',	'\n<div id=\"HTMLBlock420\" class=\"HTMLBlock\">\n<style>\r\n\r\n.white-enlaces{\r\n        font-size:12px !important;\r\n    }\r\n</style>\r\n<h5 class=\"white-text\">Enlaces de Interés</h5>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.presidencia.gov.py/\">Presidencia de la República del Paraguay</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sfp.gov.py/\">Secretaría de la Función Pública (SFP)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sas.gov.py/\">Secretaría de Acción Social (SAS)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.fondec.gov.py/\">Fondo Nacional de la Cultura y las Artes (FONDEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.senatur.gov.py/\">Secretaría Nacional de Turismo (SENATUR)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.ministeriodejusticia.gov.py/\">Ministerio de Justicia (MJ)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mtess.gov.py/\">Ministerio de Trabajo, Empleo y Seguridad Social (MTESS)</a></li>\r\n      \r\n  </ul>\r\n</div>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.cultura.gov.py/\">Secretaría Nacional de Cultura (SNC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sicom.gov.py/\">Secretaría de Información y Comunicación (SICOM)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.indi.gov.py/\">Instituto Paraguayo del Indigena (INDI)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mec.gov.py/cms/\">Ministerio de Educación y Cultura (MEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.hacienda.gov.py/\">Ministerio de Hacienda (MH)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.snd.gov.py/\">Secretaría Nacional de Deportes (SND)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mspbs.gov.py/\">Ministerio de Salud Pública y Bienestar Social (MSPyBS)</a></li>\r\n  </ul>\r\n</div></div>',	1684437062),
+(213,	2,	423,	'Footer Contact',	'<img src=\"/application/files/5815/2665/8550/Logo-de-la-SENATICS-en-alfacolor.png\" alt=\"\" width=\"300\" height=\"64\" class=\"ccm-image-block img-responsive bID-423\">\n',	1684437062),
+(213,	3,	10,	'Header Site Title',	'<a href=\"http://localhost/index.php\"><img src=\"/application/files/6315/2649/3706/senatics_1.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-10\"></a>\n',	1684437120),
+(213,	3,	11,	'Espacio 2',	'<img src=\"/application/files/2215/2649/3730/gobierno-nacional.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-11\">\n',	1684437120),
+(213,	3,	12,	'Espacio 3',	'<img src=\"/application/files/6315/2649/3792/marca-pais-paraguay.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-12\">\n',	1684437120),
+(213,	3,	420,	'Footer Navigation',	'\n<div id=\"HTMLBlock420\" class=\"HTMLBlock\">\n<style>\r\n\r\n.white-enlaces{\r\n        font-size:12px !important;\r\n    }\r\n</style>\r\n<h5 class=\"white-text\">Enlaces de Interés</h5>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.presidencia.gov.py/\">Presidencia de la República del Paraguay</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sfp.gov.py/\">Secretaría de la Función Pública (SFP)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sas.gov.py/\">Secretaría de Acción Social (SAS)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.fondec.gov.py/\">Fondo Nacional de la Cultura y las Artes (FONDEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.senatur.gov.py/\">Secretaría Nacional de Turismo (SENATUR)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.ministeriodejusticia.gov.py/\">Ministerio de Justicia (MJ)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mtess.gov.py/\">Ministerio de Trabajo, Empleo y Seguridad Social (MTESS)</a></li>\r\n      \r\n  </ul>\r\n</div>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.cultura.gov.py/\">Secretaría Nacional de Cultura (SNC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sicom.gov.py/\">Secretaría de Información y Comunicación (SICOM)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.indi.gov.py/\">Instituto Paraguayo del Indigena (INDI)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mec.gov.py/cms/\">Ministerio de Educación y Cultura (MEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.hacienda.gov.py/\">Ministerio de Hacienda (MH)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.snd.gov.py/\">Secretaría Nacional de Deportes (SND)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mspbs.gov.py/\">Ministerio de Salud Pública y Bienestar Social (MSPyBS)</a></li>\r\n  </ul>\r\n</div></div>',	1684437120),
+(213,	3,	423,	'Footer Contact',	'<img src=\"/application/files/5815/2665/8550/Logo-de-la-SENATICS-en-alfacolor.png\" alt=\"\" width=\"300\" height=\"64\" class=\"ccm-image-block img-responsive bID-423\">\n',	1684437120),
+(213,	4,	10,	'Header Site Title',	'<a href=\"http://localhost/index.php\"><img src=\"/application/files/6315/2649/3706/senatics_1.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-10\"></a>\n',	1684437144),
+(213,	4,	11,	'Espacio 2',	'<img src=\"/application/files/2215/2649/3730/gobierno-nacional.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-11\">\n',	1684437144),
+(213,	4,	12,	'Espacio 3',	'<img src=\"/application/files/6315/2649/3792/marca-pais-paraguay.png\" alt=\"\" width=\"371\" height=\"144\" class=\"ccm-image-block img-responsive bID-12\">\n',	1684437144),
+(213,	4,	420,	'Footer Navigation',	'\n<div id=\"HTMLBlock420\" class=\"HTMLBlock\">\n<style>\r\n\r\n.white-enlaces{\r\n        font-size:12px !important;\r\n    }\r\n</style>\r\n<h5 class=\"white-text\">Enlaces de Interés</h5>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.presidencia.gov.py/\">Presidencia de la República del Paraguay</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sfp.gov.py/\">Secretaría de la Función Pública (SFP)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sas.gov.py/\">Secretaría de Acción Social (SAS)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.fondec.gov.py/\">Fondo Nacional de la Cultura y las Artes (FONDEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.senatur.gov.py/\">Secretaría Nacional de Turismo (SENATUR)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.ministeriodejusticia.gov.py/\">Ministerio de Justicia (MJ)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mtess.gov.py/\">Ministerio de Trabajo, Empleo y Seguridad Social (MTESS)</a></li>\r\n      \r\n  </ul>\r\n</div>\r\n<div class=\"col l6 s12\">\r\n  <ul>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.cultura.gov.py/\">Secretaría Nacional de Cultura (SNC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.sicom.gov.py/\">Secretaría de Información y Comunicación (SICOM)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.indi.gov.py/\">Instituto Paraguayo del Indigena (INDI)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mec.gov.py/cms/\">Ministerio de Educación y Cultura (MEC)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.hacienda.gov.py/\">Ministerio de Hacienda (MH)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.snd.gov.py/\">Secretaría Nacional de Deportes (SND)</a></li>\r\n    <li><a class=\"white-text white-enlaces\" target=\"_blank\" href=\"http://www.mspbs.gov.py/\">Ministerio de Salud Pública y Bienestar Social (MSPyBS)</a></li>\r\n  </ul>\r\n</div></div>',	1684437144),
+(213,	4,	423,	'Footer Contact',	'<img src=\"/application/files/5815/2665/8550/Logo-de-la-SENATICS-en-alfacolor.png\" alt=\"\" width=\"300\" height=\"64\" class=\"ccm-image-block img-responsive bID-423\">\n',	1684437144);
 
 DROP TABLE IF EXISTS `CollectionVersionBlockStyles`;
 CREATE TABLE `CollectionVersionBlockStyles` (
@@ -5132,6 +5219,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1,	34,	263,	'Slider : 10',	9),
 (1,	35,	263,	'Slider : 10',	9),
 (1,	36,	263,	'Slider : 10',	9),
+(1,	37,	263,	'Slider : 10',	9),
 (1,	29,	266,	'Slider : 10',	14),
 (1,	30,	266,	'Slider : 10',	14),
 (1,	31,	266,	'Slider : 10',	14),
@@ -5140,6 +5228,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1,	34,	266,	'Slider : 10',	14),
 (1,	35,	266,	'Slider : 10',	14),
 (1,	36,	266,	'Slider : 10',	14),
+(1,	37,	266,	'Slider : 10',	14),
 (1,	29,	267,	'Slider : 10',	15),
 (1,	30,	267,	'Slider : 10',	15),
 (1,	31,	267,	'Slider : 10',	15),
@@ -5148,6 +5237,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1,	34,	267,	'Slider : 10',	15),
 (1,	35,	267,	'Slider : 10',	15),
 (1,	36,	267,	'Slider : 10',	15),
+(1,	37,	267,	'Slider : 10',	15),
 (1,	29,	265,	'Slider : 10',	16),
 (1,	30,	265,	'Slider : 10',	16),
 (1,	31,	265,	'Slider : 10',	16),
@@ -5156,6 +5246,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1,	34,	265,	'Slider : 10',	16),
 (1,	35,	265,	'Slider : 10',	16),
 (1,	36,	265,	'Slider : 10',	16),
+(1,	37,	265,	'Slider : 10',	16),
 (1,	29,	264,	'Slider : 10',	17),
 (1,	30,	264,	'Slider : 10',	17),
 (1,	31,	264,	'Slider : 10',	17),
@@ -5164,6 +5255,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1,	34,	264,	'Slider : 10',	17),
 (1,	35,	264,	'Slider : 10',	17),
 (1,	36,	264,	'Slider : 10',	17),
+(1,	37,	264,	'Slider : 10',	17),
 (197,	1,	157,	'Titulo : 9',	19),
 (160,	1,	157,	'Titulo : 9',	23),
 (198,	1,	157,	'Titulo : 9',	23),
@@ -5187,7 +5279,10 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (202,	2,	158,	'Titulo : 9',	26),
 (202,	3,	158,	'Titulo : 9',	26),
 (202,	4,	158,	'Titulo : 9',	26),
-(1,	36,	431,	'Slider',	28);
+(1,	36,	431,	'Slider',	28),
+(1,	37,	431,	'Slider',	28),
+(213,	3,	432,	'Contenido',	29),
+(213,	4,	434,	'Contenido',	30);
 
 DROP TABLE IF EXISTS `CollectionVersionFeatureAssignments`;
 CREATE TABLE `CollectionVersionFeatureAssignments` (
@@ -5280,7 +5375,8 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (1,	33,	'Portada',	'portada',	'',	'2018-05-16 12:09:07',	'2018-05-18 11:54:10',	'Version 33',	0,	0,	1,	1,	2,	6,	NULL),
 (1,	34,	'Portada',	'portada',	'',	'2018-05-16 12:09:07',	'2018-05-18 11:55:12',	'Version 34',	0,	0,	1,	1,	2,	6,	NULL),
 (1,	35,	'Portada',	'portada',	'',	'2018-05-16 12:09:07',	'2018-05-18 11:58:12',	'Version 35',	0,	0,	1,	1,	2,	6,	NULL),
-(1,	36,	'Portada',	'portada',	'',	'2018-05-16 12:09:07',	'2018-05-18 13:42:04',	'Version 36',	1,	0,	1,	1,	2,	6,	NULL),
+(1,	36,	'Portada',	'portada',	'',	'2018-05-16 12:09:07',	'2018-05-18 13:42:04',	'Version 36',	0,	0,	1,	1,	2,	6,	NULL),
+(1,	37,	'Portada',	'portada',	'',	'2018-05-16 12:09:07',	'2018-05-18 15:11:24',	'Version 37',	1,	0,	1,	1,	2,	6,	NULL),
 (2,	1,	'Dashboard',	'dashboard',	'',	'2018-05-16 12:09:37',	'2018-05-16 12:09:37',	'Initial Version',	1,	0,	1,	NULL,	2,	0,	NULL),
 (3,	1,	'Sitemap',	'sitemap',	'Whole world at a glance.',	'2018-05-16 12:09:37',	'2018-05-16 12:09:37',	'Initial Version',	1,	0,	1,	NULL,	2,	0,	NULL),
 (4,	1,	'Full Sitemap',	'full',	'',	'2018-05-16 12:09:38',	'2018-05-16 12:09:38',	'Initial Version',	1,	0,	1,	NULL,	2,	0,	NULL),
@@ -5454,7 +5550,8 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (151,	4,	'info_superior',	'info-superior',	NULL,	'2018-05-16 13:55:32',	'2018-05-16 14:16:53',	'Nueva Versión 4',	1,	0,	1,	1,	2,	0,	NULL),
 (152,	1,	'search',	'search',	NULL,	'2018-05-16 13:55:32',	'2018-05-16 13:55:32',	'Initial Version',	0,	0,	1,	NULL,	2,	0,	NULL),
 (152,	2,	'search',	'search',	NULL,	'2018-05-16 13:55:32',	'2018-05-16 14:03:42',	'Nueva Versión 2',	0,	0,	1,	1,	2,	0,	NULL),
-(152,	3,	'search',	'search',	NULL,	'2018-05-16 13:55:32',	'2018-05-16 14:06:10',	'Nueva Versión 3',	1,	0,	1,	1,	2,	0,	NULL),
+(152,	3,	'search',	'search',	NULL,	'2018-05-16 13:55:32',	'2018-05-16 14:06:10',	'Nueva Versión 3',	0,	0,	1,	1,	2,	0,	NULL),
+(152,	4,	'search',	'search',	NULL,	'2018-05-16 13:55:32',	'2018-05-18 15:11:24',	'Nueva Versión 4',	1,	0,	1,	1,	2,	0,	NULL),
 (153,	1,	'Espacio 2',	'espacio-2',	NULL,	'2018-05-16 13:55:33',	'2018-05-16 13:55:33',	'Initial Version',	0,	0,	1,	NULL,	2,	0,	NULL),
 (153,	2,	'Espacio 2',	'espacio-2',	NULL,	'2018-05-16 13:55:33',	'2018-05-16 14:02:13',	'Nueva Versión 2',	0,	0,	1,	1,	2,	0,	NULL),
 (153,	3,	'Espacio 2',	'espacio-2',	NULL,	'2018-05-16 13:55:33',	'2018-05-16 14:15:57',	'Nueva Versión 3',	0,	0,	1,	1,	2,	0,	NULL),
@@ -5563,7 +5660,11 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (211,	1,	'Settings',	'settings',	'',	'2018-05-18 11:59:57',	'2018-05-18 11:59:57',	'Initial Version',	1,	0,	1,	NULL,	2,	0,	NULL),
 (212,	1,	'Agenda',	'agenda',	'',	'2018-05-18 12:00:15',	'2018-05-18 12:00:15',	'Initial Version',	0,	0,	1,	1,	2,	7,	NULL),
 (212,	2,	'Agenda',	'agenda',	'',	'2018-05-18 12:00:15',	'2018-05-18 12:00:40',	'Version 2',	0,	0,	1,	1,	2,	7,	NULL),
-(212,	3,	'Agenda',	'agenda',	'',	'2018-05-18 12:00:15',	'2018-05-18 12:01:54',	'Version 3',	1,	0,	1,	1,	2,	7,	NULL);
+(212,	3,	'Agenda',	'agenda',	'',	'2018-05-18 12:00:15',	'2018-05-18 12:01:54',	'Version 3',	1,	0,	1,	1,	2,	7,	NULL),
+(213,	1,	'Buscador',	'buscador',	'',	'2018-05-18 15:07:46',	'2018-05-18 15:07:46',	'Initial Version',	0,	0,	1,	1,	2,	7,	NULL),
+(213,	2,	'Buscador',	'buscador',	'',	'2018-05-18 15:07:46',	'2018-05-18 15:08:24',	'Version 2',	0,	0,	1,	1,	2,	7,	NULL),
+(213,	3,	'Buscador',	'buscador',	'',	'2018-05-18 15:07:46',	'2018-05-18 15:11:55',	'Version 3',	0,	0,	1,	1,	2,	7,	NULL),
+(213,	4,	'Buscador',	'buscador',	'',	'2018-05-18 15:07:46',	'2018-05-18 15:12:20',	'Version 4',	1,	0,	1,	1,	2,	7,	NULL);
 
 DROP TABLE IF EXISTS `CollectionVersionThemeCustomStyles`;
 CREATE TABLE `CollectionVersionThemeCustomStyles` (
@@ -7428,7 +7529,8 @@ INSERT INTO `PagePaths` (`ppID`, `cID`, `cPath`, `ppIsCanonical`, `ppGeneratedFr
 (203,	209,	'/dashboard/event_calendar/event',	'1',	1),
 (204,	210,	'/dashboard/event_calendar/types',	'1',	1),
 (205,	211,	'/dashboard/event_calendar/settings',	'1',	1),
-(206,	212,	'/agenda',	'1',	1);
+(206,	212,	'/agenda',	'1',	1),
+(207,	213,	'/buscador',	'1',	1);
 
 DROP TABLE IF EXISTS `PagePermissionAssignments`;
 CREATE TABLE `PagePermissionAssignments` (
@@ -7591,7 +7693,7 @@ CREATE TABLE `Pages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `Pages` (`cID`, `ptID`, `cIsTemplate`, `uID`, `cIsCheckedOut`, `cCheckedOutUID`, `cCheckedOutDatetime`, `cCheckedOutDatetimeLastEdit`, `cOverrideTemplatePermissions`, `cInheritPermissionsFromCID`, `cInheritPermissionsFrom`, `cFilename`, `cPointerID`, `cPointerExternalLink`, `cPointerExternalLinkNewWindow`, `cIsActive`, `cChildren`, `cDisplayOrder`, `cParentID`, `pkgID`, `cDraftTargetParentPageID`, `cCacheFullPageContent`, `cCacheFullPageContentOverrideLifetime`, `cCacheFullPageContentLifetimeCustom`, `cIsSystemPage`) VALUES
-(1,	0,	0,	1,	0,	NULL,	NULL,	NULL,	1,	1,	'OVERRIDE',	NULL,	0,	NULL,	0,	1,	21,	0,	0,	0,	0,	-1,	'0',	0,	0),
+(1,	0,	0,	1,	0,	NULL,	NULL,	NULL,	1,	1,	'OVERRIDE',	NULL,	0,	NULL,	0,	1,	22,	0,	0,	0,	0,	-1,	'0',	0,	0),
 (2,	0,	0,	1,	0,	NULL,	NULL,	NULL,	1,	2,	'OVERRIDE',	'/dashboard/view.php',	0,	NULL,	0,	1,	15,	0,	0,	0,	0,	-1,	'0',	0,	1),
 (3,	0,	0,	1,	0,	NULL,	NULL,	NULL,	1,	2,	'PARENT',	'/dashboard/sitemap/view.php',	0,	NULL,	0,	1,	3,	0,	2,	0,	0,	-1,	'0',	0,	1),
 (4,	0,	0,	1,	0,	NULL,	NULL,	NULL,	1,	2,	'PARENT',	'/dashboard/sitemap/full.php',	0,	NULL,	0,	1,	0,	0,	3,	0,	0,	-1,	'0',	0,	1),
@@ -7801,7 +7903,8 @@ INSERT INTO `Pages` (`cID`, `ptID`, `cIsTemplate`, `uID`, `cIsCheckedOut`, `cChe
 (209,	0,	0,	1,	0,	NULL,	NULL,	NULL,	1,	2,	'PARENT',	'/dashboard/event_calendar/event.php',	0,	NULL,	0,	1,	0,	3,	205,	3,	0,	-1,	'0',	0,	1),
 (210,	0,	0,	1,	0,	NULL,	NULL,	NULL,	1,	2,	'PARENT',	'/dashboard/event_calendar/types.php',	0,	NULL,	0,	1,	0,	4,	205,	3,	0,	-1,	'0',	0,	1),
 (211,	0,	0,	1,	0,	NULL,	NULL,	NULL,	1,	2,	'PARENT',	'/dashboard/event_calendar/settings.php',	0,	NULL,	0,	1,	0,	5,	205,	3,	0,	-1,	'0',	0,	1),
-(212,	6,	0,	1,	0,	NULL,	NULL,	NULL,	1,	1,	'PARENT',	NULL,	0,	NULL,	0,	1,	0,	2,	1,	0,	1,	-1,	'0',	0,	0);
+(212,	6,	0,	1,	0,	NULL,	NULL,	NULL,	1,	1,	'PARENT',	NULL,	0,	NULL,	0,	1,	0,	2,	1,	0,	1,	-1,	'0',	0,	0),
+(213,	6,	0,	1,	0,	NULL,	NULL,	NULL,	1,	1,	'PARENT',	NULL,	0,	NULL,	0,	1,	0,	10,	1,	0,	1,	-1,	'0',	0,	0);
 
 DROP TABLE IF EXISTS `PageSearchIndex`;
 CREATE TABLE `PageSearchIndex` (
@@ -7930,9 +8033,9 @@ INSERT INTO `PageSearchIndex` (`cID`, `content`, `cName`, `cDescription`, `cPath
 (130,	'',	'Trash',	'',	'/!trash',	'2018-05-16 12:10:52',	'2018-05-16 12:10:58',	NULL,	0),
 (131,	'',	'Stacks',	'',	'/!stacks',	'2018-05-16 12:10:52',	'2018-05-16 12:10:58',	NULL,	0),
 (134,	'',	'My Account',	'',	'/account',	'2018-05-16 12:10:54',	'2018-05-16 12:10:59',	NULL,	0),
-(1,	' \r\n(function(d, s, id) {\r\n  var js, fjs = d.getElementsByTagName(s)[0];\r\n  if (d.getElementById(id)) return;\r\n  js = d.createElement(s); js.id = id;\r\n  js.src = \"//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4\";\r\n  fjs.parentNode.insertBefore(js, fjs);\r\n}(document, \'script\', \'facebook-jssdk\'));\r\nSENATICs Paraguay   \r\n Noticias Titulo slide 1  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto  Título del Slide 2  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto   ',	'Portada',	'',	NULL,	'2018-05-16 12:09:07',	'2018-05-18 13:42:39',	NULL,	0),
+(1,	' \r\n(function(d, s, id) {\r\n  var js, fjs = d.getElementsByTagName(s)[0];\r\n  if (d.getElementById(id)) return;\r\n  js = d.createElement(s); js.id = id;\r\n  js.src = \"//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4\";\r\n  fjs.parentNode.insertBefore(js, fjs);\r\n}(document, \'script\', \'facebook-jssdk\'));\r\nSENATICs Paraguay   \r\n Noticias Titulo slide 1  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto  Título del Slide 2  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto   ',	'Portada',	'',	NULL,	'2018-05-16 12:09:07',	'2018-05-18 15:11:29',	NULL,	0),
 (146,	'',	'Header Site Title',	NULL,	'/!stacks/header-site-title',	'2018-05-16 13:36:29',	'2018-05-16 14:04:03',	NULL,	0),
-(152,	'',	'search',	NULL,	'/!stacks/search',	'2018-05-16 13:55:32',	'2018-05-16 14:06:14',	NULL,	0),
+(152,	'',	'search',	NULL,	'/!stacks/search',	'2018-05-16 13:55:32',	'2018-05-18 15:11:27',	NULL,	0),
 (153,	'',	'Espacio 2',	NULL,	'/!stacks/espacio-2',	'2018-05-16 13:55:33',	'2018-05-16 14:16:19',	NULL,	0),
 (154,	'',	'Espacio 3',	NULL,	'/!stacks/espacio-3',	'2018-05-16 13:55:33',	'2018-05-16 14:04:03',	NULL,	0),
 (148,	' Portal construido conjuntamente con la SENATICs\r\n  Secretaría Nacional de Tecnologías de la Información y Comunicación - 2018\r\n  ',	'Footer Legal',	NULL,	'/!stacks/footer-legal',	'2018-05-16 13:36:30',	'2018-05-18 11:49:29',	NULL,	0),
@@ -7978,7 +8081,8 @@ INSERT INTO `PageSearchIndex` (`cID`, `content`, `cName`, `cDescription`, `cPath
 (204,	'Nombre de la Persona\nCargo / Ocupación\nNombre de la Institución\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. Nombre de la Persona\nCargo / Ocupación\nNombre de la Institución\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. ',	'Autoridades',	'',	'/institucion/autoridades',	'2018-05-18 11:40:22',	'2018-05-18 11:49:31',	NULL,	0),
 (149,	'\r\n\r\n.white-enlaces{\r\n        font-size:12px !important;\r\n    }\r\n\r\nEnlaces de Interés\r\n\r\n  \r\n    Presidencia de la República del Paraguay\r\n    Secretaría de la Función Pública (SFP)\r\n    Secretaría de Acción Social (SAS)\r\n    Fondo Nacional de la Cultura y las Artes (FONDEC)\r\n    Secretaría Nacional de Turismo (SENATUR)\r\n    Ministerio de Justicia (MJ)\r\n    Ministerio de Trabajo, Empleo y Seguridad Social (MTESS)\r\n      \r\n  \r\n \r\n\r\n  \r\n    Secretaría Nacional de Cultura (SNC)\r\n    Secretaría de Información y Comunicación (SICOM)\r\n    Instituto Paraguayo del Indigena (INDI)\r\n    Ministerio de Educación y Cultura (MEC)\r\n    Ministerio de Hacienda (MH)\r\n    Secretaría Nacional de Deportes (SND)\r\n    Ministerio de Salud Pública y Bienestar Social (MSPyBS)\r\n  \r\n  ',	'Footer Navigation',	NULL,	'/!stacks/footer-navigation',	'2018-05-16 13:36:30',	'2018-05-18 11:49:29',	NULL,	0),
 (150,	'',	'Footer Contact',	NULL,	'/!stacks/footer-contact',	'2018-05-16 13:36:30',	'2018-05-18 11:49:30',	NULL,	0),
-(212,	'',	'Agenda',	'',	'/agenda',	'2018-05-18 12:00:15',	'2018-05-18 12:02:03',	NULL,	0);
+(212,	'',	'Agenda',	'',	'/agenda',	'2018-05-18 12:00:15',	'2018-05-18 12:02:03',	NULL,	0),
+(213,	'',	'Buscador',	'',	'/buscador',	'2018-05-18 15:07:46',	'2018-05-18 15:12:25',	NULL,	0);
 
 DROP TABLE IF EXISTS `PageTemplates`;
 CREATE TABLE `PageTemplates` (
@@ -9066,7 +9170,9 @@ INSERT INTO `StyleCustomizerInlineStyleSets` (`issID`, `backgroundColor`, `backg
 (25,	NULL,	0,	'no-repeat',	'auto',	'0% 0%',	NULL,	NULL,	NULL,	NULL,	'17px',	'right',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	0,	0,	0,	0),
 (26,	NULL,	0,	'no-repeat',	'auto',	'0% 0%',	NULL,	NULL,	NULL,	NULL,	'17px',	'right',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	0,	0,	0,	0),
 (27,	NULL,	39,	'no-repeat',	'cover',	'left top',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'20px',	'20px',	NULL,	NULL,	NULL,	NULL,	'30px',	'30px',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	0,	0,	0,	0),
-(28,	NULL,	39,	'no-repeat',	'cover',	'left top',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'20px',	'20px',	'30px',	'30px',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	0,	0,	0,	0);
+(28,	NULL,	39,	'no-repeat',	'cover',	'left top',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'20px',	'20px',	'30px',	'30px',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	0,	0,	0,	0),
+(29,	NULL,	0,	'no-repeat',	'auto',	'0% 0%',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'10px',	'10px',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	0,	0,	0,	0),
+(30,	NULL,	0,	'no-repeat',	'auto',	'0% 0%',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'10px',	'10px',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	0,	0,	0,	0);
 
 DROP TABLE IF EXISTS `StyleCustomizerValueLists`;
 CREATE TABLE `StyleCustomizerValueLists` (
@@ -9464,7 +9570,7 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `Users` (`uID`, `uName`, `uEmail`, `uPassword`, `uIsActive`, `uIsValidated`, `uIsFullRecord`, `uDateAdded`, `uLastPasswordChange`, `uHasAvatar`, `uLastOnline`, `uLastLogin`, `uLastIP`, `uPreviousLogin`, `uNumLogins`, `uLastAuthTypeID`, `uTimezone`, `uDefaultLanguage`) VALUES
-(1,	'admin',	'gobiernoelectronico@senatics.gov.py',	'$2a$12$omSqpYlje/lWaJXhtXqjG.7FpcDO5VrNNE/Ui/K4Ha4Pa1Zk3dtuq',	'1',	-1,	1,	'2018-05-16 12:08:56',	'2018-05-18 13:49:00',	0,	1526665650,	1526486936,	'00000000000000000000000000000001',	0,	1,	0,	NULL,	'es_PY');
+(1,	'admin',	'gobiernoelectronico@senatics.gov.py',	'$2a$12$omSqpYlje/lWaJXhtXqjG.7FpcDO5VrNNE/Ui/K4Ha4Pa1Zk3dtuq',	'1',	-1,	1,	'2018-05-16 12:08:56',	'2018-05-18 13:49:00',	0,	1526673083,	1526486936,	'00000000000000000000000000000001',	0,	1,	0,	NULL,	'es_PY');
 
 DROP TABLE IF EXISTS `UserSearchIndexAttributes`;
 CREATE TABLE `UserSearchIndexAttributes` (
@@ -9663,7 +9769,12 @@ INSERT INTO `WorkflowProgressHistory` (`wphID`, `wpID`, `timestamp`, `object`) V
 (127,	127,	'2018-05-18 16:21:09',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:3:\"192\";s:4:\"cvID\";s:1:\"3\";s:4:\"wrID\";s:3:\"127\";}'),
 (128,	128,	'2018-05-18 17:42:37',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:1:\"1\";s:4:\"cvID\";s:2:\"36\";s:4:\"wrID\";s:3:\"128\";}'),
 (129,	129,	'2018-05-18 17:44:36',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:3:\"202\";s:4:\"cvID\";s:1:\"3\";s:4:\"wrID\";s:3:\"129\";}'),
-(130,	130,	'2018-05-18 17:46:33',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:3:\"202\";s:4:\"cvID\";s:1:\"4\";s:4:\"wrID\";s:3:\"130\";}');
+(130,	130,	'2018-05-18 17:46:33',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:3:\"202\";s:4:\"cvID\";s:1:\"4\";s:4:\"wrID\";s:3:\"130\";}'),
+(131,	131,	'2018-05-18 19:08:05',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:3:\"213\";s:4:\"cvID\";s:1:\"1\";s:4:\"wrID\";s:3:\"131\";}'),
+(132,	132,	'2018-05-18 19:11:05',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:3:\"213\";s:4:\"cvID\";s:1:\"2\";s:4:\"wrID\";s:3:\"132\";}'),
+(133,	133,	'2018-05-18 19:11:27',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:1:\"1\";s:4:\"cvID\";s:2:\"37\";s:4:\"wrID\";s:3:\"133\";}'),
+(134,	134,	'2018-05-18 19:11:59',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:3:\"213\";s:4:\"cvID\";s:1:\"3\";s:4:\"wrID\";s:3:\"134\";}'),
+(135,	135,	'2018-05-18 19:12:23',	'O:49:\"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest\":8:{s:14:\"\0*\0wrStatusNum\";i:30;s:12:\"\0*\0currentWP\";N;s:6:\"\0*\0uID\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:4:\"pkID\";s:2:\"14\";s:3:\"cID\";s:3:\"213\";s:4:\"cvID\";s:1:\"4\";s:4:\"wrID\";s:3:\"135\";}');
 
 DROP TABLE IF EXISTS `WorkflowRequestObjects`;
 CREATE TABLE `WorkflowRequestObjects` (
@@ -9698,4 +9809,4 @@ CREATE TABLE `WorkflowTypes` (
 INSERT INTO `WorkflowTypes` (`wftID`, `wftHandle`, `wftName`, `pkgID`) VALUES
 (1,	'basic',	'Basic Workflow',	0);
 
--- 2018-05-18 17:51:09
+-- 2018-05-18 19:52:02
