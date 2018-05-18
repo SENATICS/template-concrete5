@@ -1,6 +1,6 @@
 <!--Template Diseñador por: Edgar Missael Cabral Báez-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <?php Loader::element('header_required'); ?>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -34,24 +34,49 @@
         <div class="progress centrado_superior">
           <div class="indeterminate blue lighten-1"></div>
         </div>
-
-<div class="web_page">
-    
-    <div class="row cabecera fondo_color" style="margin-bottom: 0px !important;" id="cabecera">
-        <div class="col l9 m8 s12">
+<div class="linea_superior" id="linea_superior">
+    <div class="container">
+        <div class="row">
+            <div class="col l8 s12">
+                <?php 
+                $a = new GlobalArea("info_superior");
+                $a->display(); 
+                ?>
+            </div>
+            <div class="col l4 s12">
+                <?php 
+                $a = new GlobalArea("search");
+                $a->display(); 
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="web_page web_page_transparente no_shadow">
+    <div class="row cabecera" style="margin-bottom: 0px !important;" id="cabecera">
+        <div class="col l4 m4 s12">
             <?php 
             $a = new GlobalArea("Header Site Title");
             $a->display(); 
             ?>
         </div>
-        <div class="col l3 m4 s12 ajustar_img">
+        <div class="col l4 m4 s12 ajustar_img">
             <?php 
-            $a = new GlobalArea("Search");
+            $a = new GlobalArea("Espacio 2");
+            $a->display(); 
+            ?>
+        </div>
+        <div class="col l4 m4 s12 ajustar_img">
+            <?php 
+            $a = new GlobalArea("Espacio 3");
             $a->display(); 
             ?>
         </div>
     </div>
+</div>
     
+<div class="web_page">
+
   <nav class="white menu_color">
     <div class="container">
         <?php 
@@ -61,13 +86,15 @@
     </div>
   </nav>
 
-  <div id="index-banner" class="parallax-container cabecera_pagina" style="padding:5px 15px">
-    
-    <?php 
-    $a = new Area("Titulo");
-    $a->display($c); 
-    ?>
-  
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container" style="padding-bottom:10px;">
+            <?php 
+            $a = new Area("Titulo");
+            $a->display($c); 
+            ?>
+      </div>
+    </div>
   </div>
 
 
@@ -104,8 +131,8 @@
       <div class="container">
         <div class="row">
             <div class="col l5 s12">
-                <p>Basado en la <a href="http://www.paraguay.gov.py/guia-estandar" target="_blank">Guía estándar para sitios web del Gobierno</a></p>
-                <p><small>Versión del Template 2.2.0 - Portal Paraguay</small></p>
+                <p>Basado en la <a href="https://www.paraguay.gov.py/guia-estandar" target="_blank">Guía estándar para Sitios Web del Gobierno</a></p>
+                <p><small>Versión del Template 2.2.3 - Portal Paraguay</small></p>
             </div>
             <div class="col l7 s12" style="text-align:right">
                 <?php 

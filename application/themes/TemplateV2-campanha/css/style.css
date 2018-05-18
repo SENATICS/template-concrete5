@@ -152,7 +152,6 @@ p{
 
 
 
-
 /*Buscador*/
 .cabecera .input-field, .cabecera .input-field .active {
     color:#222 !important;
@@ -166,7 +165,7 @@ p{
         float:right;
         margin-bottom:-60px;
         width:100%;
-        padding-left:83px;
+        padding-left:50px;
     }
     .cabecera .buscador_menu input[type=text]{
         border-bottom: 0 !important;
@@ -224,7 +223,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#131313', end
 .base_buscador input[type=text], .base_buscador .input-field{
     margin: 0px !important;   
 }
-
 
 
 

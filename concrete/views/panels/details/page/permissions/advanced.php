@@ -7,8 +7,12 @@ defined('C5_EXECUTE') or die("Access Denied.");
 	<?php
 	  $cpc = $c->getPermissionsCollectionObject();
 	if ($c->getCollectionInheritance() == "PARENT") { ?>
-		<div class="alert alert-info"><?php echo t('This page inherits its permissions from:');?> <a target="_blank" href="<?php echo URL::to($cpc)?>"><?php echo $cpc->getCollectionName()?></a></div>
-	<?php } ?>		
+		<?php if ($c->isPageDraft()) { ?>
+			<div class="alert alert-info"><?php echo t('This page inherits its permissions from the drafts area, as well as its edit page type drafts permission.');?></div>
+		<?php } else {  ?>
+			<div class="alert alert-info"><?php echo t('This page inherits its permissions from:');?> <a target="_blank" href="<?php echo URL::to($cpc)?>"><?php echo $cpc->getCollectionName()?></a></div>
+		<?php } ?>
+	<?php } ?>
 
 
 	<div>

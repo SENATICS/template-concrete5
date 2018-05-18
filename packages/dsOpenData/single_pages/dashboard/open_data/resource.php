@@ -35,9 +35,9 @@ $form = Loader::helper('form');
                 <i class='fa fa-arrow-left' aria-hidden='true'></i>
             </a>
             <?php if (empty($resource_title)) {
-                echo "Agregar Recurso en <b>".$titulo_datasets[0]['title']."</b>";
+                echo "Agrear Recursos en <b>".$titulo_datasets[0]['title']."</b>";
             } else {
-                echo "Editar Recurso";
+                echo "Editar Recursos";
             }?>
         </h3>
     </div>

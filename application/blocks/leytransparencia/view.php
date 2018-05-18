@@ -69,7 +69,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
                 
                 <?php if($linkURL != "none") { ?>
                     <hr style="margin:5px !important">
-                    <li style="list-style-type:none !important"><a href="<?php echo $linkURL;?>" target="_blank">Ver Historial</a></li>
+                    <li style="list-style-type:none !important"><a href="<?php echo $linkURL;?>" target="_blank">Histórico</a></li>
                 <?php } ?>
             </ul>
         </li>

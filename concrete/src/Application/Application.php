@@ -136,6 +136,8 @@ class Application extends Container
 
         // Clear precompiled script bytecode caches
         OpCache::clear();
+
+        \Events::dispatch('on_cache_flush_end');
     }
 
     /**
@@ -290,6 +292,8 @@ class Application extends Container
             }
             $pkg->setupPackageLocalization();
         }
+        $config->set('app.bootstrap.packages_loaded', true);
+        \Localization::setupSiteLocalization();
         foreach($this->packages as $pkg) {
             if (method_exists($pkg, 'on_start')) {
                 $pkg->on_start();
@@ -298,8 +302,6 @@ class Application extends Container
                 $checkAfterStart = true;
             }
         }
-        $config->set('app.bootstrap.packages_loaded', true);
-        \Localization::setupSiteLocalization();
 
         if ($checkAfterStart) {
             foreach($this->packages as $pkg) {
@@ -423,8 +425,7 @@ class Application extends Container
 
         $path = rawurldecode($request->getPathInfo());
 
-        if (substr($path, 0, 3) == '../' || substr($path, -3) == '/..' || strpos($path, '/../') ||
-            substr($path, 0, 3) == '..\\' || substr($path, -3) == '\\..' || strpos($path, '\\..\\')) {
+        if (strpos($path, '..') !== false) {
             throw new \RuntimeException(t('Invalid path traversal. Please make this request with a valid HTTP client.'));
         }
 

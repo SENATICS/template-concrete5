@@ -6181,22 +6181,7 @@ label {
 :-ms-input-placeholder {
   color: #d1d1d1; }
 
-.web_page .cabecera input[type=text],.web_page .cabecera input[type=search], .buscador_menu input[type=text] {
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid #9e9e9e;
-  border-radius: 0;
-  outline: none;
-  height: 3rem;
-  width: 100%;
-  font-size: 1rem;
-  margin: 0 0 15px 0;
-  padding: 0;
-  box-shadow: none;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  transition: all .3s; }
+
   .web_page input[type=text]:disabled, .web_page input[type=text][readonly="readonly"], .web_page input[type=password]:disabled, .web_page input[type=password][readonly="readonly"], .web_page input[type=email]:disabled, .web_page input[type=email][readonly="readonly"], .web_page input[type=url]:disabled, .web_page input[type=url][readonly="readonly"], .web_page input[type=time]:disabled, .web_page input[type=time][readonly="readonly"], .web_page input[type=date]:disabled, .web_page input[type=date][readonly="readonly"], .web_page input[type=datetime-local]:disabled, .web_page input[type=datetime-local][readonly="readonly"], .web_page input[type=tel]:disabled, .web_page input[type=tel][readonly="readonly"], .web_page input[type=number]:disabled, .web_page input[type=number][readonly="readonly"], .web_page input[type=search]:disabled, .web_page input[type=search][readonly="readonly"], .web_page textarea.materialize-textarea:disabled, .web_page textarea.materialize-textarea[readonly="readonly"] {
     color: rgba(0, 0, 0, 0.26);
     border-bottom: 1px dotted rgba(0, 0, 0, 0.26); }

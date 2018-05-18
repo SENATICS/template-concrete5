@@ -264,6 +264,7 @@ return array(
         "/ccm/system/file/duplicate"                                                    => array('\Concrete\Controller\Backend\File::duplicate'),
         "/ccm/system/file/get_json"                                                     => array('\Concrete\Controller\Backend\File::getJSON'),
         "/ccm/system/file/rescan"                                                       => array('\Concrete\Controller\Backend\File::rescan'),
+        "/ccm/system/file/rescan_multiple"                                              => array('\Concrete\Controller\Backend\File::rescanMultiple'),
         "/ccm/system/file/star"                                                         => array('\Concrete\Controller\Backend\File::star'),
         "/ccm/system/file/upload"                                                       => array('\Concrete\Controller\Backend\File::upload'),
 
@@ -439,7 +440,7 @@ return array(
             VIEW_CORE_THEME_TEMPLATE_BACKGROUND_IMAGE
         ),
         '/register'         => VIEW_CORE_THEME,
-        '/maintenance_mode' => VIEW_CORE_THEME,
+        '/frontend/maintenance_mode' => VIEW_CORE_THEME,
         '/upgrade'          => VIEW_CORE_THEME
     ),
 

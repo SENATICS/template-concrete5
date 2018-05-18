@@ -191,12 +191,12 @@ function jsspecialchars_inv_convenios( $string = '') {
 
 
 <div class="ccm-convenios-block-container">
-    <a href="#abajo_items" onclick="acordeones();"><span class="btn btn-success ccm-add-convenios-entry"><i class="material-icons">playlist_add</i> <?php echo t(' Agregar nuevo Item') ?></span></a>      
+    <a href="#" onclick="acordeones();"><span class="btn btn-success ccm-add-convenios-entry"><i class="material-icons">playlist_add</i> <?php echo t(' Agregar nuevo Item') ?></span></a>      
         <hr style="margin:5px !important">
     <ul class="collapsible ccm-convenios-entries" data-collapsible="accordion">
     
     </ul>
-    <div id="abajo_items"></div>
+    
 
 </div>
 
@@ -207,8 +207,10 @@ function jsspecialchars_inv_convenios( $string = '') {
 
     <li class="ccm-convenios-entry">
         <div class="botoneras">
+            <!-- 
             <i class="fa fa-sort-desc"></i>
             <i class="fa fa-sort-asc"></i>
+            -->
             <i class="material-icons right ccm-delete-convenios-entry red-text text-darken-2" style="cursor:pointer">delete</i>
         </div>
         <div class="collapsible-header">
@@ -248,11 +250,12 @@ function jsspecialchars_inv_convenios( $string = '') {
                     <textarea class="form-control" name="<?php echo $view->field('descripcion')?>[]" placeholder="Descripción del Documento" required="required"><%=descripcion%></textarea>
                 </div>
             </div>
+            <!--  //comentando en JS
             <div class="col-xs-6 sin_padding_col">
                 <div class="form-group">
                     <label><?php echo t('Institución')?></label>
 
-                    <input type="text" class="form-control" name="<?php echo $view->field('institucion')?>[]" value="<?php echo jsspecialchars_inv_convenios('<%=institucion%>') ?>" placeholder="Institución al que pertenece el Documento" size="100" maxlength="100" required="required" />
+                    <input type="text" class="form-control" name="<?php echo $view->field('institucion')?>[]" value="<?php echo jsspecialchars_inv_convenios('<%=institucion%>') ?>" placeholder="Institución al que pertenece el Documento" size="100" maxlength="100"  />
                 </div>
             </div>
             <div class="col-xs-6 sin_padding_col">
@@ -261,6 +264,8 @@ function jsspecialchars_inv_convenios( $string = '') {
                       <input type="date" class="form-control" name="<?php echo $view->field('fecha')?>[]" value="<%=fecha%>" placeholder="YYYY-MM-DD" size="10" maxlength="10"  />
                 </div>
             </div>
+            //Fin Comentario en JS
+            -->
             <div class="col-xs-12 sin_padding_col">
                 <div class="form-group">
                     <label><?php echo t('Enlace')?></label>

@@ -33,12 +33,12 @@ function jsspecialchars_inv_convenios( $string = '') {
 <table id="convenios" class="display compact " width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>Número</th>
-                <th>Año</th>
-                <th>Título</th>
+                <th width="20px">Número</th>
+                <th width="20px">Año</th>
+                <th width="220px">Título</th>
                 <th class="Categoria">Descripción</th>
-                <th>Institución</th>
-                <th>Fecha</th>
+                <!-- <th>Institución</th>
+                <th>Fecha</th> -->
                 <th style="text-align:center; width:30px !important ">Enlace</th>
             </tr>
         </thead>
@@ -51,9 +51,9 @@ function jsspecialchars_inv_convenios( $string = '') {
                     <td><?php echo $item['numero']; ?></td>
                     <td><?php echo $item['anho']; ?></td>
                     <td><?php echo $item['titulo']; ?></td>
-                    <td><?php echo jsspecialchars_inv_convenios($item['descripcion']); ?></td>
-                    <td><?php echo $item['institucion']; ?></td>
-                    <td><?php echo $item['fecha']; ?></td>
+                    <td><?php echo strtoupper(jsspecialchars_inv_convenios($item['descripcion'])); ?></td>
+                   <!--  <td><?php echo $item['institucion']; ?></td>
+                    <td><?php echo $item['fecha']; ?></td> -->
                     <td style="text-align:center;"><a href="<?php echo $item['enlace']; ?>" target="_blank"><i class="material-icons" >get_app</i></a></td>
                 </tr>
             <?php                 

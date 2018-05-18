@@ -192,6 +192,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                 </div>
             <?php endif; ?>
                 <div class="oculto"></div>
+                <div style="clear:both"></div>
             </div>
         </div>
 

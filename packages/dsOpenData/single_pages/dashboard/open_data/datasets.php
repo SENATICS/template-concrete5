@@ -61,7 +61,7 @@ $form = Loader::helper('form');
                     <label class="control-label"><?php  echo t('Título del Conjunto de Datos') ?><span class="formulario_requerido">*</span></label>
 
                     <div class="controls">
-                        <input maxlength="255" placeholder="Ej. Elementos Culturales" class="form-control" type="text" name="datasets_title" id="datasets_title" value="<?php  echo ( isset( $datasets_title ) ) ? $datasets_title : ''; ?>">
+                        <input maxlength="150" placeholder="Ej. Elementos Culturales" class="form-control" type="text" name="datasets_title" id="datasets_title" value="<?php  echo ( isset( $datasets_title ) ) ? $datasets_title : ''; ?>">
                     </div>
                 </fieldset>
 

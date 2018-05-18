@@ -61,7 +61,7 @@
 
         <tbody>
         <?php  foreach ($datasets as $data): ?>
-            <tr class="toRemove<?php echo $data['datasetsID'];?>  ">
+            <tr>
                 <td>
                     <?php  echo $data['datasetsID']; ?>
                     <input class="datasetsID" type="hidden" value="<?php echo $data['datasetsID']; ?>">
@@ -84,8 +84,7 @@
                        class="btn btn-warning edit"><i class="fa fa-pencil" aria-hidden="true"></i> <?php  echo t('Editar') ?></a>
                     <!--<a href="<?php  echo View::url('dashboard/open_data/list_datasets/clearDatasets/' . $data['datasetsID']) ?>"
                        class="btn btn-info clearDatasets edit"><i class="fa fa-trash-o" aria-hidden="true"></i> <?php  echo t('Eliminar todos los Recursos') ?></a>-->
-                    
-                    <button onclick="borrar(<?php echo $data['datasetsID'] ?>,<?php echo $data['total_resource'] ?>)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> <?php  echo t('Eliminar') ?></button>
+                    <button class="btn btn-danger delete"><i class="fa fa-trash" aria-hidden="true"></i> <?php  echo t('Eliminar') ?></button>
                 </td>
             </tr>
         <?php  endforeach; ?>
@@ -109,29 +108,34 @@
             $(".clearDatasets").click(function () {
                 return confirm("<?php  echo t("¿Seguro que desea eliminar todos los Recursos?"); ?>");
             });
-            
+
+            $(".delete").click(function () {
+                var elem = $(this);
+                var count_datasets = elem.closest('tr').children('td').children('span.badge').html();
+                var conf = confirm("<?php echo t("¿Está seguro que desea borrar este Conjunto de Datos con todos los Recursos?. Recursos en este Conjunto de datos:") ?> " + count_datasets);
+                if (conf) {
+                    var id = elem.closest('tr').children('td').children('input.datasetsID').val();
+                    elem.closest('tr').addClass('toRemove');
+
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php  echo $this->url('dashboard/open_data/list_datasets/delete'); ?>",
+                        data: {"id": id},
+                        success: function (data) {
+                            if (data == "OK") {
+                                $("#success").fadeIn(1000).delay(2000).fadeOut(1000);
+                                $('.toRemove').remove();
+                            }
+                            else {
+                                $("#error").fadeIn(1000).delay(2000).fadeOut(1000);
+                            }
+                        }
+                    });
+                }
+                else
+                    return false;
+            });
         });
-    function borrar(id,total){
-        var conf = confirm("<?php echo t("¿Está seguro que desea borrar este Conjunto de Datos con todos los Recursos?. Recurcos en este Conjunto de Datos: ") ?> "+total);
-            if (conf) {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php  echo $this->url('dashboard/open_data/list_datasets/delete'); ?>",
-                    data: {"id": id},
-                    success: function (data) {
-                        if (data == "OK") {
-                            $("#success").fadeIn(1000).delay(2000).fadeOut(1000);
-                            $('.toRemove'+id).remove();
-                        }
-                        else {
-                            $("#error").fadeIn(1000).delay(2000).fadeOut(1000);
-                        }
-                    }
-                });
-            }
-            else
-                return false;
-    };
     </script>
 
 <?php  endif; ?>

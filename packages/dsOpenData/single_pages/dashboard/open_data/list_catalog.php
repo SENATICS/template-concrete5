@@ -77,7 +77,7 @@
 
         <tbody>
         <?php  foreach ($catalogos as $cata): ?>
-            <tr class="toRemove<?php echo $cata['opendataID']; ?>">
+            <tr>
                 <td>
                     <?php  echo $cata['opendataID']; ?>
                 </td>
@@ -100,7 +100,7 @@
                        class="btn btn-warning edit"><i class="fa fa-pencil" aria-hidden="true"></i> <?php  echo t('Editar') ?></a>
                     <!--<a href="<?php  echo View::url('dashboard/open_data/list_datasets/clearDatasets/' . $cata['opendataID']) ?>"
                        class="btn btn-info clearDatasets edit"><i class="fa fa-trash-o" aria-hidden="true"></i> <?php  echo t('Eliminar todos sus Conjuntos de Datos') ?></a>-->
-                    <button onclick="borrar(<?php echo $cata['opendataID'] ?>,<?php echo $cata['total_datasets'] ?>)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> <?php  echo t('Eliminar') ?></button>
+                    <button class="btn btn-danger delete"><i class="fa fa-trash" aria-hidden="true"></i> <?php  echo t('Eliminar') ?></button>
                 </td>
             </tr>
         <?php  endforeach; ?>
@@ -126,12 +126,14 @@
                 return confirm("<?php  echo t("¿Seguro que desea eliminar todos los Conjuntos de Datos?"); ?>");
             });
 
-            
-        });
-
-        function borrar(id,total){
-        var conf = confirm("<?php echo t("¿Está seguro que desea borrar este Catálogo con todos los Conjuntos de Datos?.Conjuntos de Datos en este catálogo:") ?> " + total);
+            $(".delete").click(function () {
+                var elem = $(this);
+                var count_datasets = elem.closest('tr').children('td').children('span.badge').html();
+                var conf = confirm("<?php echo t("¿Está seguro que desea borrar este Catálogo con todos los Conjuntos de Datos?. Conjuntos de Datos en este catálogo:") ?> " + count_datasets);
                 if (conf) {
+                    var id = elem.closest('tr').children('td').children('input.opendataID').val();
+                    elem.closest('tr').addClass('toRemove');
+
                     $.ajax({
                         type: "POST",
                         url: "<?php  echo $this->url('dashboard/open_data/list_catalog/delete'); ?>",
@@ -139,7 +141,7 @@
                         success: function (data) {
                             if (data == "OK") {
                                 $("#success").fadeIn(1000).delay(2000).fadeOut(1000);
-                                $('.toRemove'+id).remove();
+                                $('.toRemove').remove();
                             }
                             else {
                                 $("#error").fadeIn(1000).delay(2000).fadeOut(1000);
@@ -149,7 +151,8 @@
                 }
                 else
                     return false;
-        };
+            });
+        });
     </script>
 
 <?php  endif; ?>

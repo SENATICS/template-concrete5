@@ -16,7 +16,6 @@ class ListDatasets extends DashboardPageController
         $this->addFooterItem(Loader::helper('html')->css('jquery.dataTables.min.css', 'dsOpenData'));
         $this->addFooterItem(Loader::helper('html')->javascript('jquery.dataTables.min.js', 'dsOpenData'));
         
-        
     }
 
     public function view()

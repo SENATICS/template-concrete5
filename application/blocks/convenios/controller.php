@@ -40,7 +40,7 @@ class Controller extends BlockController
     {
         $this->set('bID', $this->bID);
         $db = Loader::db();
-        $query = $db->GetAll("SELECT * FROM btConveniosEntries WHERE bID=? ORDER BY orden", array($this->bID));
+        $query = $db->GetAll("SELECT * FROM btConveniosEntries WHERE bID=? ORDER BY CONVERT(anho,UNSIGNED INTEGER) DESC, CONVERT(numero,UNSIGNED INTEGER) DESC", array($this->bID));
         $this->set('items', $query);
     }
 
@@ -113,7 +113,7 @@ class Controller extends BlockController
     
     public function edit() {
         $db = Loader::db();
-        $query = $db->GetAll("SELECT * FROM btConveniosEntries WHERE bID=? ORDER BY orden DESC"  , array($this->bID));
+        $query = $db->GetAll("SELECT * FROM btConveniosEntries WHERE bID=? ORDER BY CONVERT(anho,UNSIGNED INTEGER) ASC, CONVERT(numero,UNSIGNED INTEGER) ASC"  , array($this->bID));
         $this->set('items', $query);
     }
 

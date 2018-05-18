@@ -87,7 +87,7 @@
         <tbody>
         <?php  foreach ($resource as $reso): ?>
             
-            <tr class="toRemove<?php echo $reso['resourceID']; ?>">
+            <tr>
                 <td>
                     <?php  echo $reso['resourceID']; ?>
                     <input class="resourceID" id="resourceID" name="resourceID" type="hidden" value="<?php  echo $reso['resourceID']; ?>">
@@ -171,10 +171,7 @@
                 <td class="td_opciones_small">
                     <a href="<?php  echo View::url('dashboard/open_data/resource/update/'.$reso['resourceID']) ?>"
                        class="btn btn-success edit"><i class="fa fa-pencil" aria-hidden="true"></i> <?php  echo t('Editar') ?></a>
-                    <button class="btn btn-danger" onclick="borrar_recurso(<?php echo $reso['resourceID'];?>,<?php echo $reso['total_resource'];?>);">
-                        <i class="fa fa-trash" aria-hidden="true"></i> 
-                        <?php  echo t('Eliminar el Recurso') ?>
-                    </button>
+                    <button class="btn btn-danger delete"><i class="fa fa-trash" aria-hidden="true"></i> <?php  echo t('Eliminar el Recurso') ?></button>
                     
                 </td>
             </tr>
@@ -193,29 +190,34 @@
             $('#listresource').DataTable( {
                 "scrollX": true,
                 "aaSorting": []
-            });          
-        });
-            function borrar_recurso(id,total){
-            var conf = confirm("<?php echo t("¿Está seguro que desea borrar este Recurso con todos los Archivos?. Archivos en este Recurso:") ?> "+total);
-                    if (conf) {
-                        $.ajax({
-                            type: "POST",
-                            url: "<?php  echo $this->url('dashboard/open_data/list_resource/delete'); ?>",
-                            data: {"id": id},
-                            success: function (data) {
-                                if (data == "OK") {
-                                    $("#success").fadeIn(1000).delay(2000).fadeOut(1000);
-                                    $('.toRemove'+id).remove();
-                                }
-                                else {
-                                    $("#error").fadeIn(1000).delay(2000).fadeOut(1000);
-                                }
+            });      
+             $(".delete").click(function () {
+                var elem = $(this);
+                var total_resource = elem.closest('tr').children('td').children('div').children('div').children('span.badge').html();
+                var conf = confirm("<?php echo t("¿Está seguro que desea borrar este Recurso con todos los Archivos?. Archivos en este Recurso:") ?> "+total_resource);
+                if (conf) {
+                    var id = elem.closest('tr').children('td').children('input.resourceID').val();
+                    elem.closest('tr').addClass('toRemove');
+
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php  echo $this->url('dashboard/open_data/list_resource/delete'); ?>",
+                        data: {"id": id},
+                        success: function (data) {
+                            if (data == "OK") {
+                                $("#success").fadeIn(1000).delay(2000).fadeOut(1000);
+                                $('.toRemove').remove();
                             }
-                        });
-                    }
-                    else
-                        return false;
-            };
+                            else {
+                                $("#error").fadeIn(1000).delay(2000).fadeOut(1000);
+                            }
+                        }
+                    });
+                }
+                else
+                    return false;
+            });     
+        });
             function delete_file(id){
                 var conf = confirm("<?php echo t('¿Está seguro que desea borrar este Archivo?.') ?> ");
                 if (conf) {

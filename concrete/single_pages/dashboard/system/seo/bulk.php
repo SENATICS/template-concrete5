@@ -69,7 +69,6 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                         <div class="ccm-search-main-lookup-field">
                             <i class="fa fa-search"></i>
                             <?php echo $form->search('keywords', array('placeholder' => t('Keywords')))?>
-                            <button type="submit" class="ccm-search-field-hidden-submit" tabindex="-1"><?php echo t('Search')?></button>
                         </div>
                     </div>
                 </div>
@@ -119,6 +118,11 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                     </div>
                 </div>
             </div>
+
+            <div class="ccm-search-fields-submit">
+                <button type="submit" class="btn btn-primary pull-right"><?php echo t('Search')?></button>
+            </div>
+
 
         </form>
     </div>
@@ -187,6 +191,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                         <?php } ?>
                         <div class="form-group submit-changes">
                             <form id="seoForm<?php echo $cID; ?>" action="<?php echo View::url('/dashboard/system/seo/page_data/', 'saveRecord')?>" method="post" class="pageForm">
+                                <?php $token->output('save_seo_record_' . $cobj->getCollectionID()) ?>
                                 <a class="btn btn-default submit-changes" data-cID="<?php echo $cobj->getCollectionID() ?>"><?php echo t('Save') ?></a>
                             </form>
                             <img style="display: none; position: absolute; top: 20px; right: 20px;" id="throbber<?php echo $cID ?>"  class="throbber" src="<?php echo ASSETS_URL_IMAGES . '/throbber_white_32.gif' ?>" />
@@ -221,7 +226,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                 data.meta_title = $('.ccm-seoRow-'+iterator+' input[name="meta_title"].hasChanged').val();
                 data.meta_description = $('.ccm-seoRow-'+iterator+' textarea[name="meta_description"]').val();
                 data.collection_handle = $('.ccm-seoRow-'+iterator+' input[name="collection_handle"]').val();
-
+                data.ccm_token = $('.ccm-seoRow-'+iterator+' input[name="ccm_token"]').val();
                 $.ajax({
                     url: '<?php echo $view->action("saveRecord") ?>',
                     dataType: 'json',
@@ -235,6 +240,8 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                             $('.ccm-seoRow-'+cID+' .collectionHandle').val(res.cHandle);
                             $('.hasChanged').removeClass('.hasChanged');
                             $('.btn-success').removeClass('btn-success');
+                        } else if (res.message) {
+                            alert(res.message);
                         } else {
                             alert('<?php echo t('An error occured while saving.'); ?>');
                         }

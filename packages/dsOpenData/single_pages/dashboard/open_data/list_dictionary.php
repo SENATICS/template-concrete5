@@ -92,7 +92,7 @@
         <?php  foreach ($diccionario as $dic): ?>
             
             
-            <tr class="toRemove<?php echo $dic['dictionaryID']; ?>">
+            <tr>
                 <td>
                     <?php echo ++$i; ?>
                     <input class="dictionaryID" type="hidden" value="<?php  echo $dic['dictionaryID']; ?>">
@@ -132,7 +132,7 @@
                     <a href="<?php echo View::url('dashboard/open_data/dictionary/update/'.$dic['dictionaryID']) ?>" class="btn btn-success edit">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </a>
-                    <button class="btn btn-danger" onclick="borrar(<?php echo $dic['dictionaryID'];?>)">
+                    <button class="btn btn-danger delete">
                         <i class="fa fa-trash" aria-hidden="true"></i> 
                     </button>
                     
@@ -154,11 +154,14 @@
                 "scrollX": true,
                 "aaSorting": []
             });      
-
-        });
-        function borrar(id){
-        var conf = confirm("<?php echo t("¿Está seguro que desea borrar este Fila del Diccionario de Datos?") ?> ");
+             $(".delete").click(function () {
+                var elem = $(this);
+                var total_resource = elem.closest('tr').children('td').children('span.badge').html();
+                var conf = confirm("<?php echo t("¿Está seguro que desea borrar este Fila del Diccionario de Datos?") ?> ");
                 if (conf) {
+                    var id = elem.closest('tr').children('td').children('input.dictionaryID').val();
+                    elem.closest('tr').addClass('toRemove');
+
                     $.ajax({
                         type: "POST",
                         url: "<?php  echo $this->url('dashboard/open_data/list_dictionary/delete'); ?>",
@@ -166,7 +169,7 @@
                         success: function (data) {
                             if (data == "OK") {
                                 $("#success").fadeIn(1000).delay(2000).fadeOut(1000);
-                                $('.toRemove'+id).remove();
+                                $('.toRemove').remove();
                             }
                             else {
                                 $("#error").fadeIn(1000).delay(2000).fadeOut(1000);
@@ -176,7 +179,10 @@
                 }
                 else
                     return false;
-        };
+            });     
+
+
+        });
     </script>
 
 <?php  endif; ?>

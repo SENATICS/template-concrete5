@@ -32,7 +32,7 @@
         <field name="dictionaryID" type="I">
             <unsigned/>
         </field>
-        <field name="title" type="C" size="255">
+        <field name="title" type="C" size="150">
         </field>
         <field name="description" type="X">
         </field>

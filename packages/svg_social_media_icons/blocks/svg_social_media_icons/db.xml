@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btSvgSocialMediaIcons">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+        <!-- Link Target Attribute  -->
+        <field name="openLinkBlank" type="I"></field>
+        <!-- Addresses -->
+        <field name="behanceAddress" type="X"></field>
+        <field name="deviantartAddress" type="X"></field>
+        <field name="dribbbleAddress" type="X"></field>
+        <field name="emailAddress" type="X"></field>
+        <field name="facebookAddress" type="X"></field>
+        <field name="flickrAddress" type="X"></field>
+        <field name="githubAddress" type="X"></field>
+        <field name="googleplusAddress" type="X"></field>
+        <field name="instagramAddress" type="X"></field>
+        <field name="itunesAddress" type="X"></field>
+        <field name="linkedinAddress" type="X"></field>
+        <field name="pinterestAddress" type="X"></field>
+        <field name="skypeAddress" type="X"></field>
+        <field name="soundcloudAddress" type="X"></field>
+        <field name="spotifyAddress" type="X"></field>
+        <field name="tumblrAddress" type="X"></field>
+        <field name="twitterAddress" type="X"></field>
+        <field name="vimeoAddress" type="X"></field>
+        <field name="youtubeAddress" type="X"></field>
+        <!-- Icon Styles -->
+        <field name="iconShape" type="C"></field>
+        <field name="iconColor" type="C"></field>
+        <field name="iconHover" type="C"></field>
+        <field name="iconSize" type="I"></field>
+        <field name="iconMargin" type="I"></field>
+        <field name="position" type="C"></field>
+        <!-- icon array -->
+        <field name="icon" type="X"></field>
+        <!-- sort order array -->
+        <field name="sortOrder" type="X"></field>
+	</table>
+</schema>

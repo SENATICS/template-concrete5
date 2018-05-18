@@ -1,9 +1,11 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
 $form = Loader::helper('form');
+$token = Core::make('token');
 ?>
 <h4><?php echo t('Installed Rating Types')?></h4>
 <?php if (count($ratingTypes) > 0) { ?>
     <form action="<?php echo $view->action('save')?>" method="post">
+        <?php $token->output('conversation_points') ?>
         <table class="table">
             <thead>
             <tr>
