@@ -134,39 +134,38 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                         ?>
                     <?php endif; ?>
                     <?php if ($includeName): ?>
-                    <div class="ccm-block-page-list-title">
-                        <?php if ($useButtonForLink) { ?>
-                            <span class="card-title"><?php echo $title; ?></span>
-                        <?php } else { ?>
-                            <span class="card-title"><a href="<?php echo $url ?>" target="<?php echo $target ?>"><?php echo $title ?></a></span>
-                        <?php } ?>
-                    </div>
+                        <div class="ccm-block-page-list-title">
+                            <?php if ($useButtonForLink) { ?>
+                                <span class="card-title"><?php echo $title; ?></span>
+                            <?php } else { ?>
+                                <span class="card-title"><a href="<?php echo $url ?>" target="<?php echo $target ?>"><?php echo $title ?></a></span>
+                            <?php } ?>
+                        </div>
                     <?php endif; ?>
                     
                 </div>
             
 
-            <?php if ($includeEntryText): ?>
-                <div class="card-content">
+                <?php if ($includeEntryText): ?>
+                    <div class="card-content">
 
-                    <?php if ($includeDate): ?>
-                        <div class="ccm-block-page-list-date"><?php echo $date?></div>
-                    <?php endif; ?>
+                        <?php if ($includeDate): ?>
+                            <div class="ccm-block-page-list-date"><?php echo $date?></div>
+                        <?php endif; ?>
 
-                    <?php if ($includeDescription): ?>
-                        <div class="ccm-block-page-list-description">
-                            <?php echo $description ?>
-                        </div>
-                    <?php endif; ?>
+                        <?php if ($includeDescription): ?>
+                            <div class="ccm-block-page-list-description">
+                                <?php echo $description ?>
+                            </div>
+                        <?php endif; ?>
 
-                    <?php if ($useButtonForLink): ?>
-                    <div class="card-action">
-                        <a href="<?php echo $url?>" class="<?php echo $buttonClasses?>"><?php echo $buttonLinkText?></a>
+                        <?php if ($useButtonForLink): ?>
+                            <div class="card-action">
+                                <a href="<?php echo $url?>" class="<?php echo $buttonClasses?>"><?php echo $buttonLinkText?></a>
+                            </div>
+                        <?php endif; ?>
                     </div>
-                    <?php endif; ?>
-
-                    </div>
-            <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
 

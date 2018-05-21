@@ -120,6 +120,9 @@ p{
     width: 100% !important;
     height: auto;
 }
+.no_shadow{
+    box-shadow: none !important;
+}
 .cabecera .row{
     margin-bottom: 0px !important;
 }

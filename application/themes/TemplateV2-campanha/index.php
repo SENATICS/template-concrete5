@@ -88,27 +88,11 @@
         </div>
     </div>
 </div>
-<div class="web_page web_page_transparente no_shadow">
-    <div class="row cabecera" style="margin-bottom: 0px !important;" id="cabecera">
-        <div class="col l4 m4 s12">
-            <?php 
-            $a = new GlobalArea("Header Site Title");
-            $a->display(); 
-            ?>
-        </div>
-        <div class="col l4 m4 s12 ajustar_img">
-            <?php 
-            $a = new GlobalArea("Espacio 2");
-            $a->display(); 
-            ?>
-        </div>
-        <div class="col l4 m4 s12 ajustar_img">
-            <?php 
-            $a = new GlobalArea("Espacio 3");
-            $a->display(); 
-            ?>
-        </div>
-    </div>
+<div class="cabecera web_page web_page_transparente no_shadow">
+    <?php 
+    $a = new GlobalArea("Header Site Title");
+    $a->display(); 
+    ?>  
 </div>
     
 <div class="web_page">
@@ -174,7 +158,7 @@
             <div class="row">
                 <div class="col l5 s12">
                     <p>Basado en la <a href="https://www.paraguay.gov.py/guia-estandar" target="_blank">Guía estándar para Sitios Web del Gobierno</a></p>
-                    <p><small>Versión del Template 2.2.3 - Portal Paraguay</small></p>
+                    <p><small>Versión de la plantilla 2.2.4</small></p>
                 </div>
                 <div class="col l7 s12" style="text-align:right">
                     <?php 
