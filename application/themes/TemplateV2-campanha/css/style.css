@@ -127,7 +127,7 @@ p{
     margin-bottom: 0px !important;
 }
 .menu_color{
-    background: #e22d2d !important;
+    background: rgb(0, 28, 84)!important;
 }
 .cabecera .logo{
     max-width: 400px;
@@ -439,9 +439,9 @@ p {
 .parallax-container {
     height: auto;
     background: #f1f1f1;
-    -webkit-box-shadow: inset 0px -3px 8px 0px rgba(0,0,0,0.17);
-    -moz-box-shadow: inset 0px -3px 8px 0px rgba(0,0,0,0.17);
-    box-shadow: inset 0px -3px 8px 0px rgba(0,0,0,0.17);
+    -webkit-box-shadow: inset 0px -3px 8px 0px rgba(0,0,0,0.10);
+    -moz-box-shadow: inset 0px -3px 8px 0px rgba(0,0,0,0.10);
+    box-shadow: inset 0px -3px 8px 0px rgba(0,0,0,0.10);
 }
 @media only screen and (max-width : 1035px) {
   .parallax-container .container{

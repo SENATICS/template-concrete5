@@ -51,7 +51,7 @@ $(document).ready(function(){
         padding: 0px;
     }
     .carrusel-<?php echo $bID ?> .carrusel_description_item{
-        background: #8c1917;
+        background: rgb(0, 28, 84);
         bottom: 0px;
         color: #FFF;
         padding: 10px;
