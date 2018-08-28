@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-08-2018 a las 12:09:38
+-- Tiempo de generación: 28-08-2018 a las 12:47:52
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 5.6.25
 
@@ -261,17 +261,6 @@ INSERT INTO `Areas` (`arID`, `cID`, `arHandle`, `arOverrideCollectionPermissions
 (53, 157, 'Footer Contact', 0, 0, 1, 0),
 (54, 157, 'Footer Navigation', 0, 0, 1, 0),
 (55, 157, 'Footer Legal', 0, 0, 1, 0),
-(56, 159, 'info_superior', 0, 0, 1, 0),
-(57, 159, 'search', 0, 0, 1, 0),
-(58, 159, 'Header Site Title', 0, 0, 1, 0),
-(59, 159, 'Espacio 2', 0, 0, 1, 0),
-(60, 159, 'Espacio 3', 0, 0, 1, 0),
-(61, 159, 'Header Navigation', 0, 0, 1, 0),
-(62, 159, 'Titulo', 0, 0, 0, 0),
-(63, 159, 'Contenido', 0, 0, 0, 0),
-(64, 159, 'Footer Contact', 0, 0, 1, 0),
-(65, 159, 'Footer Navigation', 0, 0, 1, 0),
-(66, 159, 'Footer Legal', 0, 0, 1, 0),
 (67, 160, 'info_superior', 0, 0, 1, 0),
 (68, 160, 'search', 0, 0, 1, 0),
 (69, 160, 'Header Site Title', 0, 0, 1, 0),
@@ -371,19 +360,7 @@ INSERT INTO `Areas` (`arID`, `cID`, `arHandle`, `arOverrideCollectionPermissions
 (219, 166, 'Contenido : 3', 0, 0, 0, 142),
 (220, 166, 'Contenido : 4', 0, 0, 0, 142),
 (221, 166, 'Contenido : 5', 0, 0, 0, 142),
-(222, 159, 'Contenido Lateral', 0, 0, 0, 0),
 (249, 142, 'Main', 0, 0, 0, 0),
-(276, 177, 'info_superior', 0, 0, 1, 0),
-(277, 177, 'search', 0, 0, 1, 0),
-(278, 177, 'Header Site Title', 0, 0, 1, 0),
-(279, 177, 'Espacio 2', 0, 0, 1, 0),
-(280, 177, 'Espacio 3', 0, 0, 1, 0),
-(281, 177, 'Header Navigation', 0, 0, 1, 0),
-(282, 177, 'Titulo', 0, 0, 0, 0),
-(283, 177, 'Contenido', 0, 0, 0, 0),
-(284, 177, 'Footer Contact', 0, 0, 1, 0),
-(285, 177, 'Footer Navigation', 0, 0, 1, 0),
-(286, 177, 'Footer Legal', 0, 0, 1, 0),
 (287, 1, 'Contenido A : 6', 0, 0, 0, 30),
 (288, 1, 'Contenido A : 7', 0, 0, 0, 30),
 (289, 160, 'Titulo : 8', 0, 0, 0, 73),
@@ -425,17 +402,6 @@ INSERT INTO `Areas` (`arID`, `cID`, `arHandle`, `arOverrideCollectionPermissions
 (366, 194, 'Footer Contact', 0, 0, 1, 0),
 (367, 194, 'Footer Navigation', 0, 0, 1, 0),
 (368, 194, 'Footer Legal', 0, 0, 1, 0),
-(369, 195, 'info_superior', 0, 0, 1, 0),
-(370, 195, 'search', 0, 0, 1, 0),
-(371, 195, 'Header Site Title', 0, 0, 1, 0),
-(372, 195, 'Espacio 2', 0, 0, 1, 0),
-(373, 195, 'Espacio 3', 0, 0, 1, 0),
-(374, 195, 'Header Navigation', 0, 0, 1, 0),
-(375, 195, 'Titulo', 0, 0, 0, 0),
-(376, 195, 'Contenido', 0, 0, 0, 0),
-(377, 195, 'Footer Contact', 0, 0, 1, 0),
-(378, 195, 'Footer Navigation', 0, 0, 1, 0),
-(379, 195, 'Footer Legal', 0, 0, 1, 0),
 (380, 196, 'info_superior', 0, 0, 1, 0),
 (381, 196, 'search', 0, 0, 1, 0),
 (382, 196, 'Header Site Title', 0, 0, 1, 0),
@@ -493,76 +459,6 @@ INSERT INTO `Areas` (`arID`, `cID`, `arHandle`, `arOverrideCollectionPermissions
 (535, 214, 'Footer Legal', 0, 0, 1, 0),
 (536, 214, 'Titulo : 14', 0, 0, 0, 530),
 (537, 214, 'Titulo : 15', 0, 0, 0, 530),
-(577, 218, 'Contenido', 0, 0, 0, 0),
-(578, 218, 'info_superior', 0, 0, 1, 0),
-(579, 218, 'search', 0, 0, 1, 0),
-(580, 218, 'Header Site Title', 0, 0, 1, 0),
-(581, 218, 'Header Navigation', 0, 0, 1, 0),
-(582, 218, 'Titulo', 0, 0, 0, 0),
-(583, 218, 'Titulo : 14', 0, 0, 0, 582),
-(584, 218, 'Titulo : 15', 0, 0, 0, 582),
-(585, 218, 'Contenido Lateral', 0, 0, 0, 0),
-(586, 218, 'Footer Contact', 0, 0, 1, 0),
-(587, 218, 'Footer Navigation', 0, 0, 1, 0),
-(588, 218, 'Footer Legal', 0, 0, 1, 0),
-(589, 219, 'Contenido', 0, 0, 0, 0),
-(590, 219, 'info_superior', 0, 0, 1, 0),
-(591, 219, 'search', 0, 0, 1, 0),
-(592, 219, 'Header Site Title', 0, 0, 1, 0),
-(593, 219, 'Header Navigation', 0, 0, 1, 0),
-(594, 219, 'Titulo', 0, 0, 0, 0),
-(595, 219, 'Titulo : 14', 0, 0, 0, 594),
-(596, 219, 'Titulo : 15', 0, 0, 0, 594),
-(597, 219, 'Contenido Lateral', 0, 0, 0, 0),
-(598, 219, 'Footer Contact', 0, 0, 1, 0),
-(599, 219, 'Footer Navigation', 0, 0, 1, 0),
-(600, 219, 'Footer Legal', 0, 0, 1, 0),
-(601, 220, 'Contenido', 0, 0, 0, 0),
-(602, 220, 'info_superior', 0, 0, 1, 0),
-(603, 220, 'search', 0, 0, 1, 0),
-(604, 220, 'Header Site Title', 0, 0, 1, 0),
-(605, 220, 'Header Navigation', 0, 0, 1, 0),
-(606, 220, 'Titulo', 0, 0, 0, 0),
-(607, 220, 'Titulo : 14', 0, 0, 0, 606),
-(608, 220, 'Titulo : 15', 0, 0, 0, 606),
-(609, 220, 'Contenido Lateral', 0, 0, 0, 0),
-(610, 220, 'Footer Contact', 0, 0, 1, 0),
-(611, 220, 'Footer Navigation', 0, 0, 1, 0),
-(612, 220, 'Footer Legal', 0, 0, 1, 0),
-(613, 221, 'Contenido', 0, 0, 0, 0),
-(614, 221, 'info_superior', 0, 0, 1, 0),
-(615, 221, 'search', 0, 0, 1, 0),
-(616, 221, 'Header Site Title', 0, 0, 1, 0),
-(617, 221, 'Header Navigation', 0, 0, 1, 0),
-(618, 221, 'Titulo', 0, 0, 0, 0),
-(619, 221, 'Titulo : 14', 0, 0, 0, 618),
-(620, 221, 'Titulo : 15', 0, 0, 0, 618),
-(621, 221, 'Contenido Lateral', 0, 0, 0, 0),
-(622, 221, 'Footer Contact', 0, 0, 1, 0),
-(623, 221, 'Footer Navigation', 0, 0, 1, 0),
-(624, 221, 'Footer Legal', 0, 0, 1, 0),
-(625, 222, 'Contenido', 0, 0, 0, 0),
-(626, 222, 'info_superior', 0, 0, 1, 0),
-(627, 222, 'search', 0, 0, 1, 0),
-(628, 222, 'Header Site Title', 0, 0, 1, 0),
-(629, 222, 'Header Navigation', 0, 0, 1, 0),
-(630, 222, 'Titulo', 0, 0, 0, 0),
-(631, 222, 'Titulo : 14', 0, 0, 0, 630),
-(632, 222, 'Titulo : 15', 0, 0, 0, 630),
-(633, 222, 'Contenido Lateral', 0, 0, 0, 0),
-(634, 222, 'Footer Contact', 0, 0, 1, 0),
-(635, 222, 'Footer Navigation', 0, 0, 1, 0),
-(636, 222, 'Footer Legal', 0, 0, 1, 0),
-(649, 224, 'Titulo', 0, 0, 0, 0),
-(650, 224, 'Contenido Lateral', 0, 0, 0, 0),
-(651, 224, 'info_superior', 0, 0, 1, 0),
-(652, 224, 'search', 0, 0, 1, 0),
-(653, 224, 'Header Site Title', 0, 0, 1, 0),
-(654, 224, 'Header Navigation', 0, 0, 1, 0),
-(655, 224, 'Contenido', 0, 0, 0, 0),
-(656, 224, 'Footer Contact', 0, 0, 1, 0),
-(657, 224, 'Footer Navigation', 0, 0, 1, 0),
-(658, 224, 'Footer Legal', 0, 0, 1, 0),
 (659, 225, 'info_superior', 0, 0, 1, 0),
 (660, 225, 'search', 0, 0, 1, 0),
 (661, 225, 'Header Site Title', 0, 0, 1, 0),
@@ -739,7 +635,17 @@ INSERT INTO `atBoolean` (`avID`, `value`) VALUES
 (322, 1),
 (323, 1),
 (355, 0),
-(357, 0);
+(357, 0),
+(374, 0),
+(375, 0),
+(376, 1),
+(377, 1),
+(378, 1),
+(379, 1),
+(380, 1),
+(381, 1),
+(382, 0),
+(383, 0);
 
 -- --------------------------------------------------------
 
@@ -1848,7 +1754,17 @@ INSERT INTO `AttributeValues` (`avID`, `akID`, `avDateAdded`, `uID`, `atID`) VAL
 (370, 19, '2018-08-28 11:54:42', 1, 5),
 (371, 18, '2018-08-28 11:56:07', 1, 10),
 (372, 8, '2018-08-28 11:56:07', 1, 8),
-(373, 19, '2018-08-28 11:56:07', 1, 5);
+(373, 19, '2018-08-28 11:56:07', 1, 5),
+(374, 5, '2018-08-28 12:38:59', 1, 3),
+(375, 5, '2018-08-28 12:41:04', 1, 3),
+(376, 5, '2018-08-28 12:42:22', 1, 3),
+(377, 5, '2018-08-28 12:42:22', 1, 3),
+(378, 5, '2018-08-28 12:42:22', 1, 3),
+(379, 5, '2018-08-28 12:42:23', 1, 3),
+(380, 5, '2018-08-28 12:42:23', 1, 3),
+(381, 5, '2018-08-28 12:42:23', 1, 3),
+(382, 5, '2018-08-28 12:42:49', 1, 3),
+(383, 5, '2018-08-28 12:44:15', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -2004,7 +1920,6 @@ INSERT INTO `BlockRelations` (`brID`, `bID`, `originalBID`, `relationType`) VALU
 (2, 17, 16, 'DUPLICATE'),
 (3, 43, 42, 'DUPLICATE'),
 (4, 45, 44, 'DUPLICATE'),
-(5, 56, 54, 'DUPLICATE'),
 (7, 154, 150, 'DUPLICATE'),
 (8, 155, 153, 'DUPLICATE'),
 (9, 160, 159, 'DUPLICATE'),
@@ -2036,13 +1951,7 @@ INSERT INTO `BlockRelations` (`brID`, `bID`, `originalBID`, `relationType`) VALU
 (38, 433, 13, 'DUPLICATE'),
 (39, 434, 432, 'DUPLICATE'),
 (40, 437, 238, 'DUPLICATE'),
-(41, 452, 94, 'DUPLICATE'),
-(42, 455, 97, 'DUPLICATE'),
 (45, 464, 95, 'DUPLICATE'),
-(46, 573, 572, 'DUPLICATE'),
-(47, 579, 94, 'DUPLICATE'),
-(48, 582, 452, 'DUPLICATE'),
-(49, 583, 582, 'DUPLICATE'),
 (50, 584, 433, 'DUPLICATE'),
 (51, 586, 437, 'DUPLICATE'),
 (52, 587, 421, 'DUPLICATE'),
@@ -2052,7 +1961,8 @@ INSERT INTO `BlockRelations` (`brID`, `bID`, `originalBID`, `relationType`) VALU
 (56, 591, 431, 'DUPLICATE'),
 (57, 593, 415, 'DUPLICATE'),
 (58, 706, 601, 'DUPLICATE'),
-(59, 707, 434, 'DUPLICATE');
+(59, 707, 434, 'DUPLICATE'),
+(60, 712, 17, 'DUPLICATE');
 
 -- --------------------------------------------------------
 
@@ -2103,7 +2013,6 @@ INSERT INTO `Blocks` (`bID`, `bName`, `bDateAdded`, `bDateModified`, `bFilename`
 (31, '', '2018-05-16 15:20:08', '2018-05-16 15:20:08', NULL, '0', 12, 1, NULL),
 (32, '', '2018-05-17 10:13:15', '2018-05-17 10:13:15', NULL, '0', 18, 1, NULL),
 (33, '', '2018-05-17 10:15:06', '2018-05-17 10:15:06', NULL, '0', 18, 1, NULL),
-(34, '', '2018-05-17 10:15:46', '2018-05-17 10:15:46', NULL, '0', 18, 1, NULL),
 (35, '', '2018-05-17 10:37:31', '2018-05-17 10:37:31', NULL, '0', 18, 1, NULL),
 (36, '', '2018-05-17 10:37:38', '2018-05-17 10:37:38', NULL, '0', 3, 1, NULL),
 (37, '', '2018-05-17 10:38:45', '2018-05-17 10:39:50', 'Menu lateral.php', '0', 11, 1, NULL),
@@ -2123,20 +2032,15 @@ INSERT INTO `Blocks` (`bID`, `bName`, `bDateAdded`, `bDateModified`, `bFilename`
 (51, '', '2018-05-17 10:52:41', '2018-05-17 10:52:59', 'Estilo A', '0', 19, 1, NULL),
 (52, '', '2018-05-17 10:55:07', '2018-05-17 10:55:15', 'Estilo A', '0', 19, 1, NULL),
 (53, '', '2018-05-17 11:00:30', '2018-05-17 11:00:38', 'materialboxed.php', '0', 27, 1, NULL),
-(54, '', '2018-05-17 11:09:02', '2018-05-17 11:09:23', 'SENATICs Estilo C [img big] (Lista Horizontal)', '0', 30, 1, NULL),
 (56, '', '2018-05-17 11:15:11', '2018-05-17 11:15:11', 'SENATICs Estilo C [img big] (Lista Horizontal)', '1', 30, 1, NULL),
 (92, '', '2018-05-17 11:18:51', '2018-05-17 11:18:51', NULL, '0', 18, 1, NULL),
-(94, '', '2018-05-17 11:20:34', '2018-05-21 10:11:32', 'Estilo-A.php', '0', 20, 1, NULL),
 (95, '', '2018-05-17 11:22:14', '2018-05-17 11:22:14', NULL, '0', 12, 1, NULL),
 (96, '', '2018-05-17 11:22:33', '2018-05-17 11:22:33', NULL, '0', 12, 1, NULL),
-(97, '', '2018-05-17 11:23:02', '2018-05-17 11:23:09', NULL, '0', 36, 1, NULL),
 (98, '', '2018-05-17 11:23:47', '2018-05-17 11:23:47', NULL, '0', 13, 1, NULL),
 (101, '', '2018-05-17 11:25:59', '2018-05-17 11:30:14', 'Estilo-A.php', '0', 20, 1, NULL),
 (102, '', '2018-05-17 11:26:55', '2018-05-17 11:27:09', '', '0', 36, 1, NULL),
 (118, '', '2018-05-17 11:30:54', '2018-05-17 11:30:54', NULL, '0', 3, 1, NULL),
 (119, '', '2018-05-17 11:32:05', '2018-05-17 11:32:05', NULL, '0', 12, 1, NULL),
-(148, '', '2018-05-17 11:36:59', '2018-05-17 11:36:59', NULL, '0', 50, 1, NULL),
-(149, '', '2018-05-17 11:52:02', '2018-05-17 11:52:02', NULL, '0', 51, 1, NULL),
 (150, '', '2018-05-17 11:57:52', '2018-05-17 11:57:52', NULL, '0', 45, 1, NULL),
 (151, '', '2018-05-17 11:58:45', '2018-05-17 11:58:45', NULL, '0', 1, 1, NULL),
 (152, '', '2018-05-17 11:59:35', '2018-05-17 11:59:35', NULL, '0', 40, 1, NULL),
@@ -2218,16 +2122,6 @@ INSERT INTO `Blocks` (`bID`, `bName`, `bDateAdded`, `bDateModified`, `bFilename`
 (456, '', '2018-05-21 09:35:52', '2018-05-21 09:35:52', NULL, '0', 3, 1, NULL),
 (462, '', '2018-05-21 09:44:00', '2018-05-21 09:44:34', 'SENATICs Estilo A [1 col] (Lista Vertical-Slide)', '0', 30, 1, NULL),
 (464, '', '2018-05-21 09:44:58', '2018-05-21 09:44:58', NULL, '1', 12, 1, NULL),
-(498, '', '2018-05-21 09:54:37', '2018-05-21 09:54:37', NULL, '0', 12, 1, NULL),
-(519, '', '2018-05-21 09:58:05', '2018-05-21 09:58:05', NULL, '0', 12, 1, NULL),
-(533, '', '2018-05-21 09:59:49', '2018-05-21 09:59:49', NULL, '0', 12, 1, NULL),
-(557, '', '2018-05-21 10:02:01', '2018-05-21 10:02:01', NULL, '0', 12, 1, NULL),
-(572, '', '2018-05-21 10:03:30', '2018-05-21 10:03:30', NULL, '0', 12, 1, NULL),
-(573, '', '2018-05-21 10:04:33', '2018-05-21 10:04:33', NULL, '1', 12, 1, NULL),
-(579, '', '2018-05-21 10:11:49', '2018-05-21 10:15:54', 'Estilo-A.php', '1', 20, 1, NULL),
-(581, '', '2018-05-21 10:13:07', '2018-05-21 10:13:07', NULL, '0', 12, 1, NULL),
-(582, '', '2018-05-21 10:13:20', '2018-05-21 10:13:57', '', '1', 20, 1, NULL),
-(583, '', '2018-05-21 10:14:26', '2018-05-21 10:14:26', 'Estilo-A.php', '1', 20, 1, NULL),
 (584, '', '2018-05-21 10:23:32', '2018-08-27 19:06:08', 'Estilo A', '1', 32, 1, NULL),
 (585, '', '2018-05-21 10:24:22', '2018-05-21 10:24:22', NULL, '0', 25, 1, NULL),
 (586, '', '2018-05-21 10:24:39', '2018-05-21 10:24:39', '', '1', 12, 1, NULL),
@@ -2238,12 +2132,6 @@ INSERT INTO `Blocks` (`bID`, `bName`, `bDateAdded`, `bDateModified`, `bFilename`
 (591, '', '2018-08-28 11:25:09', '2018-08-28 11:25:09', '', '1', 42, 1, NULL),
 (592, '', '2018-08-28 11:34:02', '2018-08-28 11:34:02', NULL, '0', 18, 1, NULL),
 (593, '', '2018-08-28 11:34:18', '2018-08-28 11:34:26', 'SENATICs Estilo C [img small] (Lista Horizontal)', '1', 30, 1, NULL),
-(594, '', '2018-08-28 11:38:24', '2018-08-28 11:38:24', NULL, '0', 30, 1, NULL),
-(595, '', '2018-08-28 11:39:07', '2018-08-28 11:39:07', NULL, '0', 36, 1, NULL),
-(596, '', '2018-08-28 11:39:35', '2018-08-28 11:39:43', 'Estilo-A.php', '0', 20, 1, NULL),
-(597, '', '2018-08-28 11:39:51', '2018-08-28 11:39:51', NULL, '0', 26, 1, NULL),
-(598, '', '2018-08-28 11:39:55', '2018-08-28 11:39:55', NULL, '0', 26, 1, NULL),
-(599, '', '2018-08-28 11:40:36', '2018-08-28 11:40:36', NULL, '0', 13, 1, NULL),
 (600, '', '2018-08-28 11:41:56', '2018-08-28 11:41:56', NULL, '0', 30, 1, NULL),
 (601, '', '2018-08-28 11:42:08', '2018-08-28 11:42:08', NULL, '0', 30, 1, NULL),
 (602, '', '2018-08-28 11:42:33', '2018-08-28 11:42:53', 'Estilo-A.php', '0', 20, 1, NULL),
@@ -2258,7 +2146,8 @@ INSERT INTO `Blocks` (`bID`, `bName`, `bDateAdded`, `bDateModified`, `bFilename`
 (687, '', '2018-08-28 11:55:57', '2018-08-28 11:55:57', NULL, '0', 12, 1, NULL),
 (705, '', '2018-08-28 11:57:37', '2018-08-28 11:57:37', NULL, '0', 12, 1, NULL),
 (706, '', '2018-08-28 11:58:54', '2018-08-28 11:59:28', 'SENATICs Estilo C [img big] (Lista Horizontal)', '1', 30, 1, NULL),
-(707, '', '2018-08-28 12:07:07', '2018-08-28 12:07:20', 'Estilo A', '1', 32, 1, NULL);
+(707, '', '2018-08-28 12:07:07', '2018-08-28 12:07:20', 'Estilo A', '1', 32, 1, NULL),
+(712, '', '2018-08-28 12:47:13', '2018-08-28 12:47:14', NULL, '1', 39, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -2316,54 +2205,53 @@ INSERT INTO `BlockTypes` (`btID`, `btHandle`, `btName`, `btDescription`, `btCopy
 (2, 'core_page_type_composer_control_output', 'Composer Control', 'Proxy block for blocks that need to be output through composer.', 0, 0, 1, 0, 0, 0, 0, 400, 400, 0),
 (3, 'core_scrapbook_display', 'Scrapbook Display', 'Proxy block for blocks pasted through the scrapbook.', 0, 0, 1, 0, 0, 0, 0, 400, 400, 0),
 (4, 'core_stack_display', 'Stack Display', 'Proxy block for stacks added through the UI.', 0, 0, 1, 0, 0, 0, 0, 400, 400, 0),
-(5, 'core_conversation', 'Conversation', 'Displays conversations on a page.', 1, 0, 0, 0, 0, 0, 0, 400, 400, 0),
+(5, 'core_conversation', 'Conversation', 'Displays conversations on a page.', 1, 0, 0, 0, 0, 0, 1, 400, 400, 0),
 (6, 'dashboard_featured_addon', 'Dashboard Featured Add-On', 'Features an add-on from concrete5.org.', 0, 0, 1, 0, 0, 0, 0, 300, 100, 0),
 (7, 'dashboard_featured_theme', 'Dashboard Featured Theme', 'Features a theme from concrete5.org.', 0, 0, 1, 0, 0, 0, 0, 300, 100, 0),
 (8, 'dashboard_newsflow_latest', 'Dashboard Newsflow Latest', 'Grabs the latest newsflow data from concrete5.org.', 0, 0, 1, 0, 0, 0, 0, 400, 400, 0),
 (9, 'dashboard_app_status', 'Dashboard App Status', 'Displays update and welcome back information on your dashboard.', 0, 0, 1, 0, 0, 0, 0, 400, 400, 0),
 (10, 'dashboard_site_activity', 'Dashboard Site Activity', 'Displays a summary of website activity.', 0, 0, 1, 0, 0, 0, 0, 400, 400, 0),
-(11, 'autonav', 'Auto-Nav', 'Creates navigation trees and sitemaps.', 0, 0, 0, 0, 0, 0, 0, 800, 350, 0),
-(12, 'content', 'Content', 'HTML/WYSIWYG Editor Content.', 0, 0, 0, 1, 1, 0, 0, 600, 465, 0),
-(13, 'date_navigation', 'Date Navigation', 'Displays a list of months to filter a page list by.', 0, 0, 0, 0, 0, 0, 0, 400, 450, 0),
-(14, 'external_form', 'External Form', 'Include external forms in the filesystem and place them on pages.', 0, 0, 0, 0, 0, 0, 0, 370, 175, 0),
-(15, 'file', 'File', 'Link to files stored in the asset library.', 0, 0, 0, 0, 0, 0, 0, 300, 320, 0),
-(16, 'page_attribute_display', 'Page Attribute Display', 'Displays the value of a page attribute for the current page.', 0, 0, 0, 0, 0, 0, 0, 500, 365, 0),
-(17, 'form', 'Form', 'Build simple forms and surveys.', 1, 0, 0, 0, 0, 0, 0, 420, 430, 0),
-(18, 'page_title', 'Page Title', 'Displays a Page\'s Title', 0, 0, 0, 0, 0, 0, 0, 400, 400, 0),
-(19, 'feature', 'Feature', 'Displays an icon, a title, and a short paragraph description.', 0, 0, 0, 0, 0, 0, 0, 400, 520, 0),
-(20, 'topic_list', 'Topic List', 'Displays a list of your site\'s topics, allowing you to click on them to filter a page list.', 0, 0, 0, 0, 0, 0, 0, 400, 400, 0),
-(21, 'social_links', 'Social Links', 'Allows users to add social icons to their website', 0, 0, 0, 0, 0, 0, 0, 400, 400, 0),
-(22, 'testimonial', 'Testimonial', 'Displays a quote or paragraph next to biographical information and a person\'s picture.', 0, 0, 0, 0, 0, 0, 0, 450, 560, 0),
-(23, 'share_this_page', 'Share This Page', 'Allows users to share this page with social networks.', 0, 0, 0, 0, 0, 0, 0, 400, 400, 0),
-(24, 'google_map', 'Google Map', 'Enter an address and a Google Map of that location will be placed in your page.', 0, 0, 0, 0, 0, 0, 0, 400, 460, 0),
-(25, 'html', 'HTML', 'For adding HTML by hand.', 0, 0, 0, 0, 0, 1, 0, 600, 500, 0),
-(26, 'horizontal_rule', 'Horizontal Rule', 'Adds a thin hairline horizontal divider to the page.', 0, 0, 0, 0, 0, 1, 0, 400, 400, 0),
-(27, 'image', 'Image', 'Adds images and onstates from the library to pages.', 0, 0, 0, 0, 0, 0, 0, 400, 550, 0),
-(28, 'faq', 'FAQ', 'Frequently Asked Questions Block', 0, 0, 0, 0, 0, 0, 0, 600, 465, 0),
-(29, 'next_previous', 'Next & Previous Nav', 'Navigate through sibling pages.', 0, 0, 0, 0, 0, 0, 0, 430, 400, 0),
-(30, 'page_list', 'Page List', 'List pages based on type, area.', 0, 0, 0, 0, 0, 0, 0, 800, 350, 0),
-(31, 'rss_displayer', 'RSS Displayer', 'Fetch, parse and display the contents of an RSS or Atom feed.', 0, 0, 0, 0, 0, 0, 0, 400, 550, 0),
-(32, 'search', 'Search', 'Add a search box to your site.', 0, 0, 0, 0, 0, 0, 0, 400, 420, 0),
-(33, 'image_slider', 'Image Slider', 'Display your images and captions in an attractive slideshow format.', 0, 0, 0, 0, 0, 1, 0, 600, 550, 0),
-(34, 'survey', 'Survey', 'Provide a simple survey, along with results in a pie chart format.', 0, 0, 0, 0, 0, 0, 0, 420, 400, 0),
-(35, 'switch_language', 'Switch Language', 'Adds a front-end language switcher to your website.', 0, 0, 0, 0, 0, 0, 0, 500, 150, 0),
-(36, 'tags', 'Tags', 'List pages based on type, area.', 0, 0, 0, 0, 0, 0, 0, 450, 439, 0),
-(37, 'video', 'Video Player', 'Embeds uploaded video into a web page. Supports WebM, Ogg, and Quicktime/MPEG4 formats.', 0, 0, 0, 0, 0, 0, 0, 320, 270, 0),
-(38, 'youtube', 'YouTube Video', 'Embeds a YouTube Video in your web page.', 0, 0, 0, 0, 0, 0, 0, 400, 490, 0),
-(39, 'svg_social_media_icons', 'SVG Social Media Icons', 'Add SVG social media icons with PNG fallback on your pages.', 0, 0, 0, 0, 0, 0, 0, 450, 580, 1),
-(40, 'agregarslider', 'Slider de Fotos', 'Despliega tus imagenes o noticias en un Slider de Fotos!!', 0, 0, 0, 0, 0, 1, 0, 700, 500, 0),
-(41, 'boton', 'Boton', 'Agrega un Boton al sitio web', 0, 0, 0, 0, 0, 0, 0, 950, 400, 0),
-(42, 'carrusel', 'Carrusel Banners', 'Muestra un Carrusel de fotos', 0, 0, 0, 0, 0, 1, 0, 700, 650, 0),
-(43, 'convenios', 'Convenios & Documentos', 'Permite listar los Convenios y Documentos', 0, 0, 0, 0, 0, 0, 0, 600, 500, 0),
-(44, 'iframe', 'Iframe Popup', 'Agrega un Popup con Iframe', 0, 0, 0, 0, 0, 0, 0, 400, 550, 0),
-(45, 'leytransparencia', 'Ley 5189/14', 'Administrador de la Ley Transparencia 5189/14', 0, 0, 0, 0, 0, 0, 0, 600, 500, 0),
-(46, 'listaritems', 'Galería de Fotos', 'Despliega una lista de Imagenes Dinamicas!!', 0, 0, 0, 0, 0, 1, 0, 1024, 600, 0),
-(47, 'listartramites', 'Lista de Tramites', 'Despliega una lista de Trámites que la Institución Ofrece!!', 0, 0, 0, 0, 0, 1, 0, 1024, 750, 0),
-(48, 'mapas', 'Mapas Senatics', 'Introduzca una dirección y un mapa de Google de la ubicación Que se colocará en su página.', 0, 0, 0, 0, 0, 0, 0, 1050, 500, 0),
-(49, 'publicaciones', 'Publicaciones', 'Permite realizar publicaciones, anexar al mismo enlaces a archivos/sitios', 0, 0, 0, 0, 0, 1, 0, 700, 650, 0),
-(50, 'transparenciaactiva', 'Transparencia Activa', 'Administrador de Transparencia Activa permite insertar por cada bloque un conjunto de archivos del mismo tema, y asociarle un Autor del mismo como asi tambien indicar a que mes corresponde', 0, 0, 0, 0, 0, 0, 0, 1024, 600, 0),
-(51, 'open_data', 'Datos Abiertos', '', 0, 0, 0, 0, 0, 0, 0, 400, 400, 2),
-(52, 'event_calendar', 'Event Calendar', '', 0, 0, 0, 0, 0, 0, 0, 400, 200, 3);
+(11, 'autonav', 'Auto-Nav', 'Creates navigation trees and sitemaps.', 0, 0, 0, 0, 0, 0, 2, 800, 350, 0),
+(12, 'content', 'Content', 'HTML/WYSIWYG Editor Content.', 0, 0, 0, 1, 1, 0, 3, 600, 465, 0),
+(13, 'date_navigation', 'Date Navigation', 'Displays a list of months to filter a page list by.', 0, 0, 0, 0, 0, 0, 4, 400, 450, 0),
+(14, 'external_form', 'External Form', 'Include external forms in the filesystem and place them on pages.', 0, 0, 0, 0, 0, 0, 5, 370, 175, 0),
+(15, 'file', 'File', 'Link to files stored in the asset library.', 0, 0, 0, 0, 0, 0, 6, 300, 320, 0),
+(16, 'page_attribute_display', 'Page Attribute Display', 'Displays the value of a page attribute for the current page.', 0, 0, 0, 0, 0, 0, 7, 500, 365, 0),
+(17, 'form', 'Form', 'Build simple forms and surveys.', 1, 0, 0, 0, 0, 0, 8, 420, 430, 0),
+(18, 'page_title', 'Page Title', 'Displays a Page\'s Title', 0, 0, 0, 0, 0, 0, 9, 400, 400, 0),
+(19, 'feature', 'Feature', 'Displays an icon, a title, and a short paragraph description.', 0, 0, 0, 0, 0, 0, 10, 400, 520, 0),
+(20, 'topic_list', 'Topic List', 'Displays a list of your site\'s topics, allowing you to click on them to filter a page list.', 0, 0, 0, 0, 0, 0, 11, 400, 400, 0),
+(21, 'social_links', 'Social Links', 'Allows users to add social icons to their website', 0, 0, 0, 0, 0, 0, 12, 400, 400, 0),
+(22, 'testimonial', 'Testimonial', 'Displays a quote or paragraph next to biographical information and a person\'s picture.', 0, 0, 0, 0, 0, 0, 13, 450, 560, 0),
+(23, 'share_this_page', 'Share This Page', 'Allows users to share this page with social networks.', 0, 0, 0, 0, 0, 0, 14, 400, 400, 0),
+(24, 'google_map', 'Google Map', 'Enter an address and a Google Map of that location will be placed in your page.', 0, 0, 0, 0, 0, 0, 15, 400, 460, 0),
+(25, 'html', 'HTML', 'For adding HTML by hand.', 0, 0, 0, 0, 0, 1, 16, 600, 500, 0),
+(26, 'horizontal_rule', 'Horizontal Rule', 'Adds a thin hairline horizontal divider to the page.', 0, 0, 0, 0, 0, 1, 17, 400, 400, 0),
+(27, 'image', 'Image', 'Adds images and onstates from the library to pages.', 0, 0, 0, 0, 0, 0, 18, 400, 550, 0),
+(28, 'faq', 'FAQ', 'Frequently Asked Questions Block', 0, 0, 0, 0, 0, 0, 19, 600, 465, 0),
+(29, 'next_previous', 'Next & Previous Nav', 'Navigate through sibling pages.', 0, 0, 0, 0, 0, 0, 20, 430, 400, 0),
+(30, 'page_list', 'Page List', 'List pages based on type, area.', 0, 0, 0, 0, 0, 0, 21, 800, 350, 0),
+(31, 'rss_displayer', 'RSS Displayer', 'Fetch, parse and display the contents of an RSS or Atom feed.', 0, 0, 0, 0, 0, 0, 22, 400, 550, 0),
+(32, 'search', 'Search', 'Add a search box to your site.', 0, 0, 0, 0, 0, 0, 23, 400, 420, 0),
+(33, 'image_slider', 'Image Slider', 'Display your images and captions in an attractive slideshow format.', 0, 0, 0, 0, 0, 1, 24, 600, 550, 0),
+(34, 'survey', 'Survey', 'Provide a simple survey, along with results in a pie chart format.', 0, 0, 0, 0, 0, 0, 25, 420, 400, 0),
+(35, 'switch_language', 'Switch Language', 'Adds a front-end language switcher to your website.', 0, 0, 0, 0, 0, 0, 26, 500, 150, 0),
+(36, 'tags', 'Tags', 'List pages based on type, area.', 0, 0, 0, 0, 0, 0, 27, 450, 439, 0),
+(37, 'video', 'Video Player', 'Embeds uploaded video into a web page. Supports WebM, Ogg, and Quicktime/MPEG4 formats.', 0, 0, 0, 0, 0, 0, 28, 320, 270, 0),
+(38, 'youtube', 'YouTube Video', 'Embeds a YouTube Video in your web page.', 0, 0, 0, 0, 0, 0, 29, 400, 490, 0),
+(39, 'svg_social_media_icons', 'SVG Social Media Icons', 'Add SVG social media icons with PNG fallback on your pages.', 0, 0, 0, 0, 0, 0, 30, 450, 580, 1),
+(40, 'agregarslider', 'Slider de Fotos', 'Despliega tus imagenes o noticias en un Slider de Fotos!!', 0, 0, 0, 0, 0, 1, 31, 700, 500, 0),
+(41, 'boton', 'Boton', 'Agrega un Boton al sitio web', 0, 0, 0, 0, 0, 0, 32, 950, 400, 0),
+(42, 'carrusel', 'Carrusel Banners', 'Muestra un Carrusel de fotos', 0, 0, 0, 0, 0, 1, 33, 700, 650, 0),
+(43, 'convenios', 'Convenios & Documentos', 'Permite listar los Convenios y Documentos', 0, 0, 0, 0, 0, 0, 34, 600, 500, 0),
+(44, 'iframe', 'Iframe Popup', 'Agrega un Popup con Iframe', 0, 0, 0, 0, 0, 0, 35, 400, 550, 0),
+(45, 'leytransparencia', 'Ley 5189/14', 'Administrador de la Ley Transparencia 5189/14', 0, 0, 0, 0, 0, 0, 36, 600, 500, 0),
+(46, 'listaritems', 'Galería de Fotos', 'Despliega una lista de Imagenes Dinamicas!!', 0, 0, 0, 0, 0, 1, 37, 1024, 600, 0),
+(47, 'listartramites', 'Lista de Tramites', 'Despliega una lista de Trámites que la Institución Ofrece!!', 0, 0, 0, 0, 0, 1, 38, 1024, 750, 0),
+(48, 'mapas', 'Mapas Senatics', 'Introduzca una dirección y un mapa de Google de la ubicación Que se colocará en su página.', 0, 0, 0, 0, 0, 0, 39, 1050, 500, 0),
+(49, 'publicaciones', 'Publicaciones', 'Permite realizar publicaciones, anexar al mismo enlaces a archivos/sitios', 0, 0, 0, 0, 0, 1, 40, 700, 650, 0),
+(50, 'transparenciaactiva', 'Transparencia Activa', 'Administrador de Transparencia Activa permite insertar por cada bloque un conjunto de archivos del mismo tema, y asociarle un Autor del mismo como asi tambien indicar a que mes corresponde', 0, 0, 0, 0, 0, 0, 41, 1024, 600, 0),
+(52, 'event_calendar', 'Event Calendar', '', 0, 0, 0, 0, 0, 0, 42, 400, 200, 3);
 
 -- --------------------------------------------------------
 
@@ -2666,20 +2554,12 @@ INSERT INTO `btContentLocal` (`bID`, `content`) VALUES
 (421, '<p>Portal construido conjuntamente con la <a href="https://www.senatics.gov.py/" target="_blank">SENATICs</a>\r\n</p><p>Secretaría Nacional de Tecnologías de la Información y Comunicación - 2018\r\n</p>'),
 (437, '<h6><strong><i class="fa fa-map-marker"></i> Dirección:</strong> Complejo Santos E2 - Gral. Santos 1170 c/ Concordia</h6><h6><strong><i class="fa fa-phone"></i>Telefono:</strong> (+595 21) 217 - 9000</h6><h6><strong><i class="fa fa-clock-o"></i> Horarios de Atención:</strong> de 07:00hs a 15:00hs</h6><h6><strong><i class="fa fa-envelope"></i> E-mail:</strong> <a href="mailto:mailto:comunicacion@senatics.gov.py">comunicacion@senatics.gov.py</a></h6>'),
 (464, '<h5>Últimas Noticias</h5>'),
-(498, '<p data-redactor-inserted-image="true"><a href="{CCM:BASE_URL}/index.php/download_file/view_inline/14" data-concrete5-link-lightbox="image"><concrete-picture fID="14" id="image-marker" width="252" height="189" alt="" style="width: 252px; height: 189px; float: left; margin: 0px 10px 10px 0px;" /></a></p><h2>¿Qué es Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong> es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><h2>¿Por qué lo usamos?</h2><p>Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).</p>\n<h2>¿De dónde viene?</h2><p>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32</p><p>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</p>'),
-(519, '<p data-redactor-inserted-image="true"><a href="{CCM:BASE_URL}/index.php/download_file/view_inline/15" data-concrete5-link-lightbox="image"><concrete-picture fID="15" id="image-marker" alt="" width="411" height="259" style="float: right; width: 411px; height: 259px; margin: 0px 0px 10px 10px;" /></a></p><h2>¿Qué es Lorem Ipsum?</h2><p style="text-align: justify;"><strong>Lorem Ipsum</strong> es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><h2>¿Por qué lo usamos?</h2><p style="text-align: justify;">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).</p>\n<h2>¿De dónde viene?</h2><p>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32</p><p>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</p><h2>¿Dónde puedo conseguirlo?</h2><p>Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.</p>'),
-(533, '<p data-redactor-inserted-image="true"><a href="{CCM:BASE_URL}/index.php/download_file/view_inline/16" data-concrete5-link-lightbox="image"><concrete-picture fID="16" id="image-marker" width="554" height="309" style="width: 554px; height: 309px; display: block; margin: auto;" alt="" /></a></p><h2>¿Qué es Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong> es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><h2>¿Por qué lo usamos?</h2><p>Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).</p>\n<h2>¿De dónde viene?</h2><p>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32</p><p>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</p><h2>¿Dónde puedo conseguirlo?</h2><p>Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.</p>'),
-(557, '<p><a href="{CCM:BASE_URL}/index.php/download_file/view_inline/17" data-concrete5-link-lightbox="image"><concrete-picture fID="17" id="image-marker" width="482" height="271" style="width: 482px; height: 271px; display: block; margin: auto;" alt="" /></a></p><h2>¿Qué es Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong> es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><h2>¿Por qué lo usamos?</h2><p>Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).</p><p data-redactor-inserted-image="true"><a href="{CCM:BASE_URL}/index.php/download_file/view_inline/31" data-concrete5-link-lightbox="image"><concrete-picture fID="31" id="image-marker" style="width: 372px; height: 375px; float: left; margin: 0px 10px 10px 0px;" width="372" height="375" alt="" /></a></p>\n<h2>¿De dónde viene?</h2><p>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32</p><p>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</p><h2>¿Dónde puedo conseguirlo?</h2><p>Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.</p>'),
-(572, '<p data-redactor-inserted-image="true"><a href="{CCM:BASE_URL}/index.php/download_file/view_inline/33" data-concrete5-link-lightbox="image"><concrete-picture fID="33" id="image-marker" width="340" height="343" style="width: 340px; height: 343px; float: left; margin: 0px 10px 10px 0px;" alt="" /></a></p><h2>¿Qué es Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong> es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><h2>¿Por qué lo usamos?</h2><p>Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).</p>\n<h2>¿De dónde viene?</h2><p>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32</p><p>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</p><h2>¿Dónde puedo conseguirlo?</h2><p>Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.</p>'),
-(573, '<h2>¿Qué es Lorem Ipsum?</h2><p data-redactor-inserted-image="true"><a href="{CCM:BASE_URL}/index.php/download_file/view_inline/33" data-concrete5-link-lightbox="image"><concrete-picture fID="33" id="image-marker" width="390" height="394" alt="" style="width: 390px; height: 394px; float: left; margin: 0px 10px 10px 0px;" /></a>\r\n</p><p style="text-align: justify;"><strong>Lorem Ipsum</strong> es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.\r\n</p><h2><br></h2><h2><br></h2><h2>¿Por qué lo usamos?</h2><p style="text-align: justify;">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).\r\n</p><h2>¿De dónde viene?</h2><p>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32\r\n</p><p>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.\r\n</p><h2>¿Dónde puedo conseguirlo?</h2><p>Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.\r\n</p>'),
-(581, '<p data-redactor-inserted-image="true"><a href="{CCM:BASE_URL}/index.php/download_file/view_inline/14" data-concrete5-link-lightbox="image"><concrete-picture fID="14" id="image-marker" width="252" height="189" alt="" style="width: 252px; height: 189px; float: left; margin: 0px 10px 10px 0px;" /></a></p><h2>¿Qué es Lorem Ipsum?</h2><p><strong>Lorem Ipsum</strong> es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><h2>¿Por qué lo usamos?</h2><p>Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).</p><h2>¿De dónde viene?</h2><p>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32</p><p>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</p>'),
 (585, '<script>\r\n    var min=12;\r\n    var max=30;\r\n    function increaseFontSize() {\r\n\r\n       var p = document.getElementsByTagName(\'p\');\r\n       var blockquote = document.getElementsByTagName(\'blockquote\');\r\n       var collection = document.getElementsByClassName("collection");\r\n       \r\n       for(i=0;i<p.length;i++) {\r\n\r\n          if(p[i].style.fontSize) {\r\n             var s = parseInt(p[i].style.fontSize.replace("px",""));\r\n          } else {\r\n\r\n             var s = 14;\r\n          }\r\n          if(s!=max) {\r\n\r\n             s += 1;\r\n          }\r\n          p[i].style.fontSize = s+"px";\r\n       }\r\n       for(i=0;i<blockquote.length;i++) {\r\n          if(blockquote[i].style.fontSize) {\r\n             var b = parseInt(blockquote[i].style.fontSize.replace("px",""));\r\n          } else {\r\n\r\n             var b = 14;\r\n          }\r\n          if(s!=max) {\r\n\r\n             b += 1;\r\n          }\r\n          blockquote[i].style.fontSize = b+"px";\r\n       }\r\n       for(i=0;i<collection.length;i++) {\r\n          if(collection[i].style.fontSize) {\r\n             var c = parseInt(collection[i].style.fontSize.replace("px",""));\r\n          } else {\r\n\r\n             var c = 14;\r\n          }\r\n          if(s!=max) {\r\n\r\n             c += 1;\r\n          }\r\n          collection[i].style.fontSize = c+"px";\r\n       }\r\n    }\r\n    function decreaseFontSize() {\r\n       var p = document.getElementsByTagName(\'p\');\r\n       var blockquote = document.getElementsByTagName(\'blockquote\');\r\n       var collection = document.getElementsByClassName("collection");\r\n       \r\n       for(i=0;i<p.length;i++) {\r\n          if(p[i].style.fontSize) {\r\n             var s = parseInt(p[i].style.fontSize.replace("px",""));\r\n          } else {\r\n             var s = 14;\r\n          }\r\n          if(s!=min) {\r\n             s -= 1;\r\n          }\r\n          p[i].style.fontSize = s+"px";\r\n       }\r\n       for(i=0;i<blockquote.length;i++) {\r\n          if(blockquote[i].style.fontSize) {\r\n             var b = parseInt(blockquote[i].style.fontSize.replace("px",""));\r\n          } else {\r\n             var b = 14;\r\n          }\r\n          if(s!=max) {\r\n             b -= 1;\r\n          }\r\n          blockquote[i].style.fontSize = b+"px"\r\n       }\r\n       for(i=0;i<collection.length;i++) {\r\n          if(collection[i].style.fontSize) {\r\n             var c = parseInt(collection[i].style.fontSize.replace("px",""));\r\n          } else {\r\n\r\n             var c = 14;\r\n          }\r\n          if(s!=max) {\r\n\r\n             c -= 1;\r\n          }\r\n          collection[i].style.fontSize = c+"px";\r\n       }\r\n    }\r\n    function normalFontSize() {\r\n       var p = document.getElementsByTagName(\'p\');\r\n       var blockquote = document.getElementsByTagName(\'blockquote\');\r\n       var collection = document.getElementsByClassName("collection");\r\n       \r\n       for(i=0;i<p.length;i++) {\r\n          p[i].removeAttribute(\'style\');\r\n       }\r\n       for(i=0;i<blockquote.length;i++) {\r\n          blockquote[i].removeAttribute(\'style\');\r\n       }\r\n       for(i=0;i<collection.length;i++) {\r\n          collection[i].removeAttribute(\'style\');\r\n       }\r\n    }\r\n	function lectura() {\r\n          var modo_lectura_datos = document.getElementById("fondo_sitio").style.background;\r\n          \r\n          if (modo_lectura_datos == "black" || modo_lectura_datos == "black none repeat scroll 0% 0%"){\r\n    		  document.getElementById("fondo_sitio").removeAttribute("style");\r\n    		  document.getElementById("cabecera").style.display=\'block\';\r\n    	  }else{\r\n    	      document.getElementById("fondo_sitio").style.background=\'black\';\r\n    	      document.getElementById("cabecera").style.display=\'none\';\r\n    	  }\r\n	}\r\n</script>\r\n\r\n\r\n<div class="fixed-action-btn horizontal click-to-toggle invisible_smartphone" style="bottom: 45px; right: 24px;">\r\n    <a class="btn-floating btn-large red">\r\n      <i class="large mdi-navigation-menu"></i>\r\n    </a>\r\n    <style>\r\n        .accesibilidad li{\r\n            list-style-type: none !important;\r\n        }\r\n        \r\n    </style>\r\n    <ul class="accesibilidad">\r\n      <li class="hidden-xs"><a href="javascript:lectura();" class="btn-floating red"><i class="material-icons">settings_brightness</i></a></li>\r\n      <li><a href="javascript:increaseFontSize();" class="btn-floating green"><i class="material-icons">zoom_in</i></a></li>\r\n      <li><a href="javascript:decreaseFontSize();" class="btn-floating blue"><i class="material-icons">zoom_out</i></a></li>\r\n      <li><a href="javascript:normalFontSize();" class="btn-floating orange"><i class="material-icons">spellcheck</i></a></li>\r\n    </ul>\r\n  </div>'),
 (586, '<h6><span style="font-size: 12px;"><strong><i class="fa fa-map-marker"></i> Dirección:</strong> Complejo Santos E2 - Gral. Santos 1170 c/ Concordia</span></h6><h6><span style="font-size: 12px;"><strong><i class="fa fa-phone"></i>Telefono:</strong> (+595 21) 217 - 9000</span></h6><h6><span style="font-size: 12px;"><strong><i class="fa fa-clock-o"></i> Horarios de Atención:</strong> de 07:00hs a 15:00hs</span></h6><h6><span style="font-size: 12px;"><strong><i class="fa fa-envelope"></i> E-mail:</strong> </span><a href="mailto:mailto:comunicacion@senatics.gov.py"><span style="font-size: 12px;">comunicacion@senatics.gov.py</span></a></h6>'),
 (587, '<p>Portal construido conjuntamente con la <a href="https://www.senatics.gov.py/" target="_blank">SENATICs</a>\r\n</p><p>Secretaría Nacional de Tecnologías de la Información y Comunicación</p>'),
 (589, '<p data-redactor-inserted-image="true"><concrete-picture fID="41" id="image-marker" width="314" height="122" style="width: 314px; height: 122px;" /></p><h6><strong><i class="fa fa-map-marker"></i> Dirección:</strong> Complejo Santos E2 - Gral. Santos 1170 c/ Concordia</h6><h6><strong><i class="fa fa-phone"></i>Telefono:</strong> (+595 21) 217 - 9000</h6><h6><strong><i class="fa fa-clock-o"></i> Horarios de Atención:</strong> de 07:00hs a 15:00hs</h6><h6><strong><i class="fa fa-envelope"></i> E-mail:</strong> <a href="mailto:mailto:comunicacion@senatics.gov.py">comunicacion@senatics.gov.py</a></h6><h4 style="text-align: center;" rel="text-align: center;">Asuncion - Paraguay</h4>'),
 (647, '<p data-redactor-inserted-image="true"><concrete-picture fID="38" id="image-marker" width="514" height="513" alt="" style="width: 514px; height: 513px; float: right; margin: 0px 0px 10px 10px;" /></p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><blockquote>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</blockquote><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>'),
-(653, '<p data-redactor-inserted-image="true"><concrete-picture fID="38" id="image-marker" width="514" height="513" alt="" style="width: 514px; height: 513px; float: right; margin: 0px 0px 10px 10px;" /></p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><blockquote>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</blockquote><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>');
-INSERT INTO `btContentLocal` (`bID`, `content`) VALUES
+(653, '<p data-redactor-inserted-image="true"><concrete-picture fID="38" id="image-marker" width="514" height="513" alt="" style="width: 514px; height: 513px; float: right; margin: 0px 0px 10px 10px;" /></p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><blockquote>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</blockquote><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>'),
 (672, '<p data-redactor-inserted-image="true"><concrete-picture fID="37" id="image-marker" width="422" height="421" alt="" style="width: 422px; height: 421px; float: left; margin: 0px 10px 10px 0px;" /></p><blockquote>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</blockquote><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><pre>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</pre><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>'),
 (687, '<p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p data-redactor-inserted-image="true"><concrete-picture fID="32" id="image-marker" width="681" height="384" style="width: 681px; height: 384px; display: block; margin: auto;" alt="" /></p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>'),
 (705, '<p data-redactor-inserted-image="true"><concrete-picture fID="29" id="image-marker" width="439" height="440" alt="" style="width: 439px; height: 440px; float: left; margin: 0px 10px 10px 0px;" /></p><blockquote>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</blockquote><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>');
@@ -2880,8 +2760,7 @@ CREATE TABLE `btDateNavigation` (
 --
 
 INSERT INTO `btDateNavigation` (`bID`, `title`, `filterByParent`, `redirectToResults`, `cParentID`, `cTargetID`, `ptID`) VALUES
-(98, 'Archivos / Biblioteca', 0, 0, 0, 0, 7),
-(599, 'Archivos', 0, 1, 0, 224, 7);
+(98, 'Archivos / Biblioteca', 0, 0, 0, 0, 7);
 
 -- --------------------------------------------------------
 
@@ -3329,13 +3208,6 @@ CREATE TABLE `btOpenData` (
   `contentHeight` varchar(255) COLLATE utf8_unicode_ci DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Volcado de datos para la tabla `btOpenData`
---
-
-INSERT INTO `btOpenData` (`bID`, `opendataID`, `lang`, `typeID`, `contentHeight`) VALUES
-(149, 1, NULL, '0', '0');
-
 -- --------------------------------------------------------
 
 --
@@ -3405,13 +3277,11 @@ CREATE TABLE `btPageList` (
 --
 
 INSERT INTO `btPageList` (`bID`, `num`, `orderBy`, `cParentID`, `cThis`, `useButtonForLink`, `buttonLinkText`, `pageListTitle`, `filterByRelated`, `filterByCustomTopic`, `filterDateOption`, `filterDateDays`, `filterDateStart`, `filterDateEnd`, `relatedTopicAttributeKeyHandle`, `customTopicAttributeKeyHandle`, `customTopicTreeNodeID`, `includeName`, `includeDescription`, `includeDate`, `includeAllDescendents`, `paginate`, `displayAliases`, `ignorePermissions`, `enableExternalFiltering`, `ptID`, `pfID`, `truncateSummaries`, `displayFeaturedOnly`, `noResultsMessage`, `displayThumbnail`, `truncateChars`) VALUES
-(54, 10, 'chrono_desc', 0, 0, 1, 'Ver más', '', 0, 0, 'all', 0, NULL, NULL, '', '', 0, 1, 1, 1, 1, 1, 0, 0, 1, 7, 0, 1, 0, 'No se encontraron noticias relacionadas.', 0, 300),
 (56, 10, 'chrono_desc', 0, 0, 1, 'Ver más', '', 0, 0, 'all', 0, NULL, NULL, '', '', 0, 1, 1, 1, 1, 1, 0, 0, 1, 7, 1, 1, 0, 'No se encontraron noticias relacionadas.', 1, 300),
 (414, 3, 'chrono_desc', 0, 0, 1, 'Ver más', '', 0, 0, 'all', 0, NULL, NULL, '', '', 0, 1, 1, 1, 1, 1, 0, 0, 1, 7, 1, 1, 0, 'No se encontraron noticias relacionadas.', 1, 300),
 (415, 3, 'chrono_desc', 0, 0, 1, 'Ver más', '', 0, 0, 'all', 0, NULL, NULL, '', '', 0, 1, 1, 1, 1, 0, 0, 0, 0, 7, 1, 1, 0, 'No se encontraron noticias relacionadas.', 1, 300),
 (462, 5, 'chrono_desc', 0, 0, 0, '', '', 0, 0, '', 0, NULL, NULL, '', '', 0, 1, 1, 1, 0, 0, 0, 0, 0, 7, 0, 1, 0, 'No hay noticias', 1, 150),
 (593, 3, 'chrono_desc', 0, 0, 1, 'Ver más', '', 0, 0, 'all', 0, NULL, NULL, '', '', 0, 1, 1, 1, 1, 0, 0, 0, 0, 7, 0, 1, 0, 'No se encontraron noticias relacionadas.', 1, 300),
-(594, 0, 'display_asc', 0, 0, 0, '', '', 0, 0, '', 0, NULL, NULL, '', '', 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0),
 (600, 0, 'display_asc', 0, 0, 0, '', '', 0, 0, '', 0, NULL, NULL, '', '', 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0),
 (601, 0, 'display_asc', 0, 0, 0, '', '', 0, 0, '', 0, NULL, NULL, '', '', 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0),
 (706, 10, 'chrono_desc', 0, 0, 1, 'Leer más', '', 0, 0, '', 0, NULL, NULL, '', '', 0, 1, 1, 1, 0, 1, 0, 0, 1, 7, 0, 1, 0, 'No hay noticias relacionadas', 1, 300);
@@ -3436,7 +3306,6 @@ CREATE TABLE `btPageTitle` (
 INSERT INTO `btPageTitle` (`bID`, `useCustomTitle`, `titleText`, `formatting`) VALUES
 (32, 0, '[Título de la Página]', 'h4'),
 (33, 0, 'Noticias', 'h4'),
-(34, 0, 'Noticias', 'h4'),
 (35, 0, '[Título de la Página]', 'h4'),
 (38, 0, '[Título de la Página]', 'h4'),
 (92, 0, '[Título de la Página]', 'h4'),
@@ -3692,7 +3561,8 @@ CREATE TABLE `btSvgSocialMediaIcons` (
 
 INSERT INTO `btSvgSocialMediaIcons` (`bID`, `openLinkBlank`, `behanceAddress`, `deviantartAddress`, `dribbbleAddress`, `emailAddress`, `facebookAddress`, `flickrAddress`, `githubAddress`, `googleplusAddress`, `instagramAddress`, `itunesAddress`, `linkedinAddress`, `pinterestAddress`, `skypeAddress`, `soundcloudAddress`, `spotifyAddress`, `tumblrAddress`, `twitterAddress`, `vimeoAddress`, `youtubeAddress`, `iconShape`, `iconColor`, `iconHover`, `iconSize`, `iconMargin`, `position`, `icon`, `sortOrder`) VALUES
 (16, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'round', 'logo', 'hoverOn', 30, 5, 'right', 'a:19:{s:7:"behance";a:1:{s:7:"address";s:0:"";}s:10:"deviantart";a:1:{s:7:"address";s:0:"";}s:8:"dribbble";a:1:{s:7:"address";s:0:"";}s:8:"facebook";a:2:{s:7:"checked";s:8:"facebook";s:7:"address";s:1:"#";}s:9:"instagram";a:2:{s:7:"checked";s:9:"instagram";s:7:"address";s:1:"#";}s:7:"twitter";a:2:{s:7:"checked";s:7:"twitter";s:7:"address";s:1:"#";}s:10:"googleplus";a:2:{s:7:"checked";s:10:"googleplus";s:7:"address";s:1:"#";}s:7:"youtube";a:2:{s:7:"checked";s:7:"youtube";s:7:"address";s:1:"#";}s:5:"email";a:2:{s:7:"checked";s:5:"email";s:7:"address";s:1:"#";}s:6:"flickr";a:1:{s:7:"address";s:0:"";}s:6:"github";a:1:{s:7:"address";s:0:"";}s:6:"itunes";a:1:{s:7:"address";s:0:"";}s:8:"linkedin";a:1:{s:7:"address";s:0:"";}s:9:"pinterest";a:1:{s:7:"address";s:0:"";}s:5:"skype";a:1:{s:7:"address";s:0:"";}s:10:"soundcloud";a:1:{s:7:"address";s:0:"";}s:7:"spotify";a:1:{s:7:"address";s:0:"";}s:6:"tumblr";a:1:{s:7:"address";s:0:"";}s:5:"vimeo";a:1:{s:7:"address";s:0:"";}}', 'Behance,deviantART,Dribbble,Facebook,Instagram,Twitter,GooglePlus,Youtube,Email,Flickr,Github,iTunes,Linkedin,Pinterest,Skype,SoundCloud,Spotify,Tumblr,Vimeo'),
-(17, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'round', 'logo', 'hoverOn', 25, 5, 'right', 'a:19:{s:7:"behance";a:1:{s:7:"address";s:0:"";}s:10:"deviantart";a:1:{s:7:"address";s:0:"";}s:8:"dribbble";a:1:{s:7:"address";s:0:"";}s:8:"facebook";a:2:{s:7:"checked";s:8:"facebook";s:7:"address";s:1:"#";}s:9:"instagram";a:2:{s:7:"checked";s:9:"instagram";s:7:"address";s:1:"#";}s:7:"twitter";a:2:{s:7:"checked";s:7:"twitter";s:7:"address";s:1:"#";}s:10:"googleplus";a:2:{s:7:"checked";s:10:"googleplus";s:7:"address";s:1:"#";}s:7:"youtube";a:2:{s:7:"checked";s:7:"youtube";s:7:"address";s:1:"#";}s:5:"email";a:2:{s:7:"checked";s:5:"email";s:7:"address";s:1:"#";}s:6:"flickr";a:1:{s:7:"address";s:0:"";}s:6:"github";a:1:{s:7:"address";s:0:"";}s:6:"itunes";a:1:{s:7:"address";s:0:"";}s:8:"linkedin";a:1:{s:7:"address";s:0:"";}s:9:"pinterest";a:1:{s:7:"address";s:0:"";}s:5:"skype";a:1:{s:7:"address";s:0:"";}s:10:"soundcloud";a:1:{s:7:"address";s:0:"";}s:7:"spotify";a:1:{s:7:"address";s:0:"";}s:6:"tumblr";a:1:{s:7:"address";s:0:"";}s:5:"vimeo";a:1:{s:7:"address";s:0:"";}}', 'Behance,deviantART,Dribbble,Facebook,Instagram,Twitter,GooglePlus,Youtube,Email,Flickr,Github,iTunes,Linkedin,Pinterest,Skype,SoundCloud,Spotify,Tumblr,Vimeo');
+(17, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'round', 'logo', 'hoverOn', 25, 5, 'right', 'a:19:{s:7:"behance";a:1:{s:7:"address";s:0:"";}s:10:"deviantart";a:1:{s:7:"address";s:0:"";}s:8:"dribbble";a:1:{s:7:"address";s:0:"";}s:8:"facebook";a:2:{s:7:"checked";s:8:"facebook";s:7:"address";s:1:"#";}s:9:"instagram";a:2:{s:7:"checked";s:9:"instagram";s:7:"address";s:1:"#";}s:7:"twitter";a:2:{s:7:"checked";s:7:"twitter";s:7:"address";s:1:"#";}s:10:"googleplus";a:2:{s:7:"checked";s:10:"googleplus";s:7:"address";s:1:"#";}s:7:"youtube";a:2:{s:7:"checked";s:7:"youtube";s:7:"address";s:1:"#";}s:5:"email";a:2:{s:7:"checked";s:5:"email";s:7:"address";s:1:"#";}s:6:"flickr";a:1:{s:7:"address";s:0:"";}s:6:"github";a:1:{s:7:"address";s:0:"";}s:6:"itunes";a:1:{s:7:"address";s:0:"";}s:8:"linkedin";a:1:{s:7:"address";s:0:"";}s:9:"pinterest";a:1:{s:7:"address";s:0:"";}s:5:"skype";a:1:{s:7:"address";s:0:"";}s:10:"soundcloud";a:1:{s:7:"address";s:0:"";}s:7:"spotify";a:1:{s:7:"address";s:0:"";}s:6:"tumblr";a:1:{s:7:"address";s:0:"";}s:5:"vimeo";a:1:{s:7:"address";s:0:"";}}', 'Behance,deviantART,Dribbble,Facebook,Instagram,Twitter,GooglePlus,Youtube,Email,Flickr,Github,iTunes,Linkedin,Pinterest,Skype,SoundCloud,Spotify,Tumblr,Vimeo'),
+(712, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'square', 'logo', 'hoverOn', 30, 5, 'right', 'a:19:{s:7:"behance";a:1:{s:7:"address";s:0:"";}s:10:"deviantart";a:1:{s:7:"address";s:0:"";}s:8:"dribbble";a:1:{s:7:"address";s:0:"";}s:8:"facebook";a:2:{s:7:"checked";s:8:"facebook";s:7:"address";s:1:"#";}s:9:"instagram";a:2:{s:7:"checked";s:9:"instagram";s:7:"address";s:1:"#";}s:7:"twitter";a:2:{s:7:"checked";s:7:"twitter";s:7:"address";s:1:"#";}s:10:"googleplus";a:2:{s:7:"checked";s:10:"googleplus";s:7:"address";s:1:"#";}s:7:"youtube";a:2:{s:7:"checked";s:7:"youtube";s:7:"address";s:1:"#";}s:5:"email";a:2:{s:7:"checked";s:5:"email";s:7:"address";s:1:"#";}s:6:"flickr";a:1:{s:7:"address";s:0:"";}s:6:"github";a:1:{s:7:"address";s:0:"";}s:6:"itunes";a:1:{s:7:"address";s:0:"";}s:8:"linkedin";a:1:{s:7:"address";s:0:"";}s:9:"pinterest";a:1:{s:7:"address";s:0:"";}s:5:"skype";a:1:{s:7:"address";s:0:"";}s:10:"soundcloud";a:1:{s:7:"address";s:0:"";}s:7:"spotify";a:1:{s:7:"address";s:0:"";}s:6:"tumblr";a:1:{s:7:"address";s:0:"";}s:5:"vimeo";a:1:{s:7:"address";s:0:"";}}', 'Behance,deviantART,Dribbble,Facebook,Instagram,Twitter,GooglePlus,Youtube,Email,Flickr,Github,iTunes,Linkedin,Pinterest,Skype,SoundCloud,Spotify,Tumblr,Vimeo');
 
 -- --------------------------------------------------------
 
@@ -3724,10 +3594,8 @@ CREATE TABLE `btTags` (
 --
 
 INSERT INTO `btTags` (`bID`, `title`, `targetCID`, `displayMode`, `cloudCount`) VALUES
-(97, '', 159, 'cloud', 11),
 (102, '', 159, 'page', 0),
 (455, '', 159, 'page', 11),
-(595, 'Etiquetas', 224, 'cloud', 10),
 (603, 'Etiquetas', 225, 'cloud', 10);
 
 -- --------------------------------------------------------
@@ -3774,13 +3642,8 @@ CREATE TABLE `btTopicList` (
 --
 
 INSERT INTO `btTopicList` (`bID`, `mode`, `topicAttributeKeyHandle`, `topicTreeID`, `cParentID`, `title`) VALUES
-(94, 'S', 'categorias', 2, 0, 'Temas / Categorías'),
 (101, 'P', 'categorias', 2, 159, ''),
 (452, 'P', 'categorias', 2, 159, ''),
-(579, 'S', 'categorias', 2, 0, ''),
-(582, 'P', 'categorias', 2, 159, ''),
-(583, 'P', 'categorias', 2, 159, ''),
-(596, 'S', 'categorias', 2, 224, 'Temas'),
 (602, 'S', 'categorias', 2, 225, 'Temas');
 
 -- --------------------------------------------------------
@@ -3796,13 +3659,6 @@ CREATE TABLE `btTransparenciaActiva` (
   `resumen` text COLLATE utf8_unicode_ci,
   `autor` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `btTransparenciaActiva`
---
-
-INSERT INTO `btTransparenciaActiva` (`bID`, `titulo`, `mes`, `resumen`, `autor`) VALUES
-(148, 'Organigrama', 1, '<p style="text-align: justify;">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>', 'test');
 
 -- --------------------------------------------------------
 
@@ -4034,6 +3890,7 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1, 46, 1, 120),
 (1, 47, 1, 120),
 (1, 48, 1, 120),
+(1, 49, 1, 120),
 (1, 10, 2, 121),
 (1, 11, 2, 121),
 (1, 12, 2, 121),
@@ -4073,6 +3930,7 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1, 46, 2, 121),
 (1, 47, 2, 121),
 (1, 48, 2, 121),
+(1, 49, 2, 121),
 (1, 10, 7, 122),
 (1, 11, 7, 122),
 (1, 12, 7, 122),
@@ -4112,6 +3970,7 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1, 46, 7, 122),
 (1, 47, 7, 122),
 (1, 48, 7, 122),
+(1, 49, 7, 122),
 (1, 10, 11, 123),
 (1, 11, 11, 123),
 (1, 12, 11, 123),
@@ -4151,13 +4010,7 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1, 46, 11, 123),
 (1, 47, 11, 123),
 (1, 48, 11, 123),
-(159, 1, 5, 124),
-(159, 2, 5, 124),
-(159, 3, 5, 124),
-(159, 4, 5, 124),
-(159, 5, 5, 124),
-(159, 6, 5, 124),
-(159, 7, 5, 124),
+(1, 49, 11, 123),
 (160, 1, 5, 125),
 (226, 1, 5, 125),
 (226, 2, 5, 125),
@@ -4182,18 +4035,6 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (171, 3, 5, 138),
 (172, 1, 5, 139),
 (172, 2, 5, 139),
-(159, 5, 8, 150),
-(159, 6, 8, 150),
-(159, 7, 8, 150),
-(177, 1, 5, 162),
-(177, 2, 5, 162),
-(177, 3, 5, 162),
-(181, 1, 5, 163),
-(184, 1, 5, 164),
-(185, 1, 5, 165),
-(186, 1, 5, 166),
-(187, 1, 5, 167),
-(188, 1, 5, 168),
 (191, 1, 5, 177),
 (191, 2, 5, 177),
 (191, 3, 5, 177),
@@ -4206,7 +4047,6 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (191, 10, 5, 177),
 (193, 1, 5, 181),
 (194, 1, 5, 182),
-(195, 1, 5, 183),
 (196, 1, 5, 184),
 (204, 1, 5, 229),
 (204, 2, 5, 229),
@@ -4221,50 +4061,8 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (213, 4, 5, 285),
 (213, 5, 5, 285),
 (214, 1, 8, 303),
-(218, 1, 18, 316),
-(218, 1, 8, 317),
-(218, 1, 19, 318),
-(218, 2, 8, 319),
-(218, 2, 18, 320),
-(218, 2, 19, 321),
-(218, 2, 5, 322),
-(218, 3, 5, 322),
-(218, 4, 5, 322),
 (214, 1, 5, 323),
-(219, 1, 5, 323),
-(220, 1, 5, 323),
-(221, 1, 5, 323),
-(222, 1, 5, 323),
-(222, 2, 5, 323),
 (214, 1, 3, 324),
-(219, 1, 3, 324),
-(220, 1, 3, 324),
-(221, 1, 3, 324),
-(222, 1, 3, 324),
-(222, 2, 3, 324),
-(219, 1, 18, 325),
-(219, 1, 8, 326),
-(219, 1, 19, 327),
-(220, 1, 18, 328),
-(220, 1, 19, 330),
-(221, 1, 18, 331),
-(221, 1, 8, 332),
-(221, 1, 19, 333),
-(222, 1, 18, 334),
-(222, 2, 18, 334),
-(222, 1, 8, 335),
-(222, 2, 8, 335),
-(222, 1, 19, 336),
-(222, 2, 19, 336),
-(218, 3, 18, 340),
-(218, 4, 18, 340),
-(218, 3, 8, 341),
-(218, 4, 8, 341),
-(218, 3, 19, 342),
-(218, 4, 19, 342),
-(224, 1, 5, 355),
-(224, 2, 5, 355),
-(224, 2, 8, 356),
 (225, 1, 5, 357),
 (225, 2, 5, 357),
 (225, 3, 5, 357),
@@ -4303,7 +4101,7 @@ CREATE TABLE `Collections` (
 --
 
 INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALUES
-(1, '2018-05-16 12:09:07', '2018-08-28 11:34:41', 'home'),
+(1, '2018-05-16 12:09:07', '2018-08-28 12:47:19', 'home'),
 (2, '2018-05-16 12:09:37', '2018-05-16 12:09:37', 'dashboard'),
 (3, '2018-05-16 12:09:37', '2018-05-16 12:09:38', 'sitemap'),
 (4, '2018-05-16 12:09:38', '2018-05-16 12:09:38', 'full'),
@@ -4453,12 +4251,11 @@ INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALU
 (148, '2018-05-16 13:36:30', '2018-05-21 10:25:13', 'footer-legal'),
 (149, '2018-05-16 13:36:30', '2018-05-18 11:49:29', 'footer-navigation'),
 (150, '2018-05-16 13:36:30', '2018-05-21 10:25:13', 'footer-contact'),
-(151, '2018-05-16 13:55:32', '2018-05-16 14:16:57', 'info-superior'),
+(151, '2018-05-16 13:55:32', '2018-08-28 12:47:19', 'info-superior'),
 (152, '2018-05-16 13:55:32', '2018-08-27 19:07:13', 'search'),
 (153, '2018-05-16 13:55:33', '2018-05-21 09:03:32', 'espacio-2'),
 (154, '2018-05-16 13:55:33', '2018-05-21 09:03:32', 'espacio-3'),
 (157, '2018-05-16 14:30:58', '2018-05-16 14:30:58', NULL),
-(159, '2018-05-16 14:43:48', '2018-08-28 11:36:23', ''),
 (160, '2018-05-16 15:11:48', '2018-05-16 15:11:48', NULL),
 (165, '2018-05-17 10:14:16', '2018-05-17 10:44:52', ''),
 (166, '2018-05-17 10:17:29', '2018-05-17 10:53:15', ''),
@@ -4467,22 +4264,9 @@ INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALU
 (169, '2018-05-17 10:41:49', '2018-05-17 10:55:33', ''),
 (171, '2018-05-17 10:44:57', '2018-05-17 10:47:52', ''),
 (172, '2018-05-17 10:46:12', '2018-05-17 11:00:41', ''),
-(177, '2018-05-17 11:35:06', '2018-05-17 11:52:06', ''),
-(178, '2018-05-17 11:42:16', '2018-05-17 11:42:16', 'open_data'),
-(179, '2018-05-17 11:42:17', '2018-05-17 11:42:17', 'list_catalog'),
-(180, '2018-05-17 11:42:17', '2018-05-17 11:42:17', 'catalog'),
-(181, '2018-05-17 11:42:18', '2018-05-17 11:42:18', 'list_datasets'),
-(182, '2018-05-17 11:42:18', '2018-05-17 11:42:18', 'datasets'),
-(183, '2018-05-17 11:42:18', '2018-05-17 11:42:19', 'types'),
-(184, '2018-05-17 11:42:19', '2018-05-17 11:42:19', 'resource'),
-(185, '2018-05-17 11:42:20', '2018-05-17 11:42:20', 'files'),
-(186, '2018-05-17 11:42:20', '2018-05-17 11:42:21', 'list_resource'),
-(187, '2018-05-17 11:42:21', '2018-05-17 11:42:22', 'dictionary'),
-(188, '2018-05-17 11:42:22', '2018-05-17 11:42:22', 'list_dictionary'),
 (191, '2018-05-18 09:56:03', '2018-08-27 18:59:04', ''),
 (193, '2018-05-18 10:46:14', '2018-05-18 10:46:32', ''),
 (194, '2018-05-18 10:46:54', '2018-05-18 10:47:11', ''),
-(195, '2018-05-18 10:47:15', '2018-05-18 10:47:29', ''),
 (196, '2018-05-18 10:47:37', '2018-05-18 10:47:48', ''),
 (204, '2018-05-18 11:40:22', '2018-05-18 11:49:28', ''),
 (205, '2018-05-18 11:59:54', '2018-05-18 11:59:54', 'event_calendar'),
@@ -4495,12 +4279,6 @@ INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALU
 (212, '2018-05-18 12:00:15', '2018-05-18 12:02:02', ''),
 (213, '2018-05-18 15:07:46', '2018-08-28 12:07:22', ''),
 (214, '2018-05-21 09:32:29', '2018-05-21 09:32:29', NULL),
-(218, '2018-05-21 09:52:23', '2018-08-28 11:37:25', ''),
-(219, '2018-05-21 09:56:24', '2018-08-28 11:37:30', ''),
-(220, '2018-05-21 09:58:40', '2018-08-28 11:37:34', ''),
-(221, '2018-05-21 10:00:06', '2018-08-28 11:37:38', ''),
-(222, '2018-05-21 10:02:17', '2018-08-28 11:37:41', ''),
-(224, '2018-08-28 11:35:39', '2018-08-28 11:41:20', ''),
 (225, '2018-08-28 11:41:39', '2018-08-28 11:59:33', ''),
 (226, '2018-08-28 11:48:45', '2018-08-28 11:52:41', ''),
 (227, '2018-08-28 11:52:56', '2018-08-28 11:54:26', ''),
@@ -4650,33 +4428,18 @@ INSERT INTO `CollectionSearchIndexAttributes` (`cID`, `ak_meta_title`, `ak_meta_
 (152, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (153, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (154, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(159, NULL, NULL, NULL, NULL, 0, 0, NULL, '', 0, 0, 0, NULL, 0),
 (165, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (166, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (169, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (171, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (172, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(177, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(181, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(184, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(185, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(186, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(187, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(188, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (191, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (193, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (194, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(195, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (196, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (204, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (212, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0),
 (213, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, NULL, 0),
-(218, NULL, NULL, NULL, NULL, 1, 0, NULL, '\nTICs\n', 0, 0, 0, '||/Informática||', 14),
-(219, NULL, NULL, 'Noticias', NULL, 1, 0, NULL, '\nNacionales\n', 0, 0, 0, '||/Salud||', 15),
-(220, NULL, NULL, 'Noticias', NULL, 1, 0, NULL, NULL, 0, 0, 0, '||/Informática||', 16),
-(221, NULL, NULL, 'Noticias', NULL, 1, 0, NULL, '\nTICs\n', 0, 0, 0, '||/Informática||', 17),
-(222, NULL, NULL, 'Noticias', NULL, 1, 0, NULL, '\nNacionales\n', 0, 0, 0, '||/Salud||', 33),
-(224, NULL, NULL, NULL, NULL, 0, 0, NULL, '', 0, 0, 0, NULL, 0),
 (225, NULL, NULL, NULL, NULL, 0, 0, NULL, '', 0, 0, 0, NULL, 0),
 (226, NULL, NULL, NULL, NULL, 1, 0, NULL, '\nmejoras\n', 0, 0, 0, '||/Salud||', 38),
 (227, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, 0, 0, 0, '||', 37),
@@ -5085,6 +4848,19 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (1, 48, 591, 'Slider', 1, 0, 0, 0, 0, 0, 0),
 (1, 48, 592, 'Contenido A : 6', 0, 1, 0, 0, 0, 0, 0),
 (1, 48, 593, 'Contenido A : 6', 1, 1, 0, 0, 0, 0, 0),
+(1, 49, 239, 'Contenido A : 7', 0, 0, 0, 0, 0, 0, 0),
+(1, 49, 248, 'Contenido A', 0, 0, 0, 0, 0, 0, 0),
+(1, 49, 249, 'Slider', 0, 0, 0, 0, 0, 0, 0),
+(1, 49, 263, 'Slider : 10', 4, 0, 0, 0, 0, 0, 0),
+(1, 49, 264, 'Slider : 10', 3, 0, 0, 0, 0, 0, 0),
+(1, 49, 265, 'Slider : 10', 2, 0, 0, 0, 0, 0, 0),
+(1, 49, 266, 'Slider : 10', 1, 0, 0, 0, 0, 0, 0),
+(1, 49, 267, 'Slider : 10', 0, 0, 0, 0, 0, 0, 0),
+(1, 49, 416, 'Contenido A : 6', 2, 0, 0, 0, 0, 0, 0),
+(1, 49, 426, 'Slider : 11', 0, 0, 0, 0, 0, 0, 0),
+(1, 49, 591, 'Slider', 1, 0, 0, 0, 0, 0, 0),
+(1, 49, 592, 'Contenido A : 6', 0, 0, 0, 0, 0, 0, 0),
+(1, 49, 593, 'Contenido A : 6', 1, 0, 0, 0, 0, 0, 0),
 (127, 1, 1, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (128, 1, 2, 'Primary', 0, 1, 0, 0, 0, 0, 0),
 (128, 1, 3, 'Primary', 1, 1, 0, 0, 0, 0, 0),
@@ -5132,6 +4908,7 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (151, 2, 16, 'Main', 0, 0, 0, 0, 0, 0, 0),
 (151, 3, 16, 'Main', 0, 0, 0, 0, 0, 0, 0),
 (151, 4, 17, 'Main', 0, 1, 0, 0, 0, 0, 0),
+(151, 5, 712, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (152, 2, 13, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (152, 3, 13, 'Main', 0, 0, 0, 0, 0, 0, 0),
 (152, 4, 433, 'Main', 0, 1, 0, 0, 0, 0, 0),
@@ -5149,39 +4926,6 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (154, 2, 12, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (157, 1, 23, 'Titulo', 1, 1, 0, 0, 0, 0, 0),
 (157, 1, 32, 'Titulo', 0, 1, 0, 0, 0, 0, 0),
-(159, 1, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(159, 2, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(159, 2, 34, 'Titulo', 0, 1, 0, 0, 0, 0, 0),
-(159, 3, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(159, 3, 34, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(159, 3, 54, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(159, 4, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(159, 4, 34, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(159, 4, 56, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(159, 5, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(159, 5, 34, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(159, 5, 56, 'Contenido', 0, 0, 0, 0, 0, 0, 0),
-(159, 5, 94, 'Contenido Lateral', 1, 1, 0, 0, 0, 0, 0),
-(159, 5, 95, 'Contenido Lateral', 0, 1, 0, 0, 0, 0, 0),
-(159, 5, 96, 'Contenido Lateral', 2, 1, 0, 0, 0, 0, 0),
-(159, 5, 97, 'Contenido Lateral', 3, 1, 0, 0, 0, 0, 0),
-(159, 5, 98, 'Contenido Lateral', 4, 1, 0, 0, 0, 0, 0),
-(159, 6, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(159, 6, 34, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(159, 6, 56, 'Contenido', 0, 0, 0, 0, 0, 0, 0),
-(159, 6, 95, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(159, 6, 96, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(159, 6, 97, 'Contenido Lateral', 3, 0, 0, 0, 0, 0, 0),
-(159, 6, 98, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(159, 6, 579, 'Contenido Lateral', 1, 1, 0, 0, 0, 0, 0),
-(159, 7, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(159, 7, 34, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(159, 7, 56, 'Contenido', 0, 0, 0, 0, 0, 0, 0),
-(159, 7, 95, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(159, 7, 96, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(159, 7, 97, 'Contenido Lateral', 3, 0, 0, 0, 0, 0, 0),
-(159, 7, 98, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(159, 7, 579, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
 (160, 1, 25, 'Titulo : 8', 1, 1, 0, 0, 0, 0, 0),
 (160, 1, 26, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
 (160, 1, 27, 'Contenido', 2, 1, 0, 0, 0, 0, 0),
@@ -5259,14 +5003,6 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (172, 2, 36, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
 (172, 2, 37, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
 (172, 2, 53, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(177, 1, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(177, 1, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(177, 2, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(177, 2, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(177, 2, 148, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(177, 3, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(177, 3, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(177, 3, 149, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
 (191, 1, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
 (191, 1, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
 (191, 2, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
@@ -5323,8 +5059,6 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (193, 1, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
 (194, 1, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
 (194, 1, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(195, 1, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(195, 1, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
 (196, 1, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
 (196, 1, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
 (204, 1, 35, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
@@ -5380,134 +5114,6 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (214, 1, 456, 'Contenido Lateral', 6, 1, 0, 0, 0, 0, 0),
 (214, 1, 462, 'Contenido Lateral', 1, 1, 0, 0, 0, 0, 0),
 (214, 1, 464, 'Contenido Lateral', 0, 1, 0, 0, 0, 0, 0),
-(218, 1, 444, 'Titulo : 14', 0, 0, 0, 0, 0, 0, 0),
-(218, 1, 445, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(218, 1, 446, 'Titulo : 14', 1, 0, 0, 0, 0, 0, 0),
-(218, 1, 447, 'Titulo : 15', 1, 0, 0, 0, 0, 0, 0),
-(218, 1, 448, 'Titulo : 15', 0, 0, 0, 0, 0, 0, 0),
-(218, 1, 450, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(218, 1, 452, 'Contenido Lateral', 3, 0, 0, 0, 0, 0, 0),
-(218, 1, 453, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(218, 1, 455, 'Contenido Lateral', 5, 0, 0, 0, 0, 0, 0),
-(218, 1, 456, 'Contenido Lateral', 6, 0, 0, 0, 0, 0, 0),
-(218, 1, 462, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
-(218, 1, 464, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(218, 1, 498, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(218, 2, 444, 'Titulo : 14', 0, 0, 0, 0, 0, 0, 0),
-(218, 2, 445, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(218, 2, 446, 'Titulo : 14', 1, 0, 0, 0, 0, 0, 0),
-(218, 2, 447, 'Titulo : 15', 1, 0, 0, 0, 0, 0, 0),
-(218, 2, 448, 'Titulo : 15', 0, 0, 0, 0, 0, 0, 0),
-(218, 2, 450, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(218, 2, 452, 'Contenido Lateral', 3, 0, 0, 0, 0, 0, 0),
-(218, 2, 453, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(218, 2, 455, 'Contenido Lateral', 5, 0, 0, 0, 0, 0, 0),
-(218, 2, 456, 'Contenido Lateral', 6, 0, 0, 0, 0, 0, 0),
-(218, 2, 462, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
-(218, 2, 464, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(218, 2, 498, 'Contenido', 0, 0, 0, 0, 0, 0, 0),
-(218, 3, 444, 'Titulo : 14', 0, 0, 0, 0, 0, 0, 0),
-(218, 3, 445, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(218, 3, 446, 'Titulo : 14', 1, 0, 0, 0, 0, 0, 0),
-(218, 3, 447, 'Titulo : 15', 1, 0, 0, 0, 0, 0, 0),
-(218, 3, 448, 'Titulo : 15', 0, 0, 0, 0, 0, 0, 0),
-(218, 3, 450, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(218, 3, 453, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(218, 3, 455, 'Contenido Lateral', 5, 0, 0, 0, 0, 0, 0),
-(218, 3, 456, 'Contenido Lateral', 6, 0, 0, 0, 0, 0, 0),
-(218, 3, 462, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
-(218, 3, 464, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(218, 3, 581, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(218, 3, 582, 'Contenido Lateral', 3, 1, 0, 0, 0, 0, 0),
-(218, 4, 444, 'Titulo : 14', 0, 0, 0, 0, 0, 0, 0),
-(218, 4, 445, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(218, 4, 446, 'Titulo : 14', 1, 0, 0, 0, 0, 0, 0),
-(218, 4, 447, 'Titulo : 15', 1, 0, 0, 0, 0, 0, 0),
-(218, 4, 448, 'Titulo : 15', 0, 0, 0, 0, 0, 0, 0),
-(218, 4, 450, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(218, 4, 453, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(218, 4, 455, 'Contenido Lateral', 5, 0, 0, 0, 0, 0, 0),
-(218, 4, 456, 'Contenido Lateral', 6, 0, 0, 0, 0, 0, 0),
-(218, 4, 462, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
-(218, 4, 464, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(218, 4, 581, 'Contenido', 0, 0, 0, 0, 0, 0, 0),
-(218, 4, 583, 'Contenido Lateral', 3, 1, 0, 0, 0, 0, 0),
-(219, 1, 444, 'Titulo : 14', 0, 0, 0, 0, 0, 0, 0),
-(219, 1, 445, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(219, 1, 446, 'Titulo : 14', 1, 0, 0, 0, 0, 0, 0),
-(219, 1, 447, 'Titulo : 15', 1, 0, 0, 0, 0, 0, 0),
-(219, 1, 448, 'Titulo : 15', 0, 0, 0, 0, 0, 0, 0),
-(219, 1, 450, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(219, 1, 452, 'Contenido Lateral', 3, 0, 0, 0, 0, 0, 0),
-(219, 1, 453, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(219, 1, 455, 'Contenido Lateral', 5, 0, 0, 0, 0, 0, 0),
-(219, 1, 456, 'Contenido Lateral', 6, 0, 0, 0, 0, 0, 0),
-(219, 1, 462, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
-(219, 1, 464, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(219, 1, 519, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(220, 1, 444, 'Titulo : 14', 0, 0, 0, 0, 0, 0, 0),
-(220, 1, 445, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(220, 1, 446, 'Titulo : 14', 1, 0, 0, 0, 0, 0, 0),
-(220, 1, 447, 'Titulo : 15', 1, 0, 0, 0, 0, 0, 0),
-(220, 1, 448, 'Titulo : 15', 0, 0, 0, 0, 0, 0, 0),
-(220, 1, 450, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(220, 1, 452, 'Contenido Lateral', 3, 0, 0, 0, 0, 0, 0),
-(220, 1, 453, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(220, 1, 455, 'Contenido Lateral', 5, 0, 0, 0, 0, 0, 0),
-(220, 1, 456, 'Contenido Lateral', 6, 0, 0, 0, 0, 0, 0),
-(220, 1, 462, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
-(220, 1, 464, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(220, 1, 533, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(221, 1, 444, 'Titulo : 14', 0, 0, 0, 0, 0, 0, 0),
-(221, 1, 445, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(221, 1, 446, 'Titulo : 14', 1, 0, 0, 0, 0, 0, 0),
-(221, 1, 447, 'Titulo : 15', 1, 0, 0, 0, 0, 0, 0),
-(221, 1, 448, 'Titulo : 15', 0, 0, 0, 0, 0, 0, 0),
-(221, 1, 450, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(221, 1, 452, 'Contenido Lateral', 3, 0, 0, 0, 0, 0, 0),
-(221, 1, 453, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(221, 1, 455, 'Contenido Lateral', 5, 0, 0, 0, 0, 0, 0),
-(221, 1, 456, 'Contenido Lateral', 6, 0, 0, 0, 0, 0, 0),
-(221, 1, 462, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
-(221, 1, 464, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(221, 1, 557, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(222, 1, 444, 'Titulo : 14', 0, 0, 0, 0, 0, 0, 0),
-(222, 1, 445, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(222, 1, 446, 'Titulo : 14', 1, 0, 0, 0, 0, 0, 0),
-(222, 1, 447, 'Titulo : 15', 1, 0, 0, 0, 0, 0, 0),
-(222, 1, 448, 'Titulo : 15', 0, 0, 0, 0, 0, 0, 0),
-(222, 1, 450, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(222, 1, 452, 'Contenido Lateral', 3, 0, 0, 0, 0, 0, 0),
-(222, 1, 453, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(222, 1, 455, 'Contenido Lateral', 5, 0, 0, 0, 0, 0, 0),
-(222, 1, 456, 'Contenido Lateral', 6, 0, 0, 0, 0, 0, 0),
-(222, 1, 462, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
-(222, 1, 464, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(222, 1, 572, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(222, 2, 444, 'Titulo : 14', 0, 0, 0, 0, 0, 0, 0),
-(222, 2, 445, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(222, 2, 446, 'Titulo : 14', 1, 0, 0, 0, 0, 0, 0),
-(222, 2, 447, 'Titulo : 15', 1, 0, 0, 0, 0, 0, 0),
-(222, 2, 448, 'Titulo : 15', 0, 0, 0, 0, 0, 0, 0),
-(222, 2, 450, 'Contenido Lateral', 2, 0, 0, 0, 0, 0, 0),
-(222, 2, 452, 'Contenido Lateral', 3, 0, 0, 0, 0, 0, 0),
-(222, 2, 453, 'Contenido Lateral', 4, 0, 0, 0, 0, 0, 0),
-(222, 2, 455, 'Contenido Lateral', 5, 0, 0, 0, 0, 0, 0),
-(222, 2, 456, 'Contenido Lateral', 6, 0, 0, 0, 0, 0, 0),
-(222, 2, 462, 'Contenido Lateral', 1, 0, 0, 0, 0, 0, 0),
-(222, 2, 464, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(222, 2, 573, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(224, 1, 38, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(224, 1, 39, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(224, 1, 40, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
-(224, 2, 38, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
-(224, 2, 39, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
-(224, 2, 594, 'Contenido', 0, 1, 0, 0, 0, 0, 0),
-(224, 2, 595, 'Contenido Lateral', 2, 1, 0, 0, 0, 0, 0),
-(224, 2, 596, 'Contenido Lateral', 0, 1, 0, 0, 0, 0, 0),
-(224, 2, 597, 'Contenido Lateral', 1, 1, 0, 0, 0, 0, 0),
-(224, 2, 598, 'Contenido Lateral', 3, 1, 0, 0, 0, 0, 0),
-(224, 2, 599, 'Contenido Lateral', 4, 1, 0, 0, 0, 0, 0),
 (225, 1, 38, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
 (225, 1, 39, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
 (225, 1, 40, 'Contenido Lateral', 0, 0, 0, 0, 0, 0, 0),
@@ -5645,7 +5251,6 @@ CREATE TABLE `CollectionVersionBlockStyles` (
 --
 
 INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `issID`) VALUES
-(159, 5, 94, 'Contenido Lateral', 1),
 (191, 3, 233, 'Contenido : 13', 5),
 (191, 4, 233, 'Contenido : 13', 5),
 (191, 5, 233, 'Contenido : 13', 5),
@@ -5686,6 +5291,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 46, 263, 'Slider : 10', 9),
 (1, 47, 263, 'Slider : 10', 9),
 (1, 48, 263, 'Slider : 10', 9),
+(1, 49, 263, 'Slider : 10', 9),
 (1, 29, 266, 'Slider : 10', 14),
 (1, 30, 266, 'Slider : 10', 14),
 (1, 31, 266, 'Slider : 10', 14),
@@ -5706,6 +5312,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 46, 266, 'Slider : 10', 14),
 (1, 47, 266, 'Slider : 10', 14),
 (1, 48, 266, 'Slider : 10', 14),
+(1, 49, 266, 'Slider : 10', 14),
 (1, 29, 267, 'Slider : 10', 15),
 (1, 30, 267, 'Slider : 10', 15),
 (1, 31, 267, 'Slider : 10', 15),
@@ -5726,6 +5333,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 46, 267, 'Slider : 10', 15),
 (1, 47, 267, 'Slider : 10', 15),
 (1, 48, 267, 'Slider : 10', 15),
+(1, 49, 267, 'Slider : 10', 15),
 (1, 29, 265, 'Slider : 10', 16),
 (1, 30, 265, 'Slider : 10', 16),
 (1, 31, 265, 'Slider : 10', 16),
@@ -5746,6 +5354,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 46, 265, 'Slider : 10', 16),
 (1, 47, 265, 'Slider : 10', 16),
 (1, 48, 265, 'Slider : 10', 16),
+(1, 49, 265, 'Slider : 10', 16),
 (1, 29, 264, 'Slider : 10', 17),
 (1, 30, 264, 'Slider : 10', 17),
 (1, 31, 264, 'Slider : 10', 17),
@@ -5766,6 +5375,7 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 46, 264, 'Slider : 10', 17),
 (1, 47, 264, 'Slider : 10', 17),
 (1, 48, 264, 'Slider : 10', 17),
+(1, 49, 264, 'Slider : 10', 17),
 (160, 1, 158, 'Titulo : 9', 26),
 (226, 1, 158, 'Titulo : 9', 26),
 (226, 2, 158, 'Titulo : 9', 26),
@@ -5785,10 +5395,10 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 46, 431, 'Slider', 28),
 (1, 47, 591, 'Slider', 28),
 (1, 48, 591, 'Slider', 28),
+(1, 49, 591, 'Slider', 28),
 (213, 3, 432, 'Contenido', 29),
 (213, 4, 434, 'Contenido', 30),
 (213, 5, 707, 'Contenido', 30),
-(159, 6, 579, 'Contenido Lateral', 31),
 (152, 5, 433, 'Main', 32),
 (152, 6, 584, 'Main', 33),
 (152, 7, 584, 'Main', 34),
@@ -5922,7 +5532,8 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (1, 45, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-27 19:06:46', 'Version 45', 0, 0, 1, 1, 2, 6, NULL),
 (1, 46, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-27 19:07:10', 'Version 46', 0, 0, 1, 1, 2, 6, NULL),
 (1, 47, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-28 11:25:08', 'Version 47', 0, 0, 1, 1, 2, 6, NULL),
-(1, 48, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-28 11:33:44', 'Version 48', 1, 0, 1, 1, 2, 6, NULL),
+(1, 48, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-28 11:33:44', 'Version 48', 0, 0, 1, 1, 2, 6, NULL),
+(1, 49, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-28 12:47:13', 'Version 49', 1, 0, 1, 1, 2, 6, NULL),
 (2, 1, 'Dashboard', 'dashboard', '', '2018-05-16 12:09:37', '2018-05-16 12:09:37', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
 (3, 1, 'Sitemap', 'sitemap', 'Whole world at a glance.', '2018-05-16 12:09:37', '2018-05-16 12:09:37', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
 (4, 1, 'Full Sitemap', 'full', '', '2018-05-16 12:09:38', '2018-05-16 12:09:38', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
@@ -6101,7 +5712,8 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (151, 1, 'info_superior', 'info-superior', NULL, '2018-05-16 13:55:32', '2018-05-16 13:55:32', 'Initial Version', 0, 0, 1, NULL, 2, 0, NULL),
 (151, 2, 'info_superior', 'info-superior', NULL, '2018-05-16 13:55:32', '2018-05-16 14:16:12', 'Nueva Versión 2', 0, 0, 1, 1, 2, 0, NULL),
 (151, 3, 'info_superior', 'info-superior', NULL, '2018-05-16 13:55:32', '2018-05-16 14:16:12', 'Nueva Versión 3', 0, 0, 1, 1, 2, 0, NULL),
-(151, 4, 'info_superior', 'info-superior', NULL, '2018-05-16 13:55:32', '2018-05-16 14:16:53', 'Nueva Versión 4', 1, 0, 1, 1, 2, 0, NULL),
+(151, 4, 'info_superior', 'info-superior', NULL, '2018-05-16 13:55:32', '2018-05-16 14:16:53', 'Nueva Versión 4', 0, 0, 1, 1, 2, 0, NULL),
+(151, 5, 'info_superior', 'info-superior', NULL, '2018-05-16 13:55:32', '2018-08-28 12:47:13', 'Nueva Versión 5', 1, 0, 1, 1, 2, 0, NULL),
 (152, 1, 'search', 'search', NULL, '2018-05-16 13:55:32', '2018-05-16 13:55:32', 'Initial Version', 0, 0, 1, NULL, 2, 0, NULL),
 (152, 2, 'search', 'search', NULL, '2018-05-16 13:55:32', '2018-05-16 14:03:42', 'Nueva Versión 2', 0, 0, 1, 1, 2, 0, NULL),
 (152, 3, 'search', 'search', NULL, '2018-05-16 13:55:32', '2018-05-16 14:06:10', 'Nueva Versión 3', 0, 0, 1, 1, 2, 0, NULL),
@@ -6121,13 +5733,6 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (154, 2, 'Espacio 3', 'espacio-3', NULL, '2018-05-16 13:55:33', '2018-05-16 14:03:17', 'Nueva Versión 2', 0, 0, 1, 1, 2, 0, NULL),
 (154, 3, 'Espacio 3', 'espacio-3', NULL, '2018-05-16 13:55:33', '2018-05-21 09:03:20', 'Nueva Versión 3', 1, 0, 1, 1, 2, 0, NULL),
 (157, 1, '', NULL, NULL, '2018-05-16 14:30:58', '2018-05-16 14:30:58', 'Initial Version', 1, 0, NULL, NULL, 0, 7, NULL),
-(159, 1, 'Noticias', 'noticias', '', '2018-05-16 14:43:48', '2018-05-16 14:43:48', 'Version 1', 0, 0, 1, 1, 2, 7, NULL),
-(159, 2, 'Noticias', 'noticias', '', '2018-05-16 14:43:48', '2018-05-17 10:15:06', 'Version 2', 0, 0, 1, 1, 2, 7, NULL),
-(159, 3, 'Noticias', 'noticias', '', '2018-05-16 14:43:48', '2018-05-17 11:09:02', 'Version 3', 0, 0, 1, 1, 2, 9, NULL),
-(159, 4, 'Noticias', 'noticias', '', '2018-05-16 14:43:48', '2018-05-17 11:15:11', 'Version 4', 0, 0, 1, 1, 2, 9, NULL),
-(159, 5, 'Noticias', 'noticias', '', '2018-05-16 14:43:48', '2018-05-17 11:20:33', 'Version 5', 0, 0, 1, 1, 2, 9, NULL),
-(159, 6, 'Noticias', 'noticias', '', '2018-05-16 14:43:48', '2018-05-21 10:11:31', 'Version 6', 0, 0, 1, 1, 2, 9, NULL),
-(159, 7, 'Noticias', 'noticias', '', '2018-05-16 14:43:48', '2018-05-21 10:15:53', 'Version 7', 1, 0, 1, 1, 2, 9, NULL),
 (160, 1, '', NULL, NULL, '2018-05-16 15:11:48', '2018-05-16 15:11:48', 'Initial Version', 1, 0, NULL, NULL, 0, 7, NULL),
 (165, 1, 'Institución', 'institucion', '', '2018-05-17 10:14:16', '2018-05-17 10:14:16', 'Initial Version', 0, 0, 1, 1, 2, 7, NULL),
 (165, 2, 'Institución', 'institucion', '', '2018-05-17 10:14:16', '2018-05-17 10:44:15', 'Version 2', 0, 0, 1, 1, 2, 7, NULL),
@@ -6148,20 +5753,6 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (171, 3, 'Resoluciones', 'resoluciones', '', '2018-05-17 10:44:57', '2018-05-17 10:47:46', 'Version 3', 1, 0, 1, 1, 2, 8, NULL),
 (172, 1, 'Organigrama', 'organigrama', '', '2018-05-17 10:46:12', '2018-05-17 10:46:12', 'Initial Version', 0, 0, 1, 1, 2, 8, NULL),
 (172, 2, 'Organigrama', 'organigrama', '', '2018-05-17 10:46:12', '2018-05-17 11:00:30', 'Version 2', 1, 0, 1, 1, 2, 8, NULL),
-(177, 1, 'Transparencia', 'transparencia', '', '2018-05-17 11:35:06', '2018-05-17 11:35:06', 'Initial Version', 0, 0, 1, 1, 2, 7, NULL),
-(177, 2, 'Transparencia', 'transparencia', '', '2018-05-17 11:35:06', '2018-05-17 11:36:59', 'Version 2', 0, 0, 1, 1, 2, 7, NULL),
-(177, 3, 'Transparencia', 'transparencia', '', '2018-05-17 11:35:06', '2018-05-17 11:51:48', 'Version 3', 1, 0, 1, 1, 2, 7, NULL),
-(178, 1, 'Open Data', 'open_data', NULL, '2018-05-17 11:42:16', '2018-05-17 11:42:16', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(179, 1, 'Listar Catálogos', 'list_catalog', '', '2018-05-17 11:42:17', '2018-05-17 11:42:17', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(180, 1, 'Agregar/Editar Catálogo', 'catalog', '', '2018-05-17 11:42:17', '2018-05-17 11:42:17', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(181, 1, 'Listar Conjuntos de Datos', 'list_datasets', '', '2018-05-17 11:42:18', '2018-05-17 11:42:18', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(182, 1, 'Agregar/Editar Conjunto de Datos', 'datasets', '', '2018-05-17 11:42:18', '2018-05-17 11:42:18', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(183, 1, 'Tipo de Archivos', 'types', '', '2018-05-17 11:42:18', '2018-05-17 11:42:18', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(184, 1, 'Agregar/Editar Recursos', 'resource', '', '2018-05-17 11:42:19', '2018-05-17 11:42:19', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(185, 1, 'Agregar/Editar Archivos', 'files', '', '2018-05-17 11:42:20', '2018-05-17 11:42:20', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(186, 1, 'Listar Recursos', 'list_resource', '', '2018-05-17 11:42:20', '2018-05-17 11:42:20', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(187, 1, 'Agregar Diccionario', 'dictionary', '', '2018-05-17 11:42:21', '2018-05-17 11:42:21', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
-(188, 1, 'Listar Diccionario', 'list_dictionary', '', '2018-05-17 11:42:22', '2018-05-17 11:42:22', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
 (191, 1, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-05-18 09:56:03', 'Initial Version', 0, 0, 1, 1, 2, 7, NULL),
 (191, 2, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-05-18 10:01:17', 'Version 2', 0, 0, 1, 1, 2, 7, NULL),
 (191, 3, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-05-18 10:06:37', 'Version 3', 0, 0, 1, 1, 2, 7, NULL),
@@ -6174,7 +5765,6 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (191, 10, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-08-27 18:59:00', 'Version 10', 1, 0, 1, 1, 2, 7, NULL),
 (193, 1, 'MECIP', 'mecip', '', '2018-05-18 10:46:14', '2018-05-18 10:46:14', 'Initial Version', 1, 0, 1, 1, 2, 7, NULL),
 (194, 1, 'Trámites', 'tramites', '', '2018-05-18 10:46:54', '2018-05-18 10:46:54', 'Initial Version', 1, 0, 1, 1, 2, 7, NULL),
-(195, 1, 'Compras Públicas', 'compras-publicas', '', '2018-05-18 10:47:15', '2018-05-18 10:47:15', 'Initial Version', 1, 0, 1, 1, 2, 7, NULL),
 (196, 1, 'Servicios', 'servicios', '', '2018-05-18 10:47:37', '2018-05-18 10:47:37', 'Initial Version', 1, 0, 1, 1, 2, 7, NULL),
 (204, 1, 'Autoridades', 'autoridades', '', '2018-05-18 11:40:22', '2018-05-18 11:40:22', 'Initial Version', 0, 0, 1, 1, 2, 8, NULL),
 (204, 2, 'Autoridades', 'autoridades', '', '2018-05-18 11:40:22', '2018-05-18 11:44:53', 'Version 2', 0, 0, 1, 1, 2, 8, NULL),
@@ -6196,18 +5786,6 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (213, 4, 'Buscador', 'buscador', '', '2018-05-18 15:07:46', '2018-05-18 15:12:20', 'Version 4', 0, 0, 1, 1, 2, 7, NULL),
 (213, 5, 'Buscador', 'buscador', '', '2018-05-18 15:07:46', '2018-08-28 12:07:07', 'Version 5', 1, 0, 1, 1, 2, 7, NULL),
 (214, 1, '', NULL, NULL, '2018-05-21 09:32:29', '2018-05-21 09:32:29', 'Initial Version', 1, 0, NULL, NULL, 0, 9, NULL),
-(218, 1, 'Noticia de prueba 1', 'noticia-de-prueba-1', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '2018-05-21 09:52:00', '2018-05-21 09:52:23', 'Initial Version', 0, 0, 1, 1, 2, 9, NULL),
-(218, 2, 'Noticia de prueba 1', 'noticia-de-prueba-1', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '2018-05-21 09:52:00', '2018-05-21 09:55:45', 'Nueva Versión 2', 0, 0, 1, 1, 2, 9, NULL),
-(218, 3, 'Noticia de prueba 1', 'noticia-de-prueba-1', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '2018-05-21 09:52:00', '2018-05-21 10:13:01', 'Version 3', 0, 0, 1, 1, 2, 9, NULL),
-(218, 4, 'Noticia de prueba 1', 'noticia-de-prueba-1', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '2018-05-21 09:52:00', '2018-05-21 10:13:56', 'Version 4', 1, 0, 1, 1, 2, 9, NULL),
-(219, 1, 'Noticia de prueba 2', 'noticia-de-prueba-2', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '2018-05-21 09:56:00', '2018-05-21 09:56:24', 'Initial Version', 1, 0, 1, 1, 2, 9, NULL),
-(220, 1, 'Noticia de prueba 3', 'noticia-de-prueba-3', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '2018-05-21 09:58:00', '2018-05-21 09:58:40', 'Initial Version', 1, 0, 1, 1, 2, 9, NULL),
-(221, 1, 'Noticia de prueba 4', 'noticia-de-prueba-4', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '2018-05-21 10:00:00', '2018-05-21 10:00:06', 'Initial Version', 1, 0, 1, 1, 2, 9, NULL);
-INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescription`, `cvDatePublic`, `cvDateCreated`, `cvComments`, `cvIsApproved`, `cvIsNew`, `cvAuthorUID`, `cvApproverUID`, `pThemeID`, `pTemplateID`, `cvActivateDatetime`) VALUES
-(222, 1, 'Noticia de prueba 5', 'noticia-de-prueba-5', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '2018-05-21 10:02:00', '2018-05-21 10:02:17', 'Initial Version', 0, 0, 1, 1, 2, 9, NULL),
-(222, 2, 'Noticia de prueba 5', 'noticia-de-prueba-5', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '2018-05-21 10:02:00', '2018-05-21 10:04:32', 'Version 2', 1, 0, 1, 1, 2, 9, NULL),
-(224, 1, 'Noticias', 'noticias', '', '2018-08-28 11:35:39', '2018-08-28 11:35:39', 'Initial Version', 0, 0, 1, 1, 2, 9, NULL),
-(224, 2, 'Noticias', 'noticias', '', '2018-08-28 11:35:39', '2018-08-28 11:38:14', 'Version 2', 1, 0, 1, 1, 2, 9, NULL),
 (225, 1, 'Noticias', 'noticias', '', '2018-08-28 11:41:39', '2018-08-28 11:41:39', 'Initial Version', 0, 0, 1, 1, 2, 9, NULL),
 (225, 2, 'Noticias', 'noticias', '', '2018-08-28 11:41:39', '2018-08-28 11:41:56', 'Version 2', 0, 0, 1, 1, 2, 9, NULL),
 (225, 3, 'Noticias', 'noticias', '', '2018-08-28 11:41:39', '2018-08-28 11:42:53', 'Version 3', 0, 0, 1, 1, 2, 9, NULL),
@@ -6614,7 +6192,7 @@ CREATE TABLE `dsOpenData` (
   `organization` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `url` text COLLATE utf8_unicode_ci,
   `email_organization` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -6622,7 +6200,7 @@ CREATE TABLE `dsOpenData` (
 --
 
 INSERT INTO `dsOpenData` (`opendataID`, `title`, `organization`, `url`, `email_organization`, `date_created`) VALUES
-(1, 'Transparencia', 'Nombre de la Organización', 'http://www.miinstitucion.gov.py', 'soporte@institucion.gov.py', '2018-05-17 15:43:31');
+(2, 'Transparencia', 'SENATICs', 'https://www.senatics.gov.py', 'soporteportales@senatics.gov.py', '2018-08-28 12:40:17');
 
 -- --------------------------------------------------------
 
@@ -6643,29 +6221,6 @@ CREATE TABLE `dsOpenDataDataset` (
   `tags` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `version` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `dsOpenDataDataset`
---
-
-INSERT INTO `dsOpenDataDataset` (`datasetsID`, `opendataID`, `dictionaryID`, `title`, `description`, `url_download_page`, `author`, `email_author`, `licenseID`, `tags`, `version`) VALUES
-(1, 1, NULL, 'a. Estructura orgánica', 'Los artículos 9° y 10 de la Ley 4989/2013 “QUE CREA EL MARCO DE APLICACIÓN DE LAS TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN EN EL SECTOR PÚBLICO Y CREA LA SECRETARÍA NACIONAL DE TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN (SENATICs)” establecen una estructura orgánica básica y las direcciones que esta Secretaría podrá incorporar en su organigrama a fin de dar cumplimiento a sus fines. En concordancia, el Decreto N° 11.624/2013, que reglamenta dicha ley, establece la estructura orgánica y funcional de esta Secretaría Nacional, la cual se ha complementado con las demás áreas creadas y establecidas en el Organigrama institucional que se adjunta.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, 'Transparencia', ''),
-(2, 1, NULL, 'b. Facultades, deberes, funciones y/o atribuciones de sus órganos y dependencias internas.', 'La Ley N˚4989/2013 que crea la SENATICs dispone, entre otras cosas,  que la dirección de esta Secretaría Nacional será ejercida por un Ministro Secretario Ejecutivo; establece además la estructura orgánica básica, los requisitos para ocupar el cargo de Ministro y de directores y las Direcciones con las que ésta deberá contar mínimamente. Se describen las funciones que corresponderán a cada una de éstas  en los artículos 13, 14 y 15 de la Ley.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(3, 1, NULL, 'c. Marco normativo que rija su funcionamiento y las normas constitucionales, legales de alcance nacional o local y reglamentario cuya aplicación esté', 'La Constitución Nacional del Paraguay, expresa, en el Artículo 30 “... la Ley asegurará, en igualdad de oportunidades, el libre acceso al aprovechamiento del espectro electromagnético, así como al de los instrumentos electrónicos de acumulación y procesamiento de información pública, sin más límites que los impuestos por las regulaciones internacionales y las normas técnicas. Las autoridades asegurarán que estos elementos no sean utilizados para vulnerar la intimidad personal o familiar y los demás derechos establecidos en esta Constitución”.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(4, 1, NULL, 'd. Descripción general de cómo funciona y cuál es el proceso de toma de decisiones.', 'Por Resolución SENATICs N° 28/2014 se establece un sistema de gestión y se disponen los  valores y normas que rigen y orientan la conducta de los servidores de esta Secretaría Nacional, así mismo, por Resolución SENTACIs N° 40/2014 aprueba el Código de Buen Gobierno, documento que establece las pautas de acción tendientes a promover la transparencia y fortalecer la eficiencia en el cumplimiento de los objetivos institucionales definen y fiscalización las políticas transversales en el ámbito de las TICs.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(5, 1, NULL, 'e. Nomina de Funcionarios.', 'Listado actualizado de todas las personas que cumplan una función pública o sean funcionarios públicos, con indicación de sus números de cédula de identidad civil, las funciones que realizan, los salarios u honorarios que perciben en forma mensual, incluyendo todos los adicionales, prestaciones complementarias y/o viáticos.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(6, 1, NULL, 'f. Descripción de la política institucional y de los planes de acción.', 'La descripción de la política Institucional y de los  planes de acción se encuentran contenidos en el Plan Estratégico Institucional de la SENATICs, el cual fue elaborado de manera participativa  con las Altas Autoridades, Directores Generales y responsables de diversas unidades de la SENATICs. Aprobado por Resolución SENTACIs N° 259/2015.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(7, 1, NULL, 'g. Descripción de los proyectos institucionales en ejecución, con la definición de metas, el grado de ejecución de las mismas y el presupuesto aplicad', 'De acuerdo al Presupuesto General de Gastos de la Nación la SENATICs se encuentra dentro del Eje 2 -  Crecimiento económico inclusivo, consistente en el mantenimiento de las condiciones de estabilidad macroeconómica, mejoramiento de los arreglos institucionales y regulatorios, promoviendo la libertad de emprendimiento, la competitividad y la utilización racional de los recursos. Dentro del programa “Competitividad e Innovación”, contribuyendo a la seguridad jurídica y desarrollo de un gobierno abierto, transparente y eficiente, con adecuado apoyo a la producción y mejoramiento de la infraestructura de transporte, logística y telecomunicaciones, teniendo como fundamentos la educación superior, la innovación, la investigación y el desarrollo tecnológico  con la estrategia 1.2 “Aumentar el acceso a la información pública y trámites por medio de redes electrónicas”.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(8, 1, NULL, 'h. Informes de auditoría', 'Informes Finales de Auditoria Interna del ejercicio fiscal 2015', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(9, 1, NULL, 'i. Informes de los viajes oficiales realizados dentro del territorio de la República o al Extranjero.', 'Los viajes realizados por las Autoridades y funcionarios de la SENATICs, se encuentran descritos en la planilla de Registro de Viajes, indicando el nombre del o los mismos, el cargo o función que desempeña, fecha del viaje, destino, el viático asignado y el motivo del viaje. Así también se visualizan los informes correspondientes a la actividad desarrollada.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(10, 1, NULL, 'j. Convenios y contratos celebrados, fecha de celebración, objeto, monto total de la contratación, plazos de ejecución, mecanismos de control y rendic', 'Se detallan los contratos 2015 y Convenios firmados con otras instituciones', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(11, 1, NULL, 'k. Cartas oficiales', 'Cartas oficiales', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(12, 1, NULL, 'l. Informes de consultoria', 'Contratos de consultoría realizadas por la institución.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(13, 1, NULL, 'm. Cuadros de resultados', 'Cuadros de Resultados', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(14, 1, NULL, 'n. Listado de poderes vigentes otorgados a abogados', 'Poderes otorgado a abogados.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(15, 1, NULL, 'o. Sistema de mantenimiento, clasificación e índice de los documentos existentes.', 'La SENATICs realiza servicios TICS diversos para diferentes entidades del estado paraguayo, los cuales originan registros en forma de pedidos y solicitudes diversas.  Muchos de estos documentos requieren ser conservados en forma ordenada, sistemática, de forma tal que cuando haya necesidad de referirse a ellos por cualquier circunstancia, puedan ser localizados fácil y prontamente.\r\nPara tal efecto se cuenta con un repositorio de documentos virtual en el cual se mantiene el archivo escaneado en forma organizada los registros, documentos de interés para la institución.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(16, 1, NULL, 'p. Descripción de los procedimientos previstos para que las personas interesadas puedan acceder a los documentos que obren en su poder, incluyendo el', 'Con el fin de optimizar los tiempos de respuesta a las solicitudes, expedientes y trámites ciudadanos, posibilitando su seguimiento vía Internet, la SENATICs ha desarrollado un servicio de Seguimiento de Expedientes Oficiales (Notas y documentos ingresados por mesa de entrada) que permite conocer el  estado de los mismos desde Internet.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', ''),
-(17, 1, NULL, 'q. Mecanismos de participación ciudadana', 'La SENATICs ha desarrollado e implementado distintos mecanismos que permiten y facilitan la interacción de la ciudadanía con esta Secretaría Nacional como también con las demás instituciones públicas a traves de distintos portales que permiten acceder a Información Pública, realizar denuncias, consutlar acerca de información de interes, etc. Así mismo, la SENATICs desarrolló aplicaciones destinadas a facilitar al ciudadano el acceso a la \r\ninformación pública de distintas instituciones del Estado y realizar trámites varios, que eliminan los tiempos de espera, la burocracia y brinda más posibilidades de desarrollo y transparencia. También ha organizado el evento “INNOVANDO PARAGUAY” en su compromiso de \r\nimpulso y desarrollo de iniciativas gubernamentales que fomenten la transparencia, la participación ciudadana, la rendición de cuentas y Acceso a la Información Pública; mediante el concurso para el desarrollo de aplicaciones orientadas a Servicios Públicos; a través de una maratón de desarrollo de aplicaciones de uso ciudadano basado en información pública en formato de datos abiertos, las aplicaciones ganadoras ya se encuentran disponibles y pueden ser de gran utilidad para el ciudadano.', 'http://www.miinstitucion.gov.py/transparencia', '', '', 5, '', '');
 
 -- --------------------------------------------------------
 
@@ -8040,7 +7595,75 @@ INSERT INTO `Logs` (`logID`, `channel`, `time`, `message`, `uID`, `level`) VALUE
 (66, 'exceptions', 1535456443, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT date_format(cv.cvDatePublic, "%Y") as navYear, date_format(cv.cvDatePublic, "%m") as navMonth FROM Pages p LEFT JOIN PagePaths pp ON (p.cID = pp.cID and pp.ppIsCanonical = true) LEFT JOIN PageSearchIndex psi ON p.cID = psi.cID LEFT JOIN PageTypes pt ON p.ptID = pt.ptID INNER JOIN Collections c ON p.cID = c.cID INNER JOIN CollectionVersions cv ON p.cID = cv.cID LEFT JOIN CollectionSearchIndexAttributes csi ON c.cID = csi.cID WHERE (pt.ptID = ?) AND (p.cPointerID < 1) AND (p.cIsTemplate = 0) AND (cvIsApproved = 1) AND (p.cIsActive = ?) AND (p.cIsSystemPage = ?) GROUP BY navYear, navMonth ORDER BY cvDatePublic desc\' with params ["7", true, false]:\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column \'template_db.cv.cvDatePublic\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600),
 (67, 'application', 1535456480, 'Página "Noticias" en ruta "/noticias" movido a la papelera', 1, 100),
 (68, 'exceptions', 1535456799, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT date_format(cv.cvDatePublic, "%Y") as navYear, date_format(cv.cvDatePublic, "%m") as navMonth FROM Pages p LEFT JOIN PagePaths pp ON (p.cID = pp.cID and pp.ppIsCanonical = true) LEFT JOIN PageSearchIndex psi ON p.cID = psi.cID LEFT JOIN PageTypes pt ON p.ptID = pt.ptID INNER JOIN Collections c ON p.cID = c.cID INNER JOIN CollectionVersions cv ON p.cID = cv.cID LEFT JOIN CollectionSearchIndexAttributes csi ON c.cID = csi.cID WHERE (pt.ptID = ?) AND (p.cPointerID < 1) AND (p.cIsTemplate = 0) AND (cvIsApproved = 1) AND (p.cIsActive = ?) AND (p.cIsSystemPage = ?) GROUP BY navYear, navMonth ORDER BY cvDatePublic desc\' with params ["7", true, false]:\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column \'template_db.cv.cvDatePublic\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600),
-(69, 'exceptions', 1535456846, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT date_format(cv.cvDatePublic, "%Y") as navYear, date_format(cv.cvDatePublic, "%m") as navMonth FROM Pages p LEFT JOIN PagePaths pp ON (p.cID = pp.cID and pp.ppIsCanonical = true) LEFT JOIN PageSearchIndex psi ON p.cID = psi.cID LEFT JOIN PageTypes pt ON p.ptID = pt.ptID INNER JOIN Collections c ON p.cID = c.cID INNER JOIN CollectionVersions cv ON p.cID = cv.cID LEFT JOIN CollectionSearchIndexAttributes csi ON c.cID = csi.cID WHERE (pt.ptID = ?) AND (p.cPointerID < 1) AND (p.cIsTemplate = 0) AND (cvIsApproved = 1) AND (p.cIsActive = ?) AND (p.cIsSystemPage = ?) GROUP BY navYear, navMonth ORDER BY cvDatePublic desc\' with params ["7", true, false]:\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column \'template_db.cv.cvDatePublic\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600);
+(69, 'exceptions', 1535456846, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT date_format(cv.cvDatePublic, "%Y") as navYear, date_format(cv.cvDatePublic, "%m") as navMonth FROM Pages p LEFT JOIN PagePaths pp ON (p.cID = pp.cID and pp.ppIsCanonical = true) LEFT JOIN PageSearchIndex psi ON p.cID = psi.cID LEFT JOIN PageTypes pt ON p.ptID = pt.ptID INNER JOIN Collections c ON p.cID = c.cID INNER JOIN CollectionVersions cv ON p.cID = cv.cID LEFT JOIN CollectionSearchIndexAttributes csi ON c.cID = csi.cID WHERE (pt.ptID = ?) AND (p.cPointerID < 1) AND (p.cIsTemplate = 0) AND (cvIsApproved = 1) AND (p.cIsActive = ?) AND (p.cIsSystemPage = ?) GROUP BY navYear, navMonth ORDER BY cvDatePublic desc\' with params ["7", true, false]:\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column \'template_db.cv.cvDatePublic\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600),
+(70, 'exceptions', 1535459175, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT OD.opendataID, OD.title as title_opendata, OD.organization, OD.url as url_opendata, OD.email_organization,  ODD.datasetsID, ODD.title as title_datasets, ODD.description as description_datasets, ODD.url_download_page, ODD.author, ODD.email_author, ODD.tags, ODD.version,   ODR.resourceID, ODR.resource_title, ODR.description as description_resource,  ODL.licenseID, ODL.code_license, ODL.license_name, count(ODR.resourceID) as total_resource  FROM dsOpenData as OD   LEFT JOIN dsOpenDataDataset AS ODD ON OD.opendataID = ODD.opendataID  LEFT JOIN dsOpenDataResource AS ODR ON ODD.datasetsID = ODR.datasetsID  LEFT JOIN dsOpenDataLicense as ODL ON ODD.licenseID = ODL.licenseID   WHERE ODD.opendataID =1 group by ODD.datasetsID ORDER BY ODD.title\':\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #14 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'template_db.ODR.resourceID\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600),
+(71, 'exceptions', 1535459893, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT OD.opendataID, OD.title as title_opendata, OD.organization, OD.url as url_opendata, OD.email_organization,  ODD.datasetsID, ODD.title as title_datasets, ODD.description as description_datasets, ODD.url_download_page, ODD.author, ODD.email_author, ODD.tags, ODD.version,   ODR.resourceID, ODR.resource_title, ODR.description as description_resource,  ODL.licenseID, ODL.code_license, ODL.license_name, count(ODR.resourceID) as total_resource  FROM dsOpenData as OD   LEFT JOIN dsOpenDataDataset AS ODD ON OD.opendataID = ODD.opendataID  LEFT JOIN dsOpenDataResource AS ODR ON ODD.datasetsID = ODR.datasetsID  LEFT JOIN dsOpenDataLicense as ODL ON ODD.licenseID = ODL.licenseID   WHERE ODD.opendataID =1 group by ODD.datasetsID ORDER BY ODD.title\':\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #14 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'template_db.ODR.resourceID\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600),
+(72, 'application', 1535459909, 'Página "Transparencia" en ruta "/transparencia" movido a la papelera', 1, 100),
+(73, 'exceptions', 1535459916, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT OD.opendataID, OD.title as title_opendata, OD.organization, OD.url as url_opendata, OD.email_organization,  ODD.datasetsID, ODD.title as title_datasets, ODD.description as description_datasets, ODD.url_download_page, ODD.author, ODD.email_author, ODD.tags, ODD.version,   ODR.resourceID, ODR.resource_title, ODR.description as description_resource,  ODL.licenseID, ODL.code_license, ODL.license_name, count(ODR.resourceID) as total_resource  FROM dsOpenData as OD   LEFT JOIN dsOpenDataDataset AS ODD ON OD.opendataID = ODD.opendataID  LEFT JOIN dsOpenDataResource AS ODR ON ODD.datasetsID = ODR.datasetsID  LEFT JOIN dsOpenDataLicense as ODL ON ODD.licenseID = ODL.licenseID   WHERE ODD.opendataID =1 group by ODD.datasetsID ORDER BY ODD.title\':\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #14 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'template_db.ODR.resourceID\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600),
+(74, 'exceptions', 1535459966, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT OD.opendataID, OD.title as title_opendata, OD.organization, OD.url as url_opendata, OD.email_organization,  ODD.datasetsID, ODD.title as title_datasets, ODD.description as description_datasets, ODD.url_download_page, ODD.author, ODD.email_author, ODD.tags, ODD.version,   ODR.resourceID, ODR.resource_title, ODR.description as description_resource,  ODL.licenseID, ODL.code_license, ODL.license_name, count(ODR.resourceID) as total_resource  FROM dsOpenData as OD   LEFT JOIN dsOpenDataDataset AS ODD ON OD.opendataID = ODD.opendataID  LEFT JOIN dsOpenDataResource AS ODR ON ODD.datasetsID = ODR.datasetsID  LEFT JOIN dsOpenDataLicense as ODL ON ODD.licenseID = ODL.licenseID   WHERE ODD.opendataID =1 group by ODD.datasetsID ORDER BY ODD.title\':\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #14 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'template_db.ODR.resourceID\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600),
+(75, 'application', 1535459982, 'Página "Transparencia" en ruta "/transparencia" movido a la papelera', 1, 100),
+(76, 'application', 1535460035, 'Página "Noticias" en ruta "/!trash/noticias-1" eliminado', 1, 100),
+(77, 'application', 1535460035, 'Página "Transparencia" en ruta "/!trash/transparencia" eliminado', 1, 100),
+(78, 'application', 1535460035, 'Página "Transparencia" en ruta "/!trash/transparencia-1" eliminado', 1, 100),
+(79, 'application', 1535460036, 'Página "Noticia de prueba 5" en ruta "/!trash/noticia-de-prueba-5" eliminado', 1, 100),
+(80, 'application', 1535460036, 'Página "Noticia de prueba 4" en ruta "/!trash/noticia-de-prueba-4" eliminado', 1, 100),
+(81, 'application', 1535460036, 'Página "Noticia de prueba 1" en ruta "/!trash/noticia-de-prueba-1" eliminado', 1, 100),
+(82, 'application', 1535460037, 'Página "Noticia de prueba 2" en ruta "/!trash/noticia-de-prueba-2" eliminado', 1, 100),
+(83, 'application', 1535460037, 'Página "Noticia de prueba 3" en ruta "/!trash/noticia-de-prueba-3" eliminado', 1, 100),
+(84, 'application', 1535460037, 'Página "Noticias" en ruta "/!trash/noticias" eliminado', 1, 100),
+(85, 'exceptions', 1535460085, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT OD.opendataID, OD.title as title_opendata, OD.organization, OD.url as url_opendata, OD.email_organization,  ODD.datasetsID, ODD.title as title_datasets, ODD.description as description_datasets, ODD.url_download_page, ODD.author, ODD.email_author, ODD.tags, ODD.version,   ODR.resourceID, ODR.resource_title, ODR.description as description_resource,  ODL.licenseID, ODL.code_license, ODL.license_name, count(ODR.resourceID) as total_resource  FROM dsOpenData as OD   LEFT JOIN dsOpenDataDataset AS ODD ON OD.opendataID = ODD.opendataID  LEFT JOIN dsOpenDataResource AS ODR ON ODD.datasetsID = ODR.datasetsID  LEFT JOIN dsOpenDataLicense as ODL ON ODD.licenseID = ODL.licenseID   WHERE ODD.opendataID =2 group by ODD.datasetsID ORDER BY ODD.title\':\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #14 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'template_db.ODR.resourceID\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600),
+(86, 'application', 1535460132, 'Página "Open Data" en ruta "/dashboard/open_data" eliminado', 1, 100),
+(87, 'application', 1535460133, 'Página "Listar Catálogos" en ruta "/dashboard/open_data/list_catalog" eliminado', 1, 100),
+(88, 'application', 1535460133, 'Página "Agregar/Editar Catálogo" en ruta "/dashboard/open_data/catalog" eliminado', 1, 100),
+(89, 'application', 1535460133, 'Página "Listar Conjuntos de Datos" en ruta "/dashboard/open_data/list_datasets" eliminado', 1, 100),
+(90, 'application', 1535460133, 'Página "Agregar/Editar Conjunto de Datos" en ruta "/dashboard/open_data/datasets" eliminado', 1, 100),
+(91, 'application', 1535460133, 'Página "Tipo de Archivos" en ruta "/dashboard/open_data/types" eliminado', 1, 100),
+(92, 'application', 1535460133, 'Página "Agregar/Editar Recursos" en ruta "/dashboard/open_data/resource" eliminado', 1, 100),
+(93, 'application', 1535460133, 'Página "Agregar/Editar Archivos" en ruta "/dashboard/open_data/files" eliminado', 1, 100),
+(94, 'application', 1535460133, 'Página "Listar Recursos" en ruta "/dashboard/open_data/list_resource" eliminado', 1, 100),
+(95, 'application', 1535460133, 'Página "Agregar Diccionario" en ruta "/dashboard/open_data/dictionary" eliminado', 1, 100),
+(96, 'application', 1535460133, 'Página "Listar Diccionario" en ruta "/dashboard/open_data/list_dictionary" eliminado', 1, 100),
+(97, 'application', 1535460133, 'Página "Listar Catálogos" en ruta "/dashboard/open_data/list_catalog" eliminado', 1, 100),
+(98, 'application', 1535460133, 'Página "Agregar/Editar Catálogo" en ruta "/dashboard/open_data/catalog" eliminado', 1, 100),
+(99, 'application', 1535460133, 'Página "Listar Conjuntos de Datos" en ruta "/dashboard/open_data/list_datasets" eliminado', 1, 100),
+(100, 'application', 1535460133, 'Página "Agregar/Editar Conjunto de Datos" en ruta "/dashboard/open_data/datasets" eliminado', 1, 100),
+(101, 'application', 1535460133, 'Página "Tipo de Archivos" en ruta "/dashboard/open_data/types" eliminado', 1, 100),
+(102, 'application', 1535460133, 'Página "Agregar/Editar Recursos" en ruta "/dashboard/open_data/resource" eliminado', 1, 100),
+(103, 'application', 1535460133, 'Página "Agregar/Editar Archivos" en ruta "/dashboard/open_data/files" eliminado', 1, 100),
+(104, 'application', 1535460133, 'Página "Listar Recursos" en ruta "/dashboard/open_data/list_resource" eliminado', 1, 100),
+(105, 'application', 1535460133, 'Página "Agregar Diccionario" en ruta "/dashboard/open_data/dictionary" eliminado', 1, 100),
+(106, 'application', 1535460133, 'Página "Listar Diccionario" en ruta "/dashboard/open_data/list_dictionary" eliminado', 1, 100),
+(107, 'application', 1535460157, 'Página "Transparencia" en ruta "/transparencia" movido a la papelera', 1, 100),
+(108, 'exceptions', 1535460195, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\packages\\dsOpenData\\blocks\\open_data\\view.php:70 Invalid argument supplied for foreach() (2)\n', 1, 600),
+(109, 'application', 1535460210, 'Página "Transparencia" en ruta "/transparencia" movido a la papelera', 1, 100),
+(110, 'exceptions', 1535460277, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\concrete\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\AbstractMySQLDriver.php:115 An exception occurred while executing \'SELECT OD.opendataID, OD.title as title_opendata, OD.organization, OD.url as url_opendata, OD.email_organization,  ODD.datasetsID, ODD.title as title_datasets, ODD.description as description_datasets, ODD.url_download_page, ODD.author, ODD.email_author, ODD.tags, ODD.version,   ODR.resourceID, ODR.resource_title, ODR.description as description_resource,  ODL.licenseID, ODL.code_license, ODL.license_name, count(ODR.resourceID) as total_resource  FROM dsOpenData as OD   LEFT JOIN dsOpenDataDataset AS ODD ON OD.opendataID = ODD.opendataID  LEFT JOIN dsOpenDataResource AS ODR ON ODD.datasetsID = ODR.datasetsID  LEFT JOIN dsOpenDataLicense as ODL ON ODD.licenseID = ODL.licenseID   WHERE ODD.opendataID =2 group by ODD.datasetsID ORDER BY ODD.title\':\n\nSQLSTATE[42000]: Syntax error or access violation: 1055 Expression #14 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'template_db.ODR.resourceID\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (0)\n', 1, 600),
+(111, 'application', 1535460297, 'Página "Open Data" en ruta "/dashboard/open_data" eliminado', 1, 100),
+(112, 'application', 1535460297, 'Página "Listar Catálogos" en ruta "/dashboard/open_data/list_catalog" eliminado', 1, 100),
+(113, 'application', 1535460298, 'Página "Agregar/Editar Catálogo" en ruta "/dashboard/open_data/catalog" eliminado', 1, 100),
+(114, 'application', 1535460298, 'Página "Listar Conjuntos de Datos" en ruta "/dashboard/open_data/list_datasets" eliminado', 1, 100),
+(115, 'application', 1535460298, 'Página "Agregar/Editar Conjunto de Datos" en ruta "/dashboard/open_data/datasets" eliminado', 1, 100),
+(116, 'application', 1535460298, 'Página "Tipo de Archivos" en ruta "/dashboard/open_data/types" eliminado', 1, 100),
+(117, 'application', 1535460298, 'Página "Agregar/Editar Recursos" en ruta "/dashboard/open_data/resource" eliminado', 1, 100),
+(118, 'application', 1535460298, 'Página "Agregar/Editar Archivos" en ruta "/dashboard/open_data/files" eliminado', 1, 100),
+(119, 'application', 1535460298, 'Página "Listar Recursos" en ruta "/dashboard/open_data/list_resource" eliminado', 1, 100),
+(120, 'application', 1535460298, 'Página "Agregar Diccionario" en ruta "/dashboard/open_data/dictionary" eliminado', 1, 100),
+(121, 'application', 1535460298, 'Página "Listar Diccionario" en ruta "/dashboard/open_data/list_dictionary" eliminado', 1, 100),
+(122, 'application', 1535460298, 'Página "Listar Catálogos" en ruta "/dashboard/open_data/list_catalog" eliminado', 1, 100),
+(123, 'application', 1535460298, 'Página "Agregar/Editar Catálogo" en ruta "/dashboard/open_data/catalog" eliminado', 1, 100),
+(124, 'application', 1535460298, 'Página "Listar Conjuntos de Datos" en ruta "/dashboard/open_data/list_datasets" eliminado', 1, 100),
+(125, 'application', 1535460298, 'Página "Agregar/Editar Conjunto de Datos" en ruta "/dashboard/open_data/datasets" eliminado', 1, 100),
+(126, 'application', 1535460298, 'Página "Tipo de Archivos" en ruta "/dashboard/open_data/types" eliminado', 1, 100),
+(127, 'application', 1535460298, 'Página "Agregar/Editar Recursos" en ruta "/dashboard/open_data/resource" eliminado', 1, 100),
+(128, 'application', 1535460298, 'Página "Agregar/Editar Archivos" en ruta "/dashboard/open_data/files" eliminado', 1, 100),
+(129, 'application', 1535460298, 'Página "Listar Recursos" en ruta "/dashboard/open_data/list_resource" eliminado', 1, 100),
+(130, 'application', 1535460298, 'Página "Agregar Diccionario" en ruta "/dashboard/open_data/dictionary" eliminado', 1, 100),
+(131, 'application', 1535460298, 'Página "Listar Diccionario" en ruta "/dashboard/open_data/list_dictionary" eliminado', 1, 100),
+(132, 'application', 1535460309, 'Página "Transparencia" en ruta "/transparencia" movido a la papelera', 1, 100),
+(133, 'application', 1535460329, 'Página "Transparencia" en ruta "/!trash/transparencia-2" eliminado', 1, 100),
+(134, 'application', 1535460329, 'Página "Transparencia" en ruta "/!trash/transparencia-1" eliminado', 1, 100),
+(135, 'application', 1535460330, 'Página "Transparencia" en ruta "/!trash/transparencia" eliminado', 1, 100),
+(136, 'application', 1535460342, 'Página "Compras Públicas" en ruta "/compras-publicas" movido a la papelera', 1, 100),
+(137, 'application', 1535460358, 'Página "Compras Públicas" en ruta "/!trash/compras-publicas" eliminado', 1, 100);
 
 -- --------------------------------------------------------
 
@@ -8168,7 +7791,6 @@ CREATE TABLE `Packages` (
 
 INSERT INTO `Packages` (`pkgID`, `pkgName`, `pkgHandle`, `pkgDescription`, `pkgDateInstalled`, `pkgIsInstalled`, `pkgVersion`, `pkgAvailableVersion`) VALUES
 (1, 'SVG Social Media Icons', 'svg_social_media_icons', 'Add SVG social media icons with PNG fallback on your pages.', '2018-05-16 14:13:59', 1, '0.9.9', '0.9.9'),
-(2, 'Datos Abiertos', 'dsOpenData', 'Paquete desarrollado por la SENATICs para la implementación de Datos Abiertos en el portal.', '2018-05-17 11:42:14', 1, '1.0', NULL),
 (3, 'Event Calendar', 'dsEventCalendar', 'Event Calendar - you can add, edit and remove one day events on your page', '2018-05-18 11:59:53', 1, '3.3.5', NULL);
 
 -- --------------------------------------------------------
@@ -8372,28 +7994,14 @@ INSERT INTO `PagePaths` (`ppID`, `cID`, `cPath`, `ppIsCanonical`, `ppGeneratedFr
 (150, 152, '/!stacks/search', '1', 1),
 (151, 153, '/!stacks/espacio-2', '1', 1),
 (152, 154, '/!stacks/espacio-3', '1', 1),
-(156, 159, '/!trash/noticias', '1', 1),
 (161, 165, '/institucion', '1', 1),
 (162, 166, '/institucion/mision-y-vision', '1', 1),
 (163, 169, '/institucion/marco-legal', '1', 1),
 (165, 171, '/institucion/resoluciones', '1', 1),
 (166, 172, '/institucion/organigrama', '1', 1),
-(171, 177, '/transparencia', '1', 1),
-(172, 178, '/dashboard/open_data', '1', 1),
-(173, 179, '/dashboard/open_data/list_catalog', '1', 1),
-(174, 180, '/dashboard/open_data/catalog', '1', 1),
-(175, 181, '/dashboard/open_data/list_datasets', '1', 1),
-(176, 182, '/dashboard/open_data/datasets', '1', 1),
-(177, 183, '/dashboard/open_data/types', '1', 1),
-(178, 184, '/dashboard/open_data/resource', '1', 1),
-(179, 185, '/dashboard/open_data/files', '1', 1),
-(180, 186, '/dashboard/open_data/list_resource', '1', 1),
-(181, 187, '/dashboard/open_data/dictionary', '1', 1),
-(182, 188, '/dashboard/open_data/list_dictionary', '1', 1),
 (185, 191, '/contacto', '1', 1),
 (187, 193, '/mecip', '1', 1),
 (188, 194, '/tramites', '1', 1),
-(189, 195, '/compras-publicas', '1', 1),
 (190, 196, '/servicios', '1', 1),
 (198, 204, '/institucion/autoridades', '1', 1),
 (199, 205, '/dashboard/event_calendar', '1', 1),
@@ -8405,12 +8013,6 @@ INSERT INTO `PagePaths` (`ppID`, `cID`, `cPath`, `ppIsCanonical`, `ppGeneratedFr
 (205, 211, '/dashboard/event_calendar/settings', '1', 1),
 (206, 212, '/agenda', '1', 1),
 (207, 213, '/buscador', '1', 1),
-(211, 218, '/!trash/noticia-de-prueba-1', '1', 1),
-(212, 219, '/!trash/noticia-de-prueba-2', '1', 1),
-(213, 220, '/!trash/noticia-de-prueba-3', '1', 1),
-(214, 221, '/!trash/noticia-de-prueba-4', '1', 1),
-(215, 222, '/!trash/noticia-de-prueba-5', '1', 1),
-(217, 224, '/!trash/noticias-1', '1', 1),
 (218, 225, '/noticias', '1', 1),
 (219, 226, '/noticias/titulo-de-la-noticia-1', '1', 1),
 (220, 227, '/noticias/titulo-de-la-noticia-2', '1', 1),
@@ -8591,8 +8193,8 @@ CREATE TABLE `Pages` (
 --
 
 INSERT INTO `Pages` (`cID`, `ptID`, `cIsTemplate`, `uID`, `cIsCheckedOut`, `cCheckedOutUID`, `cCheckedOutDatetime`, `cCheckedOutDatetimeLastEdit`, `cOverrideTemplatePermissions`, `cInheritPermissionsFromCID`, `cInheritPermissionsFrom`, `cFilename`, `cPointerID`, `cPointerExternalLink`, `cPointerExternalLinkNewWindow`, `cIsActive`, `cChildren`, `cDisplayOrder`, `cParentID`, `pkgID`, `cDraftTargetParentPageID`, `cCacheFullPageContent`, `cCacheFullPageContentOverrideLifetime`, `cCacheFullPageContentLifetimeCustom`, `cIsSystemPage`) VALUES
-(1, 0, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'OVERRIDE', NULL, 0, NULL, 0, 1, 21, 0, 0, 0, 0, -1, '0', 0, 0),
-(2, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'OVERRIDE', '/dashboard/view.php', 0, NULL, 0, 1, 15, 0, 0, 0, 0, -1, '0', 0, 1),
+(1, 0, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'OVERRIDE', NULL, 0, NULL, 0, 1, 19, 0, 0, 0, 0, -1, '0', 0, 0),
+(2, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'OVERRIDE', '/dashboard/view.php', 0, NULL, 0, 1, 14, 0, 0, 0, 0, -1, '0', 0, 1),
 (3, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/sitemap/view.php', 0, NULL, 0, 1, 3, 0, 2, 0, 0, -1, '0', 0, 1),
 (4, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/sitemap/full.php', 0, NULL, 0, 1, 0, 0, 3, 0, 0, -1, '0', 0, 1),
 (5, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/sitemap/explore.php', 0, NULL, 0, 1, 0, 1, 3, 0, 0, -1, '0', 0, 1),
@@ -8720,7 +8322,7 @@ INSERT INTO `Pages` (`cID`, `ptID`, `cIsTemplate`, `uID`, `cIsCheckedOut`, `cChe
 (127, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', NULL, 0, NULL, 0, 1, 0, 11, 2, 0, 0, -1, '0', 0, 1),
 (128, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', NULL, 0, NULL, 0, 1, 0, 12, 2, 0, 0, -1, '0', 0, 1),
 (129, 0, 0, 1, 0, NULL, NULL, NULL, 1, 129, 'OVERRIDE', '/!drafts/view.php', 0, NULL, 0, 1, 0, 0, 0, 0, 0, -1, '0', 0, 1),
-(130, 0, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', '/!trash/view.php', 0, NULL, 0, 1, 7, 0, 0, 0, 0, -1, '0', 0, 1),
+(130, 0, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', '/!trash/view.php', 0, NULL, 0, 1, 0, 0, 0, 0, 0, -1, '0', 0, 1),
 (131, 0, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', '/!stacks/view.php', 0, NULL, 0, 1, 9, 0, 0, 0, 0, -1, '0', 0, 1),
 (132, 0, 0, 1, 0, NULL, NULL, NULL, 1, 132, 'OVERRIDE', '/login.php', 0, NULL, 0, 1, 0, 0, 0, 0, 0, -1, '0', 0, 1),
 (133, 0, 0, 1, 0, NULL, NULL, NULL, 1, 133, 'OVERRIDE', '/register.php', 0, NULL, 0, 1, 0, 0, 0, 0, 0, -1, '0', 0, 1),
@@ -8746,7 +8348,6 @@ INSERT INTO `Pages` (`cID`, `ptID`, `cIsTemplate`, `uID`, `cIsCheckedOut`, `cChe
 (153, 1, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 7, 131, 0, 0, -1, '0', 0, 1),
 (154, 1, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 8, 131, 0, 0, -1, '0', 0, 1),
 (157, 6, 1, NULL, 0, NULL, NULL, NULL, 1, 157, 'OVERRIDE', NULL, 0, NULL, 0, 1, 0, 0, 0, 0, 0, -1, '0', 0, 0),
-(159, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 0, 0, 5, 130, 0, 1, -1, '0', 0, 1),
 (160, 7, 1, NULL, 0, NULL, NULL, NULL, 1, 160, 'OVERRIDE', NULL, 0, NULL, 0, 1, 0, 0, 0, 0, 0, -1, '0', 0, 0),
 (165, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 5, 0, 1, 0, 1, -1, '0', 0, 0),
 (166, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 2, 165, 0, 1, -1, '0', 0, 0),
@@ -8755,25 +8356,12 @@ INSERT INTO `Pages` (`cID`, `ptID`, `cIsTemplate`, `uID`, `cIsCheckedOut`, `cChe
 (169, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 3, 165, 0, 165, -1, '0', 0, 0),
 (171, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 4, 165, 0, 165, -1, '0', 0, 0),
 (172, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 5, 165, 0, 165, -1, '0', 0, 0),
-(177, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 3, 1, 0, 1, -1, '0', 0, 0),
-(178, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/view.php', 0, NULL, 0, 1, 10, 13, 2, 2, 0, -1, '0', 0, 1),
-(179, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/list_catalog.php', 0, NULL, 0, 1, 0, 0, 178, 2, 0, -1, '0', 0, 1),
-(180, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/catalog.php', 0, NULL, 0, 1, 0, 1, 178, 2, 0, -1, '0', 0, 1),
-(181, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/list_datasets.php', 0, NULL, 0, 1, 0, 2, 178, 2, 0, -1, '0', 0, 1),
-(182, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/datasets.php', 0, NULL, 0, 1, 0, 3, 178, 2, 0, -1, '0', 0, 1),
-(183, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/types.php', 0, NULL, 0, 1, 0, 4, 178, 2, 0, -1, '0', 0, 1),
-(184, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/resource.php', 0, NULL, 0, 1, 0, 5, 178, 2, 0, -1, '0', 0, 1),
-(185, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/files.php', 0, NULL, 0, 1, 0, 6, 178, 2, 0, -1, '0', 0, 1),
-(186, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/list_resource.php', 0, NULL, 0, 1, 0, 7, 178, 2, 0, -1, '0', 0, 1),
-(187, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/dictionary.php', 0, NULL, 0, 1, 0, 8, 178, 2, 0, -1, '0', 0, 1),
-(188, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/open_data/list_dictionary.php', 0, NULL, 0, 1, 0, 9, 178, 2, 0, -1, '0', 0, 1),
 (191, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 4, 1, 0, 1, -1, '0', 0, 0),
 (193, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 6, 1, 0, 1, -1, '0', 0, 0),
 (194, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 5, 1, 0, 1, -1, '0', 0, 0),
-(195, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 7, 1, 0, 1, -1, '0', 0, 0),
 (196, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 8, 1, 0, 1, -1, '0', 0, 0),
 (204, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 6, 165, 0, 165, -1, '0', 0, 0),
-(205, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/event_calendar/view.php', 0, NULL, 0, 1, 6, 14, 2, 3, 0, -1, '0', 0, 1),
+(205, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/event_calendar/view.php', 0, NULL, 0, 1, 6, 13, 2, 3, 0, -1, '0', 0, 1),
 (206, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/event_calendar/list_calendar.php', 0, NULL, 0, 1, 0, 0, 205, 3, 0, -1, '0', 0, 1),
 (207, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/event_calendar/list_event.php', 0, NULL, 0, 1, 0, 1, 205, 3, 0, -1, '0', 0, 1),
 (208, 0, 0, 1, 0, NULL, NULL, NULL, 1, 2, 'PARENT', '/dashboard/event_calendar/calendar.php', 0, NULL, 0, 1, 0, 2, 205, 3, 0, -1, '0', 0, 1),
@@ -8783,12 +8371,6 @@ INSERT INTO `Pages` (`cID`, `ptID`, `cIsTemplate`, `uID`, `cIsCheckedOut`, `cChe
 (212, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 2, 1, 0, 1, -1, '0', 0, 0),
 (213, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 9, 1, 0, 1, -1, '0', 0, 0),
 (214, 7, 1, NULL, 0, NULL, NULL, NULL, 1, 214, 'OVERRIDE', NULL, 0, NULL, 0, 1, 0, 0, 0, 0, 0, -1, '0', 0, 0),
-(218, 7, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 0, 0, 6, 130, 0, 159, -1, '0', 0, 1),
-(219, 7, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 0, 0, 7, 130, 0, 159, -1, '0', 0, 1),
-(220, 7, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 0, 0, 8, 130, 0, 159, -1, '0', 0, 1),
-(221, 7, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 0, 0, 9, 130, 0, 159, -1, '0', 0, 1),
-(222, 7, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 0, 0, 10, 130, 0, 159, -1, '0', 0, 1),
-(224, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 0, 0, 11, 130, 0, 1, -1, '0', 0, 1),
 (225, 6, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 4, 1, 1, 0, 1, -1, '0', 0, 0),
 (226, 7, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 1, 225, 0, 225, -1, '0', 0, 0),
 (227, 7, 0, 1, 0, NULL, NULL, NULL, 1, 1, 'PARENT', NULL, 0, NULL, 0, 1, 0, 2, 225, 0, 225, -1, '0', 0, 0),
@@ -8923,46 +8505,30 @@ INSERT INTO `PageSearchIndex` (`cID`, `content`, `cName`, `cDescription`, `cPath
 (130, '', 'Trash', '', '/!trash', '2018-05-16 12:10:52', '2018-05-16 12:10:58', NULL, 0),
 (131, '', 'Stacks', '', '/!stacks', '2018-05-16 12:10:52', '2018-05-16 12:10:58', NULL, 0),
 (134, '', 'My Account', '', '/account', '2018-05-16 12:10:54', '2018-05-16 12:10:59', NULL, 0),
-(1, ' \r\n(function(d, s, id) {\r\n  var js, fjs = d.getElementsByTagName(s)[0];\r\n  if (d.getElementById(id)) return;\r\n  js = d.createElement(s); js.id = id;\r\n  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4";\r\n  fjs.parentNode.insertBefore(js, fjs);\r\n}(document, \'script\', \'facebook-jssdk\'));\r\nSENATICs Paraguay   Titulo slide 1  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto  Título del Slide 2  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto   Últimas noticias ', 'Portada', '', NULL, '2018-05-16 12:09:07', '2018-08-28 11:34:44', NULL, 0),
+(1, ' \r\n(function(d, s, id) {\r\n  var js, fjs = d.getElementsByTagName(s)[0];\r\n  if (d.getElementById(id)) return;\r\n  js = d.createElement(s); js.id = id;\r\n  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4";\r\n  fjs.parentNode.insertBefore(js, fjs);\r\n}(document, \'script\', \'facebook-jssdk\'));\r\nSENATICs Paraguay   Titulo slide 1  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto  Título del Slide 2  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto   Últimas noticias ', 'Portada', '', NULL, '2018-05-16 12:09:07', '2018-08-28 12:47:22', NULL, 0),
 (146, '', 'Header Site Title', NULL, '/!stacks/header-site-title', '2018-05-16 13:36:29', '2018-08-27 18:58:08', NULL, 0),
 (152, '', 'search', NULL, '/!stacks/search', '2018-05-16 13:55:32', '2018-08-27 19:07:13', NULL, 0),
 (153, '', 'Espacio 2', NULL, '/!stacks/espacio-2', '2018-05-16 13:55:33', '2018-05-21 09:03:32', NULL, 0),
 (154, '', 'Espacio 3', NULL, '/!stacks/espacio-3', '2018-05-16 13:55:33', '2018-05-21 09:03:32', NULL, 0),
 (148, '\r\n    var min=12;\r\n    var max=30;\r\n    function increaseFontSize() {\r\n\r\n       var p = document.getElementsByTagName(\'p\');\r\n       var blockquote = document.getElementsByTagName(\'blockquote\');\r\n       var collection = document.getElementsByClassName("collection");\r\n       \r\n       for(i=0;i  Portal construido conjuntamente con la SENATICs\r\n  Secretaría Nacional de Tecnologías de la Información y Comunicación  ', 'Footer Legal', NULL, '/!stacks/footer-legal', '2018-05-16 13:36:30', '2018-05-21 10:25:13', NULL, 0),
-(151, '', 'info_superior', NULL, '/!stacks/info-superior', '2018-05-16 13:55:32', '2018-05-16 14:16:57', NULL, 0),
+(151, '', 'info_superior', NULL, '/!stacks/info-superior', '2018-05-16 13:55:32', '2018-08-28 12:47:19', NULL, 0),
 (147, '', 'Header Navigation', NULL, '/!stacks/header-navigation', '2018-05-16 13:36:29', '2018-05-17 15:05:54', NULL, 0),
-(218, 'Categorías / Filtrar Etiquetas Últimas Noticias  ¿Qué es Lorem Ipsum? Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. ¿Por qué lo usamos? Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo). ¿De dónde viene? Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32  El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.  ', 'Noticia de prueba 1', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '/noticias/noticia-de-prueba-1', '2018-05-21 09:52:00', '2018-05-21 10:14:32', NULL, 0),
-(159, 'Categorías / Filtrar Etiquetas ', 'Noticias', '', '/noticias', '2018-05-16 14:43:48', '2018-05-21 10:15:59', NULL, 0),
 (165, '', 'Institución', '', '/institucion', '2018-05-17 10:14:16', '2018-05-17 10:44:54', NULL, 0),
 (166, 'Misión Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.    Visión Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.    Ejes Estratégicos Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.    ', 'Misión y Visión', '', '/institucion/mision-y-vision', '2018-05-17 10:17:29', '2018-05-17 10:53:17', NULL, 0),
 (169, ' Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.    ', 'Marco Legal', '', '/institucion/marco-legal', '2018-05-17 10:41:49', '2018-05-17 10:55:34', NULL, 0),
 (171, '', 'Resoluciones', '', '/institucion/resoluciones', '2018-05-17 10:44:57', '2018-05-17 10:47:53', NULL, 0),
 (172, '', 'Organigrama', '', '/institucion/organigrama', '2018-05-17 10:46:12', '2018-05-17 11:00:42', NULL, 0),
-(220, 'Categorías / Filtrar Etiquetas Últimas Noticias  ¿Qué es Lorem Ipsum? Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. ¿Por qué lo usamos? Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo). \n¿De dónde viene? Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32  El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham. ¿Dónde puedo conseguirlo? Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.  ', 'Noticia de prueba 3', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '/noticias/noticia-de-prueba-3', '2018-05-21 09:58:00', '2018-05-21 09:59:52', NULL, 0),
-(219, 'Categorías / Filtrar Etiquetas Últimas Noticias  ¿Qué es Lorem Ipsum?Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. ¿Por qué lo usamos?Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo). \n¿De dónde viene? Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32  El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham. ¿Dónde puedo conseguirlo? Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.  ', 'Noticia de prueba 2', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '/noticias/noticia-de-prueba-2', '2018-05-21 09:56:00', '2018-05-21 09:58:07', NULL, 0),
-(177, '', 'Transparencia', '', '/transparencia', '2018-05-17 11:35:06', '2018-05-17 11:52:07', NULL, 0),
-(181, '', 'Listar Conjuntos de Datos', '', '/dashboard/open_data/list_datasets', '2018-05-17 11:42:18', '2018-05-17 11:42:18', NULL, 0),
-(184, '', 'Agregar/Editar Recursos', '', '/dashboard/open_data/resource', '2018-05-17 11:42:19', '2018-05-17 11:42:20', NULL, 0),
-(185, '', 'Agregar/Editar Archivos', '', '/dashboard/open_data/files', '2018-05-17 11:42:20', '2018-05-17 11:42:20', NULL, 0),
-(186, '', 'Listar Recursos', '', '/dashboard/open_data/list_resource', '2018-05-17 11:42:20', '2018-05-17 11:42:21', NULL, 0),
-(187, '', 'Agregar Diccionario', '', '/dashboard/open_data/dictionary', '2018-05-17 11:42:21', '2018-05-17 11:42:22', NULL, 0),
-(188, '', 'Listar Diccionario', '', '/dashboard/open_data/list_dictionary', '2018-05-17 11:42:22', '2018-05-17 11:42:23', NULL, 0),
-(221, 'Categorías / Filtrar Etiquetas Últimas Noticias   ¿Qué es Lorem Ipsum? Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. ¿Por qué lo usamos? Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).  \n¿De dónde viene? Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32  El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham. ¿Dónde puedo conseguirlo? Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.  ', 'Noticia de prueba 4', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '/noticias/noticia-de-prueba-4', '2018-05-21 10:00:00', '2018-05-21 10:02:04', NULL, 0),
 (191, 'Formulario de Contacto    Dirección: Complejo Santos E2 - Gral. Santos 1170 c/ ConcordiaTelefono: (+595 21) 217 - 9000 Horarios de Atención: de 07:00hs a 15:00hs E-mail: comunicacion@senatics.gov.pyAsuncion - Paraguay ', 'Contacto', '', '/contacto', '2018-05-18 09:56:03', '2018-08-27 18:59:07', NULL, 0),
 (226, 'Categorías: Etiquetas:   Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  ', 'Titulo de la Noticia 1', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '/noticias/titulo-de-la-noticia-1', '2018-08-28 11:48:00', '2018-08-28 11:52:43', NULL, 0),
 (193, '', 'MECIP', '', '/mecip', '2018-05-18 10:46:14', '2018-05-18 10:46:33', NULL, 0),
 (194, '', 'Trámites', '', '/tramites', '2018-05-18 10:46:54', '2018-05-18 10:47:12', NULL, 0),
-(195, '', 'Compras Públicas', '', '/compras-publicas', '2018-05-18 10:47:15', '2018-05-18 10:47:30', NULL, 0),
 (196, '', 'Servicios', '', '/servicios', '2018-05-18 10:47:37', '2018-05-18 10:47:49', NULL, 0),
-(224, '', 'Noticias', '', '/noticias', '2018-08-28 11:35:39', '2018-08-28 11:41:12', NULL, 0),
 (225, '', 'Noticias', '', '/noticias', '2018-08-28 11:41:39', '2018-08-28 11:59:36', NULL, 0),
-(222, 'Categorías / Filtrar Etiquetas Últimas Noticias ¿Qué es Lorem Ipsum?\r\n Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.\r\n   ¿Por qué lo usamos?Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).\r\n ¿De dónde viene? Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32\r\n  El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.\r\n ¿Dónde puedo conseguirlo? Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.\r\n  ', 'Noticia de prueba 5', '¿Qué es Lorem Ipsum?\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '/noticias/noticia-de-prueba-5', '2018-05-21 10:02:00', '2018-05-21 10:04:38', NULL, 0),
 (204, 'Nombre de la Persona\nCargo / Ocupación\nNombre de la Institución\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. Nombre de la Persona\nCargo / Ocupación\nNombre de la Institución\nLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. ', 'Autoridades', '', '/institucion/autoridades', '2018-05-18 11:40:22', '2018-05-18 11:49:31', NULL, 0),
 (149, '\r\n\r\n.white-enlaces{\r\n        font-size:12px !important;\r\n    }\r\n\r\nEnlaces de Interés\r\n\r\n  \r\n    Presidencia de la República del Paraguay\r\n    Secretaría de la Función Pública (SFP)\r\n    Secretaría de Acción Social (SAS)\r\n    Fondo Nacional de la Cultura y las Artes (FONDEC)\r\n    Secretaría Nacional de Turismo (SENATUR)\r\n    Ministerio de Justicia (MJ)\r\n    Ministerio de Trabajo, Empleo y Seguridad Social (MTESS)\r\n      \r\n  \r\n \r\n\r\n  \r\n    Secretaría Nacional de Cultura (SNC)\r\n    Secretaría de Información y Comunicación (SICOM)\r\n    Instituto Paraguayo del Indigena (INDI)\r\n    Ministerio de Educación y Cultura (MEC)\r\n    Ministerio de Hacienda (MH)\r\n    Secretaría Nacional de Deportes (SND)\r\n    Ministerio de Salud Pública y Bienestar Social (MSPyBS)\r\n  \r\n  ', 'Footer Navigation', NULL, '/!stacks/footer-navigation', '2018-05-16 13:36:30', '2018-05-18 11:49:29', NULL, 0),
 (150, ' Dirección: Complejo Santos E2 - Gral. Santos 1170 c/ ConcordiaTelefono: (+595 21) 217 - 9000 Horarios de Atención: de 07:00hs a 15:00hs E-mail: comunicacion@senatics.gov.py ', 'Footer Contact', NULL, '/!stacks/footer-contact', '2018-05-16 13:36:30', '2018-05-21 10:25:13', NULL, 0),
 (212, '', 'Agenda', '', '/agenda', '2018-05-18 12:00:15', '2018-05-18 12:02:03', NULL, 0),
-(213, '', 'Buscador', '', '/buscador', '2018-05-18 15:07:46', '2018-08-28 12:07:25', NULL, 0);
-INSERT INTO `PageSearchIndex` (`cID`, `content`, `cName`, `cDescription`, `cPath`, `cDatePublic`, `cDateLastIndexed`, `cDateLastSitemapped`, `cRequiresReindex`) VALUES
+(213, '', 'Buscador', '', '/buscador', '2018-05-18 15:07:46', '2018-08-28 12:07:25', NULL, 0),
 (227, 'Categorías: Etiquetas:  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  ', 'Titulo de la Noticia 2', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.', '/noticias/titulo-de-la-noticia-2', '2018-08-28 11:52:00', '2018-08-28 11:54:29', NULL, 0),
 (228, 'Categorías: Etiquetas:  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.   Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  ', 'Titulo de la Noticia 3', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original.', '/noticias/titulo-de-la-noticia-3', '2018-08-28 11:54:00', '2018-08-28 11:56:00', NULL, 0),
 (229, 'Categorías: Etiquetas:  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  ', 'Titulo de la Noticia 4', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.', '/noticias/titulo-de-la-noticia-4', '2018-08-28 11:56:00', '2018-08-28 11:57:40', NULL, 0);
@@ -10843,7 +10409,7 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`uID`, `uName`, `uEmail`, `uPassword`, `uIsActive`, `uIsValidated`, `uIsFullRecord`, `uDateAdded`, `uLastPasswordChange`, `uHasAvatar`, `uLastOnline`, `uLastLogin`, `uLastIP`, `uPreviousLogin`, `uNumLogins`, `uLastAuthTypeID`, `uTimezone`, `uDefaultLanguage`) VALUES
-(1, 'admin', 'gobiernoelectronico@senatics.gov.py', '$2a$12$omSqpYlje/lWaJXhtXqjG.7FpcDO5VrNNE/Ui/K4Ha4Pa1Zk3dtuq', '1', -1, 1, '2018-05-16 12:08:56', '2018-05-18 13:49:00', 0, 1535458022, 1535454258, 0x3030303030303030303030303030303030303030303030303030303030303031, 1535396086, 7, 1, NULL, 'es_PY');
+(1, 'admin', 'gobiernoelectronico@senatics.gov.py', '$2a$12$omSqpYlje/lWaJXhtXqjG.7FpcDO5VrNNE/Ui/K4Ha4Pa1Zk3dtuq', '1', -1, 1, '2018-05-16 12:08:56', '2018-05-18 13:49:00', 0, 1535460364, 1535454258, 0x3030303030303030303030303030303030303030303030303030303030303031, 1535396086, 7, 1, NULL, 'es_PY');
 
 -- --------------------------------------------------------
 
@@ -11130,7 +10696,20 @@ INSERT INTO `WorkflowProgressHistory` (`wphID`, `wpID`, `timestamp`, `object`) V
 (198, 23, '2018-08-28 11:55:57', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"228";s:4:"cvID";s:1:"1";s:4:"wrID";s:2:"23";}'),
 (199, 24, '2018-08-28 11:57:37', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"229";s:4:"cvID";s:1:"1";s:4:"wrID";s:2:"24";}'),
 (200, 25, '2018-08-28 11:59:33', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"225";s:4:"cvID";s:1:"4";s:4:"wrID";s:2:"25";}'),
-(201, 26, '2018-08-28 12:07:22', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"213";s:4:"cvID";s:1:"5";s:4:"wrID";s:2:"26";}');
+(201, 26, '2018-08-28 12:07:22', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"213";s:4:"cvID";s:1:"5";s:4:"wrID";s:2:"26";}'),
+(202, 27, '2018-08-28 12:38:29', 'O:48:"Concrete\\Core\\Workflow\\Request\\DeletePageRequest":7:{s:14:"\0*\0wrStatusNum";i:100;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"12";s:3:"cID";s:3:"177";s:4:"wrID";s:2:"27";}'),
+(203, 28, '2018-08-28 12:39:25', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"230";s:4:"cvID";s:1:"1";s:4:"wrID";s:2:"28";}'),
+(204, 29, '2018-08-28 12:39:42', 'O:48:"Concrete\\Core\\Workflow\\Request\\DeletePageRequest":7:{s:14:"\0*\0wrStatusNum";i:100;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"12";s:3:"cID";s:3:"230";s:4:"wrID";s:2:"29";}'),
+(205, 30, '2018-08-28 12:41:05', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"231";s:4:"cvID";s:1:"1";s:4:"wrID";s:2:"30";}'),
+(206, 31, '2018-08-28 12:42:37', 'O:48:"Concrete\\Core\\Workflow\\Request\\DeletePageRequest":7:{s:14:"\0*\0wrStatusNum";i:100;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"12";s:3:"cID";s:3:"231";s:4:"wrID";s:2:"31";}'),
+(207, 32, '2018-08-28 12:42:49', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"243";s:4:"cvID";s:1:"1";s:4:"wrID";s:2:"32";}'),
+(208, 33, '2018-08-28 12:43:14', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"243";s:4:"cvID";s:1:"2";s:4:"wrID";s:2:"33";}'),
+(209, 34, '2018-08-28 12:43:30', 'O:48:"Concrete\\Core\\Workflow\\Request\\DeletePageRequest":7:{s:14:"\0*\0wrStatusNum";i:100;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"12";s:3:"cID";s:3:"243";s:4:"wrID";s:2:"34";}'),
+(210, 35, '2018-08-28 12:44:15', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"244";s:4:"cvID";s:1:"1";s:4:"wrID";s:2:"35";}'),
+(211, 36, '2018-08-28 12:44:36', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"244";s:4:"cvID";s:1:"2";s:4:"wrID";s:2:"36";}'),
+(212, 37, '2018-08-28 12:45:09', 'O:48:"Concrete\\Core\\Workflow\\Request\\DeletePageRequest":7:{s:14:"\0*\0wrStatusNum";i:100;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"12";s:3:"cID";s:3:"244";s:4:"wrID";s:2:"37";}'),
+(213, 38, '2018-08-28 12:45:42', 'O:48:"Concrete\\Core\\Workflow\\Request\\DeletePageRequest":7:{s:14:"\0*\0wrStatusNum";i:100;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"12";s:3:"cID";s:3:"195";s:4:"wrID";s:2:"38";}'),
+(214, 39, '2018-08-28 12:47:19', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:1:"1";s:4:"cvID";s:2:"49";s:4:"wrID";s:2:"39";}');
 
 -- --------------------------------------------------------
 
@@ -13271,7 +12850,7 @@ ALTER TABLE `AreaLayoutThemeGridColumns`
 -- AUTO_INCREMENT de la tabla `Areas`
 --
 ALTER TABLE `Areas`
-  MODIFY `arID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=721;
+  MODIFY `arID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=757;
 --
 -- AUTO_INCREMENT de la tabla `atAddressCustomCountries`
 --
@@ -13311,7 +12890,7 @@ ALTER TABLE `AttributeTypes`
 -- AUTO_INCREMENT de la tabla `AttributeValues`
 --
 ALTER TABLE `AttributeValues`
-  MODIFY `avID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=374;
+  MODIFY `avID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=384;
 --
 -- AUTO_INCREMENT de la tabla `AuthenticationTypes`
 --
@@ -13331,17 +12910,17 @@ ALTER TABLE `BannedWords`
 -- AUTO_INCREMENT de la tabla `BlockRelations`
 --
 ALTER TABLE `BlockRelations`
-  MODIFY `brID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `brID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT de la tabla `Blocks`
 --
 ALTER TABLE `Blocks`
-  MODIFY `bID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=708;
+  MODIFY `bID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=713;
 --
 -- AUTO_INCREMENT de la tabla `BlockTypes`
 --
 ALTER TABLE `BlockTypes`
-  MODIFY `btID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `btID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT de la tabla `BlockTypeSets`
 --
@@ -13441,7 +13020,7 @@ ALTER TABLE `btTransparenciaActivaEntries`
 -- AUTO_INCREMENT de la tabla `Collections`
 --
 ALTER TABLE `Collections`
-  MODIFY `cID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
+  MODIFY `cID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
 --
 -- AUTO_INCREMENT de la tabla `ConversationDiscussions`
 --
@@ -13511,7 +13090,7 @@ ALTER TABLE `dsEventCalendarTypes`
 -- AUTO_INCREMENT de la tabla `dsOpenData`
 --
 ALTER TABLE `dsOpenData`
-  MODIFY `opendataID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `opendataID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `dsOpenDataDataset`
 --
@@ -13666,7 +13245,7 @@ ALTER TABLE `JobsLog`
 -- AUTO_INCREMENT de la tabla `Logs`
 --
 ALTER TABLE `Logs`
-  MODIFY `logID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `logID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 --
 -- AUTO_INCREMENT de la tabla `MailImporters`
 --
@@ -13686,7 +13265,7 @@ ALTER TABLE `MultilingualTranslations`
 -- AUTO_INCREMENT de la tabla `Packages`
 --
 ALTER TABLE `Packages`
-  MODIFY `pkgID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pkgID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `PageFeeds`
 --
@@ -13696,7 +13275,7 @@ ALTER TABLE `PageFeeds`
 -- AUTO_INCREMENT de la tabla `PagePaths`
 --
 ALTER TABLE `PagePaths`
-  MODIFY `ppID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
+  MODIFY `ppID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
 --
 -- AUTO_INCREMENT de la tabla `PageTemplates`
 --
@@ -13791,12 +13370,12 @@ ALTER TABLE `Piles`
 -- AUTO_INCREMENT de la tabla `QueueMessages`
 --
 ALTER TABLE `QueueMessages`
-  MODIFY `message_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `message_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `Queues`
 --
 ALTER TABLE `Queues`
-  MODIFY `queue_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `queue_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `SignupRequests`
 --
@@ -13911,7 +13490,7 @@ ALTER TABLE `UserValidationHashes`
 -- AUTO_INCREMENT de la tabla `WorkflowProgress`
 --
 ALTER TABLE `WorkflowProgress`
-  MODIFY `wpID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `wpID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT de la tabla `WorkflowProgressCategories`
 --
@@ -13921,12 +13500,12 @@ ALTER TABLE `WorkflowProgressCategories`
 -- AUTO_INCREMENT de la tabla `WorkflowProgressHistory`
 --
 ALTER TABLE `WorkflowProgressHistory`
-  MODIFY `wphID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `wphID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 --
 -- AUTO_INCREMENT de la tabla `WorkflowRequestObjects`
 --
 ALTER TABLE `WorkflowRequestObjects`
-  MODIFY `wrID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `wrID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT de la tabla `Workflows`
 --
