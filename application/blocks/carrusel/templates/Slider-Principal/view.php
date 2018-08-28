@@ -70,7 +70,7 @@ $(document).ready(function(){
             <?php $f = File::getByID($row['fID']); ?>
             <?php if(is_object($f)) {?>
                     
-                <div class="row" style="background:#8c1917; margin:0px !important">
+                <div class="row" style="background-color: #1b224f; margin:0px !important">
                     <div style="padding:0px !important;" class="<?php if($row['title'] || $row['description']) { echo "col l8 m12 s12"; }else{ echo "col l12"; } ?>">
                         <?php
                         $tag = Core::make('html/image', array($f, false))->getTag();

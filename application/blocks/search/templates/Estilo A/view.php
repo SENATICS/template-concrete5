@@ -31,12 +31,12 @@ if (!isset($query) || !is_string($query)) {
             ?><h4 style="margin-top:32px"><?php echo t('There were no results found. Please try another keyword or phrase.')?></h4><?php
         } else {
             $tt = Core::make('helper/text');
-            ?><div id="searchResults"><?php
+            ?><div id="searchResults" style="margin-top:50px;"><?php
                 foreach ($results as $r) {
                     $currentPageBody = $this->controller->highlightedExtendedMarkup($r->getPageIndexContent(), $query);
-                    ?><div class="searchResult">
-                        <h3><a href="<?php echo $r->getCollectionLink()?>"><?php echo $r->getCollectionName()?></a></h3>
-                        <p><?php
+                    ?><div class="searchResult" style="margin-bottom:40px;">
+                        <h4 style="margin-bottom:5px;"><a href="<?php echo $r->getCollectionLink()?>"><?php echo $r->getCollectionName()?></a></h4>
+                        <p style="margin-top:2px;"><?php
                             if ($r->getCollectionDescription()) {
                                 echo $this->controller->highlightedMarkup($tt->shortText($r->getCollectionDescription()), $query);
                                 ?><br/><?php

@@ -1,12 +1,9 @@
 <?xml version="1.0"?>
 <styles version="1.0">
     <set name="General">
-        <style name="Color de Fondo Cabecera" variable="headerBg-action" type="color" />
         <style name="Color de Fondo Pie" variable="footerBg-action" type="color" />
         <style name="Color de Texto Pie" variable="footerText" type="color" />
         <style name="Body" variable="body" type="type" />
-        <style name="Imagen de Fondo del Sitio" variable="bg-site" type="image" />
-        <style name="Color de Fondo del Sitio" variable="bgcolor-site" type="color" />
     </set>
     <set name="Menu Principal">
         <style name="Color de Fondo" variable="MenuABg-action" type="color" />

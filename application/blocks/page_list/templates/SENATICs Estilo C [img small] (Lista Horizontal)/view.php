@@ -1,16 +1,16 @@
 <style>
     .tarjeta{
         background:rgba(250,250,250,.5);
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .07), 0 2px 10px 0 rgba(0, 0, 0, .09);
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
         margin: 2rem 0 2rem 0;
         transition: box-shadow .25s;
-        border-radius: 2px;
+        border-radius: 10px;
         position: relative;
         display:block;
         padding-bottom:15px;
         padding-right:10px;
     }
-    .tarjeta:hover{background:#fff; box-shadow:0 8px 17px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.13)}
+    .tarjeta:hover{background:#fff; box-shadow:0 2px 17px 0 rgba(0, 0, 0, 0.1), 0 2px 20px 0 rgba(0, 0, 0, 0.13)}
     
     .tarjeta .card-title{
         color: #fff;
