@@ -28,6 +28,9 @@
     .tarjeta .card-content p{
         margin-top:5px;   
     }
+    .tarjeta .br-5{
+        border-radius: 5px;
+    }
 .portada_imagen{
     max-width:160px;
     width:100%;
@@ -35,9 +38,9 @@
     float:left;
 }
 .contenido_detalle{
-    padding-left:180px !important;
+    padding-left:190px !important;
     margin-top:-15px;
-    padding-top:4px;
+    padding-top:5px;
 }
 @media only screen and (max-width : 600px) {
     .portada_imagen{
@@ -144,7 +147,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                         <?php
                         $img = Core::make('html/image', array($thumbnail));
                         $tag = $img->getTag();
-                        $tag->addClass('activator img-responsive materialboxed');
+                        $tag->addClass('activator img-responsive materialboxed br-5');
                         print $tag;
                         ?>
                         
@@ -178,7 +181,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
                     
                     
                     <?php if ($includeName): ?>
-                        <span class="card-title activator grey-text text-darken-4"><a href="<?php echo $url ?>" target="<?php echo $target ?>"><?php echo $title ?></a></span>
+                        <h4 class="card-title activator grey-text text-darken-4"><a href="<?php echo $url ?>" target="<?php echo $target ?>"><?php echo $title ?></a></h4>
                     <?php endif; ?>
                     
                     <?php if ($includeDescription): ?>

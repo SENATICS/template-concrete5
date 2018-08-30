@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-08-2018 a las 12:47:52
+-- Tiempo de generación: 30-08-2018 a las 15:51:39
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 5.6.25
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `template_db`
+-- Base de datos: `template_bd`
 --
 
 -- --------------------------------------------------------
@@ -974,7 +974,9 @@ INSERT INTO `atNumber` (`avID`, `value`) VALUES
 (351, '300.0000'),
 (352, '150.0000'),
 (353, '324.0000'),
-(354, '364.0000');
+(354, '364.0000'),
+(384, '1000.0000'),
+(385, '170.0000');
 
 -- --------------------------------------------------------
 
@@ -1764,7 +1766,9 @@ INSERT INTO `AttributeValues` (`avID`, `akID`, `avDateAdded`, `uID`, `atID`) VAL
 (380, 5, '2018-08-28 12:42:23', 1, 3),
 (381, 5, '2018-08-28 12:42:23', 1, 3),
 (382, 5, '2018-08-28 12:42:49', 1, 3),
-(383, 5, '2018-08-28 12:44:15', 1, 3);
+(383, 5, '2018-08-28 12:44:15', 1, 3),
+(384, 14, '2018-08-30 14:44:59', 1, 6),
+(385, 15, '2018-08-30 14:44:59', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -1882,7 +1886,8 @@ INSERT INTO `BlockFeatureAssignments` (`cID`, `cvID`, `bID`, `faID`) VALUES
 (150, 6, 423, 6),
 (150, 7, 423, 6),
 (146, 4, 435, 7),
-(146, 5, 588, 8);
+(146, 5, 588, 8),
+(146, 6, 714, 9);
 
 -- --------------------------------------------------------
 
@@ -1962,7 +1967,17 @@ INSERT INTO `BlockRelations` (`brID`, `bID`, `originalBID`, `relationType`) VALU
 (57, 593, 415, 'DUPLICATE'),
 (58, 706, 601, 'DUPLICATE'),
 (59, 707, 434, 'DUPLICATE'),
-(60, 712, 17, 'DUPLICATE');
+(60, 712, 17, 'DUPLICATE'),
+(61, 713, 587, 'DUPLICATE'),
+(62, 714, 588, 'DUPLICATE'),
+(63, 715, 267, 'DUPLICATE'),
+(64, 716, 266, 'DUPLICATE'),
+(65, 717, 265, 'DUPLICATE'),
+(66, 718, 264, 'DUPLICATE'),
+(67, 719, 713, 'DUPLICATE'),
+(68, 720, 589, 'DUPLICATE'),
+(69, 721, 426, 'DUPLICATE'),
+(70, 722, 585, 'DUPLICATE');
 
 -- --------------------------------------------------------
 
@@ -2147,7 +2162,17 @@ INSERT INTO `Blocks` (`bID`, `bName`, `bDateAdded`, `bDateModified`, `bFilename`
 (705, '', '2018-08-28 11:57:37', '2018-08-28 11:57:37', NULL, '0', 12, 1, NULL),
 (706, '', '2018-08-28 11:58:54', '2018-08-28 11:59:28', 'SENATICs Estilo C [img big] (Lista Horizontal)', '1', 30, 1, NULL),
 (707, '', '2018-08-28 12:07:07', '2018-08-28 12:07:20', 'Estilo A', '1', 32, 1, NULL),
-(712, '', '2018-08-28 12:47:13', '2018-08-28 12:47:14', NULL, '1', 39, 1, NULL);
+(712, '', '2018-08-28 12:47:13', '2018-08-28 12:47:14', NULL, '1', 39, 1, NULL),
+(713, '', '2018-08-29 19:00:16', '2018-08-29 19:00:16', NULL, '1', 12, 1, NULL),
+(714, '', '2018-08-30 14:45:02', '2018-08-30 14:45:02', NULL, '1', 27, 1, NULL),
+(715, '', '2018-08-30 15:22:06', '2018-08-30 15:22:16', '', '1', 41, 1, NULL),
+(716, '', '2018-08-30 15:22:25', '2018-08-30 15:22:25', '', '1', 41, 1, NULL),
+(717, '', '2018-08-30 15:22:33', '2018-08-30 15:22:34', '', '1', 41, 1, NULL),
+(718, '', '2018-08-30 15:22:44', '2018-08-30 15:22:44', '', '1', 41, 1, NULL),
+(719, '', '2018-08-30 15:24:20', '2018-08-30 15:24:20', NULL, '1', 12, 1, NULL),
+(720, '', '2018-08-30 15:24:51', '2018-08-30 15:24:51', '', '1', 12, 1, NULL),
+(721, '', '2018-08-30 15:30:00', '2018-08-30 15:30:00', 'Slider-Principal', '1', 42, 1, NULL),
+(722, '', '2018-08-30 15:31:00', '2018-08-30 15:31:00', NULL, '1', 25, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -2367,7 +2392,11 @@ INSERT INTO `btBoton` (`bID`, `texto`, `icon`, `alineacion_icono`, `externalLink
 (265, 'Compras Públicas', 'shopping-cart', 0, '', 195, 0, 14, '#ba3a3a', 1, '#ffffff', 8, '100', '%', 0, NULL, '#222222', '#f0f0f0'),
 (266, 'TrámitesMECIP', 'building', 0, '', 193, 0, 14, '#ba3a3a', 1, '#ffffff', 8, '100', '%', 0, NULL, '#222222', '#f0f0f0'),
 (267, 'Trámites', 'bookmark', 0, '', 194, 0, 14, '#ba3a3a', 1, '#ffffff', 8, '100', '%', 0, NULL, '#222222', '#f0f0f0'),
-(416, 'Ver más noticias', 'plus-square-o', 0, NULL, 159, 0, 20, '#c73b3b', 0, '', 5, '100', '%', 0, NULL, '#ffffff', '#878787');
+(416, 'Ver más noticias', 'plus-square-o', 0, NULL, 159, 0, 20, '#c73b3b', 0, '', 5, '100', '%', 0, NULL, '#ffffff', '#878787'),
+(715, 'Trámites', 'bookmark', 0, '', 194, 0, 14, '#ba3a3a', 1, '#ffffff', 8, '100', '%', 0, NULL, '#222222', '#f0f0f0'),
+(716, 'TrámitesMECIP', 'building', 0, '', 193, 0, 14, '#ba3a3a', 1, '#ffffff', 8, '100', '%', 0, NULL, '#222222', '#f0f0f0'),
+(717, 'Compras Públicas', 'shopping-cart', 0, '', 195, 0, 14, '#ba3a3a', 1, '#ffffff', 8, '100', '%', 0, NULL, '#222222', '#f0f0f0'),
+(718, 'Servicios', 'briefcase', 0, '', 196, 0, 14, '#ba3a3a', 1, '#ffffff', 8, '100', '%', 0, NULL, '#222222', '#f0f0f0');
 
 -- --------------------------------------------------------
 
@@ -2403,7 +2432,8 @@ INSERT INTO `btCarrusel` (`bID`, `navigationType`, `slidesToScroll`, `slidesToSh
 (425, 0, 1, 1, 5000, 500, 1, 1, 0, 1, 0),
 (426, 1, 1, 1, 5000, 500, 1, 1, 0, 1, 0),
 (431, 1, 1, 4, 7000, 200, 1, 1, 0, 1, 0),
-(591, 1, 1, 4, 7000, 200, 1, 1, 0, 1, 0);
+(591, 1, 1, 4, 7000, 200, 1, 1, 0, 1, 0),
+(721, 0, 1, 1, 5000, 500, 1, 1, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2456,7 +2486,9 @@ INSERT INTO `btCarruselEntries` (`id`, `bID`, `cID`, `fID`, `linkURL`, `internal
 (41, 591, 0, 42, '', 177, '', '', 0, 0),
 (42, 591, 0, 43, 'http://www.informacionpublica.gov.py', 0, '', '', 1, 1),
 (43, 591, 0, 44, 'http://www.denuncias.gov.py/ssps/', 0, '', '', 1, 2),
-(44, 591, 0, 13, 'https://www.paraguay.gov.py', 0, '', '', 0, 3);
+(44, 591, 0, 13, 'https://www.paraguay.gov.py', 0, '', '', 0, 3),
+(47, 721, 0, 21, '', 226, 'Titulo slide 1', '<p><strong>Lorem Ipsum</strong> es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto</p>', 0, 0),
+(48, 721, 0, 22, '', 0, 'Título del Slide 2', '<p><strong>Lorem Ipsum</strong> es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto</p>', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2517,7 +2549,8 @@ INSERT INTO `btContentImage` (`bID`, `fID`, `fOnstateID`, `maxWidth`, `maxHeight
 (422, 1, 0, 0, 0, '', 0, '', ''),
 (423, 20, 0, 0, 0, '', 0, '', ''),
 (435, 40, 0, 0, 0, '', 1, '', ''),
-(588, 40, 0, 0, 0, '', 1, '', '');
+(588, 40, 0, 0, 0, '', 1, '', ''),
+(714, 40, 0, 0, 0, '', 1, '', '');
 
 -- --------------------------------------------------------
 
@@ -2562,7 +2595,11 @@ INSERT INTO `btContentLocal` (`bID`, `content`) VALUES
 (653, '<p data-redactor-inserted-image="true"><concrete-picture fID="38" id="image-marker" width="514" height="513" alt="" style="width: 514px; height: 513px; float: right; margin: 0px 0px 10px 10px;" /></p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><blockquote>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</blockquote><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>'),
 (672, '<p data-redactor-inserted-image="true"><concrete-picture fID="37" id="image-marker" width="422" height="421" alt="" style="width: 422px; height: 421px; float: left; margin: 0px 10px 10px 0px;" /></p><blockquote>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</blockquote><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><pre>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</pre><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>'),
 (687, '<p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p data-redactor-inserted-image="true"><concrete-picture fID="32" id="image-marker" width="681" height="384" style="width: 681px; height: 384px; display: block; margin: auto;" alt="" /></p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>'),
-(705, '<p data-redactor-inserted-image="true"><concrete-picture fID="29" id="image-marker" width="439" height="440" alt="" style="width: 439px; height: 440px; float: left; margin: 0px 10px 10px 0px;" /></p><blockquote>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</blockquote><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>');
+(705, '<p data-redactor-inserted-image="true"><concrete-picture fID="29" id="image-marker" width="439" height="440" alt="" style="width: 439px; height: 440px; float: left; margin: 0px 10px 10px 0px;" /></p><blockquote>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</blockquote><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p><p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>'),
+(713, '<p>Secretaría Nacional de Tecnologías de la Información y Comunicación<br></p>'),
+(719, '<p>Secretaría Nacional de Tecnologías de la Información y Comunicación<br></p><p>Asunción - Paraguay</p>'),
+(720, '<p data-redactor-inserted-image="true"><concrete-picture fID="41" id="image-marker" width="314" height="122" style="width: 314px; height: 122px;" /></p><h6><strong><i class="fa fa-map-marker"></i> Dirección:</strong> Complejo Santos E2 - Gral. Santos 1170 c/ Concordia</h6><h6><strong><i class="fa fa-phone"></i>Telefono:</strong> (+595 21) 217 - 9000</h6><h6><strong><i class="fa fa-clock-o"></i> Horarios de Atención:</strong> de 07:00hs a 15:00hs</h6><h6><strong><i class="fa fa-envelope"></i> E-mail:</strong> <a href="mailto:mailto:comunicacion@senatics.gov.py">comunicacion@senatics.gov.py</a></h6><h4 style="text-align: center;" rel="text-align: center;">Asunción - Paraguay</h4>'),
+(722, '<script>\r\n    var min=12;\r\n    var max=30;\r\n    function increaseFontSize() {\r\n\r\n       var p = document.getElementsByTagName(\'p\');\r\n       var blockquote = document.getElementsByTagName(\'blockquote\');\r\n       var collection = document.getElementsByClassName("collection");\r\n       \r\n       for(i=0;i<p.length;i++) {\r\n\r\n          if(p[i].style.fontSize) {\r\n             var s = parseInt(p[i].style.fontSize.replace("px",""));\r\n          } else {\r\n\r\n             var s = 14;\r\n          }\r\n          if(s!=max) {\r\n\r\n             s += 1;\r\n          }\r\n          p[i].style.fontSize = s+"px";\r\n       }\r\n       for(i=0;i<blockquote.length;i++) {\r\n          if(blockquote[i].style.fontSize) {\r\n             var b = parseInt(blockquote[i].style.fontSize.replace("px",""));\r\n          } else {\r\n\r\n             var b = 14;\r\n          }\r\n          if(s!=max) {\r\n\r\n             b += 1;\r\n          }\r\n          blockquote[i].style.fontSize = b+"px";\r\n       }\r\n       for(i=0;i<collection.length;i++) {\r\n          if(collection[i].style.fontSize) {\r\n             var c = parseInt(collection[i].style.fontSize.replace("px",""));\r\n          } else {\r\n\r\n             var c = 14;\r\n          }\r\n          if(s!=max) {\r\n\r\n             c += 1;\r\n          }\r\n          collection[i].style.fontSize = c+"px";\r\n       }\r\n    }\r\n    function decreaseFontSize() {\r\n       var p = document.getElementsByTagName(\'p\');\r\n       var blockquote = document.getElementsByTagName(\'blockquote\');\r\n       var collection = document.getElementsByClassName("collection");\r\n       \r\n       for(i=0;i<p.length;i++) {\r\n          if(p[i].style.fontSize) {\r\n             var s = parseInt(p[i].style.fontSize.replace("px",""));\r\n          } else {\r\n             var s = 14;\r\n          }\r\n          if(s!=min) {\r\n             s -= 1;\r\n          }\r\n          p[i].style.fontSize = s+"px";\r\n       }\r\n       for(i=0;i<blockquote.length;i++) {\r\n          if(blockquote[i].style.fontSize) {\r\n             var b = parseInt(blockquote[i].style.fontSize.replace("px",""));\r\n          } else {\r\n             var b = 14;\r\n          }\r\n          if(s!=max) {\r\n             b -= 1;\r\n          }\r\n          blockquote[i].style.fontSize = b+"px"\r\n       }\r\n       for(i=0;i<collection.length;i++) {\r\n          if(collection[i].style.fontSize) {\r\n             var c = parseInt(collection[i].style.fontSize.replace("px",""));\r\n          } else {\r\n\r\n             var c = 14;\r\n          }\r\n          if(s!=max) {\r\n\r\n             c -= 1;\r\n          }\r\n          collection[i].style.fontSize = c+"px";\r\n       }\r\n    }\r\n    function normalFontSize() {\r\n       var p = document.getElementsByTagName(\'p\');\r\n       var blockquote = document.getElementsByTagName(\'blockquote\');\r\n       var collection = document.getElementsByClassName("collection");\r\n       \r\n       for(i=0;i<p.length;i++) {\r\n          p[i].removeAttribute(\'style\');\r\n       }\r\n       for(i=0;i<blockquote.length;i++) {\r\n          blockquote[i].removeAttribute(\'style\');\r\n       }\r\n       for(i=0;i<collection.length;i++) {\r\n          collection[i].removeAttribute(\'style\');\r\n       }\r\n    }\r\n	function lectura() {\r\n          var modo_lectura_datos = document.getElementById("fondo_sitio").style.background;\r\n          \r\n          if (modo_lectura_datos == "black" || modo_lectura_datos == "black none repeat scroll 0% 0%"){\r\n    		  document.getElementById("fondo_sitio").removeAttribute("style");\r\n    		  document.getElementById("cabecera").style.display=\'block\';\r\n    	  }else{\r\n    	      document.getElementById("fondo_sitio").style.background=\'black\';\r\n    	      document.getElementById("cabecera").style.display=\'none\';\r\n    	  }\r\n	}\r\n</script>\r\n\r\n\r\n<div class="fixed-action-btn horizontal click-to-toggle invisible_smartphone" style="bottom: 45px; right: 24px;">\r\n    <a class="btn-floating btn-large red">\r\n      <i class="large mdi-navigation-menu"></i>\r\n    </a>\r\n    <style>\r\n        .accesibilidad li{\r\n            list-style-type: none !important;\r\n        }\r\n        \r\n    </style>\r\n    <ul class="accesibilidad">\r\n      <li><a href="javascript:increaseFontSize();" class="btn-floating green"><i class="material-icons">zoom_in</i></a></li>\r\n      <li><a href="javascript:decreaseFontSize();" class="btn-floating blue"><i class="material-icons">zoom_out</i></a></li>\r\n      <li><a href="javascript:normalFontSize();" class="btn-floating orange"><i class="material-icons">spellcheck</i></a></li>\r\n    </ul>\r\n  </div>');
 
 -- --------------------------------------------------------
 
@@ -3891,6 +3928,12 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1, 47, 1, 120),
 (1, 48, 1, 120),
 (1, 49, 1, 120),
+(1, 50, 1, 120),
+(1, 51, 1, 120),
+(1, 52, 1, 120),
+(1, 53, 1, 120),
+(1, 54, 1, 120),
+(1, 55, 1, 120),
 (1, 10, 2, 121),
 (1, 11, 2, 121),
 (1, 12, 2, 121),
@@ -3931,6 +3974,12 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1, 47, 2, 121),
 (1, 48, 2, 121),
 (1, 49, 2, 121),
+(1, 50, 2, 121),
+(1, 51, 2, 121),
+(1, 52, 2, 121),
+(1, 53, 2, 121),
+(1, 54, 2, 121),
+(1, 55, 2, 121),
 (1, 10, 7, 122),
 (1, 11, 7, 122),
 (1, 12, 7, 122),
@@ -3971,6 +4020,12 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1, 47, 7, 122),
 (1, 48, 7, 122),
 (1, 49, 7, 122),
+(1, 50, 7, 122),
+(1, 51, 7, 122),
+(1, 52, 7, 122),
+(1, 53, 7, 122),
+(1, 54, 7, 122),
+(1, 55, 7, 122),
 (1, 10, 11, 123),
 (1, 11, 11, 123),
 (1, 12, 11, 123),
@@ -4011,6 +4066,12 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (1, 47, 11, 123),
 (1, 48, 11, 123),
 (1, 49, 11, 123),
+(1, 50, 11, 123),
+(1, 51, 11, 123),
+(1, 52, 11, 123),
+(1, 53, 11, 123),
+(1, 54, 11, 123),
+(1, 55, 11, 123),
 (160, 1, 5, 125),
 (226, 1, 5, 125),
 (226, 2, 5, 125),
@@ -4045,6 +4106,7 @@ INSERT INTO `CollectionAttributeValues` (`cID`, `cvID`, `akID`, `avID`) VALUES
 (191, 8, 5, 177),
 (191, 9, 5, 177),
 (191, 10, 5, 177),
+(191, 11, 5, 177),
 (193, 1, 5, 181),
 (194, 1, 5, 182),
 (196, 1, 5, 184),
@@ -4101,7 +4163,7 @@ CREATE TABLE `Collections` (
 --
 
 INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALUES
-(1, '2018-05-16 12:09:07', '2018-08-28 12:47:19', 'home'),
+(1, '2018-05-16 12:09:07', '2018-08-30 15:31:03', 'home'),
 (2, '2018-05-16 12:09:37', '2018-05-16 12:09:37', 'dashboard'),
 (3, '2018-05-16 12:09:37', '2018-05-16 12:09:38', 'sitemap'),
 (4, '2018-05-16 12:09:38', '2018-05-16 12:09:38', 'full'),
@@ -4246,9 +4308,9 @@ INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALU
 (143, '2018-05-16 12:10:57', '2018-05-16 12:10:57', 'page_forbidden'),
 (144, '2018-05-16 12:10:58', '2018-05-16 12:10:58', 'download_file'),
 (145, '2018-05-16 12:11:01', '2018-05-16 12:11:01', NULL),
-(146, '2018-05-16 13:36:29', '2018-08-27 18:58:08', 'header-site-title'),
+(146, '2018-05-16 13:36:29', '2018-08-30 14:45:07', 'header-site-title'),
 (147, '2018-05-16 13:36:29', '2018-05-17 15:05:53', 'header-navigation'),
-(148, '2018-05-16 13:36:30', '2018-05-21 10:25:13', 'footer-legal'),
+(148, '2018-05-16 13:36:30', '2018-08-30 15:31:03', 'footer-legal'),
 (149, '2018-05-16 13:36:30', '2018-05-18 11:49:29', 'footer-navigation'),
 (150, '2018-05-16 13:36:30', '2018-05-21 10:25:13', 'footer-contact'),
 (151, '2018-05-16 13:55:32', '2018-08-28 12:47:19', 'info-superior'),
@@ -4264,7 +4326,7 @@ INSERT INTO `Collections` (`cID`, `cDateAdded`, `cDateModified`, `cHandle`) VALU
 (169, '2018-05-17 10:41:49', '2018-05-17 10:55:33', ''),
 (171, '2018-05-17 10:44:57', '2018-05-17 10:47:52', ''),
 (172, '2018-05-17 10:46:12', '2018-05-17 11:00:41', ''),
-(191, '2018-05-18 09:56:03', '2018-08-27 18:59:04', ''),
+(191, '2018-05-18 09:56:03', '2018-08-30 15:24:54', ''),
 (193, '2018-05-18 10:46:14', '2018-05-18 10:46:32', ''),
 (194, '2018-05-18 10:46:54', '2018-05-18 10:47:11', ''),
 (196, '2018-05-18 10:47:37', '2018-05-18 10:47:48', ''),
@@ -4861,6 +4923,84 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (1, 49, 591, 'Slider', 1, 0, 0, 0, 0, 0, 0),
 (1, 49, 592, 'Contenido A : 6', 0, 0, 0, 0, 0, 0, 0),
 (1, 49, 593, 'Contenido A : 6', 1, 0, 0, 0, 0, 0, 0),
+(1, 50, 239, 'Contenido A : 7', 0, 0, 0, 0, 0, 0, 0),
+(1, 50, 248, 'Contenido A', 0, 0, 0, 0, 0, 0, 0),
+(1, 50, 249, 'Slider', 0, 0, 0, 0, 0, 0, 0),
+(1, 50, 263, 'Slider : 10', 4, 0, 0, 0, 0, 0, 0),
+(1, 50, 264, 'Slider : 10', 3, 0, 0, 0, 0, 0, 0),
+(1, 50, 265, 'Slider : 10', 2, 0, 0, 0, 0, 0, 0),
+(1, 50, 266, 'Slider : 10', 1, 0, 0, 0, 0, 0, 0),
+(1, 50, 267, 'Slider : 10', 0, 0, 0, 0, 0, 0, 0),
+(1, 50, 416, 'Contenido A : 6', 2, 0, 0, 0, 0, 0, 0),
+(1, 50, 426, 'Slider : 11', 0, 0, 0, 0, 0, 0, 0),
+(1, 50, 591, 'Slider', 1, 0, 0, 0, 0, 0, 0),
+(1, 50, 592, 'Contenido A : 6', 0, 0, 0, 0, 0, 0, 0),
+(1, 50, 593, 'Contenido A : 6', 1, 0, 0, 0, 0, 0, 0),
+(1, 51, 239, 'Contenido A : 7', 0, 0, 0, 0, 0, 0, 0),
+(1, 51, 248, 'Contenido A', 0, 0, 0, 0, 0, 0, 0),
+(1, 51, 249, 'Slider', 0, 0, 0, 0, 0, 0, 0),
+(1, 51, 263, 'Slider : 10', 4, 0, 0, 0, 0, 0, 0),
+(1, 51, 264, 'Slider : 10', 3, 0, 0, 0, 0, 0, 0),
+(1, 51, 265, 'Slider : 10', 2, 0, 0, 0, 0, 0, 0),
+(1, 51, 266, 'Slider : 10', 1, 0, 0, 0, 0, 0, 0),
+(1, 51, 267, 'Slider : 10', 0, 0, 0, 0, 0, 0, 0),
+(1, 51, 416, 'Contenido A : 6', 2, 0, 0, 0, 0, 0, 0),
+(1, 51, 426, 'Slider : 11', 0, 0, 0, 0, 0, 0, 0),
+(1, 51, 591, 'Slider', 1, 0, 0, 0, 0, 0, 0),
+(1, 51, 592, 'Contenido A : 6', 0, 0, 0, 0, 0, 0, 0),
+(1, 51, 593, 'Contenido A : 6', 1, 0, 0, 0, 0, 0, 0),
+(1, 52, 239, 'Contenido A : 7', 0, 0, 0, 0, 0, 0, 0),
+(1, 52, 248, 'Contenido A', 0, 0, 0, 0, 0, 0, 0),
+(1, 52, 249, 'Slider', 0, 0, 0, 0, 0, 0, 0),
+(1, 52, 263, 'Slider : 10', 4, 0, 0, 0, 0, 0, 0),
+(1, 52, 416, 'Contenido A : 6', 2, 0, 0, 0, 0, 0, 0),
+(1, 52, 426, 'Slider : 11', 0, 0, 0, 0, 0, 0, 0),
+(1, 52, 591, 'Slider', 1, 0, 0, 0, 0, 0, 0),
+(1, 52, 592, 'Contenido A : 6', 0, 0, 0, 0, 0, 0, 0),
+(1, 52, 593, 'Contenido A : 6', 1, 0, 0, 0, 0, 0, 0),
+(1, 52, 715, 'Slider : 10', 0, 1, 0, 0, 0, 0, 0),
+(1, 52, 716, 'Slider : 10', 1, 1, 0, 0, 0, 0, 0),
+(1, 52, 717, 'Slider : 10', 2, 1, 0, 0, 0, 0, 0),
+(1, 52, 718, 'Slider : 10', 3, 1, 0, 0, 0, 0, 0),
+(1, 53, 239, 'Contenido A : 7', 0, 0, 0, 0, 0, 0, 0),
+(1, 53, 248, 'Contenido A', 0, 0, 0, 0, 0, 0, 0),
+(1, 53, 249, 'Slider', 0, 0, 0, 0, 0, 0, 0),
+(1, 53, 263, 'Slider : 10', 4, 0, 0, 0, 0, 0, 0),
+(1, 53, 416, 'Contenido A : 6', 2, 0, 0, 0, 0, 0, 0),
+(1, 53, 426, 'Slider : 11', 0, 0, 0, 0, 0, 0, 0),
+(1, 53, 591, 'Slider', 1, 0, 0, 0, 0, 0, 0),
+(1, 53, 592, 'Contenido A : 6', 0, 0, 0, 0, 0, 0, 0),
+(1, 53, 593, 'Contenido A : 6', 1, 0, 0, 0, 0, 0, 0),
+(1, 53, 715, 'Slider : 10', 0, 0, 0, 0, 0, 0, 0),
+(1, 53, 716, 'Slider : 10', 1, 0, 0, 0, 0, 0, 0),
+(1, 53, 717, 'Slider : 10', 2, 0, 0, 0, 0, 0, 0),
+(1, 53, 718, 'Slider : 10', 3, 0, 0, 0, 0, 0, 0),
+(1, 54, 239, 'Contenido A : 7', 0, 0, 0, 0, 0, 0, 0),
+(1, 54, 248, 'Contenido A', 0, 0, 0, 0, 0, 0, 0),
+(1, 54, 249, 'Slider', 0, 0, 0, 0, 0, 0, 0),
+(1, 54, 263, 'Slider : 10', 4, 0, 0, 0, 0, 0, 0),
+(1, 54, 416, 'Contenido A : 6', 2, 0, 0, 0, 0, 0, 0),
+(1, 54, 591, 'Slider', 1, 0, 0, 0, 0, 0, 0),
+(1, 54, 592, 'Contenido A : 6', 0, 0, 0, 0, 0, 0, 0),
+(1, 54, 593, 'Contenido A : 6', 1, 0, 0, 0, 0, 0, 0),
+(1, 54, 715, 'Slider : 10', 0, 0, 0, 0, 0, 0, 0),
+(1, 54, 716, 'Slider : 10', 1, 0, 0, 0, 0, 0, 0),
+(1, 54, 717, 'Slider : 10', 2, 0, 0, 0, 0, 0, 0),
+(1, 54, 718, 'Slider : 10', 3, 0, 0, 0, 0, 0, 0),
+(1, 54, 721, 'Slider : 11', 0, 1, 0, 0, 0, 0, 0),
+(1, 55, 239, 'Contenido A : 7', 0, 0, 0, 0, 0, 0, 0),
+(1, 55, 248, 'Contenido A', 0, 0, 0, 0, 0, 0, 0),
+(1, 55, 249, 'Slider', 0, 0, 0, 0, 0, 0, 0),
+(1, 55, 263, 'Slider : 10', 4, 0, 0, 0, 0, 0, 0),
+(1, 55, 416, 'Contenido A : 6', 2, 0, 0, 0, 0, 0, 0),
+(1, 55, 591, 'Slider', 1, 0, 0, 0, 0, 0, 0),
+(1, 55, 592, 'Contenido A : 6', 0, 0, 0, 0, 0, 0, 0),
+(1, 55, 593, 'Contenido A : 6', 1, 0, 0, 0, 0, 0, 0),
+(1, 55, 715, 'Slider : 10', 0, 0, 0, 0, 0, 0, 0),
+(1, 55, 716, 'Slider : 10', 1, 0, 0, 0, 0, 0, 0),
+(1, 55, 717, 'Slider : 10', 2, 0, 0, 0, 0, 0, 0),
+(1, 55, 718, 'Slider : 10', 3, 0, 0, 0, 0, 0, 0),
+(1, 55, 721, 'Slider : 11', 0, 0, 0, 0, 0, 0, 0),
 (127, 1, 1, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (128, 1, 2, 'Primary', 0, 1, 0, 0, 0, 0, 0),
 (128, 1, 3, 'Primary', 1, 1, 0, 0, 0, 0, 0),
@@ -4873,6 +5013,7 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (146, 2, 10, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (146, 4, 435, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (146, 5, 588, 'Main', 0, 1, 0, 0, 0, 0, 0),
+(146, 6, 714, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (147, 2, 18, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (147, 3, 18, 'Main', 0, 0, 0, 0, 0, 0, 0),
 (147, 4, 18, 'Main', 0, 0, 0, 0, 0, 0, 0),
@@ -4896,6 +5037,12 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (148, 5, 585, 'Main', 1, 1, 0, 0, 0, 0, 0),
 (148, 6, 585, 'Main', 1, 0, 0, 0, 0, 0, 0),
 (148, 6, 587, 'Main', 0, 1, 0, 0, 0, 0, 0),
+(148, 7, 585, 'Main', 1, 0, 0, 0, 0, 0, 0),
+(148, 7, 713, 'Main', 0, 1, 0, 0, 0, 0, 0),
+(148, 8, 585, 'Main', 1, 0, 0, 0, 0, 0, 0),
+(148, 8, 719, 'Main', 0, 1, 0, 0, 0, 0, 0),
+(148, 9, 719, 'Main', 0, 0, 0, 0, 0, 0, 0),
+(148, 9, 722, 'Main', 1, 1, 0, 0, 0, 0, 0),
 (149, 2, 420, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (150, 2, 422, 'Main', 0, 1, 0, 0, 0, 0, 0),
 (150, 4, 423, 'Main', 0, 1, 0, 0, 0, 0, 0),
@@ -5055,6 +5202,12 @@ INSERT INTO `CollectionVersionBlocks` (`cID`, `cvID`, `bID`, `arHandle`, `cbDisp
 (191, 10, 235, 'Contenido : 12', 0, 0, 0, 0, 0, 0, 0),
 (191, 10, 236, 'Contenido : 12', 1, 0, 0, 0, 0, 0, 0),
 (191, 10, 589, 'Contenido : 13', 0, 1, 0, 0, 0, 0, 0),
+(191, 11, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
+(191, 11, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
+(191, 11, 231, 'Contenido', 0, 0, 0, 0, 0, 0, 0),
+(191, 11, 235, 'Contenido : 12', 0, 0, 0, 0, 0, 0, 0),
+(191, 11, 236, 'Contenido : 12', 1, 0, 0, 0, 0, 0, 0),
+(191, 11, 720, 'Contenido : 13', 0, 1, 0, 0, 0, 0, 0),
 (193, 1, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
 (193, 1, 32, 'Titulo', 0, 0, 0, 0, 0, 0, 0),
 (194, 1, 23, 'Titulo', 1, 0, 0, 0, 0, 0, 0),
@@ -5260,9 +5413,11 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (191, 8, 236, 'Contenido : 12', 6),
 (191, 9, 236, 'Contenido : 12', 6),
 (191, 10, 236, 'Contenido : 12', 6),
+(191, 11, 236, 'Contenido : 12', 6),
 (191, 8, 237, 'Contenido : 13', 7),
 (191, 9, 238, 'Contenido : 13', 7),
 (191, 10, 589, 'Contenido : 13', 7),
+(191, 11, 720, 'Contenido : 13', 7),
 (1, 28, 262, 'Slider', 8),
 (1, 29, 262, 'Slider', 8),
 (1, 30, 262, 'Slider', 8),
@@ -5292,6 +5447,12 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 47, 263, 'Slider : 10', 9),
 (1, 48, 263, 'Slider : 10', 9),
 (1, 49, 263, 'Slider : 10', 9),
+(1, 50, 263, 'Slider : 10', 9),
+(1, 51, 263, 'Slider : 10', 9),
+(1, 52, 263, 'Slider : 10', 9),
+(1, 53, 263, 'Slider : 10', 9),
+(1, 54, 263, 'Slider : 10', 9),
+(1, 55, 263, 'Slider : 10', 9),
 (1, 29, 266, 'Slider : 10', 14),
 (1, 30, 266, 'Slider : 10', 14),
 (1, 31, 266, 'Slider : 10', 14),
@@ -5313,6 +5474,8 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 47, 266, 'Slider : 10', 14),
 (1, 48, 266, 'Slider : 10', 14),
 (1, 49, 266, 'Slider : 10', 14),
+(1, 50, 266, 'Slider : 10', 14),
+(1, 51, 266, 'Slider : 10', 14),
 (1, 29, 267, 'Slider : 10', 15),
 (1, 30, 267, 'Slider : 10', 15),
 (1, 31, 267, 'Slider : 10', 15),
@@ -5334,6 +5497,8 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 47, 267, 'Slider : 10', 15),
 (1, 48, 267, 'Slider : 10', 15),
 (1, 49, 267, 'Slider : 10', 15),
+(1, 50, 267, 'Slider : 10', 15),
+(1, 51, 267, 'Slider : 10', 15),
 (1, 29, 265, 'Slider : 10', 16),
 (1, 30, 265, 'Slider : 10', 16),
 (1, 31, 265, 'Slider : 10', 16),
@@ -5355,6 +5520,8 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 47, 265, 'Slider : 10', 16),
 (1, 48, 265, 'Slider : 10', 16),
 (1, 49, 265, 'Slider : 10', 16),
+(1, 50, 265, 'Slider : 10', 16),
+(1, 51, 265, 'Slider : 10', 16),
 (1, 29, 264, 'Slider : 10', 17),
 (1, 30, 264, 'Slider : 10', 17),
 (1, 31, 264, 'Slider : 10', 17),
@@ -5376,6 +5543,8 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 47, 264, 'Slider : 10', 17),
 (1, 48, 264, 'Slider : 10', 17),
 (1, 49, 264, 'Slider : 10', 17),
+(1, 50, 264, 'Slider : 10', 17),
+(1, 51, 264, 'Slider : 10', 17),
 (160, 1, 158, 'Titulo : 9', 26),
 (226, 1, 158, 'Titulo : 9', 26),
 (226, 2, 158, 'Titulo : 9', 26),
@@ -5396,6 +5565,12 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (1, 47, 591, 'Slider', 28),
 (1, 48, 591, 'Slider', 28),
 (1, 49, 591, 'Slider', 28),
+(1, 50, 591, 'Slider', 28),
+(1, 51, 591, 'Slider', 28),
+(1, 52, 591, 'Slider', 28),
+(1, 53, 591, 'Slider', 28),
+(1, 54, 591, 'Slider', 28),
+(1, 55, 591, 'Slider', 28),
 (213, 3, 432, 'Contenido', 29),
 (213, 4, 434, 'Contenido', 30),
 (213, 5, 707, 'Contenido', 30),
@@ -5409,7 +5584,23 @@ INSERT INTO `CollectionVersionBlockStyles` (`cID`, `cvID`, `bID`, `arHandle`, `i
 (226, 2, 157, 'Titulo : 9', 38),
 (227, 1, 157, 'Titulo : 9', 38),
 (228, 1, 157, 'Titulo : 9', 38),
-(229, 1, 157, 'Titulo : 9', 38);
+(229, 1, 157, 'Titulo : 9', 38),
+(1, 52, 715, 'Slider : 10', 40),
+(1, 53, 715, 'Slider : 10', 40),
+(1, 54, 715, 'Slider : 10', 40),
+(1, 55, 715, 'Slider : 10', 40),
+(1, 52, 716, 'Slider : 10', 41),
+(1, 53, 716, 'Slider : 10', 41),
+(1, 54, 716, 'Slider : 10', 41),
+(1, 55, 716, 'Slider : 10', 41),
+(1, 52, 717, 'Slider : 10', 42),
+(1, 53, 717, 'Slider : 10', 42),
+(1, 54, 717, 'Slider : 10', 42),
+(1, 55, 717, 'Slider : 10', 42),
+(1, 52, 718, 'Slider : 10', 43),
+(1, 53, 718, 'Slider : 10', 43),
+(1, 54, 718, 'Slider : 10', 43),
+(1, 55, 718, 'Slider : 10', 43);
 
 -- --------------------------------------------------------
 
@@ -5441,7 +5632,8 @@ INSERT INTO `CollectionVersionFeatureAssignments` (`cID`, `cvID`, `faID`) VALUES
 (150, 6, 6),
 (150, 7, 6),
 (146, 4, 7),
-(146, 5, 8);
+(146, 5, 8),
+(146, 6, 9);
 
 -- --------------------------------------------------------
 
@@ -5533,7 +5725,13 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (1, 46, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-27 19:07:10', 'Version 46', 0, 0, 1, 1, 2, 6, NULL),
 (1, 47, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-28 11:25:08', 'Version 47', 0, 0, 1, 1, 2, 6, NULL),
 (1, 48, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-28 11:33:44', 'Version 48', 0, 0, 1, 1, 2, 6, NULL),
-(1, 49, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-28 12:47:13', 'Version 49', 1, 0, 1, 1, 2, 6, NULL),
+(1, 49, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-28 12:47:13', 'Version 49', 0, 0, 1, 1, 2, 6, NULL),
+(1, 50, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-29 19:00:16', 'Version 50', 0, 0, 1, 1, 2, 6, NULL),
+(1, 51, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-30 14:45:02', 'Version 51', 0, 0, 1, 1, 2, 6, NULL),
+(1, 52, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-30 15:22:06', 'Version 52', 0, 0, 1, 1, 2, 6, NULL),
+(1, 53, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-30 15:24:20', 'Version 53', 0, 0, 1, 1, 2, 6, NULL),
+(1, 54, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-30 15:30:00', 'Version 54', 0, 0, 1, 1, 2, 6, NULL),
+(1, 55, 'Portada', 'portada', '', '2018-05-16 12:09:07', '2018-08-30 15:31:00', 'Version 55', 1, 0, 1, 1, 2, 6, NULL),
 (2, 1, 'Dashboard', 'dashboard', '', '2018-05-16 12:09:37', '2018-05-16 12:09:37', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
 (3, 1, 'Sitemap', 'sitemap', 'Whole world at a glance.', '2018-05-16 12:09:37', '2018-05-16 12:09:37', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
 (4, 1, 'Full Sitemap', 'full', '', '2018-05-16 12:09:38', '2018-05-16 12:09:38', 'Initial Version', 1, 0, 1, NULL, 2, 0, NULL),
@@ -5682,7 +5880,8 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (146, 2, 'Header Site Title', 'header-site-title', NULL, '2018-05-16 13:36:29', '2018-05-16 14:01:57', 'Nueva Versión 2', 0, 0, 1, 1, 2, 0, NULL),
 (146, 3, 'Header Site Title', 'header-site-title', NULL, '2018-05-16 13:36:29', '2018-05-21 09:03:22', 'Nueva Versión 3', 0, 0, 1, 1, 2, 0, NULL),
 (146, 4, 'Header Site Title', 'header-site-title', NULL, '2018-05-16 13:36:29', '2018-05-21 09:05:21', 'Nueva Versión 4', 0, 0, 1, 1, 2, 0, NULL),
-(146, 5, 'Header Site Title', 'header-site-title', NULL, '2018-05-16 13:36:29', '2018-08-27 18:57:46', 'Nueva Versión 5', 1, 0, 1, 1, 2, 0, NULL),
+(146, 5, 'Header Site Title', 'header-site-title', NULL, '2018-05-16 13:36:29', '2018-08-27 18:57:46', 'Nueva Versión 5', 0, 0, 1, 1, 2, 0, NULL),
+(146, 6, 'Header Site Title', 'header-site-title', NULL, '2018-05-16 13:36:29', '2018-08-30 14:45:02', 'Nueva Versión 6', 1, 0, 1, 1, 2, 0, NULL),
 (147, 1, 'Header Navigation', 'header-navigation', NULL, '2018-05-16 13:36:29', '2018-05-16 13:36:29', 'Initial Version', 0, 0, 1, NULL, 2, 0, NULL),
 (147, 2, 'Header Navigation', 'header-navigation', NULL, '2018-05-16 13:36:29', '2018-05-16 14:18:14', 'Nueva Versión 2', 0, 0, 1, 1, 2, 0, NULL),
 (147, 3, 'Header Navigation', 'header-navigation', NULL, '2018-05-16 13:36:29', '2018-05-16 14:18:32', 'Nueva Versión 3', 0, 0, 1, 1, 2, 0, NULL),
@@ -5699,7 +5898,10 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (148, 3, 'Footer Legal', 'footer-legal', NULL, '2018-05-16 13:36:30', '2018-05-16 14:11:00', 'Nueva Versión 3', 0, 0, 1, 1, 2, 0, NULL),
 (148, 4, 'Footer Legal', 'footer-legal', NULL, '2018-05-16 13:36:30', '2018-05-18 11:48:19', 'Nueva Versión 4', 0, 0, 1, 1, 2, 0, NULL),
 (148, 5, 'Footer Legal', 'footer-legal', NULL, '2018-05-16 13:36:30', '2018-05-21 10:24:21', 'Nueva Versión 5', 0, 0, 1, 1, 2, 0, NULL),
-(148, 6, 'Footer Legal', 'footer-legal', NULL, '2018-05-16 13:36:30', '2018-05-21 10:24:54', 'Nueva Versión 6', 1, 0, 1, 1, 2, 0, NULL),
+(148, 6, 'Footer Legal', 'footer-legal', NULL, '2018-05-16 13:36:30', '2018-05-21 10:24:54', 'Nueva Versión 6', 0, 0, 1, 1, 2, 0, NULL),
+(148, 7, 'Footer Legal', 'footer-legal', NULL, '2018-05-16 13:36:30', '2018-08-29 19:00:16', 'Nueva Versión 7', 0, 0, 1, 1, 2, 0, NULL),
+(148, 8, 'Footer Legal', 'footer-legal', NULL, '2018-05-16 13:36:30', '2018-08-30 15:24:20', 'Nueva Versión 8', 0, 0, 1, 1, 2, 0, NULL),
+(148, 9, 'Footer Legal', 'footer-legal', NULL, '2018-05-16 13:36:30', '2018-08-30 15:31:00', 'Nueva Versión 9', 1, 0, 1, 1, 2, 0, NULL),
 (149, 1, 'Footer Navigation', 'footer-navigation', NULL, '2018-05-16 13:36:30', '2018-05-16 13:36:30', 'Initial Version', 0, 0, 1, NULL, 2, 0, NULL),
 (149, 2, 'Footer Navigation', 'footer-navigation', NULL, '2018-05-16 13:36:30', '2018-05-18 11:47:48', 'Nueva Versión 2', 1, 0, 1, 1, 2, 0, NULL),
 (150, 1, 'Footer Contact', 'footer-contact', NULL, '2018-05-16 13:36:30', '2018-05-16 13:36:30', 'Initial Version', 0, 0, 1, NULL, 2, 0, NULL),
@@ -5762,7 +5964,8 @@ INSERT INTO `CollectionVersions` (`cID`, `cvID`, `cvName`, `cvHandle`, `cvDescri
 (191, 7, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-05-18 10:10:32', 'Version 7', 0, 0, 1, 1, 2, 7, NULL),
 (191, 8, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-05-18 10:11:02', 'Version 8', 0, 0, 1, 1, 2, 7, NULL),
 (191, 9, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-05-18 10:11:55', 'Version 9', 0, 0, 1, 1, 2, 7, NULL),
-(191, 10, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-08-27 18:59:00', 'Version 10', 1, 0, 1, 1, 2, 7, NULL),
+(191, 10, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-08-27 18:59:00', 'Version 10', 0, 0, 1, 1, 2, 7, NULL),
+(191, 11, 'Contacto', 'contacto', '', '2018-05-18 09:56:03', '2018-08-30 15:24:51', 'Version 11', 1, 0, 1, 1, 2, 7, NULL),
 (193, 1, 'MECIP', 'mecip', '', '2018-05-18 10:46:14', '2018-05-18 10:46:14', 'Initial Version', 1, 0, 1, 1, 2, 7, NULL),
 (194, 1, 'Trámites', 'tramites', '', '2018-05-18 10:46:54', '2018-05-18 10:46:54', 'Initial Version', 1, 0, 1, 1, 2, 7, NULL),
 (196, 1, 'Servicios', 'servicios', '', '2018-05-18 10:47:37', '2018-05-18 10:47:37', 'Initial Version', 1, 0, 1, 1, 2, 7, NULL),
@@ -5855,7 +6058,7 @@ CREATE TABLE `ConfigStore` (
 
 INSERT INTO `ConfigStore` (`cfKey`, `timestamp`, `cfValue`, `uID`, `pkgID`) VALUES
 ('MAIN_HELP_LAST_VIEWED', '2018-05-16 17:36:31', '1526492191', 1, 0),
-('NEWSFLOW_LAST_VIEWED', '2018-05-16 16:11:03', '1535395799', 1, 0);
+('NEWSFLOW_LAST_VIEWED', '2018-05-16 16:11:03', '1535567074', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -6385,7 +6588,8 @@ INSERT INTO `FeatureAssignments` (`faID`, `feID`, `fcID`, `fdObject`) VALUES
 (5, 5, 1, 'O:40:"Concrete\\Core\\Feature\\Detail\\ImageDetail":5:{s:6:"\0*\0src";s:48:"/application/files/6315/2649/3706/senatics_1.png";s:8:"\0*\0width";d:371;s:9:"\0*\0height";d:144;s:7:"\0*\0item";N;s:5:"error";s:0:"";}'),
 (6, 5, 1, 'O:40:"Concrete\\Core\\Feature\\Detail\\ImageDetail":5:{s:6:"\0*\0src";s:70:"/application/files/5815/2665/8550/Logo-de-la-SENATICS-en-alfacolor.png";s:8:"\0*\0width";d:300;s:9:"\0*\0height";d:64;s:7:"\0*\0item";N;s:5:"error";s:0:"";}'),
 (7, 5, 1, 'O:40:"Concrete\\Core\\Feature\\Detail\\ImageDetail":5:{s:6:"\0*\0src";s:47:"/application/files/1815/2690/7906/Cabeceras.png";s:8:"\0*\0width";d:1000;s:9:"\0*\0height";d:143;s:7:"\0*\0item";N;s:5:"error";s:0:"";}'),
-(8, 5, 1, 'O:40:"Concrete\\Core\\Feature\\Detail\\ImageDetail":5:{s:6:"\0*\0src";s:77:"/template-concrete5/application/files/7715/3539/6264/Transicion-animada_1.gif";s:8:"\0*\0width";d:1000;s:9:"\0*\0height";d:170;s:7:"\0*\0item";N;s:5:"error";s:0:"";}');
+(8, 5, 1, 'O:40:"Concrete\\Core\\Feature\\Detail\\ImageDetail":5:{s:6:"\0*\0src";s:77:"/template-concrete5/application/files/7715/3539/6264/Transicion-animada_1.gif";s:8:"\0*\0width";d:1000;s:9:"\0*\0height";d:170;s:7:"\0*\0item";N;s:5:"error";s:0:"";}'),
+(9, 5, 1, 'O:40:"Concrete\\Core\\Feature\\Detail\\ImageDetail":5:{s:6:"\0*\0src";s:77:"/template-concrete5/application/files/7615/3564/0299/Transicion-animada_2.gif";s:8:"\0*\0width";d:1000;s:9:"\0*\0height";d:170;s:7:"\0*\0item";N;s:5:"error";s:0:"";}');
 
 -- --------------------------------------------------------
 
@@ -6546,7 +6750,9 @@ INSERT INTO `FileAttributeValues` (`fID`, `fvID`, `akID`, `avID`) VALUES
 (44, 1, 14, 351),
 (44, 1, 15, 352),
 (45, 1, 14, 353),
-(45, 1, 15, 354);
+(45, 1, 15, 354),
+(40, 3, 14, 384),
+(40, 3, 15, 385);
 
 -- --------------------------------------------------------
 
@@ -7002,7 +7208,10 @@ INSERT INTO `FileVersionLog` (`fvlID`, `fID`, `fvID`, `fvUpdateTypeID`, `fvUpdat
 (94, 44, 1, 5, 14),
 (95, 44, 1, 5, 15),
 (96, 45, 1, 5, 14),
-(97, 45, 1, 5, 15);
+(97, 45, 1, 5, 15),
+(98, 40, 3, 1, 0),
+(99, 40, 3, 5, 14),
+(100, 40, 3, 5, 15);
 
 -- --------------------------------------------------------
 
@@ -7078,7 +7287,8 @@ INSERT INTO `FileVersions` (`fID`, `fvID`, `fvFilename`, `fvPrefix`, `fvGenericT
 (38, 1, '14_-_102.png', '811526659910', 0, 329240, '14 - 10(2).png', '', '', 1, '2018-05-18 12:11:50', 1, 1, '2018-05-18 12:11:50', 1, 1, 'png', 1),
 (39, 1, 'ENCABEZADO_1-sin_logos.jpg', '641526665285', 0, 45263, 'ENCABEZADO_1-sin_logos.jpg', '', '', 1, '2018-05-18 13:41:25', 1, 1, '2018-05-18 13:41:25', 1, 1, 'jpg', 1),
 (40, 1, 'Cabeceras.png', '181526907906', 0, 42439, 'Cabeceras.png', '', '', 0, '2018-05-21 09:05:06', 1, 1, '2018-05-21 09:05:06', 1, 1, 'png', 1),
-(40, 2, 'Transicion-animada_1.gif', '771535396264', 0, 478566, 'Cabeceras.png', '', '', 1, '2018-08-27 18:57:44', 1, 1, '2018-05-21 09:05:06', 1, 1, 'gif', 1),
+(40, 2, 'Transicion-animada_1.gif', '771535396264', 0, 478566, 'Cabeceras.png', '', '', 0, '2018-08-27 18:57:44', 1, 1, '2018-05-21 09:05:06', 1, 1, 'gif', 1),
+(40, 3, 'Transicion-animada_2.gif', '761535640299', 0, 460903, 'Cabeceras.png', '', '', 1, '2018-08-30 14:44:59', 1, 1, '2018-05-21 09:05:06', 1, 1, 'gif', 1),
 (41, 1, 'logo-gobierno-nacional-n.png', '111535396326', 0, 9493, 'logo-gobierno-nacional-n.png', '', '', 1, '2018-08-27 18:58:46', 1, 1, '2018-08-27 18:58:46', 1, 0, 'png', 1),
 (42, 1, 'accede-a-informacion-publica.png', '361535455477', 0, 15883, 'accede-a-informacion-publica.png', '', '', 1, '2018-08-28 11:24:37', 1, 1, '2018-08-28 11:24:37', 1, 0, 'png', 1),
 (43, 1, 'solicita-informacion-publica.png', '961535455492', 0, 19788, 'solicita-informacion-publica.png', '', '', 1, '2018-08-28 11:24:52', 1, 1, '2018-08-28 11:24:52', 1, 0, 'png', 1),
@@ -7663,7 +7873,12 @@ INSERT INTO `Logs` (`logID`, `channel`, `time`, `message`, `uID`, `level`) VALUE
 (134, 'application', 1535460329, 'Página "Transparencia" en ruta "/!trash/transparencia-1" eliminado', 1, 100),
 (135, 'application', 1535460330, 'Página "Transparencia" en ruta "/!trash/transparencia" eliminado', 1, 100),
 (136, 'application', 1535460342, 'Página "Compras Públicas" en ruta "/compras-publicas" movido a la papelera', 1, 100),
-(137, 'application', 1535460358, 'Página "Compras Públicas" en ruta "/!trash/compras-publicas" eliminado', 1, 100);
+(137, 'application', 1535460358, 'Página "Compras Públicas" en ruta "/!trash/compras-publicas" eliminado', 1, 100),
+(138, 'exceptions', 1535567058, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\application\\blocks\\boton\\controller.php:161 Declaration of Application\\Block\\Boton\\Controller::registerViewAssets() should be compatible with Concrete\\Core\\Block\\BlockController::registerViewAssets($outputContent = \'\') (2)\n', 1, 600),
+(139, 'exceptions', 1535567065, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\application\\blocks\\boton\\controller.php:161 Declaration of Application\\Block\\Boton\\Controller::registerViewAssets() should be compatible with Concrete\\Core\\Block\\BlockController::registerViewAssets($outputContent = \'\') (2)\n', 1, 600),
+(140, 'exceptions', 1535567069, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\application\\blocks\\boton\\controller.php:161 Declaration of Application\\Block\\Boton\\Controller::registerViewAssets() should be compatible with Concrete\\Core\\Block\\BlockController::registerViewAssets($outputContent = \'\') (2)\n', 1, 600),
+(141, 'exceptions', 1535567089, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\application\\blocks\\boton\\controller.php:161 Declaration of Application\\Block\\Boton\\Controller::registerViewAssets() should be compatible with Concrete\\Core\\Block\\BlockController::registerViewAssets($outputContent = \'\') (2)\n', 1, 600),
+(142, 'exceptions', 1535567195, 'Exception Occurred: C:\\wamp64\\www\\template-concrete5\\application\\blocks\\boton\\controller.php:161 Declaration of Application\\Block\\Boton\\Controller::registerViewAssets() should be compatible with Concrete\\Core\\Block\\BlockController::registerViewAssets($outputContent = \'\') (2)\n', 1, 600);
 
 -- --------------------------------------------------------
 
@@ -8505,12 +8720,12 @@ INSERT INTO `PageSearchIndex` (`cID`, `content`, `cName`, `cDescription`, `cPath
 (130, '', 'Trash', '', '/!trash', '2018-05-16 12:10:52', '2018-05-16 12:10:58', NULL, 0),
 (131, '', 'Stacks', '', '/!stacks', '2018-05-16 12:10:52', '2018-05-16 12:10:58', NULL, 0),
 (134, '', 'My Account', '', '/account', '2018-05-16 12:10:54', '2018-05-16 12:10:59', NULL, 0),
-(1, ' \r\n(function(d, s, id) {\r\n  var js, fjs = d.getElementsByTagName(s)[0];\r\n  if (d.getElementById(id)) return;\r\n  js = d.createElement(s); js.id = id;\r\n  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4";\r\n  fjs.parentNode.insertBefore(js, fjs);\r\n}(document, \'script\', \'facebook-jssdk\'));\r\nSENATICs Paraguay   Titulo slide 1  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto  Título del Slide 2  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto   Últimas noticias ', 'Portada', '', NULL, '2018-05-16 12:09:07', '2018-08-28 12:47:22', NULL, 0),
-(146, '', 'Header Site Title', NULL, '/!stacks/header-site-title', '2018-05-16 13:36:29', '2018-08-27 18:58:08', NULL, 0),
+(1, ' \r\n(function(d, s, id) {\r\n  var js, fjs = d.getElementsByTagName(s)[0];\r\n  if (d.getElementById(id)) return;\r\n  js = d.createElement(s); js.id = id;\r\n  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4";\r\n  fjs.parentNode.insertBefore(js, fjs);\r\n}(document, \'script\', \'facebook-jssdk\'));\r\nSENATICs Paraguay   Últimas noticias Titulo slide 1  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto  Título del Slide 2  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto   ', 'Portada', '', NULL, '2018-05-16 12:09:07', '2018-08-30 15:31:06', NULL, 0),
+(146, '', 'Header Site Title', NULL, '/!stacks/header-site-title', '2018-05-16 13:36:29', '2018-08-30 14:45:07', NULL, 0),
 (152, '', 'search', NULL, '/!stacks/search', '2018-05-16 13:55:32', '2018-08-27 19:07:13', NULL, 0),
 (153, '', 'Espacio 2', NULL, '/!stacks/espacio-2', '2018-05-16 13:55:33', '2018-05-21 09:03:32', NULL, 0),
 (154, '', 'Espacio 3', NULL, '/!stacks/espacio-3', '2018-05-16 13:55:33', '2018-05-21 09:03:32', NULL, 0),
-(148, '\r\n    var min=12;\r\n    var max=30;\r\n    function increaseFontSize() {\r\n\r\n       var p = document.getElementsByTagName(\'p\');\r\n       var blockquote = document.getElementsByTagName(\'blockquote\');\r\n       var collection = document.getElementsByClassName("collection");\r\n       \r\n       for(i=0;i  Portal construido conjuntamente con la SENATICs\r\n  Secretaría Nacional de Tecnologías de la Información y Comunicación  ', 'Footer Legal', NULL, '/!stacks/footer-legal', '2018-05-16 13:36:30', '2018-05-21 10:25:13', NULL, 0),
+(148, ' Secretaría Nacional de Tecnologías de la Información y Comunicación   Asunción - Paraguay  \r\n    var min=12;\r\n    var max=30;\r\n    function increaseFontSize() {\r\n\r\n       var p = document.getElementsByTagName(\'p\');\r\n       var blockquote = document.getElementsByTagName(\'blockquote\');\r\n       var collection = document.getElementsByClassName("collection");\r\n       \r\n       for(i=0;i ', 'Footer Legal', NULL, '/!stacks/footer-legal', '2018-05-16 13:36:30', '2018-08-30 15:31:03', NULL, 0),
 (151, '', 'info_superior', NULL, '/!stacks/info-superior', '2018-05-16 13:55:32', '2018-08-28 12:47:19', NULL, 0),
 (147, '', 'Header Navigation', NULL, '/!stacks/header-navigation', '2018-05-16 13:36:29', '2018-05-17 15:05:54', NULL, 0),
 (165, '', 'Institución', '', '/institucion', '2018-05-17 10:14:16', '2018-05-17 10:44:54', NULL, 0),
@@ -8518,7 +8733,7 @@ INSERT INTO `PageSearchIndex` (`cID`, `content`, `cName`, `cDescription`, `cPath
 (169, ' Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.    ', 'Marco Legal', '', '/institucion/marco-legal', '2018-05-17 10:41:49', '2018-05-17 10:55:34', NULL, 0),
 (171, '', 'Resoluciones', '', '/institucion/resoluciones', '2018-05-17 10:44:57', '2018-05-17 10:47:53', NULL, 0),
 (172, '', 'Organigrama', '', '/institucion/organigrama', '2018-05-17 10:46:12', '2018-05-17 11:00:42', NULL, 0),
-(191, 'Formulario de Contacto    Dirección: Complejo Santos E2 - Gral. Santos 1170 c/ ConcordiaTelefono: (+595 21) 217 - 9000 Horarios de Atención: de 07:00hs a 15:00hs E-mail: comunicacion@senatics.gov.pyAsuncion - Paraguay ', 'Contacto', '', '/contacto', '2018-05-18 09:56:03', '2018-08-27 18:59:07', NULL, 0),
+(191, 'Formulario de Contacto    Dirección: Complejo Santos E2 - Gral. Santos 1170 c/ ConcordiaTelefono: (+595 21) 217 - 9000 Horarios de Atención: de 07:00hs a 15:00hs E-mail: comunicacion@senatics.gov.pyAsunción - Paraguay ', 'Contacto', '', '/contacto', '2018-05-18 09:56:03', '2018-08-30 15:24:57', NULL, 0),
 (226, 'Categorías: Etiquetas:   Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.  ', 'Titulo de la Noticia 1', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', '/noticias/titulo-de-la-noticia-1', '2018-08-28 11:48:00', '2018-08-28 11:52:43', NULL, 0),
 (193, '', 'MECIP', '', '/mecip', '2018-05-18 10:46:14', '2018-05-18 10:46:33', NULL, 0),
 (194, '', 'Trámites', '', '/tramites', '2018-05-18 10:46:54', '2018-05-18 10:47:12', NULL, 0),
@@ -9850,7 +10065,12 @@ INSERT INTO `StyleCustomizerInlineStyleSets` (`issID`, `backgroundColor`, `backg
 (35, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '-20px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'animated slideInDown web_page', 0, 0, 0, 0),
 (36, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '-10px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'animated slideInDown web_page', 0, 0, 0, 0),
 (37, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, 'right', NULL, NULL, NULL, NULL, NULL, NULL, '-15px', '-15px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0),
-(38, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, 'right', NULL, NULL, NULL, NULL, NULL, '10px', '-15px', '-15px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0);
+(38, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, 'right', NULL, NULL, NULL, NULL, NULL, '10px', '-15px', '-15px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0),
+(39, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '15px', '15px', '5px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0),
+(40, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '15px', '15px', '4px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0),
+(41, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '15px', '15px', '4px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0),
+(42, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '15px', '15px', '4px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0),
+(43, NULL, 0, 'no-repeat', 'auto', '0% 0%', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '15px', '15px', '4px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -10409,7 +10629,7 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`uID`, `uName`, `uEmail`, `uPassword`, `uIsActive`, `uIsValidated`, `uIsFullRecord`, `uDateAdded`, `uLastPasswordChange`, `uHasAvatar`, `uLastOnline`, `uLastLogin`, `uLastIP`, `uPreviousLogin`, `uNumLogins`, `uLastAuthTypeID`, `uTimezone`, `uDefaultLanguage`) VALUES
-(1, 'admin', 'gobiernoelectronico@senatics.gov.py', '$2a$12$omSqpYlje/lWaJXhtXqjG.7FpcDO5VrNNE/Ui/K4Ha4Pa1Zk3dtuq', '1', -1, 1, '2018-05-16 12:08:56', '2018-05-18 13:49:00', 0, 1535460364, 1535454258, 0x3030303030303030303030303030303030303030303030303030303030303031, 1535396086, 7, 1, NULL, 'es_PY');
+(1, 'admin', 'gobiernoelectronico@senatics.gov.py', '$2a$12$omSqpYlje/lWaJXhtXqjG.7FpcDO5VrNNE/Ui/K4Ha4Pa1Zk3dtuq', '1', -1, 1, '2018-05-16 12:08:56', '2018-05-18 13:49:00', 0, 1535644170, 1535454258, 0x3030303030303030303030303030303030303030303030303030303030303031, 1535396086, 7, 1, NULL, 'es_PY');
 
 -- --------------------------------------------------------
 
@@ -10709,7 +10929,14 @@ INSERT INTO `WorkflowProgressHistory` (`wphID`, `wpID`, `timestamp`, `object`) V
 (211, 36, '2018-08-28 12:44:36', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"244";s:4:"cvID";s:1:"2";s:4:"wrID";s:2:"36";}'),
 (212, 37, '2018-08-28 12:45:09', 'O:48:"Concrete\\Core\\Workflow\\Request\\DeletePageRequest":7:{s:14:"\0*\0wrStatusNum";i:100;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"12";s:3:"cID";s:3:"244";s:4:"wrID";s:2:"37";}'),
 (213, 38, '2018-08-28 12:45:42', 'O:48:"Concrete\\Core\\Workflow\\Request\\DeletePageRequest":7:{s:14:"\0*\0wrStatusNum";i:100;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"12";s:3:"cID";s:3:"195";s:4:"wrID";s:2:"38";}'),
-(214, 39, '2018-08-28 12:47:19', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:1:"1";s:4:"cvID";s:2:"49";s:4:"wrID";s:2:"39";}');
+(214, 39, '2018-08-28 12:47:19', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:1:"1";s:4:"cvID";s:2:"49";s:4:"wrID";s:2:"39";}'),
+(215, 40, '2018-08-29 19:00:24', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:1:"1";s:4:"cvID";s:2:"50";s:4:"wrID";s:2:"40";}'),
+(216, 1, '2018-08-30 14:45:07', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:1:"1";s:4:"cvID";s:2:"51";s:4:"wrID";s:1:"1";}'),
+(217, 2, '2018-08-30 15:22:48', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:1:"1";s:4:"cvID";s:2:"52";s:4:"wrID";s:1:"2";}'),
+(218, 3, '2018-08-30 15:24:25', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:1:"1";s:4:"cvID";s:2:"53";s:4:"wrID";s:1:"3";}'),
+(219, 4, '2018-08-30 15:24:54', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:3:"191";s:4:"cvID";s:2:"11";s:4:"wrID";s:1:"4";}'),
+(220, 5, '2018-08-30 15:30:03', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:1:"1";s:4:"cvID";s:2:"54";s:4:"wrID";s:1:"5";}'),
+(221, 6, '2018-08-30 15:31:03', 'O:49:"Concrete\\Core\\Workflow\\Request\\ApprovePageRequest":8:{s:14:"\0*\0wrStatusNum";i:30;s:12:"\0*\0currentWP";N;s:6:"\0*\0uID";s:1:"1";s:5:"error";s:0:"";s:4:"pkID";s:2:"14";s:3:"cID";s:1:"1";s:4:"cvID";s:2:"55";s:4:"wrID";s:1:"6";}');
 
 -- --------------------------------------------------------
 
@@ -12850,7 +13077,7 @@ ALTER TABLE `AreaLayoutThemeGridColumns`
 -- AUTO_INCREMENT de la tabla `Areas`
 --
 ALTER TABLE `Areas`
-  MODIFY `arID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=757;
+  MODIFY `arID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=721;
 --
 -- AUTO_INCREMENT de la tabla `atAddressCustomCountries`
 --
@@ -12890,7 +13117,7 @@ ALTER TABLE `AttributeTypes`
 -- AUTO_INCREMENT de la tabla `AttributeValues`
 --
 ALTER TABLE `AttributeValues`
-  MODIFY `avID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=384;
+  MODIFY `avID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
 --
 -- AUTO_INCREMENT de la tabla `AuthenticationTypes`
 --
@@ -12910,17 +13137,17 @@ ALTER TABLE `BannedWords`
 -- AUTO_INCREMENT de la tabla `BlockRelations`
 --
 ALTER TABLE `BlockRelations`
-  MODIFY `brID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `brID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT de la tabla `Blocks`
 --
 ALTER TABLE `Blocks`
-  MODIFY `bID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=713;
+  MODIFY `bID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=723;
 --
 -- AUTO_INCREMENT de la tabla `BlockTypes`
 --
 ALTER TABLE `BlockTypes`
-  MODIFY `btID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `btID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT de la tabla `BlockTypeSets`
 --
@@ -12930,7 +13157,7 @@ ALTER TABLE `BlockTypeSets`
 -- AUTO_INCREMENT de la tabla `btCarruselEntries`
 --
 ALTER TABLE `btCarruselEntries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT de la tabla `btConveniosEntries`
 --
@@ -12970,7 +13197,7 @@ ALTER TABLE `btLeyTransparenciaEntries`
 -- AUTO_INCREMENT de la tabla `btListaItemsEntries`
 --
 ALTER TABLE `btListaItemsEntries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `btListarTramitesEntries`
 --
@@ -13020,7 +13247,7 @@ ALTER TABLE `btTransparenciaActivaEntries`
 -- AUTO_INCREMENT de la tabla `Collections`
 --
 ALTER TABLE `Collections`
-  MODIFY `cID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `cID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
 --
 -- AUTO_INCREMENT de la tabla `ConversationDiscussions`
 --
@@ -13095,7 +13322,7 @@ ALTER TABLE `dsOpenData`
 -- AUTO_INCREMENT de la tabla `dsOpenDataDataset`
 --
 ALTER TABLE `dsOpenDataDataset`
-  MODIFY `datasetsID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `datasetsID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `dsOpenDataDictionary`
 --
@@ -13130,7 +13357,7 @@ ALTER TABLE `dsOpenDataSettings`
 -- AUTO_INCREMENT de la tabla `FeatureAssignments`
 --
 ALTER TABLE `FeatureAssignments`
-  MODIFY `faID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `faID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `FeatureCategories`
 --
@@ -13175,7 +13402,7 @@ ALTER TABLE `FileStorageLocationTypes`
 -- AUTO_INCREMENT de la tabla `FileVersionLog`
 --
 ALTER TABLE `FileVersionLog`
-  MODIFY `fvlID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `fvlID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 --
 -- AUTO_INCREMENT de la tabla `GatheringConfiguredDataSources`
 --
@@ -13245,7 +13472,7 @@ ALTER TABLE `JobsLog`
 -- AUTO_INCREMENT de la tabla `Logs`
 --
 ALTER TABLE `Logs`
-  MODIFY `logID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `logID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 --
 -- AUTO_INCREMENT de la tabla `MailImporters`
 --
@@ -13265,7 +13492,7 @@ ALTER TABLE `MultilingualTranslations`
 -- AUTO_INCREMENT de la tabla `Packages`
 --
 ALTER TABLE `Packages`
-  MODIFY `pkgID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pkgID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `PageFeeds`
 --
@@ -13275,7 +13502,7 @@ ALTER TABLE `PageFeeds`
 -- AUTO_INCREMENT de la tabla `PagePaths`
 --
 ALTER TABLE `PagePaths`
-  MODIFY `ppID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
+  MODIFY `ppID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
 --
 -- AUTO_INCREMENT de la tabla `PageTemplates`
 --
@@ -13295,7 +13522,7 @@ ALTER TABLE `PageTypeComposerControlTypes`
 -- AUTO_INCREMENT de la tabla `PageTypeComposerFormLayoutSetControls`
 --
 ALTER TABLE `PageTypeComposerFormLayoutSetControls`
-  MODIFY `ptComposerFormLayoutSetControlID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ptComposerFormLayoutSetControlID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `PageTypeComposerFormLayoutSets`
 --
@@ -13370,12 +13597,12 @@ ALTER TABLE `Piles`
 -- AUTO_INCREMENT de la tabla `QueueMessages`
 --
 ALTER TABLE `QueueMessages`
-  MODIFY `message_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `message_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `Queues`
 --
 ALTER TABLE `Queues`
-  MODIFY `queue_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `queue_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `SignupRequests`
 --
@@ -13405,7 +13632,7 @@ ALTER TABLE `StyleCustomizerInlineStylePresets`
 -- AUTO_INCREMENT de la tabla `StyleCustomizerInlineStyleSets`
 --
 ALTER TABLE `StyleCustomizerInlineStyleSets`
-  MODIFY `issID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `issID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT de la tabla `StyleCustomizerValueLists`
 --
@@ -13490,7 +13717,7 @@ ALTER TABLE `UserValidationHashes`
 -- AUTO_INCREMENT de la tabla `WorkflowProgress`
 --
 ALTER TABLE `WorkflowProgress`
-  MODIFY `wpID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `wpID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `WorkflowProgressCategories`
 --
@@ -13500,12 +13727,12 @@ ALTER TABLE `WorkflowProgressCategories`
 -- AUTO_INCREMENT de la tabla `WorkflowProgressHistory`
 --
 ALTER TABLE `WorkflowProgressHistory`
-  MODIFY `wphID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `wphID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 --
 -- AUTO_INCREMENT de la tabla `WorkflowRequestObjects`
 --
 ALTER TABLE `WorkflowRequestObjects`
-  MODIFY `wrID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `wrID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `Workflows`
 --

@@ -60,8 +60,15 @@ body {
 
 @font-face {
     font-family: "Encabezados";
-    src: url("../fuente/Roboto-Thin.ttf") font-family: "Parrafos";
+    /*src: url("../fuente/Roboto-Thin.ttf") font-family: "Parrafos";
+    src: url("../fuente/Roboto-Light.ttf")*/
+    src: url("../font/gothan/Gotham-Bold.otf") font-family: "Parrafos";
     src: url("../fuente/Roboto-Light.ttf")
+}
+
+@font-face {
+    font-family: Gothan;
+    src: url("../font/gothan/Gotham-Bold.otf") format("opentype");
 }
 
 h1,
@@ -70,7 +77,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: Encabezados, Helvetica, Arial, sans-serif;
+    font-family: Gothan, Helvetica, Arial, sans-serif;
 }
 
 p {
@@ -248,7 +255,7 @@ p {
     width: 100%;
     display: flex !important;
     padding: 4px !important;
-    border-radius: 3px !important;
+    border-radius: 0px !important;
 }
 
 .base_buscador {
@@ -524,9 +531,9 @@ p {
 .parallax-container {
     height: auto;
     background: #f1f1f1;
-    -webkit-box-shadow: inset 0px -3px 8px 0px rgba(0, 0, 0, 0.10);
-    -moz-box-shadow: inset 0px -3px 8px 0px rgba(0, 0, 0, 0.10);
-    box-shadow: inset 0px -3px 8px 0px rgba(0, 0, 0, 0.10);
+    -webkit-box-shadow: inset 0px -3px 4px 0px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: inset 0px -3px 4px 0px rgba(0, 0, 0, 0.03);
+    box-shadow: inset 0px -3px 5px 0px rgba(0, 0, 0, 0.03);
 }
 
 @media only screen and (max-width: 1035px) {

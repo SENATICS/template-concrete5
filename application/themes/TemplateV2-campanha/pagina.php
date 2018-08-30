@@ -116,8 +116,11 @@
         <div class="container">
             <div class="row">
                 <div class="col l5 s12">
-                    <p>Basado en la <a href="https://www.paraguay.gov.py/guia-estandar" target="_blank">Guía estándar para Sitios Web del Gobierno</a></p>
-                    <p><small>Versión de la plantilla 2.2.5</small></p>
+                    <p>Basado en la <a href="https://www.paraguay.gov.py/guia-estandar" target="_blank">Guía estándar para sitios web del Gobierno</a></p>
+                    <p style="vertical-align:middle">
+                      <img src="https://cdn.paraguay.gov.py/marca-SENATICs/plantilla-v2.2.5.png" style="height:30px;">
+                      <img src="https://cdn.paraguay.gov.py/marca-SENATICs/marca-senatics-claro.png" style="height:30px;">
+                    </p>
                 </div>
                 <div class="col l7 s12" style="text-align:right">
                     <?php 
