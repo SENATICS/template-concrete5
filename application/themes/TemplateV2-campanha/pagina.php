@@ -119,7 +119,7 @@
                     <p>Basado en la <a href="https://www.paraguay.gov.py/guia-estandar" target="_blank">Guía estándar para sitios web del Gobierno</a></p>
                     <p style="vertical-align:middle">
                       <img src="https://cdn.paraguay.gov.py/marca-SENATICs/plantilla-v2.2.5.png" style="height:30px;">
-                      <a href="https://www.senatics.gov.py" target="_blank"><img src="https://cdn.paraguay.gov.py/marca-SENATICs/marca-senatics-claro.png" style="height:30px;"></a>
+                      <a href="https://www.senatics.gov.py" target="_blank" style="text-decoration:none"><img src="https://cdn.paraguay.gov.py/marca-SENATICs/marca-senatics-claro.png" style="height:30px;"></a>
                     </p>
                 </div>
                 <div class="col l7 s12" style="text-align:right">
