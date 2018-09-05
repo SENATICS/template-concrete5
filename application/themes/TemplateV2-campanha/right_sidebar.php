@@ -1,6 +1,6 @@
-<!--Template Diseñador por: Edgar Missael Cabral Báez-->
+<!-- Plantilla diseñada y desarrollada por: Edgar Missael Cabral Báez | v2.2.5 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <?php Loader::element('header_required'); ?>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -127,8 +127,7 @@
             <div class="col l5 s12">
                 <p>Basado en la <a href="https://www.paraguay.gov.py/guia-estandar" target="_blank">Guía estándar para sitios web del Gobierno</a></p>
                 <p style="vertical-align:middle">
-                    <img src="https://cdn.paraguay.gov.py/marca-SENATICs/plantilla-v2.2.5.png" style="height:30px;">
-                    <a href="https://www.senatics.gov.py" target="_blank" style="border-bottom:0"><img src="https://cdn.paraguay.gov.py/marca-SENATICs/marca-senatics-claro.png" style="height:30px;"></a>
+                    <a href="https://www.senatics.gov.py" target="_blank" style="border-bottom:0"><img src="https://cdn.paraguay.gov.py/marca-SENATICs/marca-senatics-desarrollado-por.png" style="height:30px;"></a>
                 </p>
             </div>
             <div class="col l7 s12" style="text-align:right">

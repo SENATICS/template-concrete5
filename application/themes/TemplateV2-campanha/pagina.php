@@ -1,4 +1,4 @@
-<!--Template Diseñador por: Edgar Missael Cabral Báez-->
+<!-- Plantilla diseñada y desarrollada por: Edgar Missael Cabral Báez | v2.2.5 -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
